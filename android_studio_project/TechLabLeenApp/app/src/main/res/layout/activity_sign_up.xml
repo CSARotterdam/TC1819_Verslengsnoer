@@ -87,43 +87,4 @@
         app:layout_constraintStart_toStartOf="@+id/firstNameInputLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/datadaseText"
-        android:layout_width="357dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Inhoud"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="deleteUser"
-        android:text="verwijder gebruiker"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/datadaseText"
-        app:layout_constraintTop_toBottomOf="@+id/datadaseText">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/deleteUser"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:hint="verwijder gebruiker" />
-    </android.support.design.widget.TextInputLayout>
-
 </android.support.constraint.ConstraintLayout>

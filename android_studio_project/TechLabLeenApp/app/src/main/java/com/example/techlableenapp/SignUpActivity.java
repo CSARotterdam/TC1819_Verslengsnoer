@@ -12,7 +12,6 @@ public class SignUpActivity extends AppCompatActivity {
     EditText userSurnameInput;
     EditText schoolEmailInput;
     EditText passwordInput;
-    EditText deleteUser;
     Button signUpButton;
     TextView databaseText;
     DatabaseHelper databaseHelper;
@@ -25,9 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
         userSurnameInput = (EditText) findViewById(R.id.surnameInput);
         schoolEmailInput = (EditText) findViewById(R.id.schoolEmailInput);
         passwordInput = (EditText) findViewById(R.id.passwordInput);
-        deleteUser = (EditText) findViewById(R.id.deleteUser);
         signUpButton = (Button) findViewById(R.id.signUpButton);
-        databaseText = (TextView) findViewById(R.id.datadaseText);
         databaseHelper = new DatabaseHelper(this, null, null, 1);
 
     }
@@ -45,20 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    public void deleteUser(View view){
-        String userEmail = deleteUser.getText().toString();
-        databaseHelper.deleteUsers(userEmail);
 
-    }
-
-    public void printDatabase(){
-        String dbString = databaseHelper.databaseToString();
-        databaseText.setText(dbString);
-        userFirstNameInput.setText("");
-        userSurnameInput.setText("");
-        schoolEmailInput.setText("");
-        passwordInput.setText("");
-    }
 
 
 }
