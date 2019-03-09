@@ -1,4 +1,4 @@
-package com.example.techlableenapp;
+package com.example.techlableenapp.model;
 
 public class Users {
     private String firstName;

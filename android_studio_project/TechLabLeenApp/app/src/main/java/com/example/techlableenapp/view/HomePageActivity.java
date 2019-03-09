@@ -1,7 +1,9 @@
-package com.example.techlableenapp;
+package com.example.techlableenapp.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.techlableenapp.R;
 
 public class HomePageActivity extends AppCompatActivity {
 
