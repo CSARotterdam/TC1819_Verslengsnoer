@@ -9,13 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.techlableenapp.model.Products;
 import com.example.techlableenapp.model.Users;
 
-public class UserDataSourse {
+public class DataSource {
 
     private SQLiteDatabase mDatabase;
     private TechlabDatabaseHelper mTechlabDatabaseHelper;
     private Context mContext;
 
-    public UserDataSourse(Context context){
+    public DataSource(Context context){
         mContext = context;
         mTechlabDatabaseHelper = new TechlabDatabaseHelper(mContext);
     }
@@ -37,6 +37,7 @@ public class UserDataSourse {
         values.put(mTechlabDatabaseHelper.COLUMN_SURNAME, user.getSurname());
         values.put(mTechlabDatabaseHelper.COLUMN_SCHOOLEMAIL, user.getSchoolEmail());
         values.put(mTechlabDatabaseHelper.COLUMN_PASSWORD, user.getPassword());
+        values.put(mTechlabDatabaseHelper.COLUMN_LOANED_AMOUNT,user.getLoanedAmount());
 
         mDatabase.insert(mTechlabDatabaseHelper.USER_TABLE_NAME,null,values);
     }
@@ -54,10 +55,25 @@ public class UserDataSourse {
 
     // Select
     public Cursor selectAllUsers(){
+        Cursor cursor =  mDatabase.query(
+                TechlabDatabaseHelper.USER_TABLE_NAME,
+                new String[]{TechlabDatabaseHelper.COLUMN_SCHOOLEMAIL,TechlabDatabaseHelper.COLUMN_SURNAME,TechlabDatabaseHelper.COLUMN_LOANED_AMOUNT},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return cursor;
+    }
+
+    public Cursor selectUsersWithLoanedProduct(){
+        String whereClause = TechlabDatabaseHelper.COLUMN_LOANED_AMOUNT + " > 0";
+
         Cursor cursor = (Cursor) mDatabase.query(
                 TechlabDatabaseHelper.USER_TABLE_NAME,
-                new String[]{TechlabDatabaseHelper.COLUMN_PRODUCT_NAME},
-                null,
+                new String[]{TechlabDatabaseHelper.COLUMN_SURNAME},
+                whereClause,
                 null,
                 null,
                 null,
@@ -65,15 +81,38 @@ public class UserDataSourse {
 
         );
         return cursor;
+    }
+    // Update
+    public void updateUser(Users user){
+        String whereClause = TechlabDatabaseHelper.COLUMN_SCHOOLEMAIL + " = "
+                + user.getSchoolEmail();
 
+        ContentValues values = new ContentValues();
+        values.put(mTechlabDatabaseHelper.COLUMN_FIRSTNAME, user.getFirstName());
+        values.put(mTechlabDatabaseHelper.COLUMN_SURNAME, user.getSurname());
+        values.put(mTechlabDatabaseHelper.COLUMN_SCHOOLEMAIL, user.getSchoolEmail());
+        values.put(mTechlabDatabaseHelper.COLUMN_PASSWORD, user.getPassword());
+        values.put(mTechlabDatabaseHelper.COLUMN_LOANED_AMOUNT,user.getLoanedAmount());
+        mDatabase.update(
+                TechlabDatabaseHelper.USER_TABLE_NAME,
+                values,
+                whereClause,
+                null
+        );
     }
 
-    // Update
-
     // Delete
+    public void deleteUser(Users user){
+        String whereClause = TechlabDatabaseHelper.COLUMN_SCHOOLEMAIL + " = "
+                + user.getSchoolEmail();
+        mDatabase.delete(
+                TechlabDatabaseHelper.USER_TABLE_NAME,
+                whereClause,
+                null
+        );
+    }
 
-    // Check
-
+    // check
     public boolean ifExists(String emailInput,String passwordInput)
     {
         Cursor cursor = null;
@@ -84,8 +123,7 @@ public class UserDataSourse {
         boolean exists = (cursor.getCount() > 0);
         cursor.close();
         return exists;
-
-
-
     }
+
+
 }

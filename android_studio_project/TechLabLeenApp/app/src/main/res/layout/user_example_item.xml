@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/UserManagementItemUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="0dp"
+            android:text="User name"
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+
+
+        <TextView
+            android:id="@+id/UserManagementItemUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/UserManagementItemUserName"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="174dp"
+            android:layout_marginTop="3dp"
+            android:text="email"
+            android:textAlignment="viewStart"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/UserManagementItemUserProductLoanedAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/UserManagementItemUserName"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="335dp"
+            android:layout_marginTop="3dp"
+            android:text="loanedAmount"
+            android:textAlignment="viewStart"
+            android:textSize="10sp" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

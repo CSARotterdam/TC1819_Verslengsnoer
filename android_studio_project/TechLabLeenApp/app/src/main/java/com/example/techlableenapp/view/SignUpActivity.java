@@ -3,19 +3,18 @@ package com.example.techlableenapp.view;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.techlableenapp.R;
 import com.example.techlableenapp.model.Users;
-import com.example.techlableenapp.db.UserDataSourse;
+import com.example.techlableenapp.db.DataSource;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText userFirstNameInput;
     EditText userSurnameInput;
     EditText schoolEmailInput;
     EditText passwordInput;
-    UserDataSourse userDataSourse;
+    DataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +24,19 @@ public class SignUpActivity extends AppCompatActivity {
         userSurnameInput = (EditText) findViewById(R.id.surnameInput);
         schoolEmailInput = (EditText) findViewById(R.id.schoolEmailInput);
         passwordInput = (EditText) findViewById(R.id.passwordInput);
-        userDataSourse = new UserDataSourse(this);
+        dataSource = new DataSource(this);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        userDataSourse.open();
+        dataSource.open();
 
     }
     @Override
     protected void onPause(){
         super.onPause();
-        userDataSourse.close();
+        dataSource.close();
     }
 
     public void signUpButtonClicked(View view){
@@ -46,9 +45,10 @@ public class SignUpActivity extends AppCompatActivity {
                 userFirstNameInput.getText().toString(),
                 userSurnameInput.getText().toString(),
                 schoolEmailInput.getText().toString(),
-                passwordInput.getText().toString());
+                passwordInput.getText().toString()
+                ,0);
                 // insert new user
-                userDataSourse.insertUser(user);
+                dataSource.insertUser(user);
                 // reset form input text field
                 userFirstNameInput.setText("");
                 userSurnameInput.setText("");

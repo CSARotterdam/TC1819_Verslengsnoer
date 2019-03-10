@@ -5,12 +5,14 @@ public class Users {
     private String surname;
     private String schoolEmail;
     private String password;
+    private int loanedAmount;
 
-    public Users(String firstName, String surname, String schoolEmail, String password) {
+    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount) {
         this.firstName = firstName;
         this.surname = surname;
         this.schoolEmail = schoolEmail;
         this.password = password;
+        this.loanedAmount = loanedAmount;
     }
 
     public String getFirstName() {
@@ -43,5 +45,13 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getLoanedAmount() {
+        return loanedAmount;
+    }
+
+    public void setLoanedAmount(int loanedAmount) {
+        this.loanedAmount = loanedAmount;
     }
 }

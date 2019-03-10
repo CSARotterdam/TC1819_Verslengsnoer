@@ -10,10 +10,12 @@ public class TechlabDatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_ID";
     public static final String COLUMN_FIRSTNAME = "FIRSTNAME";
     public static final String COLUMN_SURNAME = "SURNAME";
-    public static final String COLUMN_SCHOOLEMAIL = "SCHOOLEMAIL";
+    public static final String COLUMN_SCHOOLEMAIL = "SCHOOL_EMAIL";
     public static final String COLUMN_PASSWORD = "PASSWORD";
+    public static final String COLUMN_LOANED_AMOUNT = "LOANED_AMOUNT";
 
     public static final String PRODUCT_TABLE_NAME = "PRODUCT";
+
     public static final String COLUMN_PRODUCT_ID = "PRODUCT_ID";
     public static final String COLUMN_PRODUCT_MANUFACTURER = "PRODUCT_MANUFACTURER";
     public static final String COLUMN_PRODUCT_NAME = "PRODUCT_NAME";
@@ -33,7 +35,8 @@ public class TechlabDatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_FIRSTNAME +" TEXT, " +
                     COLUMN_SURNAME + " TEXT, " +
                     COLUMN_SCHOOLEMAIL + " TEXT, "+
-                    COLUMN_PASSWORD + " TEXT"+
+                    COLUMN_PASSWORD + " TEXT, "+
+                    COLUMN_LOANED_AMOUNT + " INTEGER"+
                     ");";
 
     private static final String CREATE_PRODUCT_DB =

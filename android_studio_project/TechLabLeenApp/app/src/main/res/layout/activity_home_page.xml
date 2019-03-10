@@ -6,20 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".view.HomePageActivity">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Welcome :) ha ha ha ha \n (you are not supposed to be here) \n there is no return button "
-        android:textAlignment="center"
-        android:textColor="?android:attr/colorPrimaryDark"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="163dp"
+        android:layout_height="51dp"
+        android:onClick="UserManagementActivityButton"
+        android:text="User Management"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="26dp" />
 </android.support.constraint.ConstraintLayout>

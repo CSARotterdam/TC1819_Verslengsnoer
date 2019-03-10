@@ -1,6 +1,7 @@
 package com.example.techlableenapp.view;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,13 +9,13 @@ import android.widget.EditText;
 
 import com.example.techlableenapp.R;
 import com.example.techlableenapp.db.TechlabDatabaseHelper;
-import com.example.techlableenapp.db.UserDataSourse;
+import com.example.techlableenapp.db.DataSource;
 
 
 public class  MainActivity extends AppCompatActivity {
 
 
-    UserDataSourse userDataSourse;
+    DataSource dataSource;
     EditText loginEmailInput;
     EditText LoginPasswordInput;
     TechlabDatabaseHelper mTechlabDatabaseHelper;
@@ -22,22 +23,24 @@ public class  MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        userDataSourse = new UserDataSourse(this);
+        dataSource = new DataSource(this);
         loginEmailInput = (EditText) findViewById(R.id.loginEmailInput);
         LoginPasswordInput = (EditText) findViewById(R.id.loginPasswordInput);
+
+
+
 
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        userDataSourse.open();
-
+        dataSource.open();
     }
     @Override
     protected void onPause(){
         super.onPause();
-        userDataSourse.close();
+        dataSource.close();
     }
 
     public void signUpPageButton(View view){
@@ -46,17 +49,12 @@ public class  MainActivity extends AppCompatActivity {
     }
 
     public void loginButton(View view){
-        if (userDataSourse.ifExists(loginEmailInput.getText().toString(),LoginPasswordInput.getText().toString())) {
+        if (dataSource.ifExists(loginEmailInput.getText().toString(),LoginPasswordInput.getText().toString())) {
             LoginPasswordInput.setText("");
             loginEmailInput.setText("");
             Intent startNewActivity = new Intent(this, HomePageActivity.class);
             startActivity(startNewActivity);
         }
     }
-
-
-
-
-
 
 }
