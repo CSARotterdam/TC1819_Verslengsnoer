@@ -1,14 +1,12 @@
 package com.example.techlableenapp.view;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import com.example.techlableenapp.R;
-import com.example.techlableenapp.db.TechlabDatabaseHelper;
 import com.example.techlableenapp.db.DataSource;
 
 
@@ -18,7 +16,6 @@ public class  MainActivity extends AppCompatActivity {
     DataSource dataSource;
     EditText loginEmailInput;
     EditText LoginPasswordInput;
-    TechlabDatabaseHelper mTechlabDatabaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

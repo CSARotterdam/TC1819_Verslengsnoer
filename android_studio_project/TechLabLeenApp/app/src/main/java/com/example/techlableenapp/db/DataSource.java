@@ -57,7 +57,7 @@ public class DataSource {
     public Cursor selectAllUsers(){
         Cursor cursor =  mDatabase.query(
                 TechlabDatabaseHelper.USER_TABLE_NAME,
-                new String[]{TechlabDatabaseHelper.COLUMN_SCHOOLEMAIL,TechlabDatabaseHelper.COLUMN_SURNAME,TechlabDatabaseHelper.COLUMN_LOANED_AMOUNT},
+                new String[]{TechlabDatabaseHelper.COLUMN_SCHOOLEMAIL,TechlabDatabaseHelper.COLUMN_FIRSTNAME,TechlabDatabaseHelper.COLUMN_LOANED_AMOUNT},
                 null,
                 null,
                 null,

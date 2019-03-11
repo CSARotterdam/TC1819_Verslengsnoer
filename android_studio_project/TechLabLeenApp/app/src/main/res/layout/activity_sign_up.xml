@@ -19,7 +19,8 @@
             android:id="@+id/firstNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Voornaam" />
+            android:hint="Voornaam"
+            android:inputType="textPersonName" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -34,7 +35,8 @@
             android:id="@+id/surnameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Achternaam" />
+            android:hint="Achternaam"
+            android:inputType="textPersonName" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -49,7 +51,8 @@
             android:id="@+id/schoolEmailInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="School email" />
+            android:hint="School email"
+            android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -64,7 +67,8 @@
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Wachtwoord" />
+            android:hint="Wachtwoord"
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
