@@ -38,6 +38,7 @@ public class DataSource {
         values.put(mTechlabDatabaseHelper.COLUMN_SCHOOLEMAIL, user.getSchoolEmail());
         values.put(mTechlabDatabaseHelper.COLUMN_PASSWORD, user.getPassword());
         values.put(mTechlabDatabaseHelper.COLUMN_LOANED_AMOUNT,user.getLoanedAmount());
+        values.put(mTechlabDatabaseHelper.COLUMN_USER_TYPE,user.getUserType());
 
         mDatabase.insert(mTechlabDatabaseHelper.USER_TABLE_NAME,null,values);
     }
@@ -115,14 +116,23 @@ public class DataSource {
     // check
     public boolean ifExists(String emailInput,String passwordInput)
     {
-        Cursor cursor = null;
         String checkQuery = "SELECT * FROM " + mTechlabDatabaseHelper.USER_TABLE_NAME + " WHERE "
                 + mTechlabDatabaseHelper.COLUMN_SCHOOLEMAIL + " =\"" + emailInput + "\" and "
                 + mTechlabDatabaseHelper.COLUMN_PASSWORD + " = \"" + passwordInput + "\";";
-        cursor = mDatabase.rawQuery(checkQuery,null);
+        Cursor cursor = mDatabase.rawQuery(checkQuery,null);
         boolean exists = (cursor.getCount() > 0);
-        cursor.close();
         return exists;
+    }
+
+    //get user object
+    public Users getUser(String userEmail){
+        String checkQuery = "SELECT * FROM " + mTechlabDatabaseHelper.USER_TABLE_NAME + " WHERE "
+                + mTechlabDatabaseHelper.COLUMN_SCHOOLEMAIL + " =\"" + userEmail + "\";";
+        Cursor cursor = mDatabase.rawQuery(checkQuery,null);
+        cursor.moveToFirst();
+        Users user = new Users(cursor.getString(1),cursor.getString(2),cursor.getString(3)
+        ,cursor.getString(4),cursor.getInt(5),cursor.getString(6));
+        return user;
     }
 
 

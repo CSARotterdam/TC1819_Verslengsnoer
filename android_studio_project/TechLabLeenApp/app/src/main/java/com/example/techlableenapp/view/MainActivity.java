@@ -8,6 +8,9 @@ import android.widget.EditText;
 
 import com.example.techlableenapp.R;
 import com.example.techlableenapp.db.DataSource;
+import com.example.techlableenapp.model.Users;
+
+import javax.security.auth.login.LoginException;
 
 
 public class  MainActivity extends AppCompatActivity {
@@ -47,9 +50,11 @@ public class  MainActivity extends AppCompatActivity {
 
     public void loginButton(View view){
         if (dataSource.ifExists(loginEmailInput.getText().toString(),LoginPasswordInput.getText().toString())) {
+            Intent startNewActivity = new Intent(this, HomePageActivity.class);
+            Users users =dataSource.getUser(loginEmailInput.getText().toString());
+            startNewActivity.putExtra("activeUser",users);
             LoginPasswordInput.setText("");
             loginEmailInput.setText("");
-            Intent startNewActivity = new Intent(this, HomePageActivity.class);
             startActivity(startNewActivity);
         }
     }
