@@ -59,6 +59,7 @@
                 android:drawableLeft="@mipmap/raspberry"
                 android:text="Raspberry Pi 3 1"
                 android:textAlignment="center" />
+
             <Button
                 android:id="@+id/BRaspberry2"
                 android:layout_width="match_parent"
