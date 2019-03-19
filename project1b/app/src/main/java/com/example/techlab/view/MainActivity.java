@@ -10,6 +10,8 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Users;
 
+import javax.security.auth.login.LoginException;
+
 
 public class  MainActivity extends AppCompatActivity {
 
@@ -48,7 +50,7 @@ public class  MainActivity extends AppCompatActivity {
 
     public void loginButton(View view){
         if (dataSource.ifExists(loginEmailInput.getText().toString(),LoginPasswordInput.getText().toString())) {
-            Intent startNewActivity = new Intent(this, RepositoryActivity.class);
+            Intent startNewActivity = new Intent(this, HomePageActivity.class);
             Users users =dataSource.getUser(loginEmailInput.getText().toString());
             startNewActivity.putExtra("activeUser",users);
             LoginPasswordInput.setText("");
