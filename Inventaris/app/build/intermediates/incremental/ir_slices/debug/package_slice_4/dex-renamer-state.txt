@@ -1,0 +1,4 @@
+#Mon Mar 18 01:49:23 CET 2019
+base.0=D\:\\School\\Project 2 Techlab\\Git\\TC1819_Verslengsnoer\\Inventaris\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\4
+path.0=classes.dex
+renamed.0=classes.dex
