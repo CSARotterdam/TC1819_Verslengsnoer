@@ -1,6 +1,6 @@
 package com.example.techlab.model;
 
-public class Products {
+public class Electronics {
 
     public String productId;
     public String productManufacturer;
@@ -9,8 +9,8 @@ public class Products {
     public int amountBroken;
     public String productCategory;
 
-    public Products(String productId, String productManufacturer, String productName,
-                    int productStock, int amountBroken, String productCategory) {
+    public Electronics(String productId, String productManufacturer, String productName,
+                       int productStock, int amountBroken, String productCategory) {
         this.productId = productId;
         this.productManufacturer = productManufacturer;
         this.productName = productName;

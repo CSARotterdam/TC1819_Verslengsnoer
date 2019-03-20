@@ -3,6 +3,7 @@ package com.example.techlab.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.techlab.R;
@@ -20,6 +21,11 @@ public class RepositoryActivity extends AppCompatActivity {
         username = (TextView) findViewById(R.id.userNameHomePage);
         welcome = (TextView) findViewById(R.id.welcomeTextViewHomePage);
         username.setText(activeUser.getFirstName()+" :) How is your day?");
+    }
+
+    public void productManagementPageButton(View view){
+        Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        startActivity(startNewActivity);
     }
 
 

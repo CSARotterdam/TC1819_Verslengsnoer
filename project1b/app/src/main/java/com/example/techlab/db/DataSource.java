@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.techlab.model.Products;
+import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
 public class DataSource {
@@ -43,7 +43,7 @@ public class DataSource {
         mDatabase.insert(mTechLabDataBaseHelper.USER_TABLE_NAME,null,values);
     }
 
-    public void insertProduct(Products product){
+    public void insertProduct(Electronics product){
         ContentValues values = new ContentValues();
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_ID, product.getProductId()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, product.getProductCategory()) ;
