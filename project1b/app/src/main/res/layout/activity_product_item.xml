@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="electronics"
+            name="electronicsItem"
             type="com.example.techlab.model.Electronics" />
     </data>
 
@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="66dp"
             android:layout_marginLeft="66dp"
-            android:text="@{electronics.productName}"
+            android:text="@{electronicsItem.productName}"
             tools:text="LCD Display" />
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="107dp"
             android:layout_marginRight="107dp"
-            android:text="@{electronics.productStock}"
+            android:text="@{String.valueOf(electronicsItem.productStock)}"
             tools:text="2" />
     </RelativeLayout>
 </layout>
