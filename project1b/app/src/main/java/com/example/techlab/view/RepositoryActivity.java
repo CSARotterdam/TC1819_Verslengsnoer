@@ -3,6 +3,7 @@ package com.example.techlab.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.techlab.R;
@@ -22,5 +23,9 @@ public class RepositoryActivity extends AppCompatActivity {
         username.setText(activeUser.getFirstName()+" :) How is your day?");
     }
 
+    public void BorrowItemBtn(View view){
+        Intent borrowItemBtnActivity = new Intent(this,GeleendeProductActivity.class);
+        startActivity(borrowItemBtnActivity);
+    }
 
 }
