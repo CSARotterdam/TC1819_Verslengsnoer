@@ -24,10 +24,6 @@ public class  MainActivity extends AppCompatActivity {
         dataSource = new DataSource(this);
         loginEmailInput = (EditText) findViewById(R.id.loginEmailInput);
         LoginPasswordInput = (EditText) findViewById(R.id.loginPasswordInput);
-
-
-
-
     }
 
     @Override

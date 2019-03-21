@@ -7,30 +7,54 @@
     tools:context=".view.RepositoryActivity">
 
 
-    <TextView
-        android:id="@+id/userNameHomePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="@+id/welcomeTextViewHomePage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/welcomeTextViewHomePage"
-        app:layout_constraintTop_toTopOf="@+id/welcomeTextViewHomePage"
-        app:layout_constraintVertical_bias="0.0"
-        android:gravity="start" />
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="59dp">
 
-    <TextView
-        android:id="@+id/welcomeTextViewHomePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="32dp"
-        android:text="Welcome"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/userNameHomePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="start"
+            android:text="TextView"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="@+id/welcomeTextViewHomePage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/welcomeTextViewHomePage"
+            app:layout_constraintTop_toTopOf="@+id/welcomeTextViewHomePage"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/welcomeTextViewHomePage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="32dp"
+            android:text="Welcome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="527dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+        <Button
+            android:id="@+id/managerStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Manager Screen" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
