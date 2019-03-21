@@ -1,30 +1,19 @@
-package com.example.beheerderstart;
+package com.example.techlab.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 
+import com.example.techlab.R;
+import com.example.techlab.db.DataSource;
+import com.example.techlab.model.Users;
 public class ManagerStart extends AppCompatActivity {
 
-    private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        button = (Button) findViewById(R.id.GeleendeProducten);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGeleendeProducten();
-            }
-        });
-    }
-
-    public void openGeleendeProducten() {
-        Intent intent = new Intent(this, GeleendeProducten.class);
-        startActivity(intent);
+        setContentView(R.layout.activity_manager_start);
     }
 }
