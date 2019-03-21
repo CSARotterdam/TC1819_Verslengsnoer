@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">StudentTechlab</string>
+    <string name="Inventaris">Inventaris</string>
+    <string name="BorrowedItemStudent">Geleende producten</string>
+    <string name="Techlablogo">TechlabLogo</string>
+    <string name="StudentDashboard">Student Dashboard</string>
+    <string name="back"><![CDATA[<]]></string>
+</resources>
