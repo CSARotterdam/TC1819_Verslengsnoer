@@ -24,8 +24,13 @@ public class RepositoryActivity extends AppCompatActivity {
     }
 
     public void BorrowItemBtn(View view){
-        Intent borrowItemBtnActivity = new Intent(this,GeleendeProductActivity.class);
-        startActivity(borrowItemBtnActivity);
+        Intent ShowBorrowItemActivity = new Intent(this,GeleendeProductActivity.class);
+        startActivity(ShowBorrowItemActivity);
+    }
+
+    public void InventarisBtn(View view){
+        Intent ShowInventarisActivity = new Intent(this,InventarisActivity.class);
+        startActivity(ShowInventarisActivity);
     }
 
 }
