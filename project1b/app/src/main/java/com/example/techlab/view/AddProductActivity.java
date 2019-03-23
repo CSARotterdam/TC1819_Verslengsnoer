@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ public class AddProductActivity extends AppCompatActivity {
     EditText productName;
     EditText productStock;
     EditText productCategory;
+    EditText productDescription;
     DataSource dataSource;
 
 
@@ -28,6 +30,7 @@ public class AddProductActivity extends AppCompatActivity {
         productName = findViewById(R.id.productNameTextInput);
         productStock = findViewById(R.id.productStockTextInput);
         productCategory = findViewById(R.id.productCategoryTextInput);
+        productDescription = findViewById(R.id.productDescriptionTextInput);
         dataSource = new DataSource(this);
     }
 
@@ -51,7 +54,8 @@ public class AddProductActivity extends AppCompatActivity {
                 productName.getText().toString(),
                 Integer.parseInt(productStock.getText().toString()),
                 0,
-                productCategory.getText().toString());
+                productCategory.getText().toString(),
+                productDescription.getText().toString());
         // insert new product
         dataSource.insertProduct(newProduct);
         // reset form input text field
@@ -60,5 +64,8 @@ public class AddProductActivity extends AppCompatActivity {
         productName.setText("");
         productStock.setText("");
         productCategory.setText("");
+        productDescription.setText("");
+        Intent intent = new Intent(this,ProductManagementActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,22 +1,21 @@
 package com.example.techlab.model;
 
-public class Electronics {
+public class Electronics extends Products {
 
     public String productId;
     public String productManufacturer;
-    public String productName;
-    public int productStock;
     public int amountBroken;
     public String productCategory;
 
     public Electronics(String productId, String productManufacturer, String productName,
-                       int productStock, int amountBroken, String productCategory) {
+                       int productStock, int amountBroken, String productCategory, String description) {
         this.productId = productId;
         this.productManufacturer = productManufacturer;
-        this.productName = productName;
-        this.productStock = productStock;
+        super.name = productName;
+        super.stock = productStock;
         this.amountBroken = amountBroken;
         this.productCategory = productCategory;
+        super.description = description;
     }
 
     public String getProductId() {
@@ -33,22 +32,6 @@ public class Electronics {
 
     public void setProductManufacturer(String productManufacturer) {
         this.productManufacturer = productManufacturer;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getProductStock() {
-        return productStock;
-    }
-
-    public void setProductStock(int productStock) {
-        this.productStock = productStock;
     }
 
     public int getAmountBroken() {

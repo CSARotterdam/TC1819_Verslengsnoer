@@ -1,15 +1,19 @@
 package com.example.techlab.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.ActivityProductItemBinding;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.view.ProductDeleteAndUpDateActivity;
 
 import java.util.List;
 
@@ -36,8 +40,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Electronics electronic = electronics.get(i);
+        final Electronics electronic = electronics.get(i);
         viewHolder.productItemBinding.setElectronicsItem(electronic);
+        viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductDeleteAndUpDateActivity.class);
+                intent.putExtra("productID",electronic.getProductId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -46,12 +58,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+
+        RelativeLayout relativeLayout;
         // Binding variables
         public ActivityProductItemBinding productItemBinding;
 
         public ViewHolder(ActivityProductItemBinding productLayoutBinding) {
             super(productLayoutBinding.getRoot());
             productItemBinding = productLayoutBinding;
+            relativeLayout = itemView.findViewById(R.id.productItemView);
 
         }
     }
