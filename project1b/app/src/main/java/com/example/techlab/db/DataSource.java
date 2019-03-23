@@ -68,6 +68,24 @@ public class DataSource {
         return cursor;
     }
 
+    public Cursor selectAllproduct(){
+        Cursor cursor =  mDatabase.query(
+                mTechLabDataBaseHelper.PRODUCT_TABLE_NAME,
+                new String[]{mTechLabDataBaseHelper.COLUMN_PRODUCT_ID
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_MANUFACTURER
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_STOCK
+                        ,mTechLabDataBaseHelper.COLUMN_AMOUNT_BROKEN
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return cursor;
+    }
+
     public Cursor selectUsersWithLoanedProduct(){
         String whereClause = mTechLabDataBaseHelper.COLUMN_LOANED_AMOUNT + " > 0";
 
