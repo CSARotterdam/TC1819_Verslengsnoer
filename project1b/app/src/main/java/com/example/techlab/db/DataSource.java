@@ -54,6 +54,21 @@ public class DataSource {
         mDatabase.insert(mTechLabDataBaseHelper.PRODUCT_TABLE_NAME,null,values);
     }
 
+    public void insertBooks(Products product){
+        ContentValues values = new ContentValues();
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_ISBN, product.getProductISBN()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, product.getProductCategory()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_PUBLISHER, product.getProductPublisher()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME, product.getProductName()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_STOCK, product.getProductStock()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_AMOUNT_BROKEN, product.getAmountBroken()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_WRITER1, product.getProductWriter1());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_WRITER2, product.getProductWriter2());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_WRITER3, product.getProductWriter3());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_WRITER4, product.getProductWriter4());
+        mDatabase.insert(mTechLabDataBaseHelper.PRODUCT_TABLE_NAME,null,values);
+    }
+
     // Select
     public Cursor selectAllUsers(){
         Cursor cursor =  mDatabase.query(

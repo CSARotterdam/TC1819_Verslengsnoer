@@ -23,8 +23,12 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRODUCT_STOCK = "PRODUCT_STOCK";
     public static final String COLUMN_AMOUNT_BROKEN = "PRODUCT_AMOUNT_BROKEN";
     public static final String COLUMN_PRODUCT_CATEGORY = "PRODUCT_CATEGORY";
-
-
+    public static final String COLUMN_PRODUCT_ISBN = "PRODUCT_ISBN";
+    public static final String COLUMN_PRODUCT_PUBLISHER = "PRODUCT_PUBLISHER";
+    public static final String COLUMN_PRODUCT_WRITER1 = "PRODUCT_WRITER1";
+    public static final String COLUMN_PRODUCT_WRITER2 = "PRODUCT_WRITER2";
+    public static final String COLUMN_PRODUCT_WRITER3 = "PRODUCT_WRITER3";
+    public static final String COLUMN_PRODUCT_WRITER4 = "PRODUCT_WRITER4";
 
 
     private static final  String DB_NAME = "techlab.db";
@@ -49,7 +53,13 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
                     COLUMN_PRODUCT_NAME + " TEXT, "+
                     COLUMN_PRODUCT_STOCK + " INTEGER, "+
                     COLUMN_AMOUNT_BROKEN + " INTEGER, "+
-                    COLUMN_PRODUCT_CATEGORY + " TEXT "+
+                    COLUMN_PRODUCT_CATEGORY + " TEXT, "+
+                    COLUMN_PRODUCT_WRITER1 + " TEXT, "+
+                    COLUMN_PRODUCT_WRITER2 + " TEXT, "+
+                    COLUMN_PRODUCT_WRITER3 + " TEXT, "+
+                    COLUMN_PRODUCT_WRITER4 + " TEXT, "+
+                    COLUMN_PRODUCT_ISBN + " TEXT, "+
+                    COLUMN_PRODUCT_PUBLISHER +" TEXT"+
                     ");";
 
 
