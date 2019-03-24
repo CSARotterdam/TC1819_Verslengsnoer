@@ -13,6 +13,7 @@ import com.example.techlab.adapter.ProductAdapter;
 import com.example.techlab.databinding.ActivityProductBeheerBinding;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +23,15 @@ public class ProductManagementActivity extends AppCompatActivity {
     DataSource dataSource;
     private ActivityProductBeheerBinding binding;
     private ProductAdapter adapter;
+    private Users activeUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_product_beheer);
         dataSource = new DataSource(this);
+        Intent intent = getIntent();
+        activeUser = intent.getParcelableExtra("activeUser");
     }
 
     @Override
@@ -72,5 +76,12 @@ public class ProductManagementActivity extends AppCompatActivity {
             }
         }
         return electronicsList;
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this, RepositoryActivity.class);
+        startNewActivity.putExtra("activeUser",activeUser);
+        startActivity(startNewActivity);
     }
 }

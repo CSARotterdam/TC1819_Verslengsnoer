@@ -12,21 +12,33 @@ import com.example.techlab.model.Users;
 public class RepositoryActivity extends AppCompatActivity {
     TextView username;
     TextView welcome;
+    private Users activeUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository);
-        Intent intent = getIntent();
-        Users activeUser = intent.getParcelableExtra("activeUser");
         username = (TextView) findViewById(R.id.userNameHomePage);
         welcome = (TextView) findViewById(R.id.welcomeTextViewHomePage);
+        Intent intent = getIntent();
+        activeUser = intent.getParcelableExtra("activeUser");
         username.setText(activeUser.getFirstName()+" :) How is your day?");
+
+
     }
 
     public void productManagementPageButton(View view){
         Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        Intent intent = getIntent();
+        Users activeUser = intent.getParcelableExtra("activeUser");
+        startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+
+    }
 }

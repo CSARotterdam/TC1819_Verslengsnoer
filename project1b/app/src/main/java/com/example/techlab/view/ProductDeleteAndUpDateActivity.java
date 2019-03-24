@@ -68,5 +68,11 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
         startNewActivity.putExtra("id",String.valueOf(cursor.getInt(0)));
         startActivity(startNewActivity);
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(this, ProductManagementActivity.class);
+        startActivity(intent);
+    }
 
 }

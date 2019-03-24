@@ -79,8 +79,12 @@ public class ProductUpDateActivity extends AppCompatActivity {
         amountBroken.setText("");
 
 
-
-
+        startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(this, ProductManagementActivity.class);
         startActivity(intent);
     }
 }

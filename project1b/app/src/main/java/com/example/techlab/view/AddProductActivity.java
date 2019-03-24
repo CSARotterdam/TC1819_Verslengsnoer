@@ -68,4 +68,6 @@ public class AddProductActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ProductManagementActivity.class);
         startActivity(intent);
     }
+
+
 }
