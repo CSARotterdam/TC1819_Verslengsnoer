@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
@@ -25,7 +26,9 @@ public class  MainActivity extends AppCompatActivity {
         loginEmailInput = (EditText) findViewById(R.id.loginEmailInput);
         LoginPasswordInput = (EditText) findViewById(R.id.loginPasswordInput);
 
-
+        ImageView logo = (ImageView) findViewById(R.id.TechLabLogo);
+        int ImageResource = getResources().getIdentifier("@drawable/logo", null, this.getPackageName());
+        logo.setImageResource(ImageResource);
 
 
     }

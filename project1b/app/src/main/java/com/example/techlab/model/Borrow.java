@@ -1,5 +1,7 @@
 package com.example.techlab.model;
 
+import java.sql.Time;
+
 public class Borrow {
 
     private int mImageResource;
@@ -8,7 +10,7 @@ public class Borrow {
     private String mProductAmount;
     private String mProductStatus;
 
-    public Borrow( int imageResource, String PName, String TurnInDate, String PAmount, String PStatus){
+    public Borrow(int imageResource, String PName, String TurnInDate, String PAmount, String PStatus){
         mImageResource = imageResource;
         mProductName = PName;
         mTurnInDate = TurnInDate;

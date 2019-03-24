@@ -22,10 +22,11 @@ public class GeleendeProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geleende_product);
 
+//        This needs to be done through database
         ArrayList<Borrow> BorrowItemList = new ArrayList<>();
         BorrowItemList.add(new Borrow(R.drawable.ic_android, "IPhone", "23-3-2019", "1", "Pending"));
-        BorrowItemList.add(new Borrow(R.drawable.ic_camera, "Camera", "23-3-2019", "1", "Pending"));
-        BorrowItemList.add(new Borrow(R.drawable.ic_videogame, "PS4", "23-3-2019", "1", "Pending"));
+        BorrowItemList.add(new Borrow(R.drawable.ic_camera, "Camera", "23-3-2019", "2", "Pending"));
+        BorrowItemList.add(new Borrow(R.drawable.ic_videogame, "PS4", "23-3-2019", "1", "Geleend"));
 
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
         mRecyclerView.setHasFixedSize(true);
