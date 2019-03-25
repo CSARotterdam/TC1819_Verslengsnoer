@@ -11,7 +11,7 @@ import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Users;
 
 
-public class  MainActivity extends AppCompatActivity {
+public class InLogActivity extends AppCompatActivity {
 
 
     DataSource dataSource;
@@ -57,4 +57,10 @@ public class  MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this, InLogActivity.class);
+        startActivity(startNewActivity);
+    }
 }

@@ -1,69 +1,31 @@
 package com.example.techlab.model;
 
 public class Products {
+    protected String name;
+    protected int stock;
+    protected String description;
 
-    public String productId;
-    public String productManufacturer;
-    public String productName;
-    public int productStock;
-    public int amountBroken;
-    public String productCategory;
-
-    public Products(String productId, String productManufacturer, String productName,
-                    int productStock, int amountBroken, String productCategory) {
-        this.productId = productId;
-        this.productManufacturer = productManufacturer;
-        this.productName = productName;
-        this.productStock = productStock;
-        this.amountBroken = amountBroken;
-        this.productCategory = productCategory;
+    public String getName() {
+        return name;
     }
 
-    public String getProductId() {
-        return productId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public int getStock() {
+        return stock;
     }
 
-    public String getProductManufacturer() {
-        return productManufacturer;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public void setProductManufacturer(String productManufacturer) {
-        this.productManufacturer = productManufacturer;
+    public String getDescription() {
+        return description;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getProductStock() {
-        return productStock;
-    }
-
-    public void setProductStock(int productStock) {
-        this.productStock = productStock;
-    }
-
-    public int getAmountBroken() {
-        return amountBroken;
-    }
-
-    public void setAmountBroken(int amountBroken) {
-        this.amountBroken = amountBroken;
-    }
-
-    public String getProductCategory() {
-        return productCategory;
-    }
-
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -23,12 +23,14 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRODUCT_STOCK = "PRODUCT_STOCK";
     public static final String COLUMN_AMOUNT_BROKEN = "PRODUCT_AMOUNT_BROKEN";
     public static final String COLUMN_PRODUCT_CATEGORY = "PRODUCT_CATEGORY";
+    public static final String COLUMN_PRODUCT_DESCRIPTION = "PRODUCT_DESCRIPTION";
+
 
 
 
 
     private static final  String DB_NAME = "techlab.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     private static final String CREATE_USER_DB=
             "CREATE TABLE " + USER_TABLE_NAME + " (" +
@@ -49,8 +51,11 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
                     COLUMN_PRODUCT_NAME + " TEXT, "+
                     COLUMN_PRODUCT_STOCK + " INTEGER, "+
                     COLUMN_AMOUNT_BROKEN + " INTEGER, "+
-                    COLUMN_PRODUCT_CATEGORY + " TEXT "+
+                    COLUMN_PRODUCT_CATEGORY + " TEXT, "+
+                    COLUMN_PRODUCT_DESCRIPTION + " TEXT "+
                     ");";
+    private static final String DB_ALTER =
+            "ALTER TABLE " + PRODUCT_TABLE_NAME + " ADD COLUMN "+COLUMN_PRODUCT_DESCRIPTION+" TEXT";
 
 
     public TechLabDataBaseHelper(Context context) {
@@ -65,6 +70,6 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(DB_ALTER);
     }
 }
