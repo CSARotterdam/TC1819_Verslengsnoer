@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Users;
 
 public class ProductUpDateActivity extends AppCompatActivity {
     EditText productManufacturer;
@@ -19,6 +20,7 @@ public class ProductUpDateActivity extends AppCompatActivity {
     EditText productDescription;
     EditText amountBroken;
     DataSource dataSource;
+    Users activeUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class ProductUpDateActivity extends AppCompatActivity {
         productCategory = findViewById(R.id.productCategoryTextInputUpDate);
         productDescription = findViewById(R.id.productDescriptionTextInputUpDate);
         amountBroken = findViewById(R.id.amountBrokenTextInputUpdate);
+        Intent intent = getIntent();
+        activeUser = intent.getParcelableExtra("activeUser");
         dataSource = new DataSource(this);
 
 
@@ -77,14 +81,14 @@ public class ProductUpDateActivity extends AppCompatActivity {
         productCategory.setText("");
         productDescription.setText("");
         amountBroken.setText("");
-
-
+        intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }
     @Override
     public void onBackPressed() {
         finish();
         Intent intent = new Intent(this, ProductManagementActivity.class);
+        intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }
 }

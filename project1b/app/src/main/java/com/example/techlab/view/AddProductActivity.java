@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Users;
 
 public class AddProductActivity extends AppCompatActivity {
     EditText productId;
@@ -18,8 +19,7 @@ public class AddProductActivity extends AppCompatActivity {
     EditText productCategory;
     EditText productDescription;
     DataSource dataSource;
-
-
+    Users activeUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,8 @@ public class AddProductActivity extends AppCompatActivity {
         productCategory = findViewById(R.id.productCategoryTextInput);
         productDescription = findViewById(R.id.productDescriptionTextInput);
         dataSource = new DataSource(this);
+        Intent intent = getIntent();
+        activeUser = intent.getParcelableExtra("activeUser");
     }
 
     @Override
@@ -66,6 +68,7 @@ public class AddProductActivity extends AppCompatActivity {
         productCategory.setText("");
         productDescription.setText("");
         Intent intent = new Intent(this,ProductManagementActivity.class);
+        intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }
 

@@ -41,7 +41,7 @@ public class ProductManagementActivity extends AppCompatActivity {
 
         Cursor cursor = dataSource.selectAllproduct();
         ArrayList<Electronics> productData = getProductData(cursor);
-        adapter = new ProductAdapter(productData,this);
+        adapter = new ProductAdapter(productData,this, activeUser);
 
         binding.electronicsListItems.setAdapter(adapter);
         binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));
@@ -54,6 +54,7 @@ public class ProductManagementActivity extends AppCompatActivity {
 
     public void addProductPageButton(View view){
         Intent startNewActivity = new Intent(this, AddProductActivity.class);
+        startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
 

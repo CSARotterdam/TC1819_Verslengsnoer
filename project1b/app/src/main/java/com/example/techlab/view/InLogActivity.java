@@ -57,4 +57,10 @@ public class InLogActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this, InLogActivity.class);
+        startActivity(startNewActivity);
+    }
 }

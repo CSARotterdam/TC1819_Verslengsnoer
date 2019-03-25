@@ -25,12 +25,11 @@ public class RepositoryActivity extends AppCompatActivity {
         username.setText(activeUser.getFirstName()+" :) How is your day?");
 
 
+
     }
 
     public void productManagementPageButton(View view){
         Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
-        Intent intent = getIntent();
-        Users activeUser = intent.getParcelableExtra("activeUser");
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
@@ -40,5 +39,12 @@ public class RepositoryActivity extends AppCompatActivity {
         super.onResume();
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(this, InLogActivity.class);
+        intent.putExtra("activeUser",activeUser);
+        startActivity(intent);
     }
 }
