@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@color/colorRecyclerViewItem"
-        android:padding="15dp">
+        android:paddingBottom="0dp">
 
         <TextView
             android:id="@+id/productName"
@@ -24,8 +24,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginLeft="29dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
             android:text="@{electronicsItem.name}"
             tools:text="LCD Display" />
 
@@ -36,9 +36,36 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="292dp"
-            android:layout_marginLeft="292dp"
+            android:layout_marginStart="348dp"
+            android:layout_marginLeft="348dp"
             android:text="@{String.valueOf(electronicsItem.stock)}"
             tools:text="2" />
+
+        <TextView
+            android:id="@+id/productCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="162dp"
+            android:layout_marginLeft="162dp"
+            android:text="@{String.valueOf(electronicsItem.category)}"
+            tools:text="2" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:background="@android:color/darker_gray"
+            android:padding="0dp" />
+
     </RelativeLayout>
+
 </layout>
