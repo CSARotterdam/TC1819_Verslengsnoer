@@ -4,15 +4,6 @@ public class Products {
     protected String name;
     protected int stock;
     protected String description;
-    protected String Category;
-
-    public String getCategory() {
-        return Category;
-    }
-
-    public void setCategory(String category) {
-        Category = category;
-    }
 
     public String getName() {
         return name;

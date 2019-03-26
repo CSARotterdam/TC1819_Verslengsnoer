@@ -14,7 +14,7 @@ public class Electronics extends Products {
         super.name = productName;
         super.stock = productStock;
         this.amountBroken = amountBroken;
-        super.Category = productCategory;
+        this.productCategory = productCategory;
         super.description = description;
     }
 
@@ -42,4 +42,11 @@ public class Electronics extends Products {
         this.amountBroken = amountBroken;
     }
 
+    public String getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
+    }
 }
