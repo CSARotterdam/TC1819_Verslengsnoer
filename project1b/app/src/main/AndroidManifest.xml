@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 <<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 1e62da9... little change
 =======
 >>>>>>> parent of 1e62da9... little change
         <activity android:name=".view.ProductUpDateActivity"></activity>
@@ -30,10 +27,7 @@
             </intent-filter>
         </activity>
 <<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 1e62da9... little change
 =======
 >>>>>>> parent of 1e62da9... little change
     </application>
