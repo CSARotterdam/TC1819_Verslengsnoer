@@ -45,7 +45,7 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
         productName.setText(product.getName());
         productId.setText(product.getProductId());
         productStock.setText(String.valueOf(product.getStock()));
-        productCategory.setText(product.getProductCategory());
+        productCategory.setText(product.getCategory());
         productAmountBroken.setText(String.valueOf(product.getAmountBroken()));
         productManufacturer.setText(product.getProductManufacturer());
         productDescription.setText(product.getDescription());
