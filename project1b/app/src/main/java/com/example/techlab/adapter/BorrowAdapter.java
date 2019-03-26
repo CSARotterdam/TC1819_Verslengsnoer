@@ -1,4 +1,4 @@
-package com.example.techlab.model;
+package com.example.techlab.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.techlab.R;
+import com.example.techlab.model.Borrow;
 
 import java.util.ArrayList;
 

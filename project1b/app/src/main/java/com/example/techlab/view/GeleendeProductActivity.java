@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.example.techlab.R;
 import com.example.techlab.model.Borrow;
-import com.example.techlab.model.BorrowAdapter;
+import com.example.techlab.adapter.BorrowAdapter;
 
 import java.util.ArrayList;
 
