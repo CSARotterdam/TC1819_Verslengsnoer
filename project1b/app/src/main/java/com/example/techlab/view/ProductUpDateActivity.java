@@ -46,7 +46,7 @@ public class ProductUpDateActivity extends AppCompatActivity {
         productManufacturer.setText(electronics.getProductManufacturer());
         productName.setText(electronics.getName());
         productStock.setText(String.valueOf(electronics.getStock()));
-        productCategory.setText(electronics.getCategory());
+        productCategory.setText(electronics.getProductCategory());
         productDescription.setText(electronics.getDescription());
         amountBroken.setText(String.valueOf(electronics.getAmountBroken()));
 

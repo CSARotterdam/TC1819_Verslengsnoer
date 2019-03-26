@@ -45,7 +45,6 @@ public class ProductManagementActivity extends AppCompatActivity {
 
         binding.electronicsListItems.setAdapter(adapter);
         binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));
-        binding.electronicsListItems.setNestedScrollingEnabled(false);
     }
     @Override
     protected void onPause(){
