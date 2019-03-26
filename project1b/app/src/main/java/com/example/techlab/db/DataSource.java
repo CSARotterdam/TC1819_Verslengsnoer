@@ -46,7 +46,7 @@ public class DataSource {
     public void insertProduct(Electronics product){
         ContentValues values = new ContentValues();
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_ID, product.getProductId()) ;
-        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, product.getProductCategory()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, product.getCategory()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_MANUFACTURER, product.getProductManufacturer()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME, product.getName()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_STOCK, product.getStock()) ;
@@ -156,7 +156,7 @@ public class DataSource {
 
         ContentValues values = new ContentValues();
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_DESCRIPTION, electronic.getDescription());
-        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, electronic.getProductCategory());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, electronic.getCategory());
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_MANUFACTURER, electronic.getProductManufacturer());
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_ID, electronic.getProductId());
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME,electronic.getName());
