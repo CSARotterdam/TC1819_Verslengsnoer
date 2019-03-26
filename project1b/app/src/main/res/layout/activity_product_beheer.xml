@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:layout_marginStart="120dp"
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="10dp"
@@ -63,11 +64,21 @@
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5" />
 >>>>>>> parent of 6cc3c56... added product category column to product management recyclerview
+=======
+            android:layout_marginStart="120dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="10dp"
+            android:text="Product voorraad"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/electronicsListItems"
+            app:layout_constraintStart_toEndOf="@+id/textView5" />
+>>>>>>> parent of edb598b... recyclerview scroll error solved
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             android:layout_marginStart="45dp"
@@ -80,6 +91,11 @@
             android:layout_marginLeft="48dp"
             android:layout_marginBottom="4dp"
 >>>>>>> parent of 6cc3c56... added product category column to product management recyclerview
+=======
+            android:layout_marginStart="45dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="8dp"
+>>>>>>> parent of edb598b... recyclerview scroll error solved
             android:text="Product naam"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/addProductButton"
