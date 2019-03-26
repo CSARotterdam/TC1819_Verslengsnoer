@@ -3,7 +3,7 @@ package com.example.techlab.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Users implements Parcelable {
+public class Users implements Parcelable  {
     private String firstName;
     private String surname;
     private String schoolEmail;

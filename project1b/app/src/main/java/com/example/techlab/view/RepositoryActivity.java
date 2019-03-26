@@ -12,15 +12,20 @@ import com.example.techlab.model.Users;
 public class RepositoryActivity extends AppCompatActivity {
     TextView username;
     TextView welcome;
+    private Users activeUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository);
-        Intent intent = getIntent();
-        Users activeUser = intent.getParcelableExtra("activeUser");
         username = (TextView) findViewById(R.id.userNameHomePage);
         welcome = (TextView) findViewById(R.id.welcomeTextViewHomePage);
+        Intent intent = getIntent();
+        activeUser = intent.getParcelableExtra("activeUser");
         username.setText(activeUser.getFirstName()+" :) How is your day?");
+
+
+
     }
 
     public void BorrowItemBtn(View view){
@@ -32,5 +37,24 @@ public class RepositoryActivity extends AppCompatActivity {
         Intent ShowInventarisActivity = new Intent(this,InventarisActivity.class);
         startActivity(ShowInventarisActivity);
     }
+    
+    public void productManagementPageButton(View view){
+        Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        startNewActivity.putExtra("activeUser",activeUser);
+        startActivity(startNewActivity);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(this, InLogActivity.class);
+        intent.putExtra("activeUser",activeUser);
+        startActivity(intent);
+    }
 }

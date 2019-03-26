@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.techlab.model.Products;
+import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
 public class DataSource {
@@ -43,14 +43,15 @@ public class DataSource {
         mDatabase.insert(mTechLabDataBaseHelper.USER_TABLE_NAME,null,values);
     }
 
-    public void insertProduct(Products product){
+    public void insertProduct(Electronics product){
         ContentValues values = new ContentValues();
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_ID, product.getProductId()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, product.getProductCategory()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_MANUFACTURER, product.getProductManufacturer()) ;
-        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME, product.getProductName()) ;
-        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_STOCK, product.getProductStock()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME, product.getName()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_STOCK, product.getStock()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_AMOUNT_BROKEN, product.getAmountBroken()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_DESCRIPTION, product.getDescription()) ;
         mDatabase.insert(mTechLabDataBaseHelper.PRODUCT_TABLE_NAME,null,values);
     }
 
@@ -83,6 +84,26 @@ public class DataSource {
         return cursor;
     }
 
+    public Cursor selectAllproduct(){
+        Cursor cursor =  mDatabase.query(
+                mTechLabDataBaseHelper.PRODUCT_TABLE_NAME,
+                new String[]{mTechLabDataBaseHelper.COLUMN_PRODUCT_ID
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_MANUFACTURER
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_STOCK
+                        ,mTechLabDataBaseHelper.COLUMN_AMOUNT_BROKEN
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY
+                        ,mTechLabDataBaseHelper.COLUMN_PRODUCT_DESCRIPTION},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return cursor;
+    }
+
+
     public Cursor selectUsersWithLoanedProduct(){
         String whereClause = mTechLabDataBaseHelper.COLUMN_LOANED_AMOUNT + " > 0";
 
@@ -98,6 +119,32 @@ public class DataSource {
         );
         return cursor;
     }
+    //get user object
+    public Users getUser(String userEmail){
+        String checkQuery = "SELECT * FROM " + mTechLabDataBaseHelper.USER_TABLE_NAME + " WHERE "
+                + mTechLabDataBaseHelper.COLUMN_SCHOOLEMAIL + " =\"" + userEmail + "\";";
+        Cursor cursor = mDatabase.rawQuery(checkQuery,null);
+        cursor.moveToFirst();
+        Users user = new Users(cursor.getString(1),cursor.getString(2),cursor.getString(3)
+                ,cursor.getString(4),cursor.getInt(5),cursor.getString(6));
+        return user;
+    }
+    public Electronics getProduct(String id){
+        String checkQuery = "SELECT * FROM " + mTechLabDataBaseHelper.PRODUCT_TABLE_NAME + " WHERE "
+                + mTechLabDataBaseHelper.COLUMN_ID + " = " + id + ";";
+        Cursor cursor = mDatabase.rawQuery(checkQuery,null);
+        cursor.moveToFirst();
+        Electronics product = new Electronics(cursor.getString(1),cursor.getString(2),cursor.getString(3)
+                ,cursor.getInt(4),cursor.getInt(5),cursor.getString(6),cursor.getString(7));
+        return product;
+    }
+    public Cursor getProductCursor(String productID){
+        String checkQuery = "SELECT * FROM " + mTechLabDataBaseHelper.PRODUCT_TABLE_NAME + " WHERE "
+                + mTechLabDataBaseHelper.COLUMN_PRODUCT_ID + " =\"" + productID + "\";";
+        Cursor cursor = mDatabase.rawQuery(checkQuery,null);
+        return cursor;
+    }
+
     // Update
     public void updateUser(Users user){
         String whereClause = mTechLabDataBaseHelper.COLUMN_SCHOOLEMAIL + " = "
@@ -117,12 +164,45 @@ public class DataSource {
         );
     }
 
+    public void updateElectronic(Electronics electronic,String id){
+
+        String whereClause = mTechLabDataBaseHelper.COLUMN_ID + " = "
+                + id;
+
+        ContentValues values = new ContentValues();
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_DESCRIPTION, electronic.getDescription());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_CATEGORY, electronic.getProductCategory());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_MANUFACTURER, electronic.getProductManufacturer());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_ID, electronic.getProductId());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_NAME,electronic.getName());
+        values.put(mTechLabDataBaseHelper.COLUMN_PRODUCT_STOCK,electronic.getStock());
+        values.put(mTechLabDataBaseHelper.COLUMN_AMOUNT_BROKEN,electronic.getAmountBroken());
+
+
+        mDatabase.update(
+                mTechLabDataBaseHelper.PRODUCT_TABLE_NAME,
+                values,
+                whereClause,
+                null
+        );
+    }
+
     // Delete
     public void deleteUser(Users user){
         String whereClause = mTechLabDataBaseHelper.COLUMN_SCHOOLEMAIL + " = "
                 + user.getSchoolEmail();
         mDatabase.delete(
                 mTechLabDataBaseHelper.USER_TABLE_NAME,
+                whereClause,
+                null
+        );
+    }
+
+    public void deleteProduct(String id){
+        String whereClause = mTechLabDataBaseHelper.COLUMN_ID + " = "
+                + id;
+        mDatabase.delete(
+                mTechLabDataBaseHelper.PRODUCT_TABLE_NAME,
                 whereClause,
                 null
         );
@@ -137,17 +217,6 @@ public class DataSource {
         Cursor cursor = mDatabase.rawQuery(checkQuery,null);
         boolean exists = (cursor.getCount() > 0);
         return exists;
-    }
-
-    //get user object
-    public Users getUser(String userEmail){
-        String checkQuery = "SELECT * FROM " + mTechLabDataBaseHelper.USER_TABLE_NAME + " WHERE "
-                + mTechLabDataBaseHelper.COLUMN_SCHOOLEMAIL + " =\"" + userEmail + "\";";
-        Cursor cursor = mDatabase.rawQuery(checkQuery,null);
-        cursor.moveToFirst();
-        Users user = new Users(cursor.getString(1),cursor.getString(2),cursor.getString(3)
-                ,cursor.getString(4),cursor.getInt(5),cursor.getString(6));
-        return user;
     }
 
 

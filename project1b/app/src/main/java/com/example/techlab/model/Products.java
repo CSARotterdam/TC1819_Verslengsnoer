@@ -1,7 +1,11 @@
 package com.example.techlab.model;
 
 public class Products {
+    protected String name;
+    protected int stock;
+    protected String description;
 
+    //Needs to be changed: move data into Electronics and Books.java and have them be child of Products.java by extending.
     public String productId;
     public String productManufacturer;
     public String productName;
@@ -59,26 +63,28 @@ public class Products {
 
     public int getProductStock() {
         return productStock;
+    public String getName() {
+        return name;
     }
 
-    public void setProductStock(int productStock) {
-        this.productStock = productStock;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getAmountBroken() {
-        return amountBroken;
+    public int getStock() {
+        return stock;
     }
 
-    public void setAmountBroken(int amountBroken) {
-        this.amountBroken = amountBroken;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public String getProductCategory() {
-        return productCategory;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getProductISBN() {
