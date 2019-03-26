@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    android:id="@+id/parent_layout">
+
+    // Voeg achtergrond kleur toe
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="5dp"
+        android:id="@+id/image"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Arduino"
+        android:id="@+id/image_name"
+        android:layout_toRightOf="@+id/image"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:textColor="#000"
+        android:textSize="17sp"/>
+
+    //Add TextView to see if item is available or not
+
+</RelativeLayout>
