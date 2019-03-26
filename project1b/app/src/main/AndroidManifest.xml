@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.techlab">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 1e62da9... little change
         <activity android:name=".view.ProductUpDateActivity"></activity>
         <activity android:name=".view.ProductDeleteAndUpDateActivity" />
         <activity android:name=".view.AddProductActivity" />
@@ -20,16 +19,14 @@
         <activity android:name=".view.RepositoryActivity" />
         <activity android:name=".view.SignUpActivity" />
         <activity android:name=".view.InLogActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 1e62da9... little change
     </application>
 
 </manifest>
