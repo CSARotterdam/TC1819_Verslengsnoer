@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ProductUpDateActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/productManufacturerTextInputUpDateLayout"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/productManufacturerTextInputUpDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Productfabrikant"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/productNameTextInputUpDateLayout"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productManufacturerTextInputUpDateLayout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/productNameTextInputUpDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product naam"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/productStockTextInputUpDateLayout"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productNameTextInputUpDateLayout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/productStockTextInputUpDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Aantal product"
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/productCategoryTextInputUpDateLayout"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productStockTextInputUpDateLayout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/productCategoryTextInputUpDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product categorie"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/addProductButtonUpDate"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="upDateProductButton"
+        android:text="Product\nUpDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionTextInputUpDateLayout" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/productDescriptionTextInputUpDateLayout"
+        android:layout_width="395dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productCategoryTextInputUpDateLayout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/productDescriptionTextInputUpDate"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:gravity="left"
+            android:hint="Omschrijving" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productStockTextInputUpDateLayout"
+        app:layout_constraintTop_toTopOf="@+id/productStockTextInputUpDateLayout">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/amountBrokenTextInputUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Aantal gebroken"
+            android:inputType="numberDecimal" />
+    </android.support.design.widget.TextInputLayout>
+
+</android.support.constraint.ConstraintLayout>
