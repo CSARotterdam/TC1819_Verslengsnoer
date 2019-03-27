@@ -216,6 +216,4 @@ public class DataSource {
         boolean exists = (cursor.getCount() > 0);
         return exists;
     }
-
-
 }
