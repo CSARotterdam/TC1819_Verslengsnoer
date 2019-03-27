@@ -22,10 +22,24 @@ public class ManagerStart extends AppCompatActivity {
                 openListPendingReturn();
             }
         });
+
+        button = (Button) findViewById(R.id.confirmLoanBtn);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openUserListLoans();
+            }
+        });
+
     }
 
     public void openListPendingReturn(){
         Intent intent = new Intent(this, ListPendingReturn.class);
+        startActivity(intent);
+    }
+
+    public void openUserListLoans(){
+        Intent intent = new Intent(this, UserList.class);
         startActivity(intent);
     }
 }
