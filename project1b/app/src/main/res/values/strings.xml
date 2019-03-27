@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Techlab</string>
+    <string name="BorrowBtnName">Geleende Producten</string>
+    <string name="inventarisBtnName">Inventaris</string>
+</resources>
