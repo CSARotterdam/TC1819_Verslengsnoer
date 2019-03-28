@@ -36,7 +36,7 @@ public class Des_Arduino extends AppCompatActivity {
     private void setImage(String imageUrl, String imageName){
         Log.d(TAG, "setImage: setting the image and name to widgets.");
 
-        TextView name = findViewById(R.id.image_description);
+        TextView name = findViewById(R.id.product_name);
         name.setText(imageName);
 
         ImageView image = findViewById(R.id.image);

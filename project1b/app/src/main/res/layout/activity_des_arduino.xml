@@ -5,24 +5,41 @@
     android:layout_height="match_parent"
     android:weightSum="100">
 
-    // Product Naam
+    <!--Product Naam-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/image_description"
+        android:id="@+id/product_name"
         android:layout_margin="10dp"
         android:text="Title"
         android:textSize="30sp"
         android:gravity="center"
         android:textColor="#000"/>
 
-    // Foto
+    <!--Foto-->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="50"
         android:id="@+id/image"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/product_description"
+        android:layout_margin="10dp"
+        android:text="Description"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="#000"/>
+
+    <Button
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="13"
+        android:text="Leen">
+    </Button>
 
 </LinearLayout>
