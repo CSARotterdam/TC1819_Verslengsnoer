@@ -20,10 +20,10 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        userFirstNameInput = (EditText) findViewById(R.id.firstNameInput);
-        userSurnameInput = (EditText) findViewById(R.id.surnameInput);
-        schoolEmailInput = (EditText) findViewById(R.id.schoolEmailInput);
-        passwordInput = (EditText) findViewById(R.id.passwordInput);
+        userFirstNameInput = findViewById(R.id.firstNameInput);
+        userSurnameInput = findViewById(R.id.surnameInput);
+        schoolEmailInput = findViewById(R.id.schoolEmailInput);
+        passwordInput = findViewById(R.id.passwordInput);
         dataSource = new DataSource(this);
     }
 
@@ -45,8 +45,8 @@ public class SignUpActivity extends AppCompatActivity {
                 userFirstNameInput.getText().toString(),
                 userSurnameInput.getText().toString(),
                 schoolEmailInput.getText().toString(),
-                passwordInput.getText().toString()
-                ,0,
+                passwordInput.getText().toString(),
+                0,
                 "student");
         // insert new user
         dataSource.insertUser(user);

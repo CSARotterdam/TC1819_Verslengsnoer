@@ -4,6 +4,7 @@ public class Products {
     protected String name;
     protected int stock;
     protected String description;
+    protected String category;
 
     public String getName() {
         return name;
@@ -27,5 +28,13 @@ public class Products {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

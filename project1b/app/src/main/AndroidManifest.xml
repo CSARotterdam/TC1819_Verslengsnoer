@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ProductUpDateActivity"></activity>
+        <activity android:name=".view.InventarisActivity"/>
+        <activity android:name=".view.GeleendeProductActivity" />
+        <activity android:name=".view.ProductUpDateActivity"/>
         <activity android:name=".view.ProductDeleteAndUpDateActivity" />
         <activity android:name=".view.AddProductActivity" />
         <activity android:name=".view.ProductManagementActivity" />

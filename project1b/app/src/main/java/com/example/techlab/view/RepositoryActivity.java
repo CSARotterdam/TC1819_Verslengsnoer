@@ -30,6 +30,16 @@ public class RepositoryActivity extends AppCompatActivity {
         });
     }
 
+    public void BorrowItemBtn(View view){
+        Intent ShowBorrowItemActivity = new Intent(this,GeleendeProductActivity.class);
+        startActivity(ShowBorrowItemActivity);
+    }
+
+    public void InventarisBtn(View view){
+        Intent ShowInventarisActivity = new Intent(this,InventarisActivity.class);
+        startActivity(ShowInventarisActivity);
+    }
+    
     public void productManagementPageButton(View view){
         Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
