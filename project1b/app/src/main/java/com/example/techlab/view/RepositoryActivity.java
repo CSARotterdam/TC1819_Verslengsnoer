@@ -11,23 +11,21 @@ import com.example.techlab.R;
 import com.example.techlab.model.Users;
 
 public class RepositoryActivity extends AppCompatActivity {
-    TextView username;
-    TextView welcome;
     private Users activeUser;
-    private Button Button_Inventory;
+//    private Button Button_Inventory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository);
 
-        Button_Inventory =  (Button) findViewById(R.id.Button_Inventory);
-        Button_Inventory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Inventaris();
-            }
-        });
+//        Button_Inventory =  (Button) findViewById(R.id.Button_Inventory);
+//        Button_Inventory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new Inventaris();
+//            }
+//        });
     }
 
     public void BorrowItemBtn(View view){
@@ -35,22 +33,22 @@ public class RepositoryActivity extends AppCompatActivity {
         startActivity(ShowBorrowItemActivity);
     }
 
-    public void InventarisBtn(View view){
-        Intent ShowInventarisActivity = new Intent(this,InventarisActivity.class);
+//    public void InventarisBtn(View view){
+//        Intent ShowInventarisActivity = new Intent(this,InventarisActivity.class);
+//        startActivity(ShowInventarisActivity);
+//    }
+    public void InventoryPageButton(View view){
+    //        Intent intent = new Intent(this, Inventaris.class);
+    //        startActivity(intent);
+        Intent ShowInventarisActivity = new Intent(this,Inventaris.class);
         startActivity(ShowInventarisActivity);
-    }
+}
     
     public void productManagementPageButton(View view){
         Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
-
-    public void InventoryPageButton(View view){
-        Intent intent = new Intent(this, Inventaris.class);
-        startActivity(intent);
-    }
-
 
     @Override
     protected void onResume() {

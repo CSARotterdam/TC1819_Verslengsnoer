@@ -32,9 +32,6 @@ public class Inventaris extends AppCompatActivity {
 
         Intent intent = getIntent();
         Users activeUser = intent.getParcelableExtra("activeUser");
-        username = (TextView) findViewById(R.id.userNameHomePage);
-        welcome = (TextView) findViewById(R.id.welcomeTextViewHomePage);
-        username.setText(activeUser.getFirstName()+" :) How is your day?");
     }
 
     // Voeg hier Producten toe!
