@@ -22,22 +22,29 @@ public class Des_Arduino extends AppCompatActivity {
         getIncomingIntent();
     }
 
+    // checks for incoming intent
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
-        if (getIntent().hasExtra("image_url") && getIntent().hasExtra("image_name")){
+
+        // checks if there is a intent
+        if (getIntent().hasExtra("image_url") && getIntent().hasExtra("product_name")&& getIntent().hasExtra("product_description")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
 
             String imageUrl = getIntent().getStringExtra("image_url");
-            String imageName = getIntent().getStringExtra("image_name");
+            String productName = getIntent().getStringExtra("product_name");
+            String productDescription = getIntent().getStringExtra("product_description");
 
-            setImage(imageUrl, imageName);
+            setImage(imageUrl, productName, productDescription);
         }
     }
-    private void setImage(String imageUrl, String imageName){
+    private void setImage(String imageUrl, String productName, String  productDescription){
         Log.d(TAG, "setImage: setting the image and name to widgets.");
 
         TextView name = findViewById(R.id.product_name);
-        name.setText(imageName);
+        name.setText(productName);
+
+        TextView description = findViewById(R.id.product_description);
+        description.setText(productDescription);
 
         ImageView image = findViewById(R.id.image);
         Glide.with(this).asBitmap().load(imageUrl).into(image);

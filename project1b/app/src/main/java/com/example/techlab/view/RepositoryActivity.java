@@ -28,10 +28,6 @@ public class RepositoryActivity extends AppCompatActivity {
         startActivity(ShowBorrowItemActivity);
     }
 
-//    public void InventarisBtn(View view){
-//        Intent ShowInventarisActivity = new Intent(this,InventarisActivity.class);
-//        startActivity(ShowInventarisActivity);
-//    }
 //    public void InventoryPageButton(View view){
 //    //        Intent intent = new Intent(this, Inventaris.class);
 //    //        startActivity(intent);
