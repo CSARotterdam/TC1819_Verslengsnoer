@@ -132,7 +132,7 @@ public class DataSource {
                 + mTechLabDataBaseHelper.COLUMN_ID + " = " + id + ";";
         Cursor cursor = mDatabase.rawQuery(checkQuery,null);
         cursor.moveToFirst();
-        Electronics product = new Electronics(cursor.getString(1),cursor.getString(2),cursor.getString(3)
+        Electronics product = new Electronics(cursor.getString(1),cursor.getString(3),cursor.getString(2)
                 ,cursor.getInt(4),cursor.getInt(5),cursor.getString(6),cursor.getString(7));
         return product;
     }
