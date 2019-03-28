@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:onClick="addProductPageButton"
-            android:text="product\ntoevoegen"
+            android:text="product toevoegen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
