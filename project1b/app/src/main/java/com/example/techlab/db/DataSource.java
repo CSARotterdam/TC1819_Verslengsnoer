@@ -45,7 +45,7 @@ public class DataSource {
         mDatabase.insert(mTechLabDataBaseHelper.USER_TABLE_NAME,null,values);
     }
 
-    public void insertProduct(Electronics product){
+    public void insertProduct(Electronics product,byte[] image){
         ContentValues values = new ContentValues();
         values.put(mTechLabDataBaseHelper.COLUMN_ELECTRONICS_ID, product.getProductId()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_CATEGORY, product.getCategory()) ;
@@ -54,6 +54,7 @@ public class DataSource {
         values.put(mTechLabDataBaseHelper.COLUMN_STOCK, product.getStock()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_AMOUNT_BROKEN, product.getAmountBroken()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_DESCRIPTION, product.getDescription()) ;
+        values.put(mTechLabDataBaseHelper.COLUMN_IMAGE_DATA,image);
         mDatabase.insert(mTechLabDataBaseHelper.ELECTRONICS_TABLE_NAME,null,values);
     }
 
@@ -66,6 +67,14 @@ public class DataSource {
         values.put(mTechLabDataBaseHelper.COLUMN_STOCK, product.getStock()) ;
         values.put(mTechLabDataBaseHelper.COLUMN_BOOK_WRITERS, product.getWriters());
         mDatabase.insert(mTechLabDataBaseHelper.BOOKS_TABLE_NAME,null,values);
+    }
+
+    public byte[] getByte(String _ID){
+        String checkQuery = "SELECT * FROM " + mTechLabDataBaseHelper.ELECTRONICS_TABLE_NAME + " WHERE "
+                + mTechLabDataBaseHelper.COLUMN_ID + " =\"" + _ID + "\";";
+        Cursor cursor = mDatabase.rawQuery(checkQuery,null);
+        cursor.moveToFirst();
+        return cursor.getBlob(8);
     }
 
     // Select

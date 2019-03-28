@@ -28,6 +28,7 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_BOOK_ISBN = "ISBN";
     public static final String COLUMN_BOOK_PUBLISHER = "PUBLISHER";
     public static final String COLUMN_BOOK_WRITERS = "WRITERS";
+    public static final String COLUMN_IMAGE_DATA = "IMAGE_DATA";
 
     //BOTH BOOKS & ELECTRONICS TABLE
     public static final String COLUMN_PRODUCT_NAME = "PRODUCT_NAME";
@@ -59,7 +60,8 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
                     COLUMN_STOCK + " INTEGER, "+
                     COLUMN_AMOUNT_BROKEN + " INTEGER, "+
                     COLUMN_CATEGORY + " TEXT, "+
-                    COLUMN_DESCRIPTION + " TEXT "+
+                    COLUMN_DESCRIPTION + " TEXT, "+
+                    COLUMN_IMAGE_DATA +" BLOB "+
                     ");";
 
     private static final String CREATE_BOOKS_TABLE =

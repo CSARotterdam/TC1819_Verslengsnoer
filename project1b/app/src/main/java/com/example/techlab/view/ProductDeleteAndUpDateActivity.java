@@ -5,10 +5,12 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
+import com.example.techlab.db.imageConverter;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
@@ -17,6 +19,7 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
             ,productManufacturer, productDescription;
     DataSource dataSource;
     Users activeUser;
+    ImageView productManagementImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
         productAmountBroken = findViewById(R.id.prodyctAmountBrokenTextView);
         productManufacturer = findViewById(R.id.productManufacturerTextView);
         productDescription = findViewById(R.id.productDescriptionTextView);
+        productManagementImageView = findViewById(R.id.productManagementImageView);
         Intent intent = getIntent();
         activeUser = intent.getParcelableExtra("activeUser");
 
@@ -49,6 +53,7 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
         productAmountBroken.setText(String.valueOf(product.getAmountBroken()));
         productManufacturer.setText(product.getProductManufacturer());
         productDescription.setText(product.getDescription());
+        productManagementImageView.setImageBitmap(imageConverter.getImage(cursor.getBlob(8)));
 
     }
 
