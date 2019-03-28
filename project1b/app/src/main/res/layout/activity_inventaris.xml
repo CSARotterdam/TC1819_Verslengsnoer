@@ -9,6 +9,7 @@
     android:orientation="vertical"
     tools:context=".view.Inventaris">
 
+    <!--This contains the list of items-->
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

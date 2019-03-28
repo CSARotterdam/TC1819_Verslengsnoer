@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--  -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -6,8 +7,8 @@
     android:padding="2dp"
     android:id="@+id/parent_layout">
 
-    // Voeg achtergrond kleur toe
-
+    <!--Voeg achtergrond kleur toe-->
+    <!--Product Afbeelding-->
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -15,6 +16,7 @@
         android:id="@+id/image"
         android:src="@mipmap/ic_launcher"/>
 
+    <!--Product Naam-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,6 +28,6 @@
         android:textColor="#000"
         android:textSize="17sp"/>
 
-    //Add TextView to see if item is available or not
+    <!--Add TextView to see if item is available or not-->
 
 </RelativeLayout>

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100">
+    <!-- weightSum verdeeld de scherm in 100%. Je kunt bepalen hoeveel een knop/afbeelding inneemt-->
 
     <!--Product Naam-->
     <TextView
@@ -16,7 +17,7 @@
         android:gravity="center"
         android:textColor="#000"/>
 
-    <!--Foto-->
+    <!--Product Afbeelding-->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,13 +26,14 @@
         android:scaleType="fitCenter"
         android:src="@mipmap/ic_launcher"/>
 
+    <!--Product Details-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/product_description"
         android:layout_margin="10dp"
         android:text="Description"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:gravity="center"
         android:textColor="#000"/>
 
