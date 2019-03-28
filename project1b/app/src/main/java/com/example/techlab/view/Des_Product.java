@@ -10,13 +10,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.techlab.R;
 
-public class Des_Arduino extends AppCompatActivity {
-    private static final String TAG = "Des_Arduino";
+public class Des_Product extends AppCompatActivity {
+    private static final String TAG = "Des_Product";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_des_arduino);
+        setContentView(R.layout.activity_des_product);
         Log.d(TAG, "OnCreate: started.");
 
         getIncomingIntent();

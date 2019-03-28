@@ -19,7 +19,7 @@
         <activity android:name=".view.RepositoryActivity" />
         <activity android:name=".view.SignUpActivity" />
         <activity android:name=".view.Inventaris"/>
-        <activity android:name=".view.Des_Arduino"/>
+        <activity android:name=".view.Des_Product"/>
         <activity android:name=".view.MainActivity">
 
             <intent-filter>
