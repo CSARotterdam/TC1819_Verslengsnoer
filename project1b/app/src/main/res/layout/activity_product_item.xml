@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -24,8 +25,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginLeft="29dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginLeft="41dp"
             android:text="@{electronicsItem.name}"
             tools:text="LCD Display" />
 
@@ -33,12 +34,23 @@
             android:id="@+id/productStock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="292dp"
-            android:layout_marginLeft="292dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginRight="72dp"
             android:text="@{String.valueOf(electronicsItem.stock)}"
             tools:text="2" />
+
+        <TextView
+            android:id="@+id/productCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="149dp"
+            android:layout_marginLeft="149dp"
+            android:text="@{String.valueOf(electronicsItem.category)}"
+            tools:text="Phone" />
+
     </RelativeLayout>
 </layout>

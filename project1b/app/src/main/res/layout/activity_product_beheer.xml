@@ -17,8 +17,8 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/electronicsListItems"
-            android:layout_width="395dp"
-            android:layout_height="715dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="100dp"
@@ -30,13 +30,11 @@
 
         <Button
             android:id="@+id/addProductButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:onClick="addProductPageButton"
-            android:text="product\ntoevegen"
+            android:text="product\ntoevoegen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,24 +42,33 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="10dp"
-            android:text="Product voorraad"
+            android:layout_marginStart="52dp"
+            android:layout_marginLeft="52dp"
+            android:text="Voorraad"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/electronicsListItems"
-            app:layout_constraintStart_toEndOf="@+id/textView5" />
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
-            android:layout_marginLeft="56dp"
-            android:layout_marginTop="8dp"
-            android:text="Product naam"
+            android:layout_marginEnd="72dp"
+            android:layout_marginRight="72dp"
+            android:text="Naam"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/addProductButton"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Categorie"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addProductButton" />
     </android.support.constraint.ConstraintLayout>
 </layout>

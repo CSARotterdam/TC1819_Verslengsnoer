@@ -135,12 +135,10 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginLeft="92dp"
         android:layout_marginTop="4dp"
         android:onClick="deleteProduct"
         android:text="verwijderen"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionTextView" />
 
     <TextView
