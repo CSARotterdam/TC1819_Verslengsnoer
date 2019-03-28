@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.techlab.R;
@@ -13,19 +14,20 @@ public class RepositoryActivity extends AppCompatActivity {
     TextView username;
     TextView welcome;
     private Users activeUser;
+    private Button Button_Inventory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository);
-        username = (TextView) findViewById(R.id.userNameHomePage);
-        welcome = (TextView) findViewById(R.id.welcomeTextViewHomePage);
-        Intent intent = getIntent();
-        activeUser = intent.getParcelableExtra("activeUser");
-        username.setText(activeUser.getFirstName()+" :) How is your day?");
 
-
-
+        Button_Inventory =  (Button) findViewById(R.id.Button_Inventory);
+        Button_Inventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Inventaris();
+            }
+        });
     }
 
     public void productManagementPageButton(View view){
@@ -34,12 +36,17 @@ public class RepositoryActivity extends AppCompatActivity {
         startActivity(startNewActivity);
     }
 
+    public void InventoryPageButton(View view){
+        Intent intent = new Intent(this, Inventaris.class);
+        startActivity(intent);
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
-
-
     }
+
     @Override
     public void onBackPressed() {
         finish();

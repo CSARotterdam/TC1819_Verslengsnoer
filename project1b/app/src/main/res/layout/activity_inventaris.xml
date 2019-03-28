@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context=".view.Inventaris">
 
-
     <TextView
         android:id="@+id/userNameHomePage"
         android:layout_width="wrap_content"
