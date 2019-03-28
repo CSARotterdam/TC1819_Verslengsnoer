@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 public class Inventaris extends AppCompatActivity {
     private static final String TAG = "Inventaris";
-    TextView username;
-    TextView welcome;
 
     // Array van de namen en afbeeldingen van elk product
     private ArrayList<String> mNames = new ArrayList<>();
@@ -29,9 +27,6 @@ public class Inventaris extends AppCompatActivity {
         Log.d(TAG, "onCreate: started.");
 
         initImageBitmaps();
-
-        Intent intent = getIntent();
-        Users activeUser = intent.getParcelableExtra("activeUser");
     }
 
     // Voeg hier Producten toe!

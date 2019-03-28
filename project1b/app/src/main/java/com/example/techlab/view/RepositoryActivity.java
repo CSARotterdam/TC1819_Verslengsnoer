@@ -5,27 +5,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.model.Users;
 
 public class RepositoryActivity extends AppCompatActivity {
     private Users activeUser;
-//    private Button Button_Inventory;
+    private Button Button_Inventory;
+    private Button ProductBeheerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository);
+        Buttons();
 
-//        Button_Inventory =  (Button) findViewById(R.id.Button_Inventory);
-//        Button_Inventory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new Inventaris();
-//            }
-//        });
+
     }
 
     public void BorrowItemBtn(View view){
@@ -37,12 +32,11 @@ public class RepositoryActivity extends AppCompatActivity {
 //        Intent ShowInventarisActivity = new Intent(this,InventarisActivity.class);
 //        startActivity(ShowInventarisActivity);
 //    }
-    public void InventoryPageButton(View view){
-    //        Intent intent = new Intent(this, Inventaris.class);
-    //        startActivity(intent);
-        Intent ShowInventarisActivity = new Intent(this,Inventaris.class);
-        startActivity(ShowInventarisActivity);
-}
+//    public void InventoryPageButton(View view){
+//    //        Intent intent = new Intent(this, Inventaris.class);
+//    //        startActivity(intent);
+//        Intent ShowInventarisActivity = new Intent(getBaseContext(),Inventaris.class);
+//        startActivity(ShowInventarisActivity);
     
     public void productManagementPageButton(View view){
         Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
@@ -58,8 +52,28 @@ public class RepositoryActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(this, InLogActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }
+    public void Buttons(){
+        Button_Inventory = findViewById(R.id.Button_Inventory);
+        Button_Inventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), Inventaris.class);
+                startActivity(intent);
+            }
+        });
+        ProductBeheerButton = findViewById(R.id.productBeheer);
+        ProductBeheerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startNewActivity = new Intent(getBaseContext(), ProductManagementActivity.class);
+                startActivity(startNewActivity);
+            }
+        });
+
+    }
+
 }

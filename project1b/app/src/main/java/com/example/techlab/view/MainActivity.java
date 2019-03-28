@@ -5,13 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Users;
 
 
-public class  MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
 
     DataSource dataSource;
@@ -25,6 +26,9 @@ public class  MainActivity extends AppCompatActivity {
         loginEmailInput = (EditText) findViewById(R.id.loginEmailInput);
         LoginPasswordInput = (EditText) findViewById(R.id.loginPasswordInput);
 
+        ImageView logo = (ImageView) findViewById(R.id.TechLabLogo);
+        int ImageResource = getResources().getIdentifier("@drawable/logo", null, this.getPackageName());
+        logo.setImageResource(ImageResource);
     }
 
     @Override
@@ -45,7 +49,7 @@ public class  MainActivity extends AppCompatActivity {
 
     public void loginButton(View view){
         if (dataSource.ifExists(loginEmailInput.getText().toString(),LoginPasswordInput.getText().toString())) {
-            Intent startNewActivity = new Intent(this, Inventaris.class);
+            Intent startNewActivity = new Intent(getBaseContext(), RepositoryActivity.class);
             Users users =dataSource.getUser(loginEmailInput.getText().toString());
             startNewActivity.putExtra("activeUser",users);
             LoginPasswordInput.setText("");
@@ -54,4 +58,10 @@ public class  MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this, MainActivity.class);
+        startActivity(startNewActivity);
+    }
 }
