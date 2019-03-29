@@ -100,7 +100,8 @@ public class DataSource {
                         ,mTechLabDataBaseHelper.COLUMN_STOCK
                         ,mTechLabDataBaseHelper.COLUMN_AMOUNT_BROKEN
                         ,mTechLabDataBaseHelper.COLUMN_CATEGORY
-                        ,mTechLabDataBaseHelper.COLUMN_DESCRIPTION},
+                        ,mTechLabDataBaseHelper.COLUMN_DESCRIPTION
+                        ,mTechLabDataBaseHelper.COLUMN_IMAGE_DATA},
                 null,
                 null,
                 null,

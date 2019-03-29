@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.PendingItem1GebruikerA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:id="@+id/ItemFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/productbig" />
+
+        <TextView
+            android:id="@+id/ItemInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item: Rasperry Pi \n Geleend Op: DD/MM/JJ \n Inleveren Voor: DD/MM/JJ"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/ItemReturnConfirmBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Item Returned" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
