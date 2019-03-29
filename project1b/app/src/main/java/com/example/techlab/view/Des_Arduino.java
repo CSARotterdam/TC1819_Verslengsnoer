@@ -5,7 +5,6 @@ import android.support.v7.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,8 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.db.imageConverter;
@@ -33,7 +30,6 @@ public class Des_Arduino extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_des_arduino);
-        getIncomingIntent();
         Buttons();
         dataSource = new DataSource(this);
     }

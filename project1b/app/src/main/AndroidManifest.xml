@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.shoppingCartActivity">
-        <activity android:name=".view.PendingItem1GebruikerA">
+        <activity android:name=".view.shoppingCartActivity"/>
+        <activity android:name=".view.PendingItem1GebruikerA"/>
         <activity android:name=".view.GebruikerA" />
         <activity android:name=".view.BorrowedItemsUserList" />
         <activity android:name=".view.GeleendeProductActivity" />
@@ -22,9 +22,7 @@
         <activity android:name=".view.ProductManagementActivity" />
         <activity android:name=".view.RepositoryActivity" />
         <activity android:name=".view.SignUpActivity" />
-        <activity
-            android:name=".view.Inventaris"
-            android:label="Inventaris"/>
+        <activity android:name=".view.Inventaris"/>
         <activity android:name=".view.Des_Arduino"/>
         <activity android:name=".view.MainActivity">
             <intent-filter>
