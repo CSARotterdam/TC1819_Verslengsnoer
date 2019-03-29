@@ -32,7 +32,7 @@ public class Inventaris extends AppCompatActivity {
     // Product Naam + foto URL
     private void initImageBitmaps(){
         Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
-
+        
         mNames.add("HoloLens");
         mImageUrls.add("https://cdn-images-1.medium.com/max/1600/1*Oltg1ajoJ1Xbs2fK0N644g.jpeg");
         mProductDescription.add("Eenmaal op, kunt je een holografische wereld zien binnen in welke binnenruimte je ook bent. " +
