@@ -61,7 +61,7 @@ public class TechLabDataBaseHelper extends SQLiteOpenHelper {
                     COLUMN_AMOUNT_BROKEN + " INTEGER, "+
                     COLUMN_CATEGORY + " TEXT, "+
                     COLUMN_DESCRIPTION + " TEXT, "+
-                    COLUMN_IMAGE_DATA +" BLOB "+
+                    COLUMN_IMAGE_DATA + " BLOB "+
                     ");";
 
     private static final String CREATE_BOOKS_TABLE =
