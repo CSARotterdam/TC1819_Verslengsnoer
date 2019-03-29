@@ -37,6 +37,19 @@
         app:layout_constraintVertical_bias="0.179" />
 
     <Button
+        android:id="@+id/BorrowedItemsUserList"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_margin="5dp"
+        android:text="Users With Borrowed Items"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321" />
+
+    <Button
         android:id="@+id/BorrowItemBtn"
         android:layout_width="180dp"
         android:layout_height="60dp"
