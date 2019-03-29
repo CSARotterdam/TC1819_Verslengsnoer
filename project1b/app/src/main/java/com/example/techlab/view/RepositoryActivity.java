@@ -13,6 +13,7 @@ public class RepositoryActivity extends AppCompatActivity {
     private Users activeUser;
     private Button Button_Inventory;
     private Button ProductBeheerButton;
+    private Button BorrowedItemsUserListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,14 @@ public class RepositoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent startNewActivity = new Intent(getBaseContext(), ProductManagementActivity.class);
                 startActivity(startNewActivity);
+            }
+        });
+        BorrowedItemsUserListButton = findViewById(R.id.BorrowedItemsUserListBtn);
+        BorrowedItemsUserListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent borrow = new Intent(getBaseContext(), BorrowedItemsUserList.class);
+                startActivity(borrow);
             }
         });
 

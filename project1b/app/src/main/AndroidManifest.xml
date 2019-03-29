@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.techlab">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,17 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.PendingItem1GebruikerA"></activity>
+        <activity android:name=".view.GebruikerA" />
+        <activity android:name=".view.BorrowedItemsUserList" />
         <activity android:name=".view.GeleendeProductActivity" />
-        <activity android:name=".view.ProductUpDateActivity"/>
+        <activity android:name=".view.ProductUpDateActivity" />
         <activity android:name=".view.ProductDeleteAndUpDateActivity" />
         <activity android:name=".view.AddProductActivity" />
         <activity android:name=".view.ProductManagementActivity" />
         <activity android:name=".view.RepositoryActivity" />
         <activity android:name=".view.SignUpActivity" />
-        <activity android:name=".view.Inventaris"/>
-        <activity android:name=".view.Des_Arduino"/>
+        <activity android:name=".view.Inventaris" />
+        <activity android:name=".view.Des_Arduino" />
         <activity android:name=".view.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
