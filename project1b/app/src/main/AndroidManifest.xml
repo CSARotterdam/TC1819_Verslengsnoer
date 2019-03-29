@@ -18,7 +18,10 @@
         <activity android:name=".view.ProductManagementActivity" />
         <activity android:name=".view.RepositoryActivity" />
         <activity android:name=".view.SignUpActivity" />
-        <activity android:name=".view.Inventaris"/>
+        <activity
+            android:name=".view.Inventaris"
+            android:label="Inventaris"
+            android/>
         <activity android:name=".view.Des_Arduino"/>
         <activity android:name=".view.MainActivity">
 

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".view.RepositoryActivity"
     android:orientation="vertical"
-    app:layout_editor_absoluteY="100dp">
+    app:layout_editor_absoluteY="100dp"
+    tools:context=".view.RepositoryActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="75dp"
+        android:gravity="center_vertical|center"
         android:text="BEHEERDER"
-        android:textSize="30dp"
-        android:gravity="center_vertical|center" />
+        android:textSize="30dp" />
 
     <Button
         android:id="@+id/productBeheer"
@@ -29,14 +28,14 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_margin="5dp"
-        android:text="Inventaris"/>
+        android:text="Inventaris" />
 
     <Button
         android:id="@+id/BorrowedItemsUserList"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_margin="5dp"
-        android:text="Users With Borrowed Items"/>
+        android:text="Users With Borrowed Items" />
 
     <Button
         android:id="@+id/BorrowItemBtn"
@@ -44,5 +43,5 @@
         android:layout_height="75dp"
         android:layout_margin="5dp"
         android:onClick="BorrowItemBtn"
-        android:text="@string/BorrowBtnName"/>
+        android:text="@string/BorrowBtnName" />
 </LinearLayout>
