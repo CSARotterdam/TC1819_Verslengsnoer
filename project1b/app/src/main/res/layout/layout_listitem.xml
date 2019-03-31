@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="2dp"
-    android:id="@+id/parent_layout">
+    android:id="@+id/parent_layout"
+    android:background="@color/colorBackground">
 
     <!--Put this code in activity inventaris-->
 
