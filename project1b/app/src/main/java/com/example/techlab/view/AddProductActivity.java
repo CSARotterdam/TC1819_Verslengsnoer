@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
@@ -21,16 +24,20 @@ import com.example.techlab.model.Users;
 
 public class AddProductActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
-    EditText productId;
-    EditText productManufacturer;
-    EditText productName;
-    EditText productStock;
-    EditText productCategory;
-    EditText productDescription;
-    DataSource dataSource;
-    Users activeUser;
-    ImageView productUploadimageView;
-    Bitmap image;
+    private EditText productId;
+    private EditText productManufacturer;
+    private EditText productName;
+    private EditText productStock;
+    private EditText productCategory;
+    private EditText productDescription;
+    private DataSource dataSource;
+    private Users activeUser;
+    private ImageView productUploadimageView;
+    private Bitmap image;
+    private ProgressBar progressBar;
+    private TextView loadingText;
+    private int progressStatus = 0;
+    private Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +50,15 @@ public class AddProductActivity extends AppCompatActivity {
         productCategory = findViewById(R.id.productCategoryTextInput);
         productDescription = findViewById(R.id.productDescriptionTextInput);
         productUploadimageView = findViewById(R.id.productUploadimageView);
+        progressBar = findViewById(R.id.imageUploadProgressbar);
+        loadingText = findViewById(R.id.imageUploadCompletedTextView);
+
 
         dataSource = new DataSource(this);
         Intent intent = getIntent();
         activeUser = intent.getParcelableExtra("activeUser");
+
+
 
     }
 
@@ -78,7 +90,6 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void addNewProductButton(View view){
-        image = ((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap();
         // creating new product instance
         Electronics newProduct = new Electronics(
                 productId.getText().toString(),
@@ -89,9 +100,9 @@ public class AddProductActivity extends AppCompatActivity {
                 productCategory.getText().toString(),
                 productDescription.getText().toString())
                 ;
+        insertData(newProduct,((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap());
 
-        // insert new product
-        dataSource.insertProduct(newProduct,imageConverter.getByte(image));
+
         // reset form input text field
         productId.setText("");
         productManufacturer.setText("");
@@ -102,6 +113,19 @@ public class AddProductActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ProductManagementActivity.class);
         intent.putExtra("activeUser",activeUser);
         startActivity(intent);
+    }
+    private void insertData(Electronics newProduct,Bitmap image){
+        // insert new product
+        dataSource.insertProduct(newProduct,imageConverter.getByte(image));
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        startNewActivity.putExtra("activeUser",activeUser);
+        startActivity(startNewActivity);
     }
 
 

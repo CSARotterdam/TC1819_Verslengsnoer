@@ -33,7 +33,7 @@
                 android:id="@+id/productManufacturerTextInputUpDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Productfabrikant"
+                android:hint="@string/productFabrikant"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +76,7 @@
                 android:id="@+id/productStockTextInputUpDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Aantal product"
+                android:hint="@string/aantalProduct"
                 android:inputType="numberDecimal"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
@@ -98,7 +98,7 @@
                 android:id="@+id/productCategoryTextInputUpDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Product categorie"
+                android:hint="@string/productCategorie"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
@@ -120,7 +120,7 @@
                 android:id="@+id/amountBrokenTextInputUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Aantal gebroken"
+                android:hint="@string/aantalGebroken"
                 android:inputType="numberDecimal" />
         </android.support.design.widget.TextInputLayout>
 
@@ -144,8 +144,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
                 android:layout_margin="0dp"
-                android:gravity="left"
-                android:hint="Omschrijving" />
+                android:gravity="start"
+                android:hint="@string/omschrijving" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -160,7 +160,7 @@
             android:layout_marginRight="8dp"
             android:onClick="upDateProductButton"
             android:paddingTop="10dp"
-            android:text="Product\nUpDate"
+            android:text="@string/productUpdate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/productDescriptionTextInputUpDateLayout" />
