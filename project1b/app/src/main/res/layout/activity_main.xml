@@ -42,7 +42,7 @@
             android:id="@+id/loginEmailInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="School Email"
+            android:hint="@string/schoolEmail"
             android:inputType="text"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
@@ -64,7 +64,7 @@
             android:id="@+id/loginPasswordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Wachtwoord"
+            android:hint="@string/wachtwoord"
             android:inputType="textWebPassword"
             android:maxLines="1"
             android:singleLine="true" />
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:onClick="loginButton"
-        android:text="Inloggen"
+        android:text="@string/inloggen"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
@@ -87,7 +87,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:onClick="signUpPageButton"
-        android:text="Registreren"
+        android:text="@string/registreren"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="@+id/button" />
 

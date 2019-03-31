@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -15,8 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@color/colorRecyclerViewItem"
-        android:padding="15dp">
+        android:background="@drawable/radius_light_brown"
+        android:padding="15dp"
+        >
 
         <TextView
             android:id="@+id/productName"
@@ -27,6 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="41dp"
             android:layout_marginLeft="41dp"
+            android:textColor="@color/colorGold"
             android:text="@{electronicsItem.name}"
             tools:text="LCD Display" />
 
@@ -38,6 +41,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="72dp"
+            android:textColor="@color/colorGold"
             android:layout_marginRight="72dp"
             android:text="@{String.valueOf(electronicsItem.stock)}"
             tools:text="2" />
@@ -46,10 +50,12 @@
             android:id="@+id/productCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:layout_marginStart="149dp"
             android:layout_marginLeft="149dp"
             android:text="@{String.valueOf(electronicsItem.category)}"
+            android:textColor="@color/colorGold"
             tools:text="Phone" />
 
     </RelativeLayout>

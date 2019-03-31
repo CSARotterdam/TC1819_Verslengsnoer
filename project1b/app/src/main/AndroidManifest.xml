@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.PendingItem1GebruikerA"></activity>
+        <activity android:name=".view.shoppingCartActivity"/>
+        <activity android:name=".view.PendingItem1GebruikerA"/>
         <activity android:name=".view.GebruikerA" />
         <activity android:name=".view.BorrowedItemsUserList" />
         <activity android:name=".view.GeleendeProductActivity" />

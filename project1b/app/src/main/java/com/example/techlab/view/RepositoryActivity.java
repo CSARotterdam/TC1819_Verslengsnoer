@@ -13,6 +13,7 @@ public class RepositoryActivity extends AppCompatActivity {
     private Users activeUser;
     private Button Button_Inventory;
     private Button ProductBeheerButton;
+    private Button Button_Borrowed;
     private Button BorrowedItemsUserListButton;
 
     @Override
@@ -20,21 +21,8 @@ public class RepositoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository);
         Buttons();
-
-
     }
 
-    public void BorrowItemBtn(View view){
-        Intent ShowBorrowItemActivity = new Intent(this,GeleendeProductActivity.class);
-        startActivity(ShowBorrowItemActivity);
-    }
-
-//    public void InventoryPageButton(View view){
-//    //        Intent intent = new Intent(this, Inventaris.class);
-//    //        startActivity(intent);
-//        Intent ShowInventarisActivity = new Intent(getBaseContext(),Inventaris.class);
-//        startActivity(ShowInventarisActivity);
-    
     public void productManagementPageButton(View view){
         Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
@@ -68,6 +56,14 @@ public class RepositoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent startNewActivity = new Intent(getBaseContext(), ProductManagementActivity.class);
                 startActivity(startNewActivity);
+            }
+        });
+        Button_Borrowed = findViewById(R.id.BorrowItemBtn);
+        Button_Borrowed.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent ShowBorrowItemActivity = new Intent(getBaseContext(),GeleendeProductActivity.class);
+                startActivity(ShowBorrowItemActivity);
             }
         });
         BorrowedItemsUserListButton = findViewById(R.id.BorrowedItemsUserListBtn);
