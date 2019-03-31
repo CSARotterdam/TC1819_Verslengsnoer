@@ -26,11 +26,13 @@ public class Product_ItemDescription extends AppCompatActivity {
     private Button Button_Request2Borrow;
     DataSource dataSource;
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
+    private ArrayList mSelectedItems;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_des_arduino);
+        setContentView(R.layout.activity_item_description);
+        mSelectedItems = new ArrayList();
         Buttons();
         dataSource = new DataSource(this);
         Log.d(TAG, "OnCreate: started.");
@@ -102,14 +104,28 @@ public class Product_ItemDescription extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
                 RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
-                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
-                        .setCancelable(true)
-                        .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+//                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
+                        .setMultiChoiceItems(R.array.AgreeToS, null, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                if (isChecked){
+                                    mSelectedItems.add(which);
+                                }
+                                else if (mSelectedItems.contains(which)){
+                                    mSelectedItems.remove(Integer.valueOf(which));
+                                }
+                            }
+                        })
+                        .setCancelable(false)
+                        .setPositiveButton("Doorgaan", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
+                                
                             }
-                        });
+                        })
+                        .setNeutralButton("Annuleren", null);
+
                 //Creating dialog box
                 AlertDialog dialog  = RequestItemAlertDialog.create();
                 dialog.show();
