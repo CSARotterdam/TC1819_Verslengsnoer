@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.Product_BorrowedActivity">
+        tools:context=".view.Student_BorrowedActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/BorrowItemRecyclerView"

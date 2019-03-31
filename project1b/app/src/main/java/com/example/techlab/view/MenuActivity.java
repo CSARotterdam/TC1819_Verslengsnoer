@@ -15,6 +15,8 @@ public class MenuActivity extends AppCompatActivity {
     private Button ProductBeheerButton;
     private Button Button_Borrowed;
     private Button BorrowedItemsUserListButton;
+    private Button ButtonPrAanvraagUserList;
+    private Button ButtonTelaatPrUserList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,7 @@ public class MenuActivity extends AppCompatActivity {
         Button_Borrowed.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent ShowBorrowItemActivity = new Intent(getBaseContext(), Product_BorrowedActivity.class);
+                Intent ShowBorrowItemActivity = new Intent(getBaseContext(), Student_BorrowedActivity.class);
                 startActivity(ShowBorrowItemActivity);
             }
         });
@@ -72,6 +74,24 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent borrow = new Intent(getBaseContext(), Admin_BorrowedItemsUserList.class);
                 startActivity(borrow);
+            }
+        });
+
+        ButtonPrAanvraagUserList = findViewById(R.id.AangevrPrButton);
+        ButtonPrAanvraagUserList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent PrAanvraagUsers = new Intent(getBaseContext(), AangevraagdItems_UserList.class);
+                startActivity(PrAanvraagUsers);
+            }
+        });
+
+        ButtonTelaatPrUserList = findViewById(R.id.TelaatButton);
+        ButtonTelaatPrUserList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent PrTelaatUsers = new Intent(getBaseContext(), NoReturnUsers.class);
+                startActivity(PrTelaatUsers);
             }
         });
 
