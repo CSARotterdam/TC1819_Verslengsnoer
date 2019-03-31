@@ -11,26 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.shoppingCartActivity"/>
-        <activity android:name=".view.PendingItem1GebruikerA"/>
-        <activity android:name=".view.GebruikerA" />
-        <activity android:name=".view.BorrowedItemsUserList" />
-        <activity android:name=".view.GeleendeProductActivity" />
-        <activity android:name=".view.ProductUpDateActivity" />
-        <activity android:name=".view.ProductDeleteAndUpDateActivity" />
-        <activity android:name=".view.AddProductActivity" />
-        <activity android:name=".view.ProductManagementActivity" />
-        <activity android:name=".view.RepositoryActivity" />
+        <activity android:name=".view.Product_ShoppingCartActivity"/>
+        <activity android:name=".view.Admin_PendingItem1GebruikerA"/>
+        <activity android:name=".view.Admin_GebruikerA" />
+        <activity android:name=".view.Admin_BorrowedItemsUserList" />
+        <activity android:name=".view.Product_BorrowedActivity" />
+        <activity android:name=".view.Product_ItemUpDateActivity" />
+        <activity android:name=".view.Product_ItemManagementActivity" />
+        <activity android:name=".view.Product_AddProductActivity" />
+        <activity android:name=".view.Product_ProductManagementActivity" />
+        <activity android:name=".view.MenuActivity" />
         <activity android:name=".view.SignUpActivity" />
-        <activity
-            android:name=".view.Inventaris"
-            android:label="Inventaris" />
-        <activity android:name=".view.Des_Arduino"
+        <activity 
+            android:name=".view.Product_InventoryActivity"
+            android:label="Inventaris"/>
+        <activity 
+            android:name=".view.Product_ItemDescription"
             android:label="Product Informatie"/>
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

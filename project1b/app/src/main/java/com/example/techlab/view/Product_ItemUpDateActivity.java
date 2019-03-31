@@ -1,7 +1,6 @@
 package com.example.techlab.view;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,7 @@ import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
-public class ProductUpDateActivity extends AppCompatActivity {
+public class Product_ItemUpDateActivity extends AppCompatActivity {
     EditText productManufacturer;
     EditText productName;
     EditText productStock;
@@ -72,7 +71,7 @@ public class ProductUpDateActivity extends AppCompatActivity {
         dataSource.updateElectronic(newProduct,getIntent().getStringExtra("id"));
         // reset form input text field
 
-        Intent intent = new Intent(this,ProductDeleteAndUpDateActivity.class);
+        Intent intent = new Intent(this, Product_ItemManagementActivity.class);
         intent.putExtra("id",getIntent().getStringExtra("id"));
         intent.putExtra("productID",electronics.getProductId());
         productManufacturer.setText("");
@@ -87,7 +86,7 @@ public class ProductUpDateActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(this, ProductManagementActivity.class);
+        Intent intent = new Intent(this, Product_ProductManagementActivity.class);
         intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }

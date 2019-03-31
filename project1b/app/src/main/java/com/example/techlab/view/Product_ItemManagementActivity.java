@@ -14,7 +14,7 @@ import com.example.techlab.db.imageConverter;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
-public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
+public class Product_ItemManagementActivity extends AppCompatActivity {
     TextView productName, productId, productStock, productCategory,productAmountBroken
             ,productManufacturer, productDescription;
     DataSource dataSource;
@@ -54,9 +54,7 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
         productManufacturer.setText(product.getProductManufacturer());
         productDescription.setText(product.getDescription());
         productManagementImageView.setImageBitmap(imageConverter.getImage(cursor.getBlob(8)));
-
     }
-
 
     @Override
     protected void onPause(){
@@ -67,12 +65,12 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
         Cursor cursor = dataSource.getProductCursor(getIntent().getStringExtra("productID"));
         cursor.moveToFirst();
         dataSource.deleteProduct(String.valueOf(cursor.getInt(0)));
-        Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
     public void upDateProduct(View view){
-        Intent startNewActivity = new Intent(this, ProductUpDateActivity.class);
+        Intent startNewActivity = new Intent(this, Product_ItemUpDateActivity.class);
         Cursor cursor = dataSource.getProductCursor(getIntent().getStringExtra("productID"));
         cursor.moveToFirst();
         startNewActivity.putExtra("id",String.valueOf(cursor.getInt(0)));
@@ -83,7 +81,7 @@ public class ProductDeleteAndUpDateActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }

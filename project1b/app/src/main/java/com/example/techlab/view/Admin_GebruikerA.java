@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import com.example.techlab.R;
 
-public class GebruikerA extends AppCompatActivity {
+public class Admin_GebruikerA extends AppCompatActivity {
 
     private Button button;
     @Override
@@ -25,7 +25,7 @@ public class GebruikerA extends AppCompatActivity {
     }
 
     public void openPendingItem1GebruikerA() {
-        Intent intent = new Intent(this, PendingItem1GebruikerA.class);
+        Intent intent = new Intent(this, Admin_PendingItem1GebruikerA.class);
         startActivity(intent);
     }
 }

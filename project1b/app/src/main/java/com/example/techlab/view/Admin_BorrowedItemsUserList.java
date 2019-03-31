@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.example.techlab.R;
 
-public class BorrowedItemsUserList extends AppCompatActivity {
+public class Admin_BorrowedItemsUserList extends AppCompatActivity {
 
     private Button button;
     @Override
@@ -20,13 +20,13 @@ public class BorrowedItemsUserList extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGebruikerA();
+                openGebruikerLijst();
             }
         });
     }
 
-    public void openGebruikerA() {
-        Intent intent = new Intent(this, GebruikerA.class);
+    public void openGebruikerLijst() {
+        Intent intent = new Intent(this, Admin_GebruikerA.class);
         startActivity(intent);
     }
 }

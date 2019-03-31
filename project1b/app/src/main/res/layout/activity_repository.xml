@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_editor_absoluteY="100dp"
-    tools:context=".view.RepositoryActivity"
+    tools:context=".view.MenuActivity"
     android:background="@color/colorBackground">
 
     <TextView
