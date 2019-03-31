@@ -93,7 +93,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
                 productCategory.getText().toString(),
                 productDescription.getText().toString())
                 ;
-        insertData(newProduct,((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap());
+        insertData(newProduct,Bitmap.createScaledBitmap(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(), 450, 500, false));
 
 
         // reset form input text field
