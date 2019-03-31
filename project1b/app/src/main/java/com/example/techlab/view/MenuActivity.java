@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.example.techlab.R;
 import com.example.techlab.model.Users;
 
-public class RepositoryActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
     private Users activeUser;
     private Button Button_Inventory;
     private Button ProductBeheerButton;
@@ -26,7 +26,7 @@ public class RepositoryActivity extends AppCompatActivity {
     }
 
     public void productManagementPageButton(View view){
-        Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
@@ -48,15 +48,15 @@ public class RepositoryActivity extends AppCompatActivity {
         Button_Inventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), Inventaris.class);
-                startActivity(intent);
+                Intent ShowInventarisActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
+                startActivity(ShowInventarisActivity);
             }
         });
         ProductBeheerButton = findViewById(R.id.productBeheer);
         ProductBeheerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startNewActivity = new Intent(getBaseContext(), ProductManagementActivity.class);
+                Intent startNewActivity = new Intent(getBaseContext(), Product_ProductManagementActivity.class);
                 startActivity(startNewActivity);
             }
         });
@@ -64,7 +64,7 @@ public class RepositoryActivity extends AppCompatActivity {
         Button_Borrowed.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent ShowBorrowItemActivity = new Intent(getBaseContext(),GeleendeProductActivity.class);
+                Intent ShowBorrowItemActivity = new Intent(getBaseContext(), Product_BorrowedActivity.class);
                 startActivity(ShowBorrowItemActivity);
             }
         });
@@ -72,7 +72,7 @@ public class RepositoryActivity extends AppCompatActivity {
         BorrowedItemsUserListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent borrow = new Intent(getBaseContext(), BorrowedItemsUserList.class);
+                Intent borrow = new Intent(getBaseContext(), Admin_BorrowedItemsUserList.class);
                 startActivity(borrow);
             }
         });

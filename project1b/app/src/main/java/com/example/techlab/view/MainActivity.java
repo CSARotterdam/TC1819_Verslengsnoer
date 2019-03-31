@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginButton(View view){
         if (dataSource.ifExists(loginEmailInput.getText().toString(),LoginPasswordInput.getText().toString())) {
-            Intent startNewActivity = new Intent(getBaseContext(), RepositoryActivity.class);
+            Intent startNewActivity = new Intent(getBaseContext(), MenuActivity.class);
             Users users =dataSource.getUser(loginEmailInput.getText().toString());
             startNewActivity.putExtra("activeUser",users);
             LoginPasswordInput.setText("");

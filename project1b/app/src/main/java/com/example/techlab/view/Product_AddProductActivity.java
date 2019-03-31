@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,7 +21,7 @@ import com.example.techlab.db.imageConverter;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
-public class AddProductActivity extends AppCompatActivity {
+public class Product_AddProductActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
     private EditText productId;
     private EditText productManufacturer;
@@ -53,20 +52,15 @@ public class AddProductActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.imageUploadProgressbar);
         loadingText = findViewById(R.id.imageUploadCompletedTextView);
 
-
         dataSource = new DataSource(this);
         Intent intent = getIntent();
         activeUser = intent.getParcelableExtra("activeUser");
-
-
-
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         dataSource.open();
-
     }
     @Override
     protected void onPause(){
@@ -85,7 +79,6 @@ public class AddProductActivity extends AppCompatActivity {
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
             Uri selectedImage = data.getData();
             productUploadimageView.setImageURI(selectedImage);
-
         }
     }
 
@@ -110,23 +103,20 @@ public class AddProductActivity extends AppCompatActivity {
         productStock.setText("");
         productCategory.setText("");
         productDescription.setText("");
-        Intent intent = new Intent(this,ProductManagementActivity.class);
+        Intent intent = new Intent(this, Product_ProductManagementActivity.class);
         intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }
     private void insertData(Electronics newProduct,Bitmap image){
         // insert new product
         dataSource.insertProduct(newProduct,imageConverter.getByte(image));
-
     }
 
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, ProductManagementActivity.class);
+        Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
-
-
 }

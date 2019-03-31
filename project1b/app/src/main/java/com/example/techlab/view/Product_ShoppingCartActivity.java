@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.techlab.R;
 
-public class shoppingCartActivity extends AppCompatActivity {
+public class Product_ShoppingCartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

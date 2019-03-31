@@ -16,9 +16,8 @@ import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ProductManagementActivity extends AppCompatActivity {
+public class Product_ProductManagementActivity extends AppCompatActivity {
 
     DataSource dataSource;
     private ActivityProductBeheerBinding binding;
@@ -54,7 +53,7 @@ public class ProductManagementActivity extends AppCompatActivity {
     }
 
     public void addProductPageButton(View view){
-        Intent startNewActivity = new Intent(this, AddProductActivity.class);
+        Intent startNewActivity = new Intent(this, Product_AddProductActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
@@ -82,7 +81,7 @@ public class ProductManagementActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, RepositoryActivity.class);
+        Intent startNewActivity = new Intent(this, MenuActivity.class);
         startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
