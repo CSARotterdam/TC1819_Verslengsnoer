@@ -40,7 +40,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Naam"
+                    android:text="@string/naam"
                     android:textStyle="bold" />
 
                 <TextView
@@ -66,7 +66,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="ID"
+                    android:text="@string/id"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/productIdTextView"
@@ -88,7 +88,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Fabrikant"
+                    android:text="@string/fabrikant"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/productManufacturerTextView"
@@ -110,7 +110,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Voorraad"
+                    android:text="@string/voorraad"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/productStockTextView"
@@ -132,7 +132,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Gebroken aantal"
+                    android:text="@string/gebrokenAantal"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/prodyctAmountBrokenTextView"
@@ -154,7 +154,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Categorie"
+                    android:text="@string/categorie"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/productCategoryTextView"
@@ -172,7 +172,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="20dp"
-                android:text="Omschrijving"
+                android:text="@string/omschrijving"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/productDescriptionTextView"
@@ -181,7 +181,7 @@
                 android:layout_marginStart="45dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:gravity="top|left"
+                android:gravity="top|start"
                 android:padding="10dp"
                 android:text="TextView" />
 
@@ -196,7 +196,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:background="@drawable/radius_dark_brown"
                 android:textColor="@android:color/white"
-                android:text="Update" />
+                android:text="@string/productUpdate" />
             <Button
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
@@ -207,7 +207,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:background="@drawable/radius_dark_brown"
                 android:textColor="@android:color/white"
-                android:text="verwijderen" />
+                android:text="@string/productVerwijderen" />
 
         </LinearLayout>
 

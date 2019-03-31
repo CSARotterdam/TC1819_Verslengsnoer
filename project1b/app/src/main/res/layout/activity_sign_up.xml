@@ -22,7 +22,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="24dp"
-                android:text="Aanmeldingsformulier"
+                android:text="@string/aanmeldingsformulier"
                 android:paddingLeft="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +48,7 @@
                     android:id="@+id/firstNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Voornaam"
+                    android:hint="@string/voornaam"
                     android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
 
@@ -70,7 +70,7 @@
                     android:id="@+id/surnameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Achternaam"
+                    android:hint="@string/achternaam"
                     android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
 
@@ -92,7 +92,7 @@
                     android:id="@+id/schoolEmailInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="School email"
+                    android:hint="@string/schoolEmail"
                     android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 
@@ -115,7 +115,7 @@
                     android:id="@+id/passwordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Wachtwoord"
+                    android:hint="@string/wachtwoord"
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
 
                 android:onClick="signUpButtonClicked"
-                android:text="registreren"
+                android:text="@string/registreren"
                 app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
 
 
