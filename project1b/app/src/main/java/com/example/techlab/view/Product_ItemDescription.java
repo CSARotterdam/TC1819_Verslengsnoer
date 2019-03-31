@@ -33,6 +33,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         setContentView(R.layout.activity_des_arduino);
         Buttons();
         dataSource = new DataSource(this);
+        Log.d(TAG, "OnCreate: started.");
     }
 
     // checks for incoming intent
@@ -48,7 +49,6 @@ public class Product_ItemDescription extends AppCompatActivity {
             String productDescription = getIntent().getStringExtra("product_description");
 
             int imageInt = Integer.parseInt(getIntent().getStringExtra("image"));
-
 
             setImage(imageInt, productName, productDescription);
 

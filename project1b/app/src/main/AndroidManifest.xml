@@ -22,8 +22,12 @@
         <activity android:name=".view.Product_ProductManagementActivity" />
         <activity android:name=".view.MenuActivity" />
         <activity android:name=".view.SignUpActivity" />
-        <activity android:name=".view.Product_InventoryActivity"/>
-        <activity android:name=".view.Product_ItemDescription"/>
+        <activity 
+            android:name=".view.Product_InventoryActivity"
+            android:label="Inventaris"/>
+        <activity 
+            android:name=".view.Product_ItemDescription"
+            android:label="Product Informatie"/>
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
