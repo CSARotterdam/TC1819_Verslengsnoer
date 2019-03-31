@@ -12,7 +12,6 @@ import android.util.Log;
 import com.example.techlab.R;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.db.imageConverter;
-import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public class Inventaris extends AppCompatActivity {
 
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init recyclerview.");
-        RecyclerView recyclerView = findViewById(R.id.recyclerv_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         com.example.techlab.view.RecyclerViewAdapter adapter = new com.example.techlab.view.RecyclerViewAdapter(this, mNames, mProductDescription,mbitmaps);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

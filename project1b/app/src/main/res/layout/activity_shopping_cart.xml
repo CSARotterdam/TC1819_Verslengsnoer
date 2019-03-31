@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.shoppingCartActivity">
-
+    //UNUSED file for now. Shopping cart is an upcoming feature.
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
