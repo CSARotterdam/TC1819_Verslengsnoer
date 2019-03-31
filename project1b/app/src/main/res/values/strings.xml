@@ -24,6 +24,7 @@
     <string name="aanmeldingsformulier">Aanmeldingsformulier</string>
     <string name="voornaam">Voornaam</string>
     <string name="achternaam">Achternaam</string>
+    <string name="voorwaarden">Klik hier om de voorwaarden te lezen.</string>
 
     //Gebruikers lijst met studentennummer en aantal aangevraagde items
     <string-array name="Gebruikers">

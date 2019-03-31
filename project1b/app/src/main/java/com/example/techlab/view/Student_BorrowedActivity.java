@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,5 +40,12 @@ public class Student_BorrowedActivity extends AppCompatActivity {
 
     public void BorrowItemRecyclerView(View view){
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
+        startActivity(startNewActivity);
     }
 }
