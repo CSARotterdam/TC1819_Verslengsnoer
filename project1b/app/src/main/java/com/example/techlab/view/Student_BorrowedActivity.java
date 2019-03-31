@@ -12,7 +12,7 @@ import com.example.techlab.adapter.BorrowAdapter;
 
 import java.util.ArrayList;
 
-public class Product_BorrowedActivity extends AppCompatActivity {
+public class Student_BorrowedActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;

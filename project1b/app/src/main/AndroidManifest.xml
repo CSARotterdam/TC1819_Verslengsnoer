@@ -15,7 +15,7 @@
         <activity android:name=".view.Admin_PendingItem1GebruikerA"/>
         <activity android:name=".view.Admin_GebruikerA" />
         <activity android:name=".view.Admin_BorrowedItemsUserList" />
-        <activity android:name=".view.Product_BorrowedActivity" />
+        <activity android:name=".view.Student_BorrowedActivity" />
         <activity android:name=".view.Product_ItemUpDateActivity" />
         <activity android:name=".view.Product_ItemManagementActivity" />
         <activity android:name=".view.Product_AddProductActivity" />

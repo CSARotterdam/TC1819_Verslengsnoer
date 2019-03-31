@@ -64,7 +64,7 @@ public class MenuActivity extends AppCompatActivity {
         Button_Borrowed.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent ShowBorrowItemActivity = new Intent(getBaseContext(), Product_BorrowedActivity.class);
+                Intent ShowBorrowItemActivity = new Intent(getBaseContext(), Student_BorrowedActivity.class);
                 startActivity(ShowBorrowItemActivity);
             }
         });
