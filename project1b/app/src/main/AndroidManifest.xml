@@ -23,8 +23,9 @@
         <activity android:name=".view.SignUpActivity" />
         <activity
             android:name=".view.Inventaris"
-            android:label="Inventaris"/>
-        <activity android:name=".view.Des_Arduino"/>
+            android:label="Inventaris" />
+        <activity android:name=".view.Des_Arduino"
+            android:label="Product Informatie"/>
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

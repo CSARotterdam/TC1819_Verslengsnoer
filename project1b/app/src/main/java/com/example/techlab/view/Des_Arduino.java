@@ -29,8 +29,6 @@ public class Des_Arduino extends AppCompatActivity {
         setContentView(R.layout.activity_des_arduino);
         dataSource = new DataSource(this);
         Log.d(TAG, "OnCreate: started.");
-
-
     }
 
     // checks for incoming intent
@@ -46,7 +44,6 @@ public class Des_Arduino extends AppCompatActivity {
             String productDescription = getIntent().getStringExtra("product_description");
 
             int imageInt = Integer.parseInt(getIntent().getStringExtra("image"));
-
 
             setImage(imageInt, productName, productDescription);
 
