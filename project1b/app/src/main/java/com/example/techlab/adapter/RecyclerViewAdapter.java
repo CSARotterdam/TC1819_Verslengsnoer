@@ -1,4 +1,4 @@
-package com.example.techlab.view;
+package com.example.techlab.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,15 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.techlab.R;
-import com.example.techlab.db.imageConverter;
+import com.example.techlab.view.Product_ItemDescription;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
@@ -59,7 +56,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked on: " + mProductNames.get(position));
 
-                Intent intent = new Intent(mContext, Des_Arduino.class);
+                Intent intent = new Intent(mContext, Product_ItemDescription.class);
                 intent.putExtra("image",String.valueOf(position));
                 intent.putExtra("product_name", mProductNames.get(position));
                 intent.putExtra("product_description", mProductDescription.get(position));

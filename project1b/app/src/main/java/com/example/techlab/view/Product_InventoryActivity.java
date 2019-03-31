@@ -10,13 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.techlab.R;
+import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.db.imageConverter;
 
 import java.util.ArrayList;
 
-public class Inventaris extends AppCompatActivity {
-    private static final String TAG = "Inventaris";
+public class Product_InventoryActivity extends AppCompatActivity {
+    private static final String TAG = "Product_InventoryActivity";
 
     // Array van de namen en afbeeldingen van elk product
     private ArrayList<String> mNames = new ArrayList<>();
@@ -30,8 +31,6 @@ public class Inventaris extends AppCompatActivity {
         setContentView(R.layout.activity_inventaris);
         Log.d(TAG, "onCreate: started.");
         dataSource = new DataSource(this);
-
-
     }
     // Voeg hier Producten toe!
     // Product Naam + foto URL
@@ -48,16 +47,13 @@ public class Inventaris extends AppCompatActivity {
                 cursor.moveToNext();
             }
         }
-
-
-
         initRecyclerView();
     }
 
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init recyclerview.");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        com.example.techlab.view.RecyclerViewAdapter adapter = new com.example.techlab.view.RecyclerViewAdapter(this, mNames, mProductDescription,mbitmaps);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mProductDescription,mbitmaps);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -77,7 +73,7 @@ public class Inventaris extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, RepositoryActivity.class);
+        Intent startNewActivity = new Intent(this, MenuActivity.class);
         startActivity(startNewActivity);
     }
 }
