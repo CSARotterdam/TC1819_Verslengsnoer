@@ -40,8 +40,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="293dp"
-            android:layout_marginLeft="293dp"
+            android:layout_marginStart="281dp"
+            android:layout_marginLeft="281dp"
             android:text="@{String.valueOf(electronicsItem.stock)}"
             android:textColor="@color/colorGold"
             tools:text="2" />
