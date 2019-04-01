@@ -77,8 +77,12 @@
         android:layout_marginTop="24dp"
         android:onClick="loginButton"
         android:text="@string/inloggen"
+        android:paddingHorizontal="10dp"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/radius_dark_brown"
+        android:textColor="@android:color/white"/>
 
     <Button
         android:id="@+id/button2"
@@ -88,13 +92,18 @@
         android:layout_marginLeft="16dp"
         android:onClick="signUpPageButton"
         android:text="@string/registreren"
+        android:paddingHorizontal="10dp"
+
         app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintTop_toTopOf="@+id/button"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/radius_dark_brown"
+        android:textColor="@android:color/white"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="148dp" />
+        app:layout_constraintGuide_begin="143dp" />
 </android.support.constraint.ConstraintLayout>

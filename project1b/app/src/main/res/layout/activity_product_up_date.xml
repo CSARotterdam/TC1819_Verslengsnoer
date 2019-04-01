@@ -24,10 +24,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginRight="8dp">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/productManufacturerTextInputUpDate"
@@ -45,10 +42,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productManufacturerTextInputUpDateLayout">
+            android:layout_marginRight="8dp">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/productNameTextInputUpDate"
@@ -68,9 +62,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:paddingTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productNameTextInputUpDateLayout">
+            android:paddingTop="10dp">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/productStockTextInputUpDate"
@@ -90,9 +82,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:paddingTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productStockTextInputUpDateLayout">
+            android:paddingTop="10dp">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/productCategoryTextInputUpDate"
@@ -111,10 +101,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:paddingTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/productStockTextInputUpDateLayout"
-            app:layout_constraintTop_toTopOf="@+id/productStockTextInputUpDateLayout">
+            android:paddingTop="10dp">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/amountBrokenTextInputUpdate"
@@ -133,11 +120,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:paddingTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productCategoryTextInputUpDateLayout">
+            android:paddingTop="10dp">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/productDescriptionTextInputUpDate"
@@ -152,17 +135,12 @@
             android:id="@+id/addProductButtonUpDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginHorizontal="10dp"
             android:onClick="upDateProductButton"
-            android:paddingTop="10dp"
             android:text="@string/productUpdate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/radius_dark_brown"
+            android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@+id/productDescriptionTextInputUpDateLayout" />
     </LinearLayout>
 
