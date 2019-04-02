@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -55,6 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
         userSurnameInput.setText("");
         schoolEmailInput.setText("");
         passwordInput.setText("");
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
 
