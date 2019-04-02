@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,16 +25,20 @@ import java.util.ArrayList;
 public class Product_ItemDescription extends AppCompatActivity {
     private static final String TAG = "Product_ItemDescription";
     private Button Button_Request2Borrow;
+    private Button VoorwaardenBtn;
     DataSource dataSource;
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
+    private ArrayList mSelectedItems;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_des_arduino);
-        Buttons();
-        dataSource = new DataSource(this);
         Log.d(TAG, "OnCreate: started.");
+        setContentView(R.layout.activity_item_description);
+        dataSource = new DataSource(this);
+
+        mSelectedItems = new ArrayList();
+        Buttons();
     }
 
     // checks for incoming intent
@@ -80,7 +85,6 @@ public class Product_ItemDescription extends AppCompatActivity {
         super.onResume();
         dataSource.open();
         getIncomingIntent();
-
     }
     @Override
     protected void onPause(){
@@ -102,18 +106,53 @@ public class Product_ItemDescription extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
                 RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
-                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
-                        .setCancelable(true)
-                        .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+//                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
+                        .setMultiChoiceItems(R.array.AgreeToS, null, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                if (isChecked){
+                                    mSelectedItems.add(0,which);
+                                }
+                                else if (mSelectedItems.contains(which)){
+                                    mSelectedItems.remove(Integer.valueOf(which));
+                                }
+                            }
+                        })
+                        .setCancelable(false)
+                        .setPositiveButton("Doorgaan", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
+                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+                                startActivity(BorrowActivity);
                             }
-                        });
+                        })
+                        .setNeutralButton("Annuleren", null);
+
                 //Creating dialog box
                 AlertDialog dialog  = RequestItemAlertDialog.create();
                 dialog.show();
             }
         });
+
+        VoorwaardenBtn = findViewById(R.id.VoorwaardenBtn);
+        VoorwaardenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://hr.nl/";
+                Intent voorwaardenLink = new Intent(Intent.ACTION_VIEW);
+                voorwaardenLink.setData(Uri.parse(url));
+                startActivity(voorwaardenLink);
+            }
+        });
     }
+// DOESN'T WORK. Unknown value in mSelectedItems.
+//    public void Redirect(){
+//        int value;
+//        value = (int) mSelectedItems.get(0);
+//        if (value == 1){
+//            Intent BorrowActivity = new Intent(this, Student_BorrowedActivity.class);
+//            startActivity(BorrowActivity);
+//        }
+//    }
 }

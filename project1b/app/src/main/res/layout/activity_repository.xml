@@ -53,8 +53,24 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_margin="5dp"
-        android:text="@string/BorrowBtnName"
-        android:textColor="#FFF"
+        android:onClick="BorrowItemBtn"
+        android:text="@string/BorrowBtnName" />
+
+    <Button
+        android:id="@+id/AangevrPrButton"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_margin="5dp"
+        android:text="Aangevraagde Producten"
         android:background="@drawable/radius_dark_brown"
         android:shadowColor="@android:color/black"/>
+
+    <Button
+        android:id="@+id/TelaatButton"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_margin="5dp"
+        android:text="Te late Producten"
+        />
+
 </LinearLayout>

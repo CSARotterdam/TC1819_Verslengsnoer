@@ -15,13 +15,17 @@
         <activity android:name=".view.Admin_PendingItem1GebruikerA"/>
         <activity android:name=".view.Admin_GebruikerA" />
         <activity android:name=".view.Admin_BorrowedItemsUserList" />
-        <activity android:name=".view.Product_BorrowedActivity" />
+        <activity android:name=".view.Student_BorrowedActivity" />
         <activity android:name=".view.Product_ItemUpDateActivity" />
         <activity android:name=".view.Product_ItemManagementActivity" />
         <activity android:name=".view.Product_AddProductActivity" />
         <activity android:name=".view.Product_ProductManagementActivity" />
         <activity android:name=".view.MenuActivity" />
         <activity android:name=".view.SignUpActivity" />
+        <activity android:name=".view.AangevraagdItems_UserList"/>
+        <activity android:name=".view.ItemList"/>
+        <activity android:name=".view.LoanItem"/>
+        <activity android:name=".view.NoReturnUsers"/>
         <activity 
             android:name=".view.Product_InventoryActivity"
             android:label="Inventaris"/>

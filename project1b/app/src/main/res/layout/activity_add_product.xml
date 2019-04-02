@@ -184,7 +184,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:background="@drawable/radius_dark_brown"
                 android:textColor="@android:color/white"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="30dp"
                 android:onClick="addNewProductButton"
                 android:text="Product Toevoegen"
                 app:layout_constraintEnd_toEndOf="parent"
