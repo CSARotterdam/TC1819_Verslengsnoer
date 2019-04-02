@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     DataSource dataSource;
     EditText loginEmailInput;
     EditText loginPasswordInput;
+    CheckBox stayLoggedInCheckBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         loginPasswordInput = (EditText) findViewById(R.id.loginPasswordInput);
         mSharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+        stayLoggedInCheckBox = findViewById(R.id.stayLoggedInCheckBox);
 
         ImageView logo = (ImageView) findViewById(R.id.TechLabLogo);
         int ImageResource = getResources().getIdentifier("@drawable/logo", null, this.getPackageName());
@@ -68,8 +71,10 @@ public class MainActivity extends AppCompatActivity {
         if (dataSource.ifExists(loginEmailInput.getText().toString(),loginPasswordInput.getText().toString())) {
             Intent startNewActivity = new Intent(getBaseContext(), MenuActivity.class);
             Users users =dataSource.getUser(loginEmailInput.getText().toString());
-            mEditor.putString(KEY_ACTIVE_USER, loginEmailInput.getText().toString());
-            mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
+            if (stayLoggedInCheckBox.isChecked()){
+                mEditor.putString(KEY_ACTIVE_USER, loginEmailInput.getText().toString());
+                mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
+            }
             startActivity(startNewActivity);
         }
     }
