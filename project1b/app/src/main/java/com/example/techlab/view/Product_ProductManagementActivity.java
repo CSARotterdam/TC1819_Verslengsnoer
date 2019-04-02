@@ -22,15 +22,12 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
     DataSource dataSource;
     private ActivityProductBeheerBinding binding;
     private ProductAdapter adapter;
-    private Users activeUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_product_beheer);
         dataSource = new DataSource(this);
-        Intent intent = getIntent();
-        activeUser = intent.getParcelableExtra("activeUser");
     }
 
     @Override
@@ -40,7 +37,7 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
 
         Cursor cursor = dataSource.selectAllproduct();
         ArrayList<Electronics> productData = getProductData(cursor);
-        adapter = new ProductAdapter(productData,this, activeUser);
+        adapter = new ProductAdapter(productData,this);
 
         binding.electronicsListItems.setAdapter(adapter);
         binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));
@@ -54,7 +51,6 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
 
     public void addProductPageButton(View view){
         Intent startNewActivity = new Intent(this, Product_AddProductActivity.class);
-        startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
 
@@ -82,7 +78,6 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         Intent startNewActivity = new Intent(this, MenuActivity.class);
-        startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
 }

@@ -30,13 +30,8 @@ public class Product_AddProductActivity extends AppCompatActivity {
     private EditText productCategory;
     private EditText productDescription;
     private DataSource dataSource;
-    private Users activeUser;
     private ImageView productUploadimageView;
     private Bitmap image;
-    private ProgressBar progressBar;
-    private TextView loadingText;
-    private int progressStatus = 0;
-    private Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +44,9 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productCategory = findViewById(R.id.productCategoryTextInput);
         productDescription = findViewById(R.id.productDescriptionTextInput);
         productUploadimageView = findViewById(R.id.productUploadimageView);
-        progressBar = findViewById(R.id.imageUploadProgressbar);
-        loadingText = findViewById(R.id.imageUploadCompletedTextView);
 
         dataSource = new DataSource(this);
         Intent intent = getIntent();
-        activeUser = intent.getParcelableExtra("activeUser");
     }
 
     @Override
@@ -107,7 +99,6 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productCategory.setText("");
         productDescription.setText("");
         Intent intent = new Intent(this, Product_ProductManagementActivity.class);
-        intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }
     private void insertData(Electronics newProduct,Bitmap image){
@@ -119,7 +110,6 @@ public class Product_AddProductActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
-        startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
 }
