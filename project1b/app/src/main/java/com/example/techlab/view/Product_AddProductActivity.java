@@ -94,8 +94,8 @@ public class Product_AddProductActivity extends AppCompatActivity {
                 productDescription.getText().toString())
                 ;
         image = ((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap();
-        int width = image.getWidth()/3;
-        int height = image.getHeight()/3;
+        int width = image.getWidth()/4;
+        int height = image.getHeight()/4;
         insertData(newProduct,Bitmap.createScaledBitmap(image, width, height, false));
 
 
