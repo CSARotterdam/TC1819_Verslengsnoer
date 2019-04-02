@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Admin_GebruikerA">
+    tools:context=".view.Admin_GebruikerA"
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/product"
-            android:text="Raspberry \n Geleend: DD/MM/JJ \n Inleveren: DD/MM/JJ" />
+            android:text="Raspberry \n Geleend: DD/MM/JJ \n Inleveren: DD/MM/JJ"/>
 
     </LinearLayout>
 

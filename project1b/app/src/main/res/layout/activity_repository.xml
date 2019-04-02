@@ -3,60 +3,86 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_editor_absoluteY="100dp"
-    tools:context=".view.MenuActivity">
+    tools:context=".view.MenuActivity"
+    android:background="@color/colorBackground">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center_vertical|center"
-        android:text="BEHEERDER"
-        android:textSize="30dp" />
+        android:text="Beheerder"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/productBeheer"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:text="Productbeheer" />
+        android:text="Productbeheer"
+        android:textColor="#FFF"
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"/>
 
     <!--// is het niet mooier als de buttonwidth = match parent-->
     <Button
         android:id="@+id/Button_Inventory"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:text="Inventaris" />
+        android:text="Inventaris"
+        android:textColor="#FFF"
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"/>
 
     <Button
         android:id="@+id/BorrowedItemsUserListBtn"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:text="Users With Borrowed Items" />
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"
+        android:text="Users With Borrowed Items"
+        android:textColor="#FFF"/>
 
     <Button
         android:id="@+id/BorrowItemBtn"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="5dp"
         android:onClick="BorrowItemBtn"
-        android:text="@string/BorrowBtnName" />
+        android:text="@string/BorrowBtnName"
+        android:textColor="#FFF"
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"/>
 
     <Button
         android:id="@+id/AangevrPrButton"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:text="Aangevraagde Producten"/>
+        android:text="Aangevraagde Producten"
+        android:textColor="#FFF"
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"/>
 
     <Button
         android:id="@+id/TelaatButton"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="5dp"
-        android:text="Te late Producten"/>
+        android:text="Te late Producten"
+        android:textColor="#FFF"
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"/>
 
 </LinearLayout>

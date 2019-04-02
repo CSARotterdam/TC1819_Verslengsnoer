@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Product_ShoppingCartActivity">
+    tools:context=".view.Product_ShoppingCartActivity"
+    android:background="@color/colorBackground">
     //UNUSED file for now. Shopping cart is an upcoming feature.
     <LinearLayout
         android:layout_width="wrap_content"
