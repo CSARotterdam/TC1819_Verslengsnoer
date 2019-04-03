@@ -21,7 +21,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50"
+        android:layout_weight="40"
         android:id="@+id/image"
         android:scaleType="fitCenter"
         android:src="@mipmap/ic_launcher"/>
@@ -36,7 +36,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="37">
+        android:layout_weight="40">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,22 +45,29 @@
             android:text="Description"
             android:textSize="15sp"
             android:gravity="start"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            />
     </ScrollView>
 
     <Button
         android:id="@+id/VoorwaardenBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:text="@string/voorwaarden"
-        android:gravity="center"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:textColor="#FFF"
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"/>
 
     <Button
         android:id="@+id/requestBtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="13"
-        android:text="@string/RequestBtn"/>
+        android:layout_weight="10"
+        android:text="@string/RequestBtn"
+        android:textColor="#FFF"
+        android:background="@drawable/radius_dark_brown"
+        android:shadowColor="@android:color/black"/>
 
 </LinearLayout>
