@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         dataSource.open();
-        if (dataSource.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER, "4ikikikilio.i;5534"),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534"))) {
+        if (dataSource.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
             Intent intent = new Intent(this,MenuActivity.class);
             startActivity(intent);
         }
