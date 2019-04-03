@@ -110,7 +110,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                                 if (isChecked){
-                                    mSelectedItems.add(0,which);
+                                    mSelectedItems.add(which);
 
                                 }
                                 else if (mSelectedItems.contains(which)){
@@ -122,9 +122,14 @@ public class Product_ItemDescription extends AppCompatActivity {
                         .setPositiveButton("Doorgaan", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if (mSelectedItems.size() > 0){
                                 Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
                                 Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
-                                startActivity(BorrowActivity);
+                                startActivity(BorrowActivity);}
+                                else {
+                                    Toast.makeText(Product_ItemDescription.this, "Accepteer de voorwaarden eerst.", Toast.LENGTH_LONG).show();
+                                }
+
                             }
                         })
                         .setNeutralButton("Annuleren", null);
