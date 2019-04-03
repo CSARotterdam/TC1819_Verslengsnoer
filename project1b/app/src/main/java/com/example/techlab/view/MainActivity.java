@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView logo = (ImageView) findViewById(R.id.TechLabLogo);
         int ImageResource = getResources().getIdentifier("@drawable/logo", null, this.getPackageName());
         logo.setImageResource(ImageResource);
-
-
     }
 
     @Override
