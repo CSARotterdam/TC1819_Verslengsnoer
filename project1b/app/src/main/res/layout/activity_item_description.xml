@@ -57,7 +57,7 @@
         android:text="@string/voorwaarden"
         android:textSize="15sp"
         android:textColor="#FFF"
-        android:background="@drawable/radius_dark_brown"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -67,7 +67,7 @@
         android:layout_weight="10"
         android:text="@string/RequestBtn"
         android:textColor="#FFF"
-        android:background="@drawable/radius_dark_brown"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"/>
 
 </LinearLayout>

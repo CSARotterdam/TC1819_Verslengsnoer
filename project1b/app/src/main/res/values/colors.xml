@@ -3,10 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorRecyclerViewItem">#292826 </color>
     <color name="colorGold">#F9D342 </color>
-    <color name="colorBackground">#F2EAED </color>
-    <color name="colorButton">#2A3457 </color>
     <color name="colorDarkSoftBlue">#2A3457 </color>
+
+    <color name="colorRecyclerViewItem">#292826 </color>
+    <color name="colorBackground">#F2EAED </color>
+    <color name="colorButton1Text">#FFF </color>
 
 </resources>

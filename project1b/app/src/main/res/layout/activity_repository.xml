@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,11 +25,10 @@
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:text="Productbeheer"
-        android:textColor="#FFF"
-        android:background="@drawable/radius_dark_brown"
+        android:textColor="@color/colorButton1Text"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"/>
 
-    <!--// is het niet mooier als de buttonwidth = match parent-->
     <Button
         android:id="@+id/Button_Inventory"
         android:layout_width="match_parent"
@@ -36,8 +36,8 @@
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:text="Inventaris"
-        android:textColor="#FFF"
-        android:background="@drawable/radius_dark_brown"
+        android:textColor="@color/colorButton1Text"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -46,10 +46,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
-        android:background="@drawable/radius_dark_brown"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"
         android:text="Users With Borrowed Items"
-        android:textColor="#FFF"/>
+        android:textColor="@color/colorButton1Text"/>
 
     <Button
         android:id="@+id/BorrowItemBtn"
@@ -59,8 +59,8 @@
         android:layout_margin="5dp"
         android:onClick="BorrowItemBtn"
         android:text="@string/BorrowBtnName"
-        android:textColor="#FFF"
-        android:background="@drawable/radius_dark_brown"
+        android:textColor="@color/colorButton1Text"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -70,8 +70,8 @@
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:text="Aangevraagde Producten"
-        android:textColor="#FFF"
-        android:background="@drawable/radius_dark_brown"
+        android:textColor="@color/colorButton1Text"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -81,8 +81,8 @@
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:text="Te late Producten"
-        android:textColor="#FFF"
-        android:background="@drawable/radius_dark_brown"
+        android:textColor="@color/colorButton1Text"
+        android:background="@drawable/colorButton1"
         android:shadowColor="@android:color/black"/>
 
 </LinearLayout>

@@ -39,7 +39,7 @@
             android:shadowColor="@android:color/black"
             android:text="@string/productToevoegen"
             android:layout_marginHorizontal="15dp"
-            android:background="@drawable/radius_dark_brown"
+            android:background="@drawable/colorButton1"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
