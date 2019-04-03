@@ -28,7 +28,7 @@ public class Product_ItemDescription extends AppCompatActivity {
     private Button VoorwaardenBtn;
     DataSource dataSource;
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
-    private ArrayList mSelectedItems;
+    private ArrayList<Integer> mSelectedItems = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +37,6 @@ public class Product_ItemDescription extends AppCompatActivity {
         setContentView(R.layout.activity_item_description);
         dataSource = new DataSource(this);
 
-        mSelectedItems = new ArrayList();
         Buttons();
     }
 
@@ -112,6 +111,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                                 if (isChecked){
                                     mSelectedItems.add(0,which);
+
                                 }
                                 else if (mSelectedItems.contains(which)){
                                     mSelectedItems.remove(Integer.valueOf(which));

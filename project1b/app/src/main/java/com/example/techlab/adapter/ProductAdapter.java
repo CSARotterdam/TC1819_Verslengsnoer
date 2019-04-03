@@ -22,12 +22,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     private List<Electronics> electronics;
     private Context context;
-    private Users activeUser;
 
-    public ProductAdapter(List<Electronics> electronics, Context context, Users activeUser) {
+    public ProductAdapter(List<Electronics> electronics, Context context) {
         this.electronics = electronics;
         this.context = context;
-        this.activeUser = activeUser;
     }
 
     @NonNull
@@ -50,7 +48,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             public void onClick(View v) {
                 Intent intent = new Intent(context, Product_ItemManagementActivity.class);
                 intent.putExtra("productID",electronic.getProductId());
-                intent.putExtra("activeUser",activeUser);
                 context.startActivity(intent);
             }
         });
