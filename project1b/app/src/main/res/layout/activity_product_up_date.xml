@@ -140,7 +140,7 @@
             android:layout_marginHorizontal="10dp"
             android:onClick="upDateProductButton"
             android:text="@string/productUpdate"
-            android:background="@drawable/colorButton1"
+            android:background="@drawable/color_button1"
             android:textColor="@color/colorButton1Text"
             app:layout_constraintTop_toBottomOf="@+id/productDescriptionTextInputUpDateLayout" />
     </LinearLayout>

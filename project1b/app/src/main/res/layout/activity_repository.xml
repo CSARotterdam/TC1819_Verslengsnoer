@@ -26,7 +26,7 @@
         android:layout_margin="5dp"
         android:text="Productbeheer"
         android:textColor="@color/colorButton1Text"
-        android:background="@drawable/colorButton1"
+        android:background="@drawable/color_button1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -37,7 +37,7 @@
         android:layout_margin="5dp"
         android:text="Inventaris"
         android:textColor="@color/colorButton1Text"
-        android:background="@drawable/colorButton1"
+        android:background="@drawable/color_button1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -46,7 +46,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
-        android:background="@drawable/colorButton1"
+        android:background="@drawable/color_button1"
         android:shadowColor="@android:color/black"
         android:text="Users With Borrowed Items"
         android:textColor="@color/colorButton1Text"/>
@@ -60,7 +60,7 @@
         android:onClick="BorrowItemBtn"
         android:text="@string/BorrowBtnName"
         android:textColor="@color/colorButton1Text"
-        android:background="@drawable/colorButton1"
+        android:background="@drawable/color_button1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -71,7 +71,7 @@
         android:layout_margin="5dp"
         android:text="Aangevraagde Producten"
         android:textColor="@color/colorButton1Text"
-        android:background="@drawable/colorButton1"
+        android:background="@drawable/color_button1"
         android:shadowColor="@android:color/black"/>
 
     <Button
@@ -82,7 +82,7 @@
         android:layout_margin="5dp"
         android:text="Te late Producten"
         android:textColor="@color/colorButton1Text"
-        android:background="@drawable/colorButton1"
+        android:background="@drawable/color_button1"
         android:shadowColor="@android:color/black"/>
 
 </LinearLayout>
