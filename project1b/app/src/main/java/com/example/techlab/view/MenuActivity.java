@@ -10,7 +10,6 @@ import com.example.techlab.R;
 import com.example.techlab.model.Users;
 
 public class MenuActivity extends AppCompatActivity {
-    private Users activeUser;
     private Button Button_Inventory;
     private Button ProductBeheerButton;
     private Button Button_Borrowed;
@@ -27,7 +26,6 @@ public class MenuActivity extends AppCompatActivity {
 
     public void productManagementPageButton(View view){
         Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
-        startNewActivity.putExtra("activeUser",activeUser);
         startActivity(startNewActivity);
     }
 
@@ -40,7 +38,6 @@ public class MenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("activeUser",activeUser);
         startActivity(intent);
     }
     public void Buttons(){

@@ -28,7 +28,7 @@ public class Product_ItemDescription extends AppCompatActivity {
     private Button VoorwaardenBtn;
     DataSource dataSource;
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
-    private ArrayList mSelectedItems;
+    private ArrayList<Integer> mSelectedItems = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +37,6 @@ public class Product_ItemDescription extends AppCompatActivity {
         setContentView(R.layout.activity_item_description);
         dataSource = new DataSource(this);
 
-        mSelectedItems = new ArrayList();
         Buttons();
     }
 
@@ -111,7 +110,8 @@ public class Product_ItemDescription extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                                 if (isChecked){
-                                    mSelectedItems.add(0,which);
+                                    mSelectedItems.add(which);
+
                                 }
                                 else if (mSelectedItems.contains(which)){
                                     mSelectedItems.remove(Integer.valueOf(which));
@@ -122,9 +122,14 @@ public class Product_ItemDescription extends AppCompatActivity {
                         .setPositiveButton("Doorgaan", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if (mSelectedItems.size() > 0){
                                 Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
                                 Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
-                                startActivity(BorrowActivity);
+                                startActivity(BorrowActivity);}
+                                else {
+                                    Toast.makeText(Product_ItemDescription.this, "Accepteer de voorwaarden eerst.", Toast.LENGTH_LONG).show();
+                                }
+
                             }
                         })
                         .setNeutralButton("Annuleren", null);
