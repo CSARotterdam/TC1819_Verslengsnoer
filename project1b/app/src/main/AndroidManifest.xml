@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.Product_ShoppingCartActivity"/>
-        <activity android:name=".view.Admin_PendingItem1GebruikerA"/>
+        <activity android:name=".view.Product_ShoppingCartActivity" />
+        <activity android:name=".view.Admin_PendingItem1GebruikerA" />
         <activity android:name=".view.Admin_GebruikerA" />
         <activity android:name=".view.Admin_BorrowedItemsUserList" />
         <activity android:name=".view.Student_BorrowedActivity" />
@@ -22,19 +22,20 @@
         <activity android:name=".view.Product_ProductManagementActivity" />
         <activity android:name=".view.MenuActivity" />
         <activity android:name=".view.SignUpActivity" />
-        <activity android:name=".view.AangevraagdItems_UserList"/>
-        <activity android:name=".view.ItemList"/>
-        <activity android:name=".view.LoanItem"/>
-        <activity android:name=".view.NoReturnUsers"/>
-        <activity 
+        <activity android:name=".view.AangevraagdItems_UserList" />
+        <activity android:name=".view.ItemList" />
+        <activity android:name=".view.LoanItem" />
+        <activity android:name=".view.NoReturnUsers" />
+        <activity
             android:name=".view.Product_InventoryActivity"
-            android:label="Inventaris"/>
-        <activity 
+            android:label="Inventaris" />
+        <activity
             android:name=".view.Product_ItemDescription"
-            android:label="Product Informatie"/>
+            android:label="Product Informatie" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
