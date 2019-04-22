@@ -25,6 +25,9 @@
     <string name="voornaam">Voornaam</string>
     <string name="achternaam">Achternaam</string>
     <string name="voorwaarden">Klik hier om de voorwaarden te lezen.</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+
 
     //Gebruikers lijst met studentennummer en aantal aangevraagde items
     <string-array name="Gebruikers">
@@ -62,5 +65,8 @@
         <item>184151</item>
         <item>875145</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

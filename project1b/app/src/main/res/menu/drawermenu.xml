@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/productmanagementMenu" android:title="Productbeheer" android:icon="@drawable/ic_product_management"/>
+    <item android:id="@+id/LogoutMenu" android:title="Uitloggen" android:icon="@drawable/ic_logout"/>
+</menu>
