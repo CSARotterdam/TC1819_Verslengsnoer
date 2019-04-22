@@ -55,6 +55,5 @@
             android:text="@{String.valueOf(electronicsItem.category)}"
             android:textColor="@color/colorGold"
             tools:text="Phone" />
-
     </RelativeLayout>
 </layout>
