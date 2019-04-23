@@ -110,6 +110,7 @@
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
+
             <Button
                 android:id="@+id/signUpButton"
                 android:layout_width="match_parent"
@@ -120,6 +121,8 @@
                 android:textColor="@color/colorButton1Text"
                 android:onClick="signUpButtonClicked"
                 android:text="@string/registreren" />
+
+
         </LinearLayout>
 
     </ScrollView>
