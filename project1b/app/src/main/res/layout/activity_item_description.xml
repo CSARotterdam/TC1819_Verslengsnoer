@@ -1,73 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="100"
     android:background="@color/colorBackground">
-    <!--Maak de hele scherm scroll, behalve de leen knop-->
-    <!--Product Naam-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_name"
-        android:layout_margin="5dp"
-        android:text="Title"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:textColor="#000"/>
 
-    <!--Foto-->
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="40"
-        android:id="@+id/image"
-        android:scaleType="fitCenter"
-        android:src="@mipmap/ic_launcher"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Description"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:textColor="#000"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="40">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--Product Naam-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/product_name"
+            android:layout_margin="5dp"
+            android:text="Title"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="#000"/>
+        <!--Foto-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/image"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Description"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textColor="#000"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/product_description"
-            android:padding="5dp"
+            android:padding="10dp"
             android:text="Description"
             android:textSize="15sp"
             android:gravity="start"
-            android:textColor="#000"
-            />
-    </ScrollView>
-
-    <Button
-        android:id="@+id/VoorwaardenBtn"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:text="@string/voorwaarden"
-        android:textSize="15sp"
-        android:textColor="#FFF"
-        android:background="@drawable/color_button1"
-        android:shadowColor="@android:color/black"/>
-
-    <Button
-        android:id="@+id/requestBtn"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:text="@string/RequestBtn"
-        android:textColor="#FFF"
-        android:background="@drawable/color_button1"
-        android:shadowColor="@android:color/black"/>
-
-</LinearLayout>
+            android:textColor="#000"/>
+        <Button
+            android:id="@+id/VoorwaardenBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="3dp"
+            android:text="@string/voorwaarden"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:background="@drawable/color_button1"
+            android:shadowColor="@android:color/black"/>
+        <Button
+            android:id="@+id/requestBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="3dp"
+            android:text="@string/RequestBtn"
+            android:textColor="#FFF"
+            android:background="@drawable/color_button1"
+            android:shadowColor="@android:color/black"/>
+    </LinearLayout>
+</ScrollView>
