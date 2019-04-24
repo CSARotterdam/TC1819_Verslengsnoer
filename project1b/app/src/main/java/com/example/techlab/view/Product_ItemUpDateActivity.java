@@ -62,9 +62,9 @@ public class Product_ItemUpDateActivity extends AppCompatActivity {
                 electronics.getProductId(),
                 productManufacturer.getText().toString(),
                 productName.getText().toString(),
+                productCategory.getText().toString(),
                 Integer.parseInt(productStock.getText().toString()),
                 Integer.parseInt(amountBroken.getText().toString()),
-                productCategory.getText().toString(),
                 productDescription.getText().toString());
         // upDate new product
 

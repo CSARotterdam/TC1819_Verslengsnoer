@@ -6,8 +6,8 @@ public class Electronics extends Products {
     public String productManufacturer;
     public int amountBroken;
 
-    public Electronics(String productId, String productManufacturer, String productName,
-                       int productStock, int amountBroken, String productCategory, String description) {
+    public Electronics(String productId, String productManufacturer, String productCategory,String productName,
+                       int productStock, int amountBroken,  String description) {
         this.productId = productId;
         this.productManufacturer = productManufacturer;
         super.name = productName;

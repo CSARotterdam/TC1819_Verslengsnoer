@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.techlab.R;
+import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.db.imageConverter;
 import com.example.techlab.model.Electronics;
@@ -32,6 +33,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
     private DataSource dataSource;
     private ImageView productUploadimageView;
     private Bitmap image;
+    DataManagement dataManagement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productCategory = findViewById(R.id.productCategoryTextInput);
         productDescription = findViewById(R.id.productDescriptionTextInput);
         productUploadimageView = findViewById(R.id.productUploadimageView);
+        dataManagement = new DataManagement();
 
         dataSource = new DataSource(this);
         Intent intent = getIntent();
@@ -79,16 +82,18 @@ public class Product_AddProductActivity extends AppCompatActivity {
         Electronics newProduct = new Electronics(
                 productId.getText().toString(),
                 productManufacturer.getText().toString(),
+                productCategory.getText().toString(),
                 productName.getText().toString(),
                 Integer.parseInt(productStock.getText().toString()),
                 0,
-                productCategory.getText().toString(),
                 productDescription.getText().toString())
                 ;
         image = ((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap();
         int width = image.getWidth()/4;
         int height = image.getHeight()/4;
-        insertData(newProduct,Bitmap.createScaledBitmap(image, width, height, false));
+        dataManagement.addProductData(productId.getText().toString(),productManufacturer.getText().toString()
+                ,productCategory.getText().toString(),productName.getText().toString(),Integer.parseInt(productStock.getText().toString())
+                ,0,imageConverter.getByte(image));
 
 
         // reset form input text field
@@ -100,10 +105,6 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productDescription.setText("");
         Intent intent = new Intent(this, Product_ProductManagementActivity.class);
         startActivity(intent);
-    }
-    private void insertData(Electronics newProduct,Bitmap image){
-        // insert new product
-        dataSource.insertProduct(newProduct,imageConverter.getByte(image));
     }
 
     @Override

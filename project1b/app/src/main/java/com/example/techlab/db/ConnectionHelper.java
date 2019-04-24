@@ -12,19 +12,19 @@ public class ConnectionHelper {
     String IP,DB,UserName,Password;
     @SuppressLint("NewApi")
     public Connection connection(){
-        IP = "145.24.222.204,8080";
+        IP = "145.24.222.204:8080";
         DB = "TechLab";
-        UserName = "0958654";
+        UserName = "sa";
         Password = "S77d4h";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         java.sql.Connection connection = null;
-        String ConnectionURL = null;
+        String ConnectionURL;
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            ConnectionURL = "jdbc:jtds:sqlserver://" + IP +";databaseName="+ DB + ";user=" + UserName+ ";password=" + Password + ";";
+            ConnectionURL = "jdbc:jtds:sqlserver://" + IP +"databaseName="+ DB + ";user=" + UserName+ ";password=" + Password;
             connection = DriverManager.getConnection(ConnectionURL);
         }
         catch (SQLException se)
