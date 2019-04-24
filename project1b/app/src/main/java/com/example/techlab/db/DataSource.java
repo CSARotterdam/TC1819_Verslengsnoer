@@ -11,6 +11,8 @@ import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
 
+import java.sql.Timestamp;
+
 public class DataSource {
 
     private SQLiteDatabase mDatabase;
@@ -137,6 +139,12 @@ public class DataSource {
                 ,cursor.getString(4),cursor.getInt(5),cursor.getString(6));
         return user;
     }
+
+    //In progress by Guan
+    public void updateBorrow(int ItemId, int UserId, Timestamp BorrowDateTime, Timestamp ReturnDateTime){
+
+    }
+
     public Electronics getProduct(String id){
         String checkQuery = "SELECT * FROM " + mTechLabDataBaseHelper.ELECTRONICS_TABLE_NAME + " WHERE "
                 + mTechLabDataBaseHelper.COLUMN_ID + " = " + id + ";";
