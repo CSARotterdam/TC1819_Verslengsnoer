@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="50dp"
-            android:layout_margin="3dp"
+            android:layout_margin="2dp"
             android:text="Sorteer"
             android:textColor="#FFF"
             android:background="@drawable/color_button1"
@@ -27,8 +27,8 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="50dp"
-            android:layout_margin="3dp"
-            android:text="Sorteer"
+            android:layout_marginVertical="2dp"
+            android:text="Categorie"
             android:textColor="#FFF"
             android:background="@drawable/color_button1"
             android:shadowColor="@android:color/black"/>
@@ -36,27 +36,22 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:layout_margin="3dp"
+            android:layout_margin="2dp"
             android:text="Zoek"
             android:textColor="#FFF"
             android:background="@drawable/color_button1"
             android:shadowColor="@android:color/black"/>
     </LinearLayout>
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/recycler_view">
         </android.support.v7.widget.RecyclerView>
-
     </ScrollView>
 
 </LinearLayout>
-
-
