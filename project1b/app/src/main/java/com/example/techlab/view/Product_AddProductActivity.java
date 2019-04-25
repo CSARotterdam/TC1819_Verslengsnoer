@@ -27,7 +27,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
     private EditText productDescription;
     private DataSource dataSource;
     private ImageView productUploadimageView;
-    private Bitmap image;
+    private Bitmap resizedImage;
     DataManagement dataManagement;
     Uri selectedImage;
     @Override
@@ -45,7 +45,6 @@ public class Product_AddProductActivity extends AppCompatActivity {
         dataManagement = new DataManagement();
 
         dataSource = new DataSource(this);
-        Intent intent = getIntent();
     }
 
     @Override
@@ -74,8 +73,8 @@ public class Product_AddProductActivity extends AppCompatActivity {
     }
 
     public void addNewProductButton(View view){
-        image = ((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap();
-        byte[] imageByte = imageConverter.getByte(image);
+        resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),250f,true);
+        byte[] imageByte = imageConverter.getByte(resizedImage);
         dataManagement.addProductData(productId.getText().toString(),productManufacturer.getText().toString()
                 ,productCategory.getText().toString(),productName.getText().toString(),Integer.parseInt(productStock.getText().toString())
                 ,0,imageByte,productDescription.getText().toString());
