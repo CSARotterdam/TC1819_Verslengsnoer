@@ -43,7 +43,7 @@ public class DataManagement {
     public Electronics getProductData(int id_){
         ArrayList<Electronics> electronicsList = new ArrayList<>();
         try{
-            
+
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
@@ -59,7 +59,7 @@ public class DataManagement {
                 ConnectionResult="successful";
                 isSuccess=true;
                 connect.close();
-                
+
             }
         }catch(Exception ex){
             isSuccess=false;
@@ -105,7 +105,7 @@ public class DataManagement {
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into ELECTRONICS (PRODUCT_ID, MANUFACTURER, CATEGORY, PRODUCT_NAME, STOCK, AMOUNT_BROKEN, DESCRIPTION, IMAGE) " +
-                                "values ( ?,?,?,?,?,?,?,?)");
+                        "values ( ?,?,?,?,?,?,?,?)");
                 pstmt.setString(1,productID);
                 pstmt.setString(2,manufacturer);
                 pstmt.setString(3,category);

@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import com.example.techlab.R;
+import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.db.imageConverter;
 
@@ -40,6 +42,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productCategory = findViewById(R.id.productCategoryTextInput);
         productDescription = findViewById(R.id.productDescriptionTextInput);
         productUploadimageView = findViewById(R.id.productUploadimageView);
+        dataManagement = new DataManagement();
 
         dataSource = new DataSource(this);
         Intent intent = getIntent();
@@ -87,10 +90,6 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productDescription.setText("");
         Intent intent = new Intent(this, Product_ProductManagementActivity.class);
         startActivity(intent);
-    }
-    private void insertData(Electronics newProduct,Bitmap image){
-        // insert new product
-        dataSource.insertProduct(newProduct,imageConverter.getByte(image));
     }
 
     @Override
