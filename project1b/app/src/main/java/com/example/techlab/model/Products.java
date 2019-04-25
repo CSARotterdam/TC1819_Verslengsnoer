@@ -5,6 +5,15 @@ public class Products {
     protected int stock;
     protected String description;
     protected String category;
+    protected int id_;
+
+    public int getId_() {
+        return id_;
+    }
+
+    public void setId_(int id_) {
+        this.id_ = id_;
+    }
 
     public String getName() {
         return name;
