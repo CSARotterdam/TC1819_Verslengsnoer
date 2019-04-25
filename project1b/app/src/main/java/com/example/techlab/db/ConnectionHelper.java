@@ -14,8 +14,8 @@ public class ConnectionHelper {
     public Connection connection(){
         IP = "145.24.222.204:8080";
         DB = "TechLab";
-        UserName = "sa";
-        Password = "S77d4h";
+        UserName = "0958654";
+        Password = "Pizza123";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -24,7 +24,7 @@ public class ConnectionHelper {
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            ConnectionURL = "jdbc:jtds:sqlserver://" + IP +"databaseName="+ DB + ";user=" + UserName+ ";password=" + Password;
+            ConnectionURL = "jdbc:jtds:sqlserver://" + IP +";databaseName="+ DB + ";user=" + UserName+ ";password=" + Password;
             connection = DriverManager.getConnection(ConnectionURL);
         }
         catch (SQLException se)

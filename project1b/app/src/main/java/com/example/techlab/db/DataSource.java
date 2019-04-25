@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.techlab.model.Books;
 import com.example.techlab.model.Electronics;
-import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
 
 public class DataSource {
@@ -143,7 +142,7 @@ public class DataSource {
         Cursor cursor = mDatabase.rawQuery(checkQuery,null);
         cursor.moveToFirst();
         Electronics product = new Electronics(cursor.getString(1),cursor.getString(3),cursor.getString(6)
-                ,cursor.getString(2),cursor.getInt(4),cursor.getInt(5),cursor.getString(7));
+                ,cursor.getString(2),cursor.getInt(4),cursor.getInt(5),cursor.getString(7),cursor.getInt(0));
         return product;
     }
     public Cursor getProductCursor(String productID){

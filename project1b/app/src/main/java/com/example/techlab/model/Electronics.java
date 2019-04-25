@@ -7,7 +7,7 @@ public class Electronics extends Products {
     public int amountBroken;
 
     public Electronics(String productId, String productManufacturer, String productCategory,String productName,
-                       int productStock, int amountBroken,  String description) {
+                       int productStock, int amountBroken,  String description, int id_) {
         this.productId = productId;
         this.productManufacturer = productManufacturer;
         super.name = productName;
@@ -15,6 +15,7 @@ public class Electronics extends Products {
         this.amountBroken = amountBroken;
         super.category = productCategory;
         super.description = description;
+        super.id_=id_;
     }
 
     public String getProductId() {

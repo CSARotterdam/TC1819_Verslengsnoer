@@ -2,13 +2,12 @@ package com.example.techlab.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.techlab.R;
-import com.example.techlab.db.DataSource;
+import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.imageConverter;
+import com.example.techlab.model.Electronics;
 
 import java.util.ArrayList;
 
@@ -26,16 +26,16 @@ public class Product_ItemDescription extends AppCompatActivity {
     private static final String TAG = "Product_ItemDescription";
     private Button Button_Request2Borrow;
     private Button VoorwaardenBtn;
-    DataSource dataSource;
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
     private ArrayList<Integer> mSelectedItems = new ArrayList<>();
+    DataManagement dataManagement;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "OnCreate: started.");
         setContentView(R.layout.activity_item_description);
-        dataSource = new DataSource(this);
+        dataManagement=  new DataManagement();
 
         Buttons();
     }
@@ -61,13 +61,10 @@ public class Product_ItemDescription extends AppCompatActivity {
     private void setImage(int imageInt, String productName, String  productDescription){
         Log.d(TAG, "setImage: setting the image and name to widgets.");
 
-        Cursor cursor = dataSource.selectAllproduct();
-        cursor.moveToFirst();
-        for (int i = cursor.getCount(); i > 0; i--) {
-            mbitmaps.add(imageConverter.getImage(cursor.getBlob(7)));
-            if (i>1){
-                cursor.moveToNext();
-            }
+
+        ArrayList<Electronics> products = dataManagement.getAllProductData();
+        for (int i =0; products.size() >i ; i++) {
+            mbitmaps.add(imageConverter.getImage(dataManagement.getImage(products.get(i).getId_())));
         }
 
         TextView name = findViewById(R.id.product_name);
@@ -82,13 +79,11 @@ public class Product_ItemDescription extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        dataSource.open();
         getIncomingIntent();
     }
     @Override
     protected void onPause(){
         super.onPause();
-        dataSource.close();
     }
 
     @Override
