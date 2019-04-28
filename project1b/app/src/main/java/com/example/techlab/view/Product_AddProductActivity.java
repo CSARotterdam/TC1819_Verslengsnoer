@@ -73,7 +73,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
     }
 
     public void addNewProductButton(View view){
-        resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),250f,true);
+        resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),150f,true);
         byte[] imageByte = imageConverter.getByte(resizedImage);
         dataManagement.addProductData(productId.getText().toString(),productManufacturer.getText().toString()
                 ,productCategory.getText().toString(),productName.getText().toString(),Integer.parseInt(productStock.getText().toString())
