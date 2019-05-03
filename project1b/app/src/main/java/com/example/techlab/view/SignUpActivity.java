@@ -48,7 +48,9 @@ public class SignUpActivity extends AppCompatActivity {
                 schoolEmailInput.getText().toString(),
                 passwordInput.getText().toString(),
                 0,
-                "student");
+                "student",
+                0);
+
         // insert new user
         dataSource.insertUser(user);
         // reset form input text field

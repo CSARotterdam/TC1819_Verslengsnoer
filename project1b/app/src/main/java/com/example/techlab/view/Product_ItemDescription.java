@@ -1,7 +1,9 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,15 +30,17 @@ public class Product_ItemDescription extends AppCompatActivity {
     private Button VoorwaardenBtn;
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
     private ArrayList<Integer> mSelectedItems = new ArrayList<>();
+    private Integer productID;
     DataManagement dataManagement;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "OnCreate: started.");
         setContentView(R.layout.activity_item_description);
-        dataManagement=  new DataManagement();
-
+        dataManagement =  new DataManagement();
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         Buttons();
     }
 
@@ -45,12 +49,13 @@ public class Product_ItemDescription extends AppCompatActivity {
         Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
 
         // checks if there is a intent
-        if (getIntent().hasExtra("image") && getIntent().hasExtra("product_name")&& getIntent().hasExtra("product_description")){
+        if (getIntent().hasExtra("image") && getIntent().hasExtra("product_name")&& getIntent().hasExtra("product_description") && getIntent().hasExtra("id")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
 
 
             String productName = getIntent().getStringExtra("product_name");
             String productDescription = getIntent().getStringExtra("product_description");
+            productID = getIntent().getIntExtra("id",-1);
 
             int imageInt = Integer.parseInt(getIntent().getStringExtra("image"));
 
@@ -119,6 +124,9 @@ public class Product_ItemDescription extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 if (mSelectedItems.size() > 0){
                                 Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
+
+                                //DB code here
+                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending");
                                 Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
                                 startActivity(BorrowActivity);}
                                 else {
@@ -146,13 +154,4 @@ public class Product_ItemDescription extends AppCompatActivity {
             }
         });
     }
-// DOESN'T WORK. Unknown value in mSelectedItems.
-//    public void Redirect(){
-//        int value;
-//        value = (int) mSelectedItems.get(0);
-//        if (value == 1){
-//            Intent BorrowActivity = new Intent(this, Student_BorrowedActivity.class);
-//            startActivity(BorrowActivity);
-//        }
-//    }
 }

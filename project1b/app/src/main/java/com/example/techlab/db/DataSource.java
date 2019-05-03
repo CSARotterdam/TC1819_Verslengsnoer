@@ -117,7 +117,7 @@ public class DataSource {
                 Cursor cursor = mDatabase.rawQuery(checkQuery, null);
                 cursor.moveToFirst();
                 Users user = new Users(cursor.getString(1), cursor.getString(2), cursor.getString(3),
-                                cursor.getString(4), cursor.getInt(5), cursor.getString(6));
+                                cursor.getString(4), cursor.getInt(5), cursor.getString(6), cursor.getInt(0));
                 return user;
         }
 
@@ -187,8 +187,8 @@ public class DataSource {
         // check
         public boolean ifExists(String emailInput, String passwordInput) {
                 String checkQuery = "SELECT * FROM " + mTechLabDataBaseHelper.USER_TABLE_NAME + " WHERE "
-                                + mTechLabDataBaseHelper.COLUMN_SCHOOLEMAIL + " =\"" + emailInput + "\" and "
-                                + mTechLabDataBaseHelper.COLUMN_PASSWORD + " = \"" + passwordInput + "\";";
+                        + mTechLabDataBaseHelper.COLUMN_SCHOOLEMAIL + " =\"" + emailInput + "\" and "
+                        + mTechLabDataBaseHelper.COLUMN_PASSWORD + " = \"" + passwordInput + "\";";
                 Cursor cursor = mDatabase.rawQuery(checkQuery, null);
                 boolean exists = (cursor.getCount() > 0);
                 return exists;

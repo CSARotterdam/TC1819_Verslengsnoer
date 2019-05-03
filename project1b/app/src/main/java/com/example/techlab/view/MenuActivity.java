@@ -18,12 +18,8 @@ import com.example.techlab.R;
 import com.example.techlab.model.Users;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String KEY_ACTIVE_USER = "keyActiveUser";
-    private static final String KEY_ACTIVE_USER_PASS = "keyActiveUserPass";
-    private static final String PREFERENCES_FILE = "com.example.techlab.preferences";
 
     private Button Button_Inventory;
-    private Button ProductBeheerButton;
     private Button Button_Borrowed;
     private Button BorrowedItemsUserListButton;
     private Button ButtonPrAanvraagUserList;
@@ -46,7 +42,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView=(NavigationView)findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
-        mSharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
 
         mEditor = mSharedPreferences.edit();
 
@@ -126,8 +122,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.LogoutMenu){
-            mEditor.putString(KEY_ACTIVE_USER, "4ikikikilio.i;5534");
-            mEditor.putString(KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER, "4ikikikilio.i;5534");
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
+            mEditor.putInt(MainActivity.PREFERENCE_USERID,0);
             mEditor.apply();
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             startActivity(intent);

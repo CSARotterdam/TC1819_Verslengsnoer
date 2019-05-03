@@ -19,7 +19,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 
     public static class BorrowViewHolder extends RecyclerView.ViewHolder{
 
-        public ImageView mImageView;
+//        public ImageView mImageView;
         public TextView mProductName;
         public TextView mTurnInDate;
         public TextView mProductAmount;
@@ -27,7 +27,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 
         public BorrowViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.ListItemImage);
+//            mImageView = itemView.findViewById(R.id.ListItemImage);
             mProductName = itemView.findViewById(R.id.ListItemText_ProductName);
             mTurnInDate = itemView.findViewById(R.id.ListItemText_TurnInDate);
             mProductAmount = itemView.findViewById(R.id.ListItemText_ProductAmount);
@@ -51,7 +51,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     @Override
     public void onBindViewHolder(@NonNull BorrowViewHolder borrowViewHolder, int position_index) {
         Borrow currentItem = mBorrowItemList.get(position_index);
-        borrowViewHolder.mImageView.setImageResource(currentItem.getImageResource());
+//        borrowViewHolder.mImageView.setImageResource(currentItem.getImageResource());
         borrowViewHolder.mProductName.setText(currentItem.getProductName());
         borrowViewHolder.mTurnInDate.setText(currentItem.getTurnInDate());
         borrowViewHolder.mProductAmount.setText(currentItem.getBorrowItemAmount());

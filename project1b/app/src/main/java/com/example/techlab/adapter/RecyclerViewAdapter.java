@@ -26,12 +26,14 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
     private ArrayList<String> mProductDescription = new ArrayList<>();
     private Context mContext;
     private ArrayList<Bitmap> mBitmaps = new ArrayList<>();
+    private ArrayList<Integer> mID = new ArrayList<>();
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> productNames, ArrayList<String> productDescription, ArrayList<Bitmap> bitmaps){
+    public RecyclerViewAdapter(Context context, ArrayList<String> productNames, ArrayList<String> productDescription, ArrayList<Bitmap> bitmaps, ArrayList<Integer> productID){
         mProductNames = productNames;
         mProductDescription = productDescription;
         mContext = context;
         mBitmaps = bitmaps;
+        mID = productID;
     }
 
     // This recycles the viewholder
@@ -57,6 +59,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
                 Log.d(TAG, "onClick: clicked on: " + mProductNames.get(position));
 
                 Intent intent = new Intent(mContext, Product_ItemDescription.class);
+                intent.putExtra("id", Integer.valueOf(mID.get(position)));
                 intent.putExtra("image",String.valueOf(position));
                 intent.putExtra("product_name", mProductNames.get(position));
                 intent.putExtra("product_description", mProductDescription.get(position));

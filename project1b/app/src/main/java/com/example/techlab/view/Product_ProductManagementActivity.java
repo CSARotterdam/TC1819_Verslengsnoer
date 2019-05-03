@@ -37,7 +37,6 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
         super.onResume();
         dataSource.open();
 
-        Cursor cursor = dataSource.selectAllproduct();
         ArrayList<Electronics> electronicsList = dataManagement.getAllProductData();
         adapter = new ProductAdapter(electronicsList,this);
 

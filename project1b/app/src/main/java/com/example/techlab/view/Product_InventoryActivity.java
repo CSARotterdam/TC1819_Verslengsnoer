@@ -21,6 +21,7 @@ public class Product_InventoryActivity extends AppCompatActivity {
     private static final String TAG = "Product_InventoryActivity";
 
     // Array van de namen en afbeeldingen van elk product
+    private ArrayList<Integer> mId = new ArrayList<>();
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mProductDescription = new ArrayList<>();
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
@@ -30,27 +31,28 @@ public class Product_InventoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventaris);
-        Log.d(TAG, "onCreate: started.");
+        //Log.d(TAG, "onCreate: started.");
         dataManagement = new DataManagement();
     }
     // Voeg hier Producten toe!
     // Product Naam + foto URL
     private void initImageBitmaps(){
-        Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
+        //Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
 
         ArrayList<Electronics> products = dataManagement.getAllProductData();
         for (int i =0; products.size() >i ; i++) {
             mNames.add(products.get(i).getName());
             mbitmaps.add(imageConverter.getImage(dataManagement.getImage(products.get(i).getId_())));
             mProductDescription.add(products.get(i).getDescription());
+            mId.add(products.get(i).getId_());
         }
         initRecyclerView();
     }
 
     private void initRecyclerView(){
-        Log.d(TAG, "initRecyclerView: init recyclerview.");
+        //Log.d(TAG, "initRecyclerView: init recyclerview.");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mProductDescription,mbitmaps);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mProductDescription,mbitmaps, mId);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
