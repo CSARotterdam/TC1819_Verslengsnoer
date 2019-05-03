@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.techlab.R;
@@ -54,7 +53,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 //        borrowViewHolder.mImageView.setImageResource(currentItem.getImageResource());
         borrowViewHolder.mProductName.setText(currentItem.getProductName());
         borrowViewHolder.mTurnInDate.setText(currentItem.getTurnInDate());
-        borrowViewHolder.mProductAmount.setText(currentItem.getBorrowItemAmount());
+        borrowViewHolder.mProductAmount.setText(Integer.toString(currentItem.getBorrowItemAmount()));
         borrowViewHolder.mProductStatus.setText(currentItem.getBorrowStatus());
     }
 
