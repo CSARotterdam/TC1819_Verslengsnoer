@@ -23,8 +23,6 @@
         <activity android:name=".view.MenuActivity" />
         <activity android:name=".view.SignUpActivity" />
         <activity android:name=".view.AangevraagdItems_UserList" />
-        <activity android:name=".view.ItemList" />
-        <activity android:name=".view.LoanItem" />
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
