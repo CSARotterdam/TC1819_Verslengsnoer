@@ -1,17 +1,18 @@
 package com.example.techlab.model;
 
-import java.sql.Time;
+
+import java.util.Date;
 
 public class Borrow {
 
     private int mImageResource;
     private String mProductName;
     private String mTurnInDate;
-    private String mProductAmount;
+    private int mProductAmount;
     private String mProductStatus;
 
-    public Borrow(int imageResource, String PName, String TurnInDate, String PAmount, String PStatus){
-        mImageResource = imageResource;
+    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus){
+//        mImageResource = imageResource;
         mProductName = PName;
         mTurnInDate = TurnInDate;
         mProductAmount = PAmount;
@@ -34,7 +35,7 @@ public class Borrow {
         this.mTurnInDate = RequestedDate;
     }
 
-    public String getBorrowItemAmount(){
+    public int getBorrowItemAmount(){
         return mProductAmount;
     }
 

@@ -10,14 +10,16 @@ public class Users implements Parcelable  {
     private String password;
     private int loanedAmount;
     private String userType;
+    private int id;
 
-    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount ,String userType) {
+    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount ,String userType, int _id) {
         this.firstName = firstName;
         this.surname = surname;
         this.schoolEmail = schoolEmail;
         this.password = password;
         this.loanedAmount = loanedAmount;
         this.userType = userType;
+        this.id = _id;
     }
 
     protected Users(Parcel in) {
@@ -27,6 +29,14 @@ public class Users implements Parcelable  {
         password = in.readString();
         loanedAmount = in.readInt();
         userType = in.readString();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public static final Creator<Users> CREATOR = new Creator<Users>() {

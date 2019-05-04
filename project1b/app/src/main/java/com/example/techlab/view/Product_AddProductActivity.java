@@ -4,22 +4,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Handler;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.techlab.R;
+import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.db.imageConverter;
-import com.example.techlab.model.Electronics;
-import com.example.techlab.model.Users;
 
 public class Product_AddProductActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -31,7 +27,9 @@ public class Product_AddProductActivity extends AppCompatActivity {
     private EditText productDescription;
     private DataSource dataSource;
     private ImageView productUploadimageView;
-    private Bitmap image;
+    private Bitmap resizedImage;
+    DataManagement dataManagement;
+    Uri selectedImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +42,9 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productCategory = findViewById(R.id.productCategoryTextInput);
         productDescription = findViewById(R.id.productDescriptionTextInput);
         productUploadimageView = findViewById(R.id.productUploadimageView);
+        dataManagement = new DataManagement();
 
         dataSource = new DataSource(this);
-        Intent intent = getIntent();
     }
 
     @Override
@@ -69,26 +67,17 @@ public class Product_AddProductActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
-            Uri selectedImage = data.getData();
+            selectedImage = data.getData();
             productUploadimageView.setImageURI(selectedImage);
         }
     }
 
     public void addNewProductButton(View view){
-        // creating new product instance
-        Electronics newProduct = new Electronics(
-                productId.getText().toString(),
-                productManufacturer.getText().toString(),
-                productName.getText().toString(),
-                Integer.parseInt(productStock.getText().toString()),
-                0,
-                productCategory.getText().toString(),
-                productDescription.getText().toString())
-                ;
-        image = ((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap();
-        int width = image.getWidth()/4;
-        int height = image.getHeight()/4;
-        insertData(newProduct,Bitmap.createScaledBitmap(image, width, height, false));
+        resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),150f,true);
+        byte[] imageByte = imageConverter.getByte(resizedImage);
+        dataManagement.addProductData(productId.getText().toString(),productManufacturer.getText().toString()
+                ,productCategory.getText().toString(),productName.getText().toString(),Integer.parseInt(productStock.getText().toString())
+                ,0,imageByte,productDescription.getText().toString());
 
 
         // reset form input text field
@@ -100,10 +89,6 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productDescription.setText("");
         Intent intent = new Intent(this, Product_ProductManagementActivity.class);
         startActivity(intent);
-    }
-    private void insertData(Electronics newProduct,Bitmap image){
-        // insert new product
-        dataSource.insertProduct(newProduct,imageConverter.getByte(image));
     }
 
     @Override

@@ -3,23 +3,24 @@ package com.example.techlab.view;
 import android.content.Intent;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.ProductAdapter;
 import com.example.techlab.databinding.ActivityProductBeheerBinding;
+import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Electronics;
-import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
 
 public class Product_ProductManagementActivity extends AppCompatActivity {
 
     DataSource dataSource;
+    DataManagement dataManagement;
     private ActivityProductBeheerBinding binding;
     private ProductAdapter adapter;
     @Override
@@ -28,6 +29,7 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_product_beheer);
         dataSource = new DataSource(this);
+        dataManagement = new DataManagement();
     }
 
     @Override
@@ -35,9 +37,8 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
         super.onResume();
         dataSource.open();
 
-        Cursor cursor = dataSource.selectAllproduct();
-        ArrayList<Electronics> productData = getProductData(cursor);
-        adapter = new ProductAdapter(productData,this);
+        ArrayList<Electronics> electronicsList = dataManagement.getAllProductData();
+        adapter = new ProductAdapter(electronicsList,this);
 
         binding.electronicsListItems.setAdapter(adapter);
         binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));
@@ -54,26 +55,6 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
         startActivity(startNewActivity);
     }
 
-    protected ArrayList<Electronics> getProductData(Cursor cursor) {
-
-        ArrayList<Electronics> electronicsList = new ArrayList<>();
-
-        cursor.moveToFirst();
-        for (int i = cursor.getCount(); i > 0; i--) {
-            electronicsList.add(new Electronics(
-                    cursor.getString(0)
-                    , cursor.getString(1)
-                    , cursor.getString(2)
-                    ,cursor.getInt(3)
-                    ,cursor.getInt(4)
-                    ,cursor.getString(5)
-                    ,cursor.getString(6)));
-            if (i>1){
-                cursor.moveToNext();
-            }
-        }
-        return electronicsList;
-    }
     @Override
     public void onBackPressed() {
         finish();

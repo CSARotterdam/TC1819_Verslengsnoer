@@ -11,30 +11,35 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.techlab.R;
+import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.DataSource;
 import com.example.techlab.model.Users;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String PREFERENCES_FILE = "com.example.techlab.preferences";
-    private static final String KEY_ACTIVE_USER = "keyActiveUser";
-    private static final String KEY_ACTIVE_USER_PASS = "keyActiveUserPass";
+    protected static final String PREFERENCE_USERID = "CurrentUserID";
+    protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
+    protected static final String KEY_ACTIVE_USER = "keyActiveUser";
+    protected static final String KEY_ACTIVE_USER_PASS = "keyActiveUserPass";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
-    DataSource dataSource;
+//    DataSource dataSource;
     EditText loginEmailInput;
     EditText loginPasswordInput;
     CheckBox stayLoggedInCheckBox;
+    DataManagement dataManagement;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dataSource = new DataSource(this);
         loginEmailInput = (EditText) findViewById(R.id.loginEmailInput);
         loginPasswordInput = (EditText) findViewById(R.id.loginPasswordInput);
         mSharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
         stayLoggedInCheckBox = findViewById(R.id.stayLoggedInCheckBox);
+
+        dataManagement = new DataManagement();
 
         ImageView logo = (ImageView) findViewById(R.id.TechLabLogo);
         int ImageResource = getResources().getIdentifier("@drawable/logo", null, this.getPackageName());
@@ -44,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        dataSource.open();
-        if (dataSource.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
+        if (dataManagement.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
             Intent intent = new Intent(this,MenuActivity.class);
             startActivity(intent);
         }
@@ -53,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause(){
         super.onPause();
-        dataSource.close();
         loginPasswordInput.setText("");
         loginEmailInput.setText("");
         mEditor.apply();
@@ -66,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginButton(View view){
-        if (dataSource.ifExists(loginEmailInput.getText().toString(),loginPasswordInput.getText().toString())) {
+        if (dataManagement.ifExists(loginEmailInput.getText().toString(),loginPasswordInput.getText().toString())) {
             Intent startNewActivity = new Intent(getBaseContext(), MenuActivity.class);
-            Users users =dataSource.getUser(loginEmailInput.getText().toString());
             if (stayLoggedInCheckBox.isChecked()){
                 mEditor.putString(KEY_ACTIVE_USER, loginEmailInput.getText().toString());
                 mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
             }
+            mEditor.putInt(PREFERENCE_USERID, dataManagement.getUser(loginEmailInput.getText().toString()).getId());
             startActivity(startNewActivity);
         }
     }
