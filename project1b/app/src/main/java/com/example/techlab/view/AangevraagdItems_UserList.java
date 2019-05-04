@@ -1,43 +1,37 @@
 package com.example.techlab.view;
 
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.techlab.R;
+import com.example.techlab.adapter.AangevraagdItems_UserList_Adapter;
+
+import java.util.ArrayList;
 
 public class AangevraagdItems_UserList extends AppCompatActivity {
-
-    ListView Gebruikers_loanlist;
-    String[] Gebruikers;
-    String[] Studentnummer;
-    String[] Aantal_Items;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutmanager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_user_aangvr);
 
-        Resources res = getResources();
-        Gebruikers_loanlist = (ListView)findViewById(R.id.Gebruikers_loanlist);
-        Gebruikers = res.getStringArray(R.array.Gebruikers);
-        Studentnummer = res.getStringArray(R.array.Studentnummer);
-        Aantal_Items = res.getStringArray(R.array.Aantal_Items);
+        ArrayList<Itemadapter_loanUsers> loanUsersList  = new ArrayList<>();
+        loanUsersList.add(new Itemadapter_loanUsers("Poduct1", "Gebruiker1"));
+        loanUsersList.add(new Itemadapter_loanUsers("Poduct2", "Gebruiker1"));
+        loanUsersList.add(new Itemadapter_loanUsers("Poduct3", "Gebruiker2"));
 
-        Itemadapter itemadapter = new Itemadapter(this, Gebruikers, Studentnummer, Aantal_Items);
-        Gebruikers_loanlist.setAdapter(itemadapter);
+        mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutmanager = new LinearLayoutManager(this);
+        mAdapter = new AangevraagdItems_UserList_Adapter(loanUsersList);
 
-        Gebruikers_loanlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent ItemList = new Intent(getApplicationContext(), ItemList.class);
-                startActivity(ItemList);
-            }
-        });
-
+        mRecyclerView.setLayoutManager(mLayoutmanager);
+        mRecyclerView.setAdapter(mAdapter);
     }
+
 }
