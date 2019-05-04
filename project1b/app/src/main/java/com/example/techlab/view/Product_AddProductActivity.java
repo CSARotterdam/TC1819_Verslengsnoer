@@ -7,29 +7,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.db.DataSource;
 import com.example.techlab.db.imageConverter;
 
 public class Product_AddProductActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
-    private EditText productId;
-    private EditText productManufacturer;
-    private EditText productName;
-    private EditText productStock;
-    private EditText productCategory;
-    private EditText productDescription;
-    private DataSource dataSource;
-    private ImageView productUploadimageView;
-    private Bitmap resizedImage;
+    TextInputLayout productId,productManufacturer,productName,productStock,productCategory,productDescription;
+    ImageView productUploadimageView;
+    Bitmap resizedImage;
     DataManagement dataManagement;
     Uri selectedImage;
+    boolean imageSelected = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,18 +38,15 @@ public class Product_AddProductActivity extends AppCompatActivity {
         productUploadimageView = findViewById(R.id.productUploadimageView);
         dataManagement = new DataManagement();
 
-        dataSource = new DataSource(this);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        dataSource.open();
     }
     @Override
     protected void onPause(){
         super.onPause();
-        dataSource.close();
     }
 
     public void uploadImage(View view){
@@ -69,28 +60,102 @@ public class Product_AddProductActivity extends AppCompatActivity {
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
             selectedImage = data.getData();
             productUploadimageView.setImageURI(selectedImage);
+            imageSelected= true;
         }
     }
 
     public void addNewProductButton(View view){
-        resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),150f,true);
-        byte[] imageByte = imageConverter.getByte(resizedImage);
-        dataManagement.addProductData(productId.getText().toString(),productManufacturer.getText().toString()
-                ,productCategory.getText().toString(),productName.getText().toString(),Integer.parseInt(productStock.getText().toString())
-                ,0,imageByte,productDescription.getText().toString());
+        boolean productIdCheck,productManufacturerCheck,productNameCheck,productStockCheck,productCategoryCheck,productDescriptionCheck,imageCheck;
+        productIdCheck = productIdValidation();
+        productManufacturerCheck = productManufacturerValidation();
+        productNameCheck = productNameValidation();
+        productStockCheck = productStockValidation();
+        productCategoryCheck = productCategoryValidation();
+        productDescriptionCheck = productDescriptionValidation();
+        imageCheck = imageSelected;
+        if (productIdCheck && productManufacturerCheck && productNameCheck && productStockCheck && productCategoryCheck && productDescriptionCheck && imageCheck){
+            resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),150f,true);
+            byte[] imageByte = imageConverter.getByte(resizedImage);
+            dataManagement.addProductData(productId.getEditText().getText().toString(),productManufacturer.getEditText().getText().toString()
+                    ,productCategory.getEditText().getText().toString(),productName.getEditText().getText().toString(),Integer.parseInt(productStock.getEditText().getText().toString())
+                    ,0,imageByte,productDescription.getEditText().getText().toString());
 
 
-        // reset form input text field
-        productId.setText("");
-        productManufacturer.setText("");
-        productName.setText("");
-        productStock.setText("");
-        productCategory.setText("");
-        productDescription.setText("");
-        Intent intent = new Intent(this, Product_ProductManagementActivity.class);
-        startActivity(intent);
+            // reset form input text field
+            productId.getEditText().setText("");
+            productManufacturer.getEditText().setText("");
+            productName.getEditText().setText("");
+            productStock.getEditText().setText("");
+            productCategory.getEditText().setText("");
+            productDescription.getEditText().setText("");
+            Intent intent = new Intent(this, Product_ProductManagementActivity.class);
+            startActivity(intent);
+        }
+
     }
 
+
+
+    private boolean productIdValidation(){
+        String input = productId.getEditText().getText().toString().trim();
+        if(input.isEmpty()){
+            productId.setError("lege invoerveld is niet toegestaan");
+            return false;
+        }else{
+            productId.setError(null);
+            return true;
+        }
+    }
+    private boolean productManufacturerValidation(){
+        String input = productManufacturer.getEditText().getText().toString().trim();
+        if(input.isEmpty()){
+            productManufacturer.setError("lege invoerveld is niet toegestaan");
+            return false;
+        }else{
+            productManufacturer.setError(null);
+            return true;
+        }
+    }
+    private boolean productNameValidation(){
+        String input = productName.getEditText().getText().toString().trim();
+        if(input.isEmpty()){
+            productName.setError("lege invoerveld is niet toegestaan");
+            return false;
+        }else{
+            productName.setError(null);
+            return true;
+        }
+    }
+    private boolean productStockValidation(){
+        String input = productStock.getEditText().getText().toString().trim();
+        if(input.isEmpty()){
+            productStock.setError("lege invoerveld is niet toegestaan");
+            return false;
+        }else{
+            productStock.setError(null);
+            return true;
+        }
+    }
+    private boolean productCategoryValidation(){
+        String input = productCategory.getEditText().getText().toString().trim();
+        if(input.isEmpty()){
+            productCategory.setError("lege invoerveld is niet toegestaan");
+            return false;
+        }else{
+            productCategory.setError(null);
+            return true;
+        }
+    }
+    private boolean productDescriptionValidation(){
+        String input = productDescription.getEditText().getText().toString().trim();
+        if(input.isEmpty()){
+            productDescription.setError("lege invoerveld is niet toegestaan");
+            return false;
+        }else{
+            productDescription.setError(null);
+            return true;
+        }
+    }
     @Override
     public void onBackPressed() {
         finish();

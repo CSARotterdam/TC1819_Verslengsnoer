@@ -3,32 +3,32 @@ package com.example.techlab.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.techlab.R;
-import com.example.techlab.model.Users;
+import com.example.techlab.db.DataManagement;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button Button_Inventory;
-    private Button Button_Borrowed;
     private Button BorrowedItemsUserListButton;
     private Button ButtonPrAanvraagUserList;
     private Button ButtonTelaatPrUserList;
+
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+    DataManagement dataManagement;
 
 
     @Override
@@ -43,18 +43,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         navigationView=(NavigationView)findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
-
+        dataManagement =new DataManagement();
         mEditor = mSharedPreferences.edit();
+        menuButtonManager();
 
         Buttons();
 
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     @Override
     public void onBackPressed() {
@@ -71,22 +68,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void Buttons(){
-        Button_Inventory = findViewById(R.id.Button_Inventory);
-        Button_Inventory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ShowInventarisActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
-                startActivity(ShowInventarisActivity);
-            }
-        });
-        Button_Borrowed = findViewById(R.id.BorrowItemBtn);
-        Button_Borrowed.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent ShowBorrowItemActivity = new Intent(getBaseContext(), Student_BorrowedActivity.class);
-                startActivity(ShowBorrowItemActivity);
-            }
-        });
+
         BorrowedItemsUserListButton = findViewById(R.id.BorrowedItemsUserListBtn);
         BorrowedItemsUserListButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +115,21 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(getBaseContext(), Product_ProductManagementActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.inventarisMenu){
+            Intent intent = new Intent(getBaseContext(), Product_InventoryActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.borrowedProductMenu){
+            Intent intent = new Intent(getBaseContext(), Student_BorrowedActivity.class);
+            startActivity(intent);
+        }
+
         return false;
+    }
+    public void menuButtonManager(){
+        if(dataManagement.getUser(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER,"")).getStatus().matches("student")){
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.productmanagementMenu).setVisible(false);
+        }
     }
 }

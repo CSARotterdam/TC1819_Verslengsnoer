@@ -9,12 +9,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DataManagement {
     Connection connect;
     String ConnectionResult = "";
     Boolean isSuccess=false;
+
+    public void insertUser(String firstName,String surname, String SchoolEmail, String Password) {
+
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, PASSWORD, LOANED_AMOUNT, USER_TYPE) " +
+                        "values ( ?,?,?,?,?,?)");
+                pstmt.setString(1,firstName);
+                pstmt.setString(2,surname);
+                pstmt.setString(3,SchoolEmail);
+                pstmt.setString(4,Password);
+                pstmt.setInt(5,0);
+                pstmt.setString(6,"student");
+                pstmt.execute();
+                connect.close();
+
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
 
     public ArrayList<Electronics> getAllProductData(){
         ArrayList<Electronics> electronicsList = new ArrayList<>();
@@ -118,6 +144,7 @@ public class DataManagement {
                 pstmt.setString(7,description);
                 pstmt.setBytes(8,image);
                 pstmt.execute();
+                connect.close();
 
             }
         }catch(Exception ex){
@@ -138,6 +165,7 @@ public class DataManagement {
 
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
+                connect.close();
             }
         }catch(Exception ex){
             isSuccess=false;
@@ -157,6 +185,7 @@ public class DataManagement {
                 String query = "DELETE FROM ELECTRONICS WHERE ID_ ="+ID_+";";
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
+                connect.close();
             }
         }catch(Exception ex){
             isSuccess=false;
@@ -178,6 +207,7 @@ public class DataManagement {
                 pstmt.setInt(3,Amount);
                 pstmt.setString(4,Status);
                 pstmt.execute();
+                connect.close();
             }
         }catch(Exception ex){
             isSuccess=false;
@@ -225,7 +255,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"), resultSet.getString("USER_TYPE")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
@@ -254,7 +284,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
+                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"), resultSet.getString("USER_TYPE")));
                 }
                 ConnectionResult = "successful";
                 isSuccess = true;

@@ -12,8 +12,6 @@ import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.db.DataSource;
-import com.example.techlab.model.Users;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected static final String KEY_ACTIVE_USER_PASS = "keyActiveUserPass";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
-//    DataSource dataSource;
     EditText loginEmailInput;
     EditText loginPasswordInput;
     CheckBox stayLoggedInCheckBox;

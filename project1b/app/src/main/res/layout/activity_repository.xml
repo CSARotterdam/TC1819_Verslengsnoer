@@ -23,18 +23,6 @@
             android:text="Beheerder"
             android:textSize="30sp" />
 
-
-        <Button
-            android:id="@+id/Button_Inventory"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:text="Inventaris"
-            android:textColor="@color/colorButton1Text"
-            android:background="@drawable/color_button1"
-            android:shadowColor="@android:color/black"/>
-
         <Button
             android:id="@+id/BorrowedItemsUserListBtn"
             android:layout_width="match_parent"
@@ -45,19 +33,6 @@
             android:shadowColor="@android:color/black"
             android:text="Users With Borrowed Items"
             android:textColor="@color/colorButton1Text"/>
-
-        <Button
-            android:id="@+id/BorrowItemBtn"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:onClick="BorrowItemBtn"
-            android:text="@string/BorrowBtnName"
-            android:textColor="@color/colorButton1Text"
-            android:background="@drawable/color_button1"
-            android:shadowColor="@android:color/black"/>
-
         <Button
             android:id="@+id/AangevrPrButton"
             android:layout_width="match_parent"
@@ -79,8 +54,6 @@
             android:textColor="@color/colorButton1Text"
             android:background="@drawable/color_button1"
             android:shadowColor="@android:color/black"/>
-
-
     </LinearLayout>
     <android.support.design.widget.NavigationView
         app:headerLayout="@layout/menu_header"
