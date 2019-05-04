@@ -11,28 +11,25 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
-import com.example.techlab.databinding.ActivityProductItemBinding;
+import com.example.techlab.databinding.ActivityProductManagementItemBinding;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.view.Product_ItemManagementActivity;
 
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-
+public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManagementAdapter.ViewHolder> {
     private List<Electronics> electronics;
     private Context context;
-
-    public ProductAdapter(List<Electronics> electronics, Context context) {
+    public ProductManagementAdapter(List<Electronics> electronics, Context context) {
         this.electronics = electronics;
         this.context = context;
     }
-
     @NonNull
     @Override
-    public ProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        ActivityProductItemBinding binding = DataBindingUtil
+    public ProductManagementAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        ActivityProductManagementItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(viewGroup.getContext())
-                , R.layout.activity_product_item
+                , R.layout.activity_product_management_item
                 ,viewGroup
                 ,false);
         return new ViewHolder(binding);
@@ -61,9 +58,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         RelativeLayout relativeLayout;
         // Binding variables
-        public ActivityProductItemBinding productItemBinding;
+        public ActivityProductManagementItemBinding productItemBinding;
 
-        public ViewHolder(ActivityProductItemBinding productLayoutBinding) {
+        public ViewHolder(ActivityProductManagementItemBinding productLayoutBinding) {
             super(productLayoutBinding.getRoot());
             productItemBinding = productLayoutBinding;
             relativeLayout = itemView.findViewById(R.id.productItemView);

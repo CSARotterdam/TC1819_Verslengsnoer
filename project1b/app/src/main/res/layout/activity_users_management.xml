@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="users"
+            type="com.example.techlab.model.Users"/>
+    </data>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.Users_managementActivity"
+    android:background="@color/colorBackground">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginVertical="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp">
+
+        <TextView
+            android:id="@+id/userManagementSchoolEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/schoolEmail"
+            android:textStyle="bold"
+            android:layout_weight="1.5"/>
+
+        <TextView
+            android:id="@+id/userManagementBorrowedAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Geleende producten"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/usersListItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+</LinearLayout>
+</layout>

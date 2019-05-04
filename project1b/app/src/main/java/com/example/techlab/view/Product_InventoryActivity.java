@@ -100,7 +100,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.LogoutMenu){
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER, "4ikikikilio.i;5534");
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_EMAIL, "4ikikikilio.i;5534");
             mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
             mEditor.putInt(MainActivity.PREFERENCE_USERID,0);
             mEditor.apply();
@@ -119,13 +119,19 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             Intent intent = new Intent(getBaseContext(), Student_BorrowedActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.userManagementMenu){
+            Intent intent = new Intent(getBaseContext(), Users_managementActivity.class);
+            startActivity(intent);
+        }
+
 
         return false;
     }
     public void menuButtonManager(){
-        if(dataManagement.getUser(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER,"")).getStatus().matches("student")){
+        if(dataManagement.getUser(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"")).getUserType().matches("student")){
             Menu menu = navigationView.getMenu();
             menu.findItem(R.id.productmanagementMenu).setVisible(false);
+            menu.findItem(R.id.userManagementMenu).setVisible(false);
         }
     }
 

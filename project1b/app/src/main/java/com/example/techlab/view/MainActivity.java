@@ -17,7 +17,7 @@ import com.example.techlab.db.DataManagement;
 public class MainActivity extends AppCompatActivity {
     protected static final String PREFERENCE_USERID = "CurrentUserID";
     protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
-    protected static final String KEY_ACTIVE_USER = "keyActiveUser";
+    protected static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
     protected static final String KEY_ACTIVE_USER_PASS = "keyActiveUserPass";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        if (dataManagement.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
+        if (dataManagement.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
             Intent intent = new Intent(this,MenuActivity.class);
             startActivity(intent);
         }
@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
     public void loginButton(View view){
         if (dataManagement.ifExists(loginEmailInput.getText().toString(),loginPasswordInput.getText().toString())) {
             Intent startNewActivity = new Intent(getBaseContext(), MenuActivity.class);
+            mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
             if (stayLoggedInCheckBox.isChecked()){
-                mEditor.putString(KEY_ACTIVE_USER, loginEmailInput.getText().toString());
                 mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
             }
             mEditor.putInt(PREFERENCE_USERID, dataManagement.getUser(loginEmailInput.getText().toString()).getId());
