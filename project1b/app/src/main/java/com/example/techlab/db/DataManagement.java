@@ -282,6 +282,25 @@ public class DataManagement {
         }
     }
 
+    public void DelRequestBorrowItem(int getmPKID){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "DELETE FROM BORROW WHERE _ID ="+getmPKID+";";
+                Statement statement = connect.createStatement();
+                statement.executeQuery(query);
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
+
     public ArrayList<Borrow> getBorrowData(int UserID){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
         try{
@@ -295,7 +314,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
-                    BorrowList.add(new Borrow(getProductData(resultSet.getInt("ELECTRONICS_P_ID")).getName(),resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS")));
+                    BorrowList.add(new Borrow(getProductData(resultSet.getInt("ELECTRONICS_P_ID")).getName(),resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;

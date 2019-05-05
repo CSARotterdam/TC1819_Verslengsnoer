@@ -10,13 +10,15 @@ public class Borrow {
     private String mTurnInDate;
     private int mProductAmount;
     private String mProductStatus;
+    private int mPKID;
 
-    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus){
+    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID){
 //        mImageResource = imageResource;
         mProductName = PName;
         mTurnInDate = TurnInDate;
         mProductAmount = PAmount;
         mProductStatus = PStatus;
+        mPKID = PKID;
     }
 
     public int getImageResource(){
@@ -47,4 +49,7 @@ public class Borrow {
         this.mProductStatus = borrowStatus;
     }
 
+    public int getmPKID() {
+        return mPKID;
+    }
 }
