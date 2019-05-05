@@ -104,8 +104,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.LogoutMenu){
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_EMAIL, "4ikikikilio.i;5534");
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_EMAIL, "uiwedfjklfddfjkloit'kk546582354%^$%%$#%$@");
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"uiwedfjklfddfjkloit'kk546582354%^$%%$#%$@");
             mEditor.putInt(MainActivity.PREFERENCE_USERID,0);
             mEditor.apply();
             Intent intent = new Intent(getBaseContext(), MainActivity.class);

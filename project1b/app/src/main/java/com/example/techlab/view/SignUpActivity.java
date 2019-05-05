@@ -35,7 +35,8 @@ public class SignUpActivity extends AppCompatActivity {
         firstName = firstNameValidation();
         surname = surnameValidation();
         if (emial && passWord && firstName && surname){
-            dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(),userSurnameInput.getEditText().getText().toString().trim(),  schoolEmailInput.getEditText().getText().toString().trim(), passwordInput.getEditText().getText().toString().trim());
+            dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(),userSurnameInput.getEditText().getText().toString().trim(),
+                    schoolEmailInput.getEditText().getText().toString().trim(), passwordInput.getEditText().getText().toString().trim());
             // resetting the  form input text field
             userFirstNameInput.getEditText().setText("");
             userSurnameInput.getEditText().setText("");
