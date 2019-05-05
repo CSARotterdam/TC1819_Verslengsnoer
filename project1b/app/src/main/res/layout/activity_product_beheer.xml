@@ -12,17 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".view.Product_ProductManagementActivity"
+        tools:context=".view.Product_managementActivity"
         android:background="@color/colorBackground">
 
-        <Button
-            android:id="@+id/addProductButton"
+        <TextView
+            android:id="@+id/userManagement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:text="Productbeheer"
+            android:layout_margin="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorRecyclerViewItem"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/addProductButton"
+            android:layout_width="100sp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_height="wrap_content"
             android:onClick="addProductPageButton"
             android:shadowColor="@android:color/black"
             android:text="@string/productToevoegen"
+            android:textSize="12sp"
             android:background="@drawable/color_button1"
             android:textColor="@android:color/white"/>
 
@@ -31,6 +41,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp">
 

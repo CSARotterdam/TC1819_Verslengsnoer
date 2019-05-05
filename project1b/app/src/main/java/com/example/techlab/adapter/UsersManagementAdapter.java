@@ -1,6 +1,7 @@
 package com.example.techlab.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.example.techlab.R;
 import com.example.techlab.databinding.ActivityUsersManagementItemBinding;
 import com.example.techlab.model.Users;
+import com.example.techlab.view.User_management_user_InfoActivity;
 
 import java.util.List;
 
@@ -40,9 +42,9 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(context, Product_ItemManagementActivity.class);
-//                intent.putExtra("ID_",users.getId());
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, User_management_user_InfoActivity.class);
+                intent.putExtra("ID_",users.getId());
+                context.startActivity(intent);
             }
         });
     }

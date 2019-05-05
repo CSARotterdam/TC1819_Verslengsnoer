@@ -15,7 +15,7 @@ import com.example.techlab.model.Electronics;
 
 import java.util.ArrayList;
 
-public class Product_ProductManagementActivity extends AppCompatActivity {
+public class Product_managementActivity extends AppCompatActivity {
     DataManagement dataManagement;
     ActivityProductBeheerBinding binding;
     ProductManagementAdapter adapter;
@@ -34,7 +34,7 @@ public class Product_ProductManagementActivity extends AppCompatActivity {
 
 
     public void addProductPageButton(View view){
-        Intent startNewActivity = new Intent(this, Product_AddProductActivity.class);
+        Intent startNewActivity = new Intent(this, Product_management_add_productActivity.class);
         startActivity(startNewActivity);
     }
 

@@ -11,7 +11,7 @@ import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
 
-public class Product_ItemUpDateActivity extends AppCompatActivity {
+public class Product_management_product_UpdateActivity extends AppCompatActivity {
     EditText productManufacturer;
     EditText productName;
     EditText productStock;
@@ -23,7 +23,7 @@ public class Product_ItemUpDateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_up_date);
+        setContentView(R.layout.activity_product_management_product_up_date);
 
         productManufacturer = findViewById(R.id.productManufacturerTextInputUpDate);
         productName = findViewById(R.id.productNameTextInputUpDate);
@@ -56,7 +56,7 @@ public class Product_ItemUpDateActivity extends AppCompatActivity {
                 productName.getText().toString(),Integer.parseInt(productStock.getText().toString()), Integer.parseInt(amountBroken.getText().toString()), productDescription.getText().toString(),getIntent().getIntExtra("ID_",-1));
 
         // reset form input text field
-        Intent intent = new Intent(this, Product_ItemManagementActivity.class);
+        Intent intent = new Intent(this, Product_management_product_infoActivity.class);
         productManufacturer.setText("");
         productName.setText("");
         productStock.setText("");
@@ -69,7 +69,7 @@ public class Product_ItemUpDateActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent intent = new Intent(this, Product_ProductManagementActivity.class);
+        Intent intent = new Intent(this, Product_managementActivity.class);
         startActivity(intent);
     }
 }

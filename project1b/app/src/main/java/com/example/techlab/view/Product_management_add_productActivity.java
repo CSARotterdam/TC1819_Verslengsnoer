@@ -16,7 +16,7 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.imageConverter;
 
-public class Product_AddProductActivity extends AppCompatActivity {
+public class Product_management_add_productActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
     TextInputLayout productId,productManufacturer,productName,productStock,productCategory,productDescription;
     ImageView productUploadimageView;
@@ -27,7 +27,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_product_management_add_product);
 
         productId = findViewById(R.id.productIdTextInput);
         productManufacturer = findViewById(R.id.productManufacturerTextInput);
@@ -80,7 +80,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
                     ,productCategory.getEditText().getText().toString(),productName.getEditText().getText().toString(),Integer.parseInt(productStock.getEditText().getText().toString())
                     ,0,imageByte,productDescription.getEditText().getText().toString());
 
-
+            imageSelected= false;
             // reset form input text field
             productId.getEditText().setText("");
             productManufacturer.getEditText().setText("");
@@ -88,7 +88,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
             productStock.getEditText().setText("");
             productCategory.getEditText().setText("");
             productDescription.getEditText().setText("");
-            Intent intent = new Intent(this, Product_ProductManagementActivity.class);
+            Intent intent = new Intent(this, Product_managementActivity.class);
             startActivity(intent);
         }
 
@@ -159,7 +159,7 @@ public class Product_AddProductActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
+        Intent startNewActivity = new Intent(this, Product_managementActivity.class);
         startActivity(startNewActivity);
     }
 }

@@ -200,6 +200,25 @@ public class DataManagement {
             ConnectionResult=ex.getMessage();
         }
     }
+    public void updateUserStatus( String status, int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "UPDATE USERS SET USER_TYPE = '"+status+"' WHERE ID_ = "+ID_+";";
+
+                Statement statement = connect.createStatement();
+                statement.executeQuery(query);
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
     public void DeleteProduct(int ID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -211,6 +230,26 @@ public class DataManagement {
 
 
                 String query = "DELETE FROM ELECTRONICS WHERE ID_ ="+ID_+";";
+                Statement statement = connect.createStatement();
+                statement.executeQuery(query);
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
+    public void DeleteUser(int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+
+
+                String query = "DELETE FROM USERS WHERE ID_ ="+ID_+";";
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
                 connect.close();
@@ -270,7 +309,7 @@ public class DataManagement {
         return BorrowList;
     }
 
-    public Users getUser(String SchoolEmail){
+    public Users getUserWithEmail(String SchoolEmail){
         ArrayList<Users> UserData = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -280,6 +319,33 @@ public class DataManagement {
             }
             else{
                 String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+SchoolEmail+"';";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()) {
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
+                }
+                ConnectionResult="successful";
+                isSuccess=true;
+                connect.close();
+
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+
+        }
+        return UserData.get(0);
+    }
+    public Users getUserWithId(int Id){
+        ArrayList<Users> UserData = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT * FROM USERS WHERE ID_ = "+Id+";";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {

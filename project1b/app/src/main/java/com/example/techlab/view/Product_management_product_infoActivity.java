@@ -13,7 +13,7 @@ import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.imageConverter;
 import com.example.techlab.model.Electronics;
 
-public class Product_ItemManagementActivity extends AppCompatActivity {
+public class Product_management_product_infoActivity extends AppCompatActivity {
     TextView productName, productId, productStock, productCategory,productAmountBroken
             ,productManufacturer, productDescription;
     ImageView productManagementImageView;
@@ -22,7 +22,7 @@ public class Product_ItemManagementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_delete_and_up_date);
+        setContentView(R.layout.activity_product_management_product_info);
         productName = findViewById(R.id.productNameTextView);
         productId = findViewById(R.id.productIdTextView);
         productStock = findViewById(R.id.productStockTextView);
@@ -57,18 +57,18 @@ public class Product_ItemManagementActivity extends AppCompatActivity {
     }
     public void deleteProduct(View view){
         dataManagement.DeleteProduct(getIntent().getIntExtra("ID_",-1));
-        Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
+        Intent startNewActivity = new Intent(this, Product_managementActivity.class);
         startActivity(startNewActivity);
     }
     public void upDateProduct(View view){
-        Intent startNewActivity = new Intent(this, Product_ItemUpDateActivity.class);
+        Intent startNewActivity = new Intent(this, Product_management_product_UpdateActivity.class);
         startNewActivity.putExtra("ID_",getIntent().getIntExtra("ID_",-1));
         startActivity(startNewActivity);
     }
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, Product_ProductManagementActivity.class);
+        Intent startNewActivity = new Intent(this, Product_managementActivity.class);
         startActivity(startNewActivity);
     }
 

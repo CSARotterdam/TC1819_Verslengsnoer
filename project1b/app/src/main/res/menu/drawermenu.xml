@@ -4,6 +4,7 @@
     <item android:id="@+id/userManagementMenu" android:title="Gebruikersbeheer" android:icon="@drawable/ic_user_management"/>
     <item android:id="@+id/inventarisMenu" android:title="Inventaris" android:icon="@drawable/ic_inventaris"/>
     <item android:id="@+id/borrowedProductMenu" android:title="Geleende Producten" android:icon="@drawable/ic_borrowed_product"/>
+    <item android:id="@+id/tijdelijkeMenuknoppen" android:title="Tijdelijke extra menuknoppen" android:icon="@drawable/ic_borrowed_product"/>
     <item android:id="@+id/LogoutMenu" android:title="Uitloggen" android:icon="@drawable/ic_logout"/>
 
 </menu>

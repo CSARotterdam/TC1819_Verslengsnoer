@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import com.example.techlab.R;
 import com.example.techlab.databinding.ActivityProductManagementItemBinding;
 import com.example.techlab.model.Electronics;
-import com.example.techlab.view.Product_ItemManagementActivity;
+import com.example.techlab.view.Product_management_product_infoActivity;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Product_ItemManagementActivity.class);
+                Intent intent = new Intent(context, Product_management_product_infoActivity.class);
                 intent.putExtra("ID_",electronic.getId_());
                 context.startActivity(intent);
             }

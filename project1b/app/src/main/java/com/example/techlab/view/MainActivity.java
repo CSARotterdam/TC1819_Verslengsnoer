@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         if (dataManagement.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
-            Intent intent = new Intent(this,MenuActivity.class);
+            Intent intent = new Intent(this,Product_InventoryActivity.class);
             startActivity(intent);
         }
     }
@@ -67,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginButton(View view){
         if (dataManagement.ifExists(loginEmailInput.getText().toString(),loginPasswordInput.getText().toString())) {
-            Intent startNewActivity = new Intent(getBaseContext(), MenuActivity.class);
+            Intent startNewActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
             mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
             if (stayLoggedInCheckBox.isChecked()){
                 mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
             }
-            mEditor.putInt(PREFERENCE_USERID, dataManagement.getUser(loginEmailInput.getText().toString()).getId());
+            mEditor.putInt(PREFERENCE_USERID, dataManagement.getUserWithEmail(loginEmailInput.getText().toString()).getId());
             startActivity(startNewActivity);
         }
     }

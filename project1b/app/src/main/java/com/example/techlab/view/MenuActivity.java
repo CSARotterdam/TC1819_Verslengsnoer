@@ -112,7 +112,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         }
         if (id == R.id.productmanagementMenu){
-            Intent intent = new Intent(getBaseContext(), Product_ProductManagementActivity.class);
+            Intent intent = new Intent(getBaseContext(), Product_managementActivity.class);
             startActivity(intent);
         }
         if (id == R.id.inventarisMenu){
@@ -127,14 +127,25 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(getBaseContext(), Users_managementActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.tijdelijkeMenuknoppen){
+            Intent intent = new Intent(getBaseContext(), MenuActivity.class);
+            startActivity(intent);
+        }
+
 
         return false;
     }
     public void menuButtonManager(){
-        if(dataManagement.getUser(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"")).getUserType().matches("student")){
+        if(dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"")).getUserType().matches("student")){
             Menu menu = navigationView.getMenu();
             menu.findItem(R.id.productmanagementMenu).setVisible(false);
             menu.findItem(R.id.userManagementMenu).setVisible(false);
         }
+        if(dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"")).getUserType().matches("beheerder")){
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.userManagementMenu).setVisible(false);
+        }
+
     }
+
 }

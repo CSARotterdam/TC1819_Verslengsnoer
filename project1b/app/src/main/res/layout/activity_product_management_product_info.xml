@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".view.Product_ItemManagementActivity">
+    tools:context=".view.Product_management_product_infoActivity">
 
     <ScrollView
         android:layout_width="match_parent"
