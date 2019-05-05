@@ -89,7 +89,9 @@ public class Product_management_add_productActivity extends AppCompatActivity {
             productCategory.getEditText().setText("");
             productDescription.getEditText().setText("");
             Intent intent = new Intent(this, Product_managementActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
         }
 
     }
@@ -158,8 +160,8 @@ public class Product_management_add_productActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        finish();
         Intent startNewActivity = new Intent(this, Product_managementActivity.class);
         startActivity(startNewActivity);
+        finish();
     }
 }

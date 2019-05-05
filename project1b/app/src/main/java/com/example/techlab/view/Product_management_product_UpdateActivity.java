@@ -63,13 +63,17 @@ public class Product_management_product_UpdateActivity extends AppCompatActivity
         productCategory.setText("");
         productDescription.setText("");
         amountBroken.setText("");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("ID_",getIntent().getIntExtra("ID_",-1));
         startActivity(intent);
+        finish();
     }
     @Override
     public void onBackPressed() {
-        finish();
+
         Intent intent = new Intent(this, Product_managementActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

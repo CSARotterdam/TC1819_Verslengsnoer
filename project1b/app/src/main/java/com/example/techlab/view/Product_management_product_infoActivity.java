@@ -58,18 +58,23 @@ public class Product_management_product_infoActivity extends AppCompatActivity {
     public void deleteProduct(View view){
         dataManagement.DeleteProduct(getIntent().getIntExtra("ID_",-1));
         Intent startNewActivity = new Intent(this, Product_managementActivity.class);
+        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startNewActivity);
+        finish();
     }
     public void upDateProduct(View view){
         Intent startNewActivity = new Intent(this, Product_management_product_UpdateActivity.class);
+        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startNewActivity.putExtra("ID_",getIntent().getIntExtra("ID_",-1));
         startActivity(startNewActivity);
+        finish();
     }
     @Override
     public void onBackPressed() {
-        finish();
         Intent startNewActivity = new Intent(this, Product_managementActivity.class);
+        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startNewActivity);
+        finish();
     }
 
 }

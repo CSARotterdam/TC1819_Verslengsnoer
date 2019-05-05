@@ -38,10 +38,5 @@ public class Product_managementActivity extends AppCompatActivity {
         startActivity(startNewActivity);
     }
 
-    @Override
-    public void onBackPressed() {
-        finish();
-        Intent startNewActivity = new Intent(this, MenuActivity.class);
-        startActivity(startNewActivity);
-    }
+
 }
