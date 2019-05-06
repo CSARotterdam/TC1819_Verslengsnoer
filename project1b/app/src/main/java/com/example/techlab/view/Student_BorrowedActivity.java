@@ -49,7 +49,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
+        Intent startNewActivity = new Intent(this,  MenuActivity.class);
         startActivity(startNewActivity);
     }
 }

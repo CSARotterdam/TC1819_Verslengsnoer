@@ -3,6 +3,7 @@ package com.example.techlab.db;
 import com.example.techlab.model.Borrow;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Users;
+import com.example.techlab.view.Itemadapter_loanUsers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -381,6 +382,34 @@ public class DataManagement {
 
         }
         return UserData.get(0);
+    }
+
+
+    public ArrayList<Itemadapter_loanUsers> getBorrowDataList(){
+        ArrayList<Itemadapter_loanUsers> loanUsersList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT * FROM BORROW ";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    loanUsersList.add(new Itemadapter_loanUsers(getProductData(resultSet.getInt("ELECTRONICS_P_ID")).getName(),getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
+                }
+                ConnectionResult="successful";
+                isSuccess=true;
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+
+        }
+        return loanUsersList;
     }
 
     // check
