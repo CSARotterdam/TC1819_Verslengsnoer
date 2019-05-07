@@ -62,7 +62,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         headerView = navigationView.getHeaderView(0);
         menuUserName = headerView.findViewById(R.id.menuUserName);
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
-
+        menuButtonManager();
         initImageBitmaps();
     }
 //    "test"
