@@ -30,12 +30,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void signUpButtonClicked(View view) {
         // insert new user
-        boolean emial, passWord, firstName, surname;
-        emial = emailValidation();
+        boolean email, passWord, firstName, surname;
+        email = emailValidation();
         passWord = passwordValidation();
         firstName = firstNameValidation();
         surname = surnameValidation();
-        if (emial && passWord && firstName && surname) {
+        if (email && passWord && firstName && surname) {
             dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(),
                     schoolEmailInput.getEditText().getText().toString().trim(), passwordInput.getEditText().getText().toString().trim());
             // resetting the  form input text field
