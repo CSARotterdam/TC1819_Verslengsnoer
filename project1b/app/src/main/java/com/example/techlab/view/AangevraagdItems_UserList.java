@@ -34,4 +34,11 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this, MenuActivity.class);
+        startActivity(startNewActivity);
+    }
+
 }
