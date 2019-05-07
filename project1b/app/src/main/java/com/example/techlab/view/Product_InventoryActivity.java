@@ -35,10 +35,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
     private TextView  menuUserName, menuUserStatus;
-<<<<<<< HEAD
-    Users user;
-=======
->>>>>>> parent of e399968... Revert "Revert "Revert "Merge branch 'master' of https://github.com/CSARotterdam/TC1819_Verslengsnoer"""
     View headerView;
 
     // Array van de namen en afbeeldingen van elk product
@@ -136,11 +132,9 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     }
     public void menuButtonManager(){
         Menu menu = navigationView.getMenu();
-<<<<<<< HEAD
 
-=======
         Users user = dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""));
->>>>>>> parent of e399968... Revert "Revert "Revert "Merge branch 'master' of https://github.com/CSARotterdam/TC1819_Verslengsnoer"""
+
         menuUserStatus.setText(user.getUserType());
         menuUserName.setText(user.getFirstName());
 
