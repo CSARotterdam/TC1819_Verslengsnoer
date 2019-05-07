@@ -127,8 +127,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(getBaseContext(), Users_managementActivity.class);
             startActivity(intent);
         }
-        if (id == R.id.ProductAdministratieMenu){
-            Intent intent = new Intent(getBaseContext(), AangevraagdItems_UserList.class);
+        if (id == R.id.tijdelijkeMenuknoppen){
+            Intent intent = new Intent(getBaseContext(), MenuActivity.class);
             startActivity(intent);
         }
 

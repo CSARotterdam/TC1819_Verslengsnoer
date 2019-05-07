@@ -14,15 +14,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.imageConverter;
 import com.example.techlab.model.Electronics;
-import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
 
@@ -34,8 +31,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
-    private TextView  menuUserName, menuUserStatus;
-    View headerView;
 
     // Array van de namen en afbeeldingen van elk product
     private ArrayList<Integer> mId = new ArrayList<>();
@@ -59,10 +54,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         actionBarDrawerToggle.syncState();
-        headerView = navigationView.getHeaderView(0);
-        menuUserName = headerView.findViewById(R.id.menuUserName);
-        menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
-
         initImageBitmaps();
         menuButtonManager();
     }
@@ -126,25 +117,16 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             Intent intent = new Intent(getBaseContext(), Users_managementActivity.class);
             startActivity(intent);
         }
-        if (id == R.id.ProductAdministratieMenu){
-            Intent intent = new Intent(getBaseContext(), AangevraagdItems_UserList.class);
+        if (id == R.id.tijdelijkeMenuknoppen){
+            Intent intent = new Intent(getBaseContext(), MenuActivity.class);
             startActivity(intent);
         }
         return false;
     }
     public void menuButtonManager(){
-        Menu menu = navigationView.getMenu();
-        Users user = dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""));
-        menuUserStatus.setText(user.getUserType());
-        menuUserName.setText(user.getFirstName());
-
-
-        if(user.getUserType().matches("student")){
+        if(dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"")).getUserType().matches("student")){
+            Menu menu = navigationView.getMenu();
             menu.findItem(R.id.productmanagementMenu).setVisible(false);
-            menu.findItem(R.id.userManagementMenu).setVisible(false);
-            menu.findItem(R.id.ProductAdministratieMenu).setVisible(false);
-        }
-        if(user.getUserType().matches("beheerder")){
             menu.findItem(R.id.userManagementMenu).setVisible(false);
         }
     }
