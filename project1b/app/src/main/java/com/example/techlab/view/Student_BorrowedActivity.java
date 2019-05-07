@@ -23,6 +23,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     DataManagement dataManagement;
     private SharedPreferences mSharedPreferences;
+    ArrayList<Borrow> BorrowItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
 
-        ArrayList<Borrow> BorrowItemList = dataManagement.getBorrowData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
+        BorrowItemList = dataManagement.getBorrowData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
 
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -46,10 +47,16 @@ public class Student_BorrowedActivity extends AppCompatActivity {
 
     }
 
+    public void update(){
+        BorrowItemList = dataManagement.getBorrowData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
+    }
+
+
     @Override
     public void onBackPressed() {
         finish();
         Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
         startActivity(startNewActivity);
     }
+
 }

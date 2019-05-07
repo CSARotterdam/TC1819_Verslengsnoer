@@ -107,7 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else if (!(check(input))) {
             userSurnameInput.setError("Voor achternaam mag je alleen letters gebruiken");
             return false;
-        } else if ((input.length() == 1)) {
+        } else if ((input.length() <= 1)) {
             userSurnameInput.setError("Achternaam moet langer zijn dan één letter");
             return false;
         } else {
