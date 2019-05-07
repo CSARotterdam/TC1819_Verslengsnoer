@@ -15,7 +15,6 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout schoolEmailInput;
     TextInputLayout passwordInput;
     DataManagement dataManagement;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,89 +27,85 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    public void signUpButtonClicked(View view) {
+    public void signUpButtonClicked(View view){
         // insert new user
-        boolean emial, passWord, firstName, surname;
+        boolean emial,passWord,firstName,surname;
         emial = emailValidation();
         passWord = passwordValidation();
         firstName = firstNameValidation();
         surname = surnameValidation();
-        if (emial && passWord && firstName && surname) {
-            dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(),
+        if (emial && passWord && firstName && surname){
+            dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(),userSurnameInput.getEditText().getText().toString().trim(),
                     schoolEmailInput.getEditText().getText().toString().trim(), passwordInput.getEditText().getText().toString().trim());
             // resetting the  form input text field
             userFirstNameInput.getEditText().setText("");
             userSurnameInput.getEditText().setText("");
             schoolEmailInput.getEditText().setText("");
             passwordInput.getEditText().setText("");
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }
 
     }
-
-    private boolean emailValidation() {
+    private boolean emailValidation(){
         String input = schoolEmailInput.getEditText().getText().toString().trim().toLowerCase();
-        if (input.isEmpty()) {
+        if(input.isEmpty()){
             schoolEmailInput.setError("lege invoerveld is niet toegestaan");
             return false;
 
-        } else if ((input.length() != 13)) {
+        }else if ((input.length()!=13)){
             schoolEmailInput.setError("ingevulde email is niet correct \nWe accepteren alleen schoolEmail van de hogeschool Rotterdam");
             return false;
-        } else if (!(input.substring(input.length() - 6).matches("@hr.nl"))) {
+        }else if (!(input.substring(input.length()-6).matches("@hr.nl"))){
             schoolEmailInput.setError("ingevulde email is niet correct \nWe accepteren alleen schoolEmail van de hogeschool Rotterdam");
             return false;
-        } else {
+        }else{
             schoolEmailInput.setError(null);
             return true;
         }
     }
-
-    private boolean passwordValidation() {
+    private boolean passwordValidation(){
         String input = passwordInput.getEditText().getText().toString().trim();
-        if (input.isEmpty()) {
+        if(input.isEmpty()){
             passwordInput.setError("lege invoerveld is niet toegestaan");
             return false;
-        } else if (!(input.length() >= 8)) {
+        }else if (!(input.length()>=8)){
             passwordInput.setError("ingevulde wachtwoord is niet sterk genoeg  \nWachtwoord moet Minimaal acht tekens lang zijn");
             return false;
-        } else {
+        }else{
             passwordInput.setError(null);
             return true;
         }
 
     }
-
-    private boolean firstNameValidation() {
+    private boolean firstNameValidation(){
         String input = userFirstNameInput.getEditText().getText().toString().trim();
-        if (input.isEmpty()) {
+        if(input.isEmpty()){
             userFirstNameInput.setError("lege invoerveld is niet toegestaan");
             return false;
-        } else if (!(check(input))) {
+        }else if (!(check(input))){
             userFirstNameInput.setError("Voor voornaam mag je alleen letters gebruiken");
             return false;
-        } else if ((input.length() == 1)) {
+        }else if ((input.length()==1)){
             userFirstNameInput.setError("Voornaam moet langer zijn dan één letter");
             return false;
-        } else {
+        }else{
             userFirstNameInput.setError(null);
             return true;
         }
     }
-
-    private boolean surnameValidation() {
+    private boolean surnameValidation(){
         String input = userSurnameInput.getEditText().getText().toString().trim();
-        if (input.isEmpty()) {
+        if(input.isEmpty()){
             userSurnameInput.setError("lege invoerveld is niet toegestaan");
             return false;
-        } else if (!(check(input))) {
+        }else if (!(check(input))){
             userSurnameInput.setError("Voor achternaam mag je alleen letters gebruiken");
             return false;
-        } else if ((input.length() == 1)) {
+        }else if ((input.length()==1)){
             userSurnameInput.setError("Achternaam moet langer zijn dan één letter");
             return false;
-        } else {
+        }else{
             userSurnameInput.setError(null);
             return true;
         }
@@ -122,13 +117,18 @@ public class SignUpActivity extends AppCompatActivity {
         }
         int len = s.length();
         for (int i = 0; i < len; i++) {
-            char character = s.charAt(i);
-            if ((!Character.isLetter(character) && !(character + "").equals(" "))) {
+            if ((Character.isLetter(s.charAt(i)) == false)) {
                 return false;
             }
         }
         return true;
     }
+
+
+
+
+
+
 
 
 }

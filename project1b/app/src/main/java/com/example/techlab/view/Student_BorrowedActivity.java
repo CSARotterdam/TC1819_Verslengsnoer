@@ -31,12 +31,18 @@ public class Student_BorrowedActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
 
+//        This needs to be done through database
+//        ArrayList<Borrow> BorrowItemList = new ArrayList<>();
+//        BorrowItemList.add(new Borrow( "IPhone", "23-3-2019", 1, "Pending"));
+//        BorrowItemList.add(new Borrow( "Camera", "23-3-2019", 1, "Pending"));
+//        BorrowItemList.add(new Borrow( "PS4", "23-3-2019", 1, "Geleend"));
+
         ArrayList<Borrow> BorrowItemList = dataManagement.getBorrowData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
 
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new BorrowAdapter(BorrowItemList, this);
+        mAdapter = new BorrowAdapter(BorrowItemList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -49,7 +55,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this,  MenuActivity.class);
+        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
         startActivity(startNewActivity);
     }
 }
