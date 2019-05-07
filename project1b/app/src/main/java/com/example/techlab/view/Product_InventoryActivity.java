@@ -35,6 +35,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
     private TextView  menuUserName, menuUserStatus;
+    Users user;
     View headerView;
 
     // Array van de namen en afbeeldingen van elk product
@@ -64,7 +65,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
 
         initImageBitmaps();
-        menuButtonManager();
     }
 //    "test"
     // Voeg hier Producten toe!
@@ -89,8 +89,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -135,7 +133,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     }
     public void menuButtonManager(){
         Menu menu = navigationView.getMenu();
-        Users user = dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""));
+
         menuUserStatus.setText(user.getUserType());
         menuUserName.setText(user.getFirstName());
 
