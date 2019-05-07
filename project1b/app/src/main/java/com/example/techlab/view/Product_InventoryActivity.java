@@ -66,6 +66,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         initImageBitmaps();
         menuButtonManager();
     }
+//    "test"
     // Voeg hier Producten toe!
     // Product Naam + foto URL
     private void initImageBitmaps(){
