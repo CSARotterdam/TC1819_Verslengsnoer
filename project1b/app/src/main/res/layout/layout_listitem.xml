@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="2dp"
     android:id="@+id/parent_layout"
-    android:background="@color/colorBackground">
+    android:background="#000"
+    android:layout_margin="5dp">
 
     <!--Put this code in activity inventaris-->
 
@@ -14,10 +14,10 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_margin="5dp"
         android:scaleType="fitCenter"
         android:id="@+id/image"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher"
+        android:background="@color/White" />
 
     <!--Product Naam-->
     <TextView
@@ -28,8 +28,8 @@
         android:layout_toRightOf="@+id/image"
         android:layout_centerVertical="true"
         android:layout_marginLeft="30dp"
-        android:textColor="#000"
-        android:textSize="17sp"/>
+        android:textColor="@color/White"
+        android:textSize="17sp" />
 
     <!--Add TextView to see if item is available or not-->
 
