@@ -132,7 +132,6 @@ public class Product_ItemDescription extends AppCompatActivity {
                                 else {
                                     Toast.makeText(Product_ItemDescription.this, "Accepteer de voorwaarden eerst.", Toast.LENGTH_LONG).show();
                                 }
-
                             }
                         })
                         .setNeutralButton("Annuleren", null);
