@@ -5,6 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorGold">#F9D342 </color>
     <color name="colorDarkSoftBlue">#2A3457 </color>
+    <color name="Red">#d8041d</color>
+    <color name="White">#FFF</color>
 
     <color name="colorRecyclerViewItem">#292826 </color>
     <color name="colorBackground">#F2EAED </color>

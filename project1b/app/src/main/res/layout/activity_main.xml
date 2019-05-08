@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="ingelogd blijven"
+        android:text="Ingelogd blijven"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/button" />
 </android.support.constraint.ConstraintLayout>

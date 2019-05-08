@@ -6,14 +6,12 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Product_InventoryActivity"
-    >
+    tools:context=".view.Product_InventoryActivity">
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorBackground"
-    >
+    android:background="@color/colorBackground">
 
         <LinearLayout
             android:layout_width="match_parent"

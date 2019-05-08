@@ -35,8 +35,11 @@
             android:name=".view.Product_InventoryActivity"
             android:label="Inventaris" />
         <activity
-            android:name=".view.Product_ItemDescription"
-            android:label="Product Informatie" />
+        android:name=".view.Product_ItemDescription"
+        android:label="Product Informatie" />
+        <activity
+            android:name=".view.Product_Voorwaarden"
+            android:label="Product Voorwaarden" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
