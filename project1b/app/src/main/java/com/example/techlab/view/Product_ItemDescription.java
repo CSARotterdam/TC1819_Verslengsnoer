@@ -147,10 +147,12 @@ public class Product_ItemDescription extends AppCompatActivity {
         VoorwaardenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://hr.nl/";
-                Intent voorwaardenLink = new Intent(Intent.ACTION_VIEW);
-                voorwaardenLink.setData(Uri.parse(url));
-                startActivity(voorwaardenLink);
+                Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
+                startActivity(Voorwaarden);
+//                String url = "https://hr.nl/";
+//                Intent voorwaardenLink = new Intent(Intent.ACTION_VIEW);
+//                voorwaardenLink.setData(Uri.parse(url));
+//                startActivity(voorwaardenLink);
             }
         });
     }
