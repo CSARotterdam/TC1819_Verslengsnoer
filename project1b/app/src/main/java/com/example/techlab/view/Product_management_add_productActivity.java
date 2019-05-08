@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.db.imageConverter;
+import com.example.techlab.imageHelper.imageConverter;
 
 public class Product_management_add_productActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;

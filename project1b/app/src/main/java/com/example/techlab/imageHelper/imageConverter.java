@@ -1,4 +1,4 @@
-package com.example.techlab.db;
+package com.example.techlab.imageHelper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

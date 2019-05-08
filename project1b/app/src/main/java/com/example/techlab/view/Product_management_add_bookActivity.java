@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.db.imageConverter;
+import com.example.techlab.imageHelper.imageConverter;
 
 public class Product_management_add_bookActivity extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class Product_management_add_bookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_management_add_book);
 
-        bookTitle = findViewById(R.id.bookAmountTextInput);
+        bookTitle = findViewById(R.id.bookTitleTextInput);
         bookWriters = findViewById(R.id.bookWritersTextInput);
         bookIsbn = findViewById(R.id.bookIsbnTextInput);
         bookPublisher = findViewById(R.id.bookPublisherTextInput);

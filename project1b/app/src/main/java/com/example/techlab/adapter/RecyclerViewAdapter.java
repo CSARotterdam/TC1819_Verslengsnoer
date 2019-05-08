@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.ActivityInventoryItemBinding;
-import com.example.techlab.db.imageConverter;
+import com.example.techlab.imageHelper.imageConverter;
 import com.example.techlab.model.Books;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
