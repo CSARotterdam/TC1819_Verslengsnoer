@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/parent_layout"
-    android:background="#000"
+    android:background="@drawable/color_button1"
     android:layout_margin="5dp">
 
     <!--Put this code in activity inventaris-->
 
-    <!--Voeg achtergrond kleur toe-->
     <!--Product Afbeelding-->
     <ImageView
         android:layout_width="80dp"
