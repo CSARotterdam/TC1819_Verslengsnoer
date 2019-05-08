@@ -49,5 +49,14 @@ public class User_management_user_InfoActivity extends AppCompatActivity {
         finish();
 
     }
+    public void updateUserStatusToStudent(View view){
+        dataManagement.updateUserStatus("student",getIntent().getIntExtra("ID_",-1));
+        Intent startNewActivity = new Intent(this, User_management_user_InfoActivity.class);
+        startNewActivity.putExtra("ID_",user.getId());
+        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startNewActivity);
+        finish();
+
+    }
 
 }

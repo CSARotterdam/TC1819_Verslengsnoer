@@ -426,11 +426,14 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
+                    String productName;
                     if(resultSet.getString("PRODUCT_TYPE").matches("book")){
-                        BorrowList.add(new Borrow(getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName(),resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID"),resultSet.getString("PRODUCT_TYPE")));
+                        productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
                     }else{
-                        BorrowList.add(new Borrow(getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName(),resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID"),"electronic"));
+                        productName = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName();
                     }
+                    BorrowList.add(new Borrow(productName,resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID"),"electronic"));
+
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
