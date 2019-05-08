@@ -9,23 +9,27 @@ import android.view.View;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.ProductManagementAdapter;
-import com.example.techlab.databinding.ActivityProductBeheerBinding;
+import com.example.techlab.databinding.ActivityProductManagementBinding;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Products;
 
 import java.util.ArrayList;
 
 public class Product_managementActivity extends AppCompatActivity {
     DataManagement dataManagement;
-    ActivityProductBeheerBinding binding;
+    ActivityProductManagementBinding binding;
     ProductManagementAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_beheer);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_management);
         dataManagement = new DataManagement();
-        ArrayList<Electronics> electronicsList = dataManagement.getAllProductData();
-        adapter = new ProductManagementAdapter(electronicsList,this);
+        ArrayList<Products> Productlist = dataManagement.getAllElectronicsData();
+        ArrayList<Products> bookList = dataManagement.getAllBooksData();
+        for (int i = 0; i < bookList.size(); i++){
+            Productlist.add(bookList.get(i));
+        }
+        adapter = new ProductManagementAdapter(Productlist,this);
         binding.electronicsListItems.setAdapter(adapter);
         binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));
         binding.electronicsListItems.setNestedScrollingEnabled(false);
@@ -35,6 +39,10 @@ public class Product_managementActivity extends AppCompatActivity {
 
     public void addProductPageButton(View view){
         Intent startNewActivity = new Intent(this, Product_management_add_productActivity.class);
+        startActivity(startNewActivity);
+    }
+    public void addBOOKPageButton(View view){
+        Intent startNewActivity = new Intent(this, Product_management_add_bookActivity.class);
         startActivity(startNewActivity);
     }
 

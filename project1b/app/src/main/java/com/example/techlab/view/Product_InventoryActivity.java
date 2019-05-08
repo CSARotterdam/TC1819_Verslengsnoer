@@ -21,7 +21,7 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.imageConverter;
-import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
@@ -42,6 +42,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mProductDescription = new ArrayList<>();
     private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
+    ArrayList<Products> products;
     DataManagement dataManagement;
 
     @Override
@@ -63,15 +64,21 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuUserName = headerView.findViewById(R.id.menuUserName);
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
         menuButtonManager();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initImageBitmaps();
     }
-//    "test"
+
+    //    "test"
     // Voeg hier Producten toe!
     // Product Naam + foto URL
     private void initImageBitmaps(){
         //Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
 
-        ArrayList<Electronics> products = dataManagement.getAllProductData();
+        products = dataManagement.getAllElectronicsData();
         for (int i =0; products.size() >i ; i++) {
             mNames.add(products.get(i).getName());
             mbitmaps.add(imageConverter.getImage(dataManagement.getImage(products.get(i).getId_())));
@@ -106,27 +113,46 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             mEditor.putInt(MainActivity.PREFERENCE_USERID,0);
             mEditor.apply();
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            startActivity(intent);
+            finish();
         }
         if (id == R.id.productmanagementMenu){
             Intent intent = new Intent(getBaseContext(), Product_managementActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            startActivity(intent);
+            finish();
+
         }
         if (id == R.id.inventarisMenu){
             Intent intent = new Intent(getBaseContext(), Product_InventoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            startActivity(intent);
+            finish();
         }
         if (id == R.id.borrowedProductMenu){
             Intent intent = new Intent(getBaseContext(), Student_BorrowedActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            startActivity(intent);
+            finish();
         }
         if (id == R.id.userManagementMenu){
             Intent intent = new Intent(getBaseContext(), Users_managementActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            startActivity(intent);
+            finish();
         }
         if (id == R.id.ProductAdministratieMenu){
             Intent intent = new Intent(getBaseContext(), AangevraagdItems_UserList.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            startActivity(intent);
+            finish();
         }
         return false;
     }

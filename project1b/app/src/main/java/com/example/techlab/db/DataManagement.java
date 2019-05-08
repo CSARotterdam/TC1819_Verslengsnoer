@@ -1,7 +1,9 @@
 package com.example.techlab.db;
 
+import com.example.techlab.model.Books;
 import com.example.techlab.model.Borrow;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
 import com.example.techlab.view.Itemadapter_loanUsers;
 
@@ -43,8 +45,8 @@ public class DataManagement {
         }
     }
 
-    public ArrayList<Electronics> getAllProductData(){
-        ArrayList<Electronics> electronicsList = new ArrayList<>();
+    public ArrayList<Products> getAllElectronicsData(){
+        ArrayList<Products> electronicsList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -56,7 +58,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
-                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_")));
+                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
@@ -68,6 +70,34 @@ public class DataManagement {
 
         }
         return electronicsList;
+
+    }
+    public ArrayList<Products> getAllBooksData(){
+        ArrayList<Products> boookList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT * FROM BOOK";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    boookList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("TITLE"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
+                    ,resultSet.getString("PUBLISHER"),resultSet.getInt("AMOUNT"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
+                }
+                ConnectionResult="successful";
+                isSuccess=true;
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+
+        }
+        return boookList;
 
     }
     public ArrayList<Users> getAllUserData(){
@@ -112,7 +142,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"), resultSet.getString("MANUFACTURER"), resultSet.getString("CATEGORY"), resultSet.getString("PRODUCT_NAME"), resultSet.getInt("STOCK"), resultSet.getInt("AMOUNT_BROKEN"), resultSet.getString("DESCRIPTION"), resultSet.getInt("ID_")));
+                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"), resultSet.getString("MANUFACTURER"), resultSet.getString("CATEGORY"), resultSet.getString("PRODUCT_NAME"), resultSet.getInt("STOCK"), resultSet.getInt("AMOUNT_BROKEN"), resultSet.getString("DESCRIPTION"), resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
@@ -181,7 +211,7 @@ public class DataManagement {
             ConnectionResult=ex.getMessage();
         }
     }
-    public void updateProductData( String manufacturer, String category, String productName, int stock, int amountBroken, String description, int ID_){
+    public void updateProductData( String manufacturer, String category, String productName, int stock, int amountBroken, String description, byte[] image, int ID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -189,11 +219,44 @@ public class DataManagement {
                 ConnectionResult = "Check your internet access";
             }
             else{
-                String query = "UPDATE ELECTRONICS SET MANUFACTURER = '"+manufacturer+"', CATEGORY= '"+category+"', PRODUCT_NAME= '"+productName+"', " +
-                        "STOCK="+stock+", AMOUNT_BROKEN="+amountBroken+", DESCRIPTION= '"+description+"' WHERE ID_ = "+ID_+";";
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE ELECTRONICS SET MANUFACTURER=?,CATEGORY=?,PRODUCT_NAME=?,STOCK=?,AMOUNT_BROKEN=?,DESCRIPTION=?,IMAGE=? WHERE ID_=?");
+                pstmt.setString(1,manufacturer);
+                pstmt.setString(2,category);
+                pstmt.setString(3,productName);
+                pstmt.setInt(4,stock);
+                pstmt.setInt(5,amountBroken);
+                pstmt.setString(6,description);
+                pstmt.setBytes(7,image);
+                pstmt.setInt(8,ID_);
 
-                Statement statement = connect.createStatement();
-                statement.executeQuery(query);
+                pstmt.executeUpdate();
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
+    public void updateBookData( String title,String writers, String Isbn, String publisher, int amount, String description, byte[] bookImage, String category, int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE BOOK SET TITLE=?,WRITERS=?,ISBN=?,PUBLISHER=?,AMOUNT=?,DESCRIPTION=?,IMAGE=?,CATEGORY =? WHERE ID_=?");
+                pstmt.setString(1,title);
+                pstmt.setString(2,writers);
+                pstmt.setString(3,Isbn);
+                pstmt.setString(4,publisher);
+                pstmt.setInt(5,amount);
+                pstmt.setString(6,description);
+                pstmt.setBytes(7,bookImage);
+                pstmt.setString(8,category);
+                pstmt.setInt(9,ID_);
+
+                pstmt.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -240,6 +303,26 @@ public class DataManagement {
             ConnectionResult=ex.getMessage();
         }
     }
+    public void DeleteBook(int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+
+
+                String query = "DELETE FROM BOOK WHERE ID_ ="+ID_+";";
+                Statement statement = connect.createStatement();
+                statement.executeQuery(query);
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
     public void DeleteUser(int ID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -274,6 +357,32 @@ public class DataManagement {
                 pstmt.setInt(2,UserID);
                 pstmt.setInt(3,Amount);
                 pstmt.setString(4,Status);
+                pstmt.execute();
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
+    public void InsertBookItem(String title,String writers, String Isbn, String publisher, int amount, String description, byte[] bookImage, String category){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                PreparedStatement pstmt = connect.prepareStatement("Insert into BOOK (TITLE, WRITERS, ISBN, PUBLISHER, AMOUNT, DESCRIPTION, IMAGE, CATEGORY) values (?,?,?,?,?,?,?,?)");
+                pstmt.setString(1,title);
+                pstmt.setString(2,writers);
+                pstmt.setString(3,Isbn);
+                pstmt.setString(4,publisher);
+                pstmt.setInt(5,amount);
+                pstmt.setString(6,description);
+                pstmt.setBytes(7,bookImage);
+                pstmt.setString(8,category);
+
                 pstmt.execute();
                 connect.close();
             }
@@ -382,6 +491,33 @@ public class DataManagement {
 
         }
         return UserData.get(0);
+    }
+    public Books getBookWithId(int Id){
+        ArrayList<Books> books = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT * FROM BOOK WHERE ID_ = "+Id+";";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()) {
+                    books.add(new Books(resultSet.getInt("ID_"), resultSet.getString("TITLE"), resultSet.getString("WRITERS"), resultSet.getString("ISBN"), resultSet.getString("PUBLISHER"), resultSet.getInt("AMOUNT"), resultSet.getString("DESCRIPTION"),"book",resultSet.getBytes("IMAGE")));
+                }
+                ConnectionResult="successful";
+                isSuccess=true;
+                connect.close();
+
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+
+        }
+        return books.get(0);
     }
 
 
