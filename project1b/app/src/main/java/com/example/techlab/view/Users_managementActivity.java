@@ -1,5 +1,7 @@
 package com.example.techlab.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +19,14 @@ public class Users_managementActivity extends AppCompatActivity {
     DataManagement dataManagement;
     ActivityUsersManagementBinding binding;
     UsersManagementAdapter adapter;
+    SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_users_management);
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
-        ArrayList<Users> userList = dataManagement.getAllUserData();
+        ArrayList<Users> userList = dataManagement.getAllUserData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
         adapter = new UsersManagementAdapter(userList,this);
         binding.usersListItem.setAdapter(adapter);
         binding.usersListItem.setLayoutManager(new LinearLayoutManager(this));

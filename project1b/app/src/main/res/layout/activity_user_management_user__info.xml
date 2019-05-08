@@ -16,16 +16,7 @@
             android:orientation="vertical"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp">
-            <TextView
-                android:id="@+id/userManagement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Gebruiker Info"
-                android:layout_margin="15dp"
-                android:textAlignment="center"
-                android:textColor="@color/colorRecyclerViewItem"
 
-                android:textStyle="bold" />
 
 
             <LinearLayout

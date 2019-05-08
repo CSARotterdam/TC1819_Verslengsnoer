@@ -15,16 +15,9 @@
         tools:context=".view.Product_managementActivity"
         android:background="@color/colorBackground">
 
-        <TextView
-            android:id="@+id/userManagement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Productbeheer"
-            android:layout_margin="15dp"
-            android:textAlignment="center"
-            android:textColor="@color/colorRecyclerViewItem"
-            android:textStyle="bold" />
+
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -62,7 +55,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp">
 

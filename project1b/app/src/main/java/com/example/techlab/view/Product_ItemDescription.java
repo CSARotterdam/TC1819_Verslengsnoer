@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -28,11 +26,12 @@ public class Product_ItemDescription extends AppCompatActivity {
     private static final String TAG = "Product_ItemDescription";
     private Button Button_Request2Borrow;
     private Button VoorwaardenBtn;
-    private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
     private ArrayList<Integer> mSelectedItems = new ArrayList<>();
     private Integer productID;
     DataManagement dataManagement;
     private SharedPreferences mSharedPreferences;
+    String objectType;
+    Products product;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,28 +48,24 @@ public class Product_ItemDescription extends AppCompatActivity {
         Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
 
         // checks if there is a intent
-        if (getIntent().hasExtra("image") && getIntent().hasExtra("product_name")&& getIntent().hasExtra("product_description") && getIntent().hasExtra("id")){
+        if (getIntent().hasExtra("object_type") && getIntent().hasExtra("id")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
-
-
-            String productName = getIntent().getStringExtra("product_name");
-            String productDescription = getIntent().getStringExtra("product_description");
+            objectType = getIntent().getStringExtra("object_type");
             productID = getIntent().getIntExtra("id",-1);
+            if (objectType.matches("book")){
+                product = dataManagement.getBookWithId(productID);
+            }if(objectType.matches("electronic")){
+                product = dataManagement.getProductData(productID);
+            }
 
-            int imageInt = Integer.parseInt(getIntent().getStringExtra("image"));
 
-            setImage(imageInt, productName, productDescription);
+            pageContentFill(product.getName(), product.getDescription(),product.getImage());
 
         }
     }
-    private void setImage(int imageInt, String productName, String  productDescription){
-        Log.d(TAG, "setImage: setting the image and name to widgets.");
+    private void pageContentFill(String productName, String productDescription, byte[] imageByte ){
+        Log.d(TAG, "pageContentFill: setting the image and name to widgets.");
 
-
-        ArrayList<Products> products = dataManagement.getAllElectronicsData();
-        for (int i =0; products.size() >i ; i++) {
-            mbitmaps.add(imageConverter.getImage(dataManagement.getImage(products.get(i).getId_())));
-        }
 
         TextView name = findViewById(R.id.product_name);
         name.setText(productName);
@@ -79,7 +74,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         description.setText(productDescription);
 
         ImageView image = findViewById(R.id.image);
-        image.setImageBitmap(mbitmaps.get(imageInt));
+        image.setImageBitmap(imageConverter.getImage(imageByte));
     }
     @Override
     protected void onResume(){
@@ -126,7 +121,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                                 Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
 
                                 //DB code here
-                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending");
+                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
                                 Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
                                 startActivity(BorrowActivity);}
                                 else {

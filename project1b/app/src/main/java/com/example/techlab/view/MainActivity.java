@@ -30,15 +30,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loginEmailInput = (EditText) findViewById(R.id.loginEmailInput);
-        loginPasswordInput = (EditText) findViewById(R.id.loginPasswordInput);
+        loginEmailInput = findViewById(R.id.loginEmailInput);
+        loginPasswordInput = findViewById(R.id.loginPasswordInput);
         mSharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
         stayLoggedInCheckBox = findViewById(R.id.stayLoggedInCheckBox);
 
         dataManagement = new DataManagement();
 
-        ImageView logo = (ImageView) findViewById(R.id.TechLabLogo);
+        ImageView logo = findViewById(R.id.TechLabLogo);
         int ImageResource = getResources().getIdentifier("@drawable/logo", null, this.getPackageName());
         logo.setImageResource(ImageResource);
     }
@@ -69,10 +69,11 @@ public class MainActivity extends AppCompatActivity {
         if (dataManagement.ifExists(loginEmailInput.getText().toString(),loginPasswordInput.getText().toString())) {
             Intent startNewActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
             mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
+            mEditor.putInt(PREFERENCE_USERID, dataManagement.getUserWithEmail(loginEmailInput.getText().toString()).getId());
             if (stayLoggedInCheckBox.isChecked()){
                 mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
             }
-            mEditor.putInt(PREFERENCE_USERID, dataManagement.getUserWithEmail(loginEmailInput.getText().toString()).getId());
+
             startActivity(startNewActivity);
         }
     }

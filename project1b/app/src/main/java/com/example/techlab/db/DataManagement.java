@@ -100,7 +100,7 @@ public class DataManagement {
         return boookList;
 
     }
-    public ArrayList<Users> getAllUserData(){
+    public ArrayList<Users> getAllUserData(int ID_){
         ArrayList<Users> usersList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -109,7 +109,7 @@ public class DataManagement {
                 ConnectionResult = "Check your internet access";
             }
             else{
-                String query = "SELECT * FROM USERS";
+                String query = "SELECT * FROM USERS WHERE NOT ID_ = "+ID_;
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
@@ -344,7 +344,7 @@ public class DataManagement {
         }
     }
 
-    public void InsertRequestBorrowItem(int ProductID, int UserID, int Amount, String Status){
+    public void InsertRequestBorrowItem(int ProductID, int UserID, int Amount, String Status,String objectType){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -352,11 +352,13 @@ public class DataManagement {
                 ConnectionResult = "Check your internet access";
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("Insert into BORROW (ELECTRONICS_P_ID, USERS_P_ID, AMOUNT, STATUS) values (?,?,?,?)");
+
+                PreparedStatement pstmt = connect.prepareStatement("Insert into BORROW (PRODUCTS_P_ID, USERS_P_ID, AMOUNT, STATUS, PRODUCT_TYPE) values (?,?,?,?,?)");
                 pstmt.setInt(1,ProductID);
                 pstmt.setInt(2,UserID);
                 pstmt.setInt(3,Amount);
                 pstmt.setString(4,Status);
+                pstmt.setString(5,objectType);
                 pstmt.execute();
                 connect.close();
             }
@@ -424,7 +426,11 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
-                    BorrowList.add(new Borrow(getProductData(resultSet.getInt("ELECTRONICS_P_ID")).getName(),resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID")));
+                    if(resultSet.getString("PRODUCT_TYPE").matches("book")){
+                        BorrowList.add(new Borrow(getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName(),resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID"),resultSet.getString("PRODUCT_TYPE")));
+                    }else{
+                        BorrowList.add(new Borrow(getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName(),resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID"),"electronic"));
+                    }
                 }
                 ConnectionResult="successful";
                 isSuccess=true;

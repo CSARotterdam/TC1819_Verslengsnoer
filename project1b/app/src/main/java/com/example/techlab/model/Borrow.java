@@ -1,8 +1,6 @@
 package com.example.techlab.model;
 
 
-import java.util.Date;
-
 public class Borrow {
 
     private int mImageResource;
@@ -11,14 +9,20 @@ public class Borrow {
     private int mProductAmount;
     private String mProductStatus;
     private int mPKID;
+    String mProductType;
 
-    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID){
+    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID, String ProductType){
 //        mImageResource = imageResource;
         mProductName = PName;
         mTurnInDate = TurnInDate;
         mProductAmount = PAmount;
         mProductStatus = PStatus;
         mPKID = PKID;
+        mProductType =ProductType;
+    }
+
+    public String getmProductType() {
+        return mProductType;
     }
 
     public int getImageResource(){

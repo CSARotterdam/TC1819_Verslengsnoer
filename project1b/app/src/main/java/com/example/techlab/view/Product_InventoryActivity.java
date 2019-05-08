@@ -3,7 +3,6 @@ package com.example.techlab.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.db.imageConverter;
 import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
 
@@ -38,20 +36,17 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     View headerView;
 
     // Array van de namen en afbeeldingen van elk product
-    private ArrayList<Integer> mId = new ArrayList<>();
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mProductDescription = new ArrayList<>();
-    private ArrayList<Bitmap> mbitmaps = new ArrayList<>();
-    ArrayList<Products> products;
+    ArrayList<Products> books;
+    ArrayList<Products> products = new ArrayList<>();
     DataManagement dataManagement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventaris);
+        setContentView(R.layout.activity_inventory);
         //Log.d(TAG, "onCreate: started.");
         dataManagement = new DataManagement();
-        navigationView=(NavigationView)findViewById(R.id.navigation_view);
+        navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
@@ -67,31 +62,25 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         initImageBitmaps();
     }
 
-    //    "test"
-    // Voeg hier Producten toe!
-    // Product Naam + foto URL
     private void initImageBitmaps(){
-        //Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
-
         products = dataManagement.getAllElectronicsData();
-        for (int i =0; products.size() >i ; i++) {
-            mNames.add(products.get(i).getName());
-            mbitmaps.add(imageConverter.getImage(dataManagement.getImage(products.get(i).getId_())));
-            mProductDescription.add(products.get(i).getDescription());
-            mId.add(products.get(i).getId_());
+        books = dataManagement.getAllBooksData();
+        for (int i = 0; books.size() >i ; i++) {
+            products.add(books.get(i));
         }
+
         initRecyclerView();
     }
 
     private void initRecyclerView(){
         //Log.d(TAG, "initRecyclerView: init recyclerview.");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mProductDescription,mbitmaps, mId);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, products);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

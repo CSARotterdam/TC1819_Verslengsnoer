@@ -31,7 +31,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_geleende_product);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
-
+        int s = mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1);
         BorrowItemList = dataManagement.getBorrowData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
 
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
