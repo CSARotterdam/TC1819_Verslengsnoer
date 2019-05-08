@@ -12,16 +12,19 @@ import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.ActivityProductManagementItemBinding;
+import com.example.techlab.model.Books;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Products;
+import com.example.techlab.view.Product_management_book_infoActivity;
 import com.example.techlab.view.Product_management_product_infoActivity;
 
 import java.util.List;
 
 public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManagementAdapter.ViewHolder> {
-    private List<Electronics> electronics;
+    private List<Products> products;
     private Context context;
-    public ProductManagementAdapter(List<Electronics> electronics, Context context) {
-        this.electronics = electronics;
+    public ProductManagementAdapter(List<Products> products, Context context) {
+        this.products = products;
         this.context = context;
     }
     @NonNull
@@ -37,21 +40,31 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Electronics electronic = electronics.get(i);
-        viewHolder.productItemBinding.setElectronicsItem(electronic);
+        final Products product = products.get(i);
+
+        viewHolder.productItemBinding.setProduct(product);
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Product_management_product_infoActivity.class);
-                intent.putExtra("ID_",electronic.getId_());
-                context.startActivity(intent);
+                if(product instanceof Electronics){
+                    Intent intent = new Intent(context, Product_management_product_infoActivity.class);
+                    intent.putExtra("ID_",product.getId_());
+                    context.startActivity(intent);
+                }
+                if(product instanceof Books){
+                    Intent intent = new Intent(context, Product_management_book_infoActivity.class);
+                    intent.putExtra("ID_",product.getId_());
+                    context.startActivity(intent);
+
+                }
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return electronics.size();
+        return products.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -6,6 +6,15 @@ public class Products {
     protected String description;
     protected String category;
     protected int id_;
+    protected byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public int getId_() {
         return id_;

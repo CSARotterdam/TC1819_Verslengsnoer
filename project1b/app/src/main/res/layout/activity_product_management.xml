@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="electronic"
-            type="com.example.techlab.model.Electronics"/>
+            name="products"
+            type="com.example.techlab.model.Products"/>
     </data>
 
     <LinearLayout
@@ -24,6 +24,14 @@
             android:textAlignment="center"
             android:textColor="@color/colorRecyclerViewItem"
             android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+
+
+        >
         <Button
             android:id="@+id/addProductButton"
             android:layout_width="100sp"
@@ -34,8 +42,21 @@
             android:text="@string/productToevoegen"
             android:textSize="12sp"
             android:background="@drawable/color_button1"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
 
+            />
+        <Button
+            android:id="@+id/addBookButton"
+            android:layout_width="100sp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_height="wrap_content"
+            android:onClick="addBOOKPageButton"
+            android:shadowColor="@android:color/black"
+            android:text="Book toevoegen"
+            android:textSize="12sp"
+            android:background="@drawable/color_button1"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

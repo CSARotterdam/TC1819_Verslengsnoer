@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.db.imageConverter;
-import com.example.techlab.model.Electronics;
+import com.example.techlab.model.Products;
 
 import java.util.ArrayList;
 
@@ -67,7 +67,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         Log.d(TAG, "setImage: setting the image and name to widgets.");
 
 
-        ArrayList<Electronics> products = dataManagement.getAllProductData();
+        ArrayList<Products> products = dataManagement.getAllElectronicsData();
         for (int i =0; products.size() >i ; i++) {
             mbitmaps.add(imageConverter.getImage(dataManagement.getImage(products.get(i).getId_())));
         }

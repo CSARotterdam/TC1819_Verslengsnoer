@@ -131,6 +131,21 @@
                 android:gravity="start"
                 android:hint="@string/omschrijving" />
         </android.support.design.widget.TextInputLayout>
+        <ImageView
+            android:id="@+id/productImageUpdateView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/imageUpdateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/color_button1"
+            android:textColor="@color/colorButton1Text"
+            android:onClick="updateProductImage"
+            android:text="update afbeelding" />
 
         <Button
             android:id="@+id/addProductButtonUpDate"

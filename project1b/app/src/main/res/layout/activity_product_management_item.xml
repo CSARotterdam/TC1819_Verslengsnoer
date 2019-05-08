@@ -5,7 +5,7 @@
     >
     <data>
         <variable
-            name="electronicsItem"
+            name="product"
             type="com.example.techlab.model.Products" />
     </data>
 
@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="30dp"
-            android:text="@{electronicsItem.name}"
+            android:text="@{product.name}"
             android:textColor="@color/colorGold"
             tools:text="LCD Display" />
 
@@ -39,7 +39,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="281dp"
             android:layout_marginLeft="281dp"
-            android:text="@{String.valueOf(electronicsItem.stock)}"
+            android:text="@{String.valueOf(product.stock)}"
             android:textColor="@color/colorGold"
             tools:text="2" />
 
@@ -50,7 +50,7 @@
             android:layout_centerInParent="true"
             android:layout_marginStart="149dp"
             android:layout_marginLeft="149dp"
-            android:text="@{String.valueOf(electronicsItem.category)}"
+            android:text="@{String.valueOf(product.category)}"
             android:textColor="@color/colorGold"
             tools:text="Phone" />
 

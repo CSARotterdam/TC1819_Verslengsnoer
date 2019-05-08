@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.User_management_user_InfoActivity"></activity>
+        <activity android:name=".view.Product_management_book_updateActivity"></activity>
+        <activity android:name=".view.Product_management_book_infoActivity" />
+        <activity android:name=".view.Product_management_add_bookActivity" />
+        <activity android:name=".view.User_management_user_InfoActivity" />
         <activity android:name=".view.Users_managementActivity" />
         <activity android:name=".view.Product_ShoppingCartActivity" />
         <activity android:name=".view.Admin_PendingItem1GebruikerA" />
@@ -19,7 +22,7 @@
         <activity android:name=".view.Admin_BorrowedItemsUserList" />
         <activity
             android:name=".view.Student_BorrowedActivity"
-            android:label="Geleende / aangevraagde producten"/>
+            android:label="Geleende / aangevraagde producten" />
         <activity android:name=".view.Product_management_product_UpdateActivity" />
         <activity android:name=".view.Product_management_product_infoActivity" />
         <activity android:name=".view.Product_management_add_productActivity" />
