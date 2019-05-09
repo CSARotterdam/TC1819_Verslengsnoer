@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         dataManagement = new DataManagement();
 
         ImageView logo = findViewById(R.id.TechLabLogo);
-        int ImageResource = getResources().getIdentifier("@drawable/logo", null, this.getPackageName());
+        int ImageResource = getResources().getIdentifier("@drawable/techlablogo", null, this.getPackageName());
         logo.setImageResource(ImageResource);
     }
 

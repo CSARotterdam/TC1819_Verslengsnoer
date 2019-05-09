@@ -9,12 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
+import com.example.techlab.imageHelper.imageConverter;
 import com.example.techlab.model.Borrow;
 import com.example.techlab.view.Student_BorrowedActivity;
 
@@ -26,9 +28,9 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     private Context context;
     DataManagement dataManagement = new DataManagement();
 
-    public static class BorrowViewHolder extends RecyclerView.ViewHolder{
+    public static class BorrowViewHolder extends RecyclerView.ViewHolder {
 
-//        public ImageView mImageView;
+        public ImageView mImageView;
         public TextView mProductName;
         public TextView mTurnInDate;
         public TextView mProductAmount;
@@ -38,7 +40,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 
         public BorrowViewHolder(@NonNull View itemView) {
             super(itemView);
-//            mImageView = itemView.findViewById(R.id.ListItemImage);
+            mImageView = itemView.findViewById(R.id.ListItemImage);
             mProductName = itemView.findViewById(R.id.ListItemText_ProductName);
             mTurnInDate = itemView.findViewById(R.id.ListItemText_TurnInDate);
             mProductAmount = itemView.findViewById(R.id.ListItemText_ProductAmount);
@@ -48,7 +50,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
         }
     }
 
-    public BorrowAdapter(ArrayList<Borrow> BorrowItemList, Context context){
+    public BorrowAdapter(ArrayList<Borrow> BorrowItemList, Context context) {
         mBorrowItemList = BorrowItemList;
         this.context = context;
     }
@@ -65,13 +67,13 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     @Override
     public void onBindViewHolder(@NonNull BorrowViewHolder borrowViewHolder, int position_index) {
         final Borrow currentItem = mBorrowItemList.get(position_index);
-//        borrowViewHolder.mImageView.setImageResource(currentItem.getImageResource());
+        borrowViewHolder.mImageView.setImageBitmap(imageConverter.getImage(currentItem.getImageResource()));
         borrowViewHolder.mProductName.setText(currentItem.getProductName());
         borrowViewHolder.mTurnInDate.setText(currentItem.getTurnInDate());
         borrowViewHolder.mProductAmount.setText(Integer.toString(currentItem.getBorrowItemAmount()));
         borrowViewHolder.mProductStatus.setText(currentItem.getBorrowStatus());
-        if (currentItem.getBorrowStatus().matches( "Pending")) {
-            borrowViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener(){
+        if (currentItem.getBorrowStatus().matches("Pending")) {
+            borrowViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder DelRequestItemAlertDialog = new AlertDialog.Builder(context);
@@ -80,18 +82,18 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
                             .setPositiveButton("Intrekken", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                        Toast.makeText(context,"Aanvraag geannuleerd.",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "Aanvraag geannuleerd.", Toast.LENGTH_LONG).show();
 
-                                        //DB code here
-                                        dataManagement.DelRequestBorrowItem(currentItem.getmPKID());
-                                        Intent BorrowActivity = new Intent(context, Student_BorrowedActivity.class);
-                                        context.startActivity(BorrowActivity);
+                                    //DB code here
+                                    dataManagement.DelRequestBorrowItem(currentItem.getmPKID());
+                                    Intent BorrowActivity = new Intent(context, Student_BorrowedActivity.class);
+                                    context.startActivity(BorrowActivity);
                                 }
                             })
-                            .setNeutralButton("Annuleren", null);
-
+                            .setNegativeButton("Terug", null);
+                    
                     //Creating dialog box
-                    AlertDialog dialog  = DelRequestItemAlertDialog.create();
+                    AlertDialog dialog = DelRequestItemAlertDialog.create();
                     dialog.show();
                 }
             });
@@ -102,6 +104,6 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 
     @Override
     public int getItemCount() {
-       return mBorrowItemList.size();
+        return mBorrowItemList.size();
     }
 }
