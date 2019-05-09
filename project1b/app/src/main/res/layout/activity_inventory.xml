@@ -17,27 +17,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="7"
+            android:weightSum="4"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="10dp">
-            <Button
+            <!--<Button-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="3"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginVertical="2dp"-->
+                <!--android:text="Categorie"-->
+                <!--android:textColor="#FFF"-->
+                <!--android:background="@drawable/color_button1"-->
+                <!--android:shadowColor="@android:color/black"/>-->
+            <Spinner
                 android:layout_width="0dp"
                 android:layout_weight="3"
-                android:layout_height="50dp"
-                android:layout_margin="2dp"
-                android:text="Sorteer"
-                android:textColor="#FFF"
-                android:background="@drawable/color_button1"
-                android:shadowColor="@android:color/black"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="50dp"
-                android:layout_marginVertical="2dp"
-                android:text="Categorie"
-                android:textColor="#FFF"
-                android:background="@drawable/color_button1"
-                android:shadowColor="@android:color/black"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/CategoryBttn"
+                android:entries="@array/Categorie">
+            </Spinner>
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
