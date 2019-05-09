@@ -143,10 +143,6 @@ public class Product_ItemDescription extends AppCompatActivity {
             public void onClick(View v) {
                 Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
                 startActivity(Voorwaarden);
-//                String url = "https://hr.nl/";
-//                Intent voorwaardenLink = new Intent(Intent.ACTION_VIEW);
-//                voorwaardenLink.setData(Uri.parse(url));
-//                startActivity(voorwaardenLink);
             }
         });
     }
