@@ -30,8 +30,10 @@
 
             <ImageView
                 android:id="@+id/ListItemImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"/>
 
             <TextView
                 android:id="@+id/ListItemText_ProductName"
@@ -40,7 +42,6 @@
                 android:maxWidth="250dp"
                 android:text="Product Name template"
                 android:textSize="20sp"
-                android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/ListItemImage"
                 android:layout_toEndOf="@id/ListItemImage"/>
 
@@ -50,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:text="Turn in Date template"
                 android:textSize="18sp"
-                android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/ListItemImage"
                 android:layout_toEndOf="@id/ListItemImage"
                 android:layout_below="@id/ListItemText_ProductName"/>
