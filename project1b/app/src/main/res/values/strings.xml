@@ -57,15 +57,17 @@
 
     <!--Drop down of category Button-->
     <string-array name="Categorie">
-        <item>Boeken1</item>
-        <item>Boeken2</item>
-        <item>Boeken3</item>
-        <item>Boeken4</item>
-        <item>Boeken5</item>
-        <item>Boeken6</item>
-        <item>Boeken7</item>
-        <item>Boeken8</item>
-        <item>Boeken9</item>
+        <item>Alle Producten</item>
+        <item>Virtual Reality</item>
+        <item>Gameconsole</item>
+        <item>MicroComputer</item>
+        <item>Drone</item>
+        <item>Radio Controlled</item>
+        <item>Game</item>
+        <item>Smart Technology</item>
+        <item>Kabels</item>
+        <item>Internet</item>
+        <item>Computer</item>
     </string-array>
 
     // Item lijst met naam van item, id nummer (?image?)

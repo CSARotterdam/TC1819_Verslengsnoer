@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.Product_InventoryActivity">
+
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,23 +21,17 @@
             android:weightSum="4"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="10dp">
-            <!--<Button-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_marginVertical="2dp"-->
-                <!--android:text="Categorie"-->
-                <!--android:textColor="#FFF"-->
-                <!--android:background="@drawable/color_button1"-->
-                <!--android:shadowColor="@android:color/black"/>-->
+
             <Spinner
+                android:id="@+id/CategoryBttn"
                 android:layout_width="0dp"
                 android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:id="@+id/CategoryBttn"
-                android:entries="@array/Categorie">
-            </Spinner>
-            <Button
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                app:backgroundTint="@color/Red"/>
+
+             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="50dp"

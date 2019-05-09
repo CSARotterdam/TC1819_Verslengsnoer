@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.util.ArrayList;
 
@@ -63,19 +66,40 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
         menuButtonManager();
 
-        Spinner Categorie = (Spinner) findViewById(R.id.CategoryBttn);
-        Categorie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-            }
+        Spinner CategorySpinner = (Spinner) findViewById(R.id.CategoryBttn);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Categorie, android.R.layout.simple_dropdown_item_1line);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        CategorySpinner.setAdapter(adapter);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Category_Items);
+//        MaterialBetterSpinner betterSpinner=(MaterialBetterSpinner)findViewById(R.id.CategoryBttn);
+//        betterSpinner.setAdapter(arrayAdapter);
 
-            }
-        });
+//        Spinner Categorie = (Spinner) findViewById(R.id.CategoryBttn);
+//        Categorie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
     }
+//
+//    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+//        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+//            // An item was selected. You can retrieve the selected item using
+//            // parent.getItemAtPosition(pos)
+//            Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+//        }
+//
+//        public void onNothingSelected(AdapterView<?> parent) {
+//            // Another interface callback
+//        }
+//    }
 
     @Override
     protected void onStart() {
