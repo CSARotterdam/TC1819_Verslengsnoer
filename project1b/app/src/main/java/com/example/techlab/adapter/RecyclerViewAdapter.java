@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -20,19 +22,22 @@ import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
 import com.example.techlab.view.Product_ItemDescription;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
     // This is for debugging
     private static final String TAG = "RecyclerViewAdapter";
 
     // Array van de product Namen en fotos
     private Context mContext;
     private List<Products> products;
+    private List<Products> productsListFull;
 
     public RecyclerViewAdapter(Context context,List<Products> products){
         mContext = context;
         this.products = products;
+        this.productsListFull = new ArrayList<>(products);
     }
 
     // This recycles the viewholder
@@ -77,6 +82,37 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
     public int getItemCount() {
         return products.size();
     }
+    @Override
+    public Filter getFilter() {
+        return productsFilter;
+    }
+    private Filter productsFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Products> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(productsListFull);
+            } else{
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Products product : productsListFull){
+                    if(product.getName().toLowerCase().contains(filterPattern)||product.getCategory().toLowerCase().contains(filterPattern)){
+                        filteredList.add(product);
+                    }
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            products.clear();
+            products.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     // It holds each product in memory and adds new products
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -85,7 +85,7 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
             } else{
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (Products product : productsListFull){
-                    if(product.getName().toLowerCase().contains(filterPattern)){
+                    if(product.getName().toLowerCase().contains(filterPattern)||product.getCategory().toLowerCase().contains(filterPattern)){
                         filteredList.add(product);
                     }
 
