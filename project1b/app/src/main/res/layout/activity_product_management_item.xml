@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@drawable/radius_light_brown"
+        android:background="@drawable/recyclerview_background"
         android:padding="15dp">
 
         <TextView

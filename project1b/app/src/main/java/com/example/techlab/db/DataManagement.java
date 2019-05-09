@@ -427,12 +427,24 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     String productName;
+                    String productType;
+                    byte[] image;
                     if(resultSet.getString("PRODUCT_TYPE").matches("book")){
                         productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
+                        image = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getImage();
+                        productType = "book";
                     }else{
                         productName = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName();
+                        image = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getImage();
+                        productType = "electronic";
                     }
-                    BorrowList.add(new Borrow(productName,resultSet.getString("RETURN_DATE"),resultSet.getInt("AMOUNT"),resultSet.getString("STATUS"), resultSet.getInt("_ID"),"electronic"));
+                    BorrowList.add(new Borrow(productName,
+                            resultSet.getString("RETURN_DATE"),
+                            resultSet.getInt("AMOUNT"),
+                            resultSet.getString("STATUS"),
+                            resultSet.getInt("_ID"),
+                            productType,
+                            image));
 
                 }
                 ConnectionResult="successful";

@@ -3,7 +3,7 @@ package com.example.techlab.model;
 
 public class Borrow {
 
-    private int mImageResource;
+    private byte[] mImageResource;
     private String mProductName;
     private String mTurnInDate;
     private int mProductAmount;
@@ -11,8 +11,8 @@ public class Borrow {
     private int mPKID;
     String mProductType;
 
-    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID, String ProductType){
-//        mImageResource = imageResource;
+    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID, String ProductType, byte[] image){
+        mImageResource = image;
         mProductName = PName;
         mTurnInDate = TurnInDate;
         mProductAmount = PAmount;
@@ -25,7 +25,7 @@ public class Borrow {
         return mProductType;
     }
 
-    public int getImageResource(){
+    public byte[] getImageResource(){
         return mImageResource;
     }
 
