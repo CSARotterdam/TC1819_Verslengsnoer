@@ -25,6 +25,7 @@
         android:orientation="horizontal">
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/searchTextInput"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             app:boxStrokeWidth="3dp"
@@ -37,12 +38,12 @@
                 android:hint="Zoek" />
         </android.support.design.widget.TextInputLayout>
         <Button
-            android:id="@+id/searchByProductName"
+            android:id="@+id/searchByProductNameButton"
             android:layout_width="100sp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:background="@drawable/color_button1"
-            android:onClick="addProductPageButton"
+            android:onClick="searchByProductNameButton"
             android:shadowColor="@android:color/black"
             android:text="Zoeken"
             android:textColor="@android:color/white"

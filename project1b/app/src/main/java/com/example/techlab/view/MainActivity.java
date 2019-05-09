@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         dataManagement = new DataManagement();
 
         ImageView logo = findViewById(R.id.TechLabLogo);
-        int ImageResource = getResources().getIdentifier("@drawable/techlablogo", null, this.getPackageName());
+        int ImageResource = getResources().getIdentifier("@drawable/techlablogo_small", null, this.getPackageName());
         logo.setImageResource(ImageResource);
     }
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         if (dataManagement.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
             Intent intent = new Intent(this,Product_InventoryActivity.class);
             startActivity(intent);
-        }
+       }
     }
     @Override
     protected void onPause(){
