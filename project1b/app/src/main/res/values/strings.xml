@@ -55,6 +55,19 @@
     </string-array>
 
 
+    <!--Drop down of category Button-->
+    <string-array name="Categorie">
+        <item>Boeken1</item>
+        <item>Boeken2</item>
+        <item>Boeken3</item>
+        <item>Boeken4</item>
+        <item>Boeken5</item>
+        <item>Boeken6</item>
+        <item>Boeken7</item>
+        <item>Boeken8</item>
+        <item>Boeken9</item>
+    </string-array>
+
     // Item lijst met naam van item, id nummer (?image?)
     <string-array name="Items_Gebruikers">
         <item>Raspberrie pie</item>
