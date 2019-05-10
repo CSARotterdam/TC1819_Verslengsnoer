@@ -13,7 +13,8 @@ xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:id="@+id/inventoryProductItemView"
     android:background="@drawable/recyclerview_background"
-    android:layout_margin="5dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="5dp"
     >
 
 
@@ -23,25 +24,45 @@ xmlns:tools="http://schemas.android.com/tools"
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_margin="4dp"
+        android:layout_margin="10dp"
+        android:paddingLeft="10dp"
         android:scaleType="fitCenter"
         android:id="@+id/image"
         android:src="@mipmap/ic_launcher"
-        android:background="@color/White"
+        android:background="@drawable/recyclerview_background"
         />
 
     <!--Product Naam-->
     <TextView
+        android:id="@+id/product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@{product.name}"
-        tools:text="LCD Display"
-        android:id="@+id/product_name"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="30dp"
         android:layout_toRightOf="@+id/image"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:textColor="@color/White"
-        android:textSize="17sp" />
+        android:text="@{product.name}"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="LCD Display" />
+
+    <TextView
+        android:id="@+id/product_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/product_name"
+        android:layout_alignLeft="@+id/product_name"
+        android:layout_alignBottom="@+id/image"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="21dp"
+        android:layout_toRightOf="@+id/image"
+        android:text="@{product.category}"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        tools:text="tv" />
     <!--Add TextView to see if item is available or not-->
 
 </RelativeLayout>

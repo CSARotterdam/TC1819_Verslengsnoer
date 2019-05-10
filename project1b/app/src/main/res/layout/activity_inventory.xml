@@ -29,7 +29,9 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="10dp"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
-                app:backgroundTint="@color/Red"/>
+                app:backgroundTint="@color/Red"
+
+                />
 
              <Button
                 android:layout_width="0dp"
@@ -37,7 +39,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="2dp"
                 android:text="Zoek"
-                android:textColor="#FFF"
+                android:textColor="@color/White"
                 android:background="@drawable/color_button1"
                 android:shadowColor="@android:color/black"/>
         </LinearLayout>
@@ -60,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        app:itemTextColor="@color/colorDarkSoftBlue"
+        app:itemTextColor="@color/black"
         app:menu="@menu/drawermenu"
         android:layout_gravity="start">
 
