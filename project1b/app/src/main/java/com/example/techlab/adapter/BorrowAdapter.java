@@ -3,7 +3,6 @@ package com.example.techlab.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.imageHelper.imageConverter;
 import com.example.techlab.model.Borrow;
-import com.example.techlab.view.Student_BorrowedActivity;
 
 import java.util.ArrayList;
 
@@ -67,6 +65,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     @Override
     public void onBindViewHolder(@NonNull BorrowViewHolder borrowViewHolder, int position_index) {
         final Borrow currentItem = mBorrowItemList.get(position_index);
+        final int position = position_index;
         borrowViewHolder.mImageView.setImageBitmap(imageConverter.getImage(currentItem.getImageResource()));
         borrowViewHolder.mProductName.setText(currentItem.getProductName());
         borrowViewHolder.mTurnInDate.setText(currentItem.getTurnInDate());
@@ -86,8 +85,8 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 
                                     //DB code here
                                     dataManagement.DelRequestBorrowItem(currentItem.getmPKID());
-                                    Intent BorrowActivity = new Intent(context, Student_BorrowedActivity.class);
-                                    context.startActivity(BorrowActivity);
+                                    mBorrowItemList.remove(position);
+                                    notifyDataSetChanged();
                                 }
                             })
                             .setNegativeButton("Terug", null);
