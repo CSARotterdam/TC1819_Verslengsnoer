@@ -128,6 +128,34 @@ public class DataManagement {
         return usersList;
 
     }
+    public ArrayList<Users> getAllUserData(){
+        ArrayList<Users> usersList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT * FROM USERS";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
+                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_")));
+                }
+                ConnectionResult="successful";
+                isSuccess=true;
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+
+        }
+        return usersList;
+
+    }
     public Electronics getProductData(int id_){
         ArrayList<Electronics> electronicsList = new ArrayList<>();
         try{
