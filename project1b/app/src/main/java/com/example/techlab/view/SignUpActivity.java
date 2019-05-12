@@ -8,12 +8,12 @@ import android.view.View;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
+import com.example.techlab.model.Users;
+
+import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
-    TextInputLayout userFirstNameInput;
-    TextInputLayout userSurnameInput;
-    TextInputLayout schoolEmailInput;
-    TextInputLayout passwordInput;
+    TextInputLayout userFirstNameInput, userSurnameInput, schoolEmailInput, passwordInput, confirmPasswordInput;
     DataManagement dataManagement;
 
     @Override
@@ -24,18 +24,21 @@ public class SignUpActivity extends AppCompatActivity {
         userSurnameInput = findViewById(R.id.surnameInputLayout);
         schoolEmailInput = findViewById(R.id.schoolEmailInputLayout);
         passwordInput = findViewById(R.id.passwordInputLayout);
+        confirmPasswordInput = findViewById(R.id.confirmPasswordInputLayout);
         dataManagement = new DataManagement();
     }
 
 
     public void signUpButtonClicked(View view) {
         // insert new user
-        boolean email, passWord, firstName, surname;
+        boolean email, passWord, conformPassword, firstName, surname;
         email = emailValidation();
         passWord = passwordValidation();
         firstName = firstNameValidation();
         surname = surnameValidation();
-        if (email && passWord && firstName && surname) {
+        conformPassword = confirmPasswordValidation();
+
+        if (email && passWord && firstName && surname && conformPassword) {
             dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(),
                     schoolEmailInput.getEditText().getText().toString().trim(), passwordInput.getEditText().getText().toString().trim());
             // resetting the  form input text field
@@ -50,7 +53,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean emailValidation() {
-        String input = schoolEmailInput.getEditText().getText().toString().trim().toLowerCase();
+        String input = schoolEmailInput.getEditText().getText().toString();
+        boolean EmailAlreadyRegisteredCheck = true;
+        List<Users> users = dataManagement.getAllUserData();
+
+        for (int i = 0; users.size() > i; i++) {
+            if (users.get(i).getSchoolEmail().equals(input)) {
+                EmailAlreadyRegisteredCheck = false;
+            }
+        }
+
+
         if (input.isEmpty()) {
             schoolEmailInput.setError("lege invoerveld is niet toegestaan");
             return false;
@@ -61,6 +74,9 @@ public class SignUpActivity extends AppCompatActivity {
         } else if (!(input.substring(input.length() - 6).matches("@hr.nl"))) {
             schoolEmailInput.setError("ingevulde email is niet correct \nWe accepteren alleen schoolEmail van de hogeschool Rotterdam");
             return false;
+        } else if (!(EmailAlreadyRegisteredCheck)) {
+            schoolEmailInput.setError("Deze e-mail is al gebruikt voor een ander account");
+            return false;
         } else {
             schoolEmailInput.setError(null);
             return true;
@@ -68,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean passwordValidation() {
-        String input = passwordInput.getEditText().getText().toString().trim();
+        String input = passwordInput.getEditText().getText().toString();
         if (input.isEmpty()) {
             passwordInput.setError("lege invoerveld is niet toegestaan");
             return false;
@@ -77,6 +93,21 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         } else {
             passwordInput.setError(null);
+            return true;
+        }
+
+    }
+
+    private boolean confirmPasswordValidation() {
+        String input = confirmPasswordInput.getEditText().getText().toString();
+        if (input.isEmpty()) {
+            confirmPasswordInput.setError("lege invoerveld is niet toegestaan");
+            return false;
+        } else if (!(input.matches(passwordInput.getEditText().getText().toString()))) {
+            confirmPasswordInput.setError("Wachtwoorden komen niet overeen");
+            return false;
+        } else {
+            confirmPasswordInput.setError(null);
             return true;
         }
 
@@ -123,7 +154,7 @@ public class SignUpActivity extends AppCompatActivity {
         int len = s.length();
         for (int i = 0; i < len; i++) {
             char character = s.charAt(i);
-            if ((!Character.isLetter(character) && !(character + "").equals(" "))) {
+            if ((!Character.isLetter(character) && !(character + "").equals(" ") && !(character + "").equals("-"))) {
                 return false;
             }
         }

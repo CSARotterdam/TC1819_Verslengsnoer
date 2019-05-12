@@ -11,35 +11,34 @@
     android:id="@+id/usersItemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="5dp"
     android:background="@drawable/recyclerview_background"
-    android:padding="15dp">
+    android:padding="10dp">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        >
 
     <TextView
         android:id="@+id/userManagementItemUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="30dp"
+        android:layout_weight="2.6"
         android:text="@{UsersItem.schoolEmail}"
-        android:textColor="@color/colorGold"
+        android:textColor="@color/black"
         tools:text="LCD Display" />
 
-    <TextView
-        android:id="@+id/userManagementItemBorrowedAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="281dp"
-        android:layout_marginLeft="281dp"
-        android:text="@{String.valueOf(UsersItem.loanedAmount)}"
-        android:textColor="@color/colorGold"
-        tools:text="2" />
+        <TextView
+            android:id="@+id/userManagementItemBorrowedAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(UsersItem.loanedAmount)}"
+            android:textColor="@color/black"
+            tools:text="2" />
+        </LinearLayout>
 
 
 </RelativeLayout>

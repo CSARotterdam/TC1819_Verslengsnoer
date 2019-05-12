@@ -4,12 +4,13 @@
     <color name="colorPrimaryDark">#CC0033</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorGold">#F9D342 </color>
-    <color name="colorDarkSoftBlue">#2A3457 </color>
+    <color name="lightGray">#F2EAED</color>
     <color name="Red">#d8041d</color>
     <color name="White">#FFF</color>
+    <color name="black">#2c2c2c</color>
 
     <color name="colorButton">#0099FF</color>
-    <color name="colorBackground">#F2EAED </color>
+    <color name="colorBackground">#e0e0e0 </color>
     <color name="colorButton1Text">#FFF </color>
 
 </resources>

@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
@@ -15,14 +17,17 @@ import com.example.techlab.databinding.ActivityUsersManagementItemBinding;
 import com.example.techlab.model.Users;
 import com.example.techlab.view.User_management_user_InfoActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder> {
-    private List<Users> userss;
+public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder> implements Filterable {
+    private List<Users> users;
+    private List<Users> usersListFull;
     private Context context;
     public UsersManagementAdapter(List<Users> users, Context context) {
-        this.userss = users;
+        this.users = users;
         this.context = context;
+        this.usersListFull = new ArrayList<>(users);
     }
     @NonNull
     @Override
@@ -37,7 +42,7 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Users users = userss.get(i);
+        final Users users = this.users.get(i);
         viewHolder.usersManagementBinding.setUsersItem(users);
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +56,40 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     @Override
     public int getItemCount() {
-        return userss.size();
+        return users.size();
     }
+    @Override
+    public Filter getFilter() {
+        return usersFilter;
+    }
+
+    private Filter usersFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Users> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(usersListFull);
+            } else{
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Users user : usersListFull){
+                    if(user.getFirstName().toLowerCase().contains(filterPattern)||user.getSchoolEmail().toLowerCase().contains(filterPattern)){
+                        filteredList.add(user);
+                    }
+
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            users.clear();
+            users.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         RelativeLayout relativeLayout;

@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        app:itemTextColor="@color/colorDarkSoftBlue"
+        app:itemTextColor="@color/lightGray"
         app:menu="@menu/drawermenu"
         android:layout_gravity="start">
 

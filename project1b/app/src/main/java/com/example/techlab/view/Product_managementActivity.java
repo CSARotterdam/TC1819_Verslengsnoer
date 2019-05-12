@@ -3,12 +3,14 @@ package com.example.techlab.view;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.inputmethod.EditorInfo;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.ProductManagementAdapter;
@@ -22,7 +24,6 @@ public class Product_managementActivity extends AppCompatActivity {
     DataManagement dataManagement;
     ActivityProductManagementBinding binding;
     ProductManagementAdapter adapter;
-    TextInputLayout searchInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +39,30 @@ public class Product_managementActivity extends AppCompatActivity {
         binding.electronicsListItems.setAdapter(adapter);
         binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));
         binding.electronicsListItems.setNestedScrollingEnabled(false);
-        searchInput = findViewById(R.id.searchTextInput);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView  searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
 
-    public void searchByProductNameButton(View view){
-        Intent startNewActivity = new Intent(this, Product_managementActivity.class);
-        startActivity(startNewActivity);
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        return true;
     }
+
 
     public void addProductPageButton(View view){
         Intent startNewActivity = new Intent(this, Product_management_add_productActivity.class);
