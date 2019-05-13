@@ -582,8 +582,15 @@ public class DataManagement {
                 String query = "SELECT * FROM BORROW ";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
+                String productName;
+
                 while(resultSet.next()){
-                    loanUsersList.add(new Itemadapter_loanUsers(getProductData(resultSet.getInt("ELECTRONICS_P_ID")).getName(),getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
+                    if(resultSet.getString("PRODUCT_TYPE").matches("book")){
+                        productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
+                    }else{
+                        productName = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName();
+                    }
+                    loanUsersList.add(new Itemadapter_loanUsers(productName,getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
