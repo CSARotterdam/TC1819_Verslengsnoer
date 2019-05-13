@@ -91,8 +91,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
                     for (int i = 0; books.size() >i ; i++) {
                         products2.add(books.get(i));
                     }
-
-
                 }
                 RecyclerView recyclerView = findViewById(R.id.recycler_view);
                 adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products2);
