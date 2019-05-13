@@ -69,8 +69,6 @@ public class Product_ItemDescription extends AppCompatActivity {
         TextView name = findViewById(R.id.product_name);
         name.setText(productName);
 
-//        TextView description = findViewById(R.id.product_description);
-//        description.setText(productDescription);
         ExpandableTextView description = findViewById(R.id.expand_text_view);
         description.setText(productDescription);
 
@@ -104,7 +102,14 @@ public class Product_ItemDescription extends AppCompatActivity {
                 RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
                 .setMessage("Ga akkoord met de voorwaarden als je dit product wilt lenen.")
                 .setCancelable(false)
-                .setNeutralButton("Annuleren",null)
+                .setNeutralButton("Annuleer",null)
+                .setNegativeButton("Voorwaarden", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
+                        startActivity(Voorwaarden);
+                    }
+                })
                 .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -115,9 +120,11 @@ public class Product_ItemDescription extends AppCompatActivity {
                         startActivity(BorrowActivity);
                     }
                 });
+
                 //Creating dialog box
                 AlertDialog dialog  = RequestItemAlertDialog.create();
                 dialog.show();
+                dialog.getWindow().setLayout(1100, 600);
             }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
@@ -159,13 +166,13 @@ public class Product_ItemDescription extends AppCompatActivity {
 //            }
         });
 
-        VoorwaardenBtn = findViewById(R.id.VoorwaardenBtn);
-        VoorwaardenBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
-                startActivity(Voorwaarden);
-            }
-        });
+//        VoorwaardenBtn = findViewById(R.id.VoorwaardenBtn);
+//        VoorwaardenBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
+//                startActivity(Voorwaarden);
+//            }
+//        });
     }
 }
