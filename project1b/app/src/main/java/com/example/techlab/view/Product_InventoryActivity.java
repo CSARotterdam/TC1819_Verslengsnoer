@@ -17,9 +17,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
@@ -73,21 +75,21 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         CategorySpinner.setAdapter(adapter);
 
 //        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Category_Items);
-//        MaterialBetterSpinner betterSpinner=(MaterialBetterSpinner)findViewById(R.id.CategoryBttn);
-//        betterSpinner.setAdapter(arrayAdapter);
+//        MaterialBetterSpinner CategorySpinner=(MaterialBetterSpinner)findViewById(R.id.CategoryBttn);
+//        CategorySpinner.setAdapter(arrayAdapter);
 
 //        Spinner Categorie = (Spinner) findViewById(R.id.CategoryBttn);
-//        Categorie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 //
 //    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {

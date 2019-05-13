@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
-    //drop down Category
-    implementation 'com.weiwangcn.betterspinner:library-material:1.1.0'
+    //Expendable Text
+    implementation 'com.ms-square:expandableTextView:0.1.4'
+//    implementation 'com.borjabravo:readmoretextview:2.1.0'
 }

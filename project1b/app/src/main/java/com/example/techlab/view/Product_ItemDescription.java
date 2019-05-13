@@ -19,6 +19,7 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.imageHelper.imageConverter;
 import com.example.techlab.model.Products;
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         dataManagement =  new DataManagement();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         Buttons();
+
     }
 
     // checks for incoming intent
@@ -58,7 +60,6 @@ public class Product_ItemDescription extends AppCompatActivity {
                 product = dataManagement.getProductData(productID);
             }
 
-
             pageContentFill(product.getName(), product.getDescription(),product.getImage());
 
         }
@@ -70,7 +71,9 @@ public class Product_ItemDescription extends AppCompatActivity {
         TextView name = findViewById(R.id.product_name);
         name.setText(productName);
 
-        TextView description = findViewById(R.id.product_description);
+//        TextView description = findViewById(R.id.product_description);
+//        description.setText(productDescription);
+        ExpandableTextView description = findViewById(R.id.expand_text_view);
         description.setText(productDescription);
 
         ImageView image = findViewById(R.id.image);
@@ -93,6 +96,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         startActivity(startNewActivity);
     }
 
+    //all Buttons
     public void Buttons(){
         Button_Request2Borrow = findViewById(R.id.requestBtn);
         Button_Request2Borrow.setOnClickListener(new View.OnClickListener() {

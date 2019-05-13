@@ -29,9 +29,7 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="10dp"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
-                app:backgroundTint="@color/Red"
-
-                />
+                app:backgroundTint="@color/Red" />
 
              <Button
                 android:layout_width="0dp"
