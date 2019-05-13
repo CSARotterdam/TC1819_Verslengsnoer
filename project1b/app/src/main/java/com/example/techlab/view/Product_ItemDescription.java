@@ -59,14 +59,12 @@ public class Product_ItemDescription extends AppCompatActivity {
             }if(objectType.matches("electronic")){
                 product = dataManagement.getProductData(productID);
             }
-
             pageContentFill(product.getName(), product.getDescription(),product.getImage());
 
         }
     }
     private void pageContentFill(String productName, String productDescription, byte[] imageByte ){
         Log.d(TAG, "pageContentFill: setting the image and name to widgets.");
-
 
         TextView name = findViewById(R.id.product_name);
         name.setText(productName);
@@ -104,41 +102,61 @@ public class Product_ItemDescription extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
                 RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
-//                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
-                        .setMultiChoiceItems(R.array.AgreeToS, null, new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                if (isChecked){
-                                    mSelectedItems.add(which);
-
-                                }
-                                else if (mSelectedItems.contains(which)){
-                                    mSelectedItems.remove(Integer.valueOf(which));
-                                }
-                            }
-                        })
-                        .setCancelable(false)
-                        .setPositiveButton("Doorgaan", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (mSelectedItems.size() > 0){
-                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
-
-                                //DB code here
-                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
-                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
-                                startActivity(BorrowActivity);}
-                                else {
-                                    Toast.makeText(Product_ItemDescription.this, "Accepteer de voorwaarden eerst.", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        })
-                        .setNeutralButton("Annuleren", null);
-
+                .setMessage("Ga akkoord met de voorwaarden als je dit product wilt lenen.")
+                .setCancelable(false)
+                .setNeutralButton("Annuleren",null)
+                .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
+                        //DB code here
+                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
+                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+                        startActivity(BorrowActivity);
+                    }
+                });
                 //Creating dialog box
                 AlertDialog dialog  = RequestItemAlertDialog.create();
                 dialog.show();
             }
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
+//                RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
+////                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
+//                        .setMultiChoiceItems(R.array.AgreeToS, null, new DialogInterface.OnMultiChoiceClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+//                                if (isChecked){
+//                                    mSelectedItems.add(which);
+//
+//                                }
+//                                else if (mSelectedItems.contains(which)){
+//                                    mSelectedItems.remove(Integer.valueOf(which));
+//                                }
+//                            }
+//                        })
+//                        .setCancelable(false)
+//                        .setPositiveButton("Doorgaan", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                if (mSelectedItems.size() > 0){
+//                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
+//
+//                                //DB code here
+//                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
+//                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+//                                startActivity(BorrowActivity);}
+//                                else {
+//                                    Toast.makeText(Product_ItemDescription.this, "Accepteer de voorwaarden eerst.", Toast.LENGTH_LONG).show();
+//                                }
+//                            }
+//                        })
+//                        .setNeutralButton("Annuleren", null);
+//
+//                //Creating dialog box
+//                AlertDialog dialog  = RequestItemAlertDialog.create();
+//                dialog.show();
+//            }
         });
 
         VoorwaardenBtn = findViewById(R.id.VoorwaardenBtn);

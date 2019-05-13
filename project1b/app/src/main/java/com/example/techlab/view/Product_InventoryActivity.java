@@ -70,19 +70,34 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuButtonManager();
 
         Spinner CategorySpinner = (Spinner) findViewById(R.id.CategoryBttn);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Categorie, android.R.layout.simple_dropdown_item_1line);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        CategorySpinner.setAdapter(adapter);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.Categorie, android.R.layout.simple_dropdown_item_1line);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        CategorySpinner.setAdapter(adapter2);
 
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Category_Items);
-//        MaterialBetterSpinner CategorySpinner=(MaterialBetterSpinner)findViewById(R.id.CategoryBttn);
-//        CategorySpinner.setAdapter(arrayAdapter);
-
-//        Spinner Categorie = (Spinner) findViewById(R.id.CategoryBttn);
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                ArrayList<Products> products2 = new ArrayList<>();
+                if (parent.getSelectedItem().toString().matches("Alle Producten")){
+                    products2 = dataManagement.getAllElectronicsData();
+                    books = dataManagement.getAllBooksData();
+                    for (int i = 0; books.size() >i ; i++) {
+                        products2.add(books.get(i));
+                    }
+                }else{
+                    products2 = dataManagement.getAllElectronicsData(parent.getSelectedItem().toString());
+                    books = dataManagement.getAllBooksData(parent.getSelectedItem().toString());
+                    for (int i = 0; books.size() >i ; i++) {
+                        products2.add(books.get(i));
+                    }
+
+
+                }
+                RecyclerView recyclerView = findViewById(R.id.recycler_view);
+                adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products2);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
             }
 
             @Override
@@ -91,42 +106,18 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             }
         });
     }
-//
 //    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 //        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 //            // An item was selected. You can retrieve the selected item using
 //            // parent.getItemAtPosition(pos)
 //            Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
 //        }
-//
 //        public void onNothingSelected(AdapterView<?> parent) {
 //            // Another interface callback
 //        }
 //    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        initImageBitmaps();
-    }
 
-    private void initImageBitmaps(){
-        products = dataManagement.getAllElectronicsData();
-        books = dataManagement.getAllBooksData();
-        for (int i = 0; books.size() >i ; i++) {
-            products.add(books.get(i));
-        }
-
-        initRecyclerView();
-    }
-
-    private void initRecyclerView(){
-        //Log.d(TAG, "initRecyclerView: init recyclerview.");
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        adapter = new RecyclerViewAdapter(this, products);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -226,6 +217,4 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             menu.findItem(R.id.userManagementMenu).setVisible(false);
         }
     }
-
-
 }

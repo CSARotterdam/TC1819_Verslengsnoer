@@ -28,6 +28,7 @@
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher"/>
         <TextView
+            android:id="@+id/beschrijving"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -42,7 +43,7 @@
             android:id="@+id/expand_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            expandableTextView:maxCollapsedLines="4"
+            expandableTextView:maxCollapsedLines="5"
             expandableTextView:animDuration="300">
             <TextView
                 android:id="@id/expandable_text"

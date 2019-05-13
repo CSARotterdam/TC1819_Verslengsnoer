@@ -31,7 +31,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
 
     // Array van de product Namen en fotos
     private Context mContext;
-    private List<Products> products;
+    public List<Products> products;
     private List<Products> productsListFull;
 
     public RecyclerViewAdapter(Context context,List<Products> products){
@@ -95,7 +95,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
             } else{
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (Products product : productsListFull){
-                    if(product.getName().toLowerCase().contains(filterPattern)||product.getCategory().toLowerCase().contains(filterPattern)){
+                    if(product.getName().toLowerCase().contains(filterPattern)){
                         filteredList.add(product);
                     }
 

@@ -72,6 +72,34 @@ public class DataManagement {
         return electronicsList;
 
     }
+
+    public ArrayList<Products> getAllElectronicsData(String category){
+        ArrayList<Products> electronicsList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT * FROM ELECTRONICS WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"';";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                }
+                ConnectionResult="successful";
+                isSuccess=true;
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+
+        }
+        return electronicsList;
+
+    }
     public ArrayList<Products> getAllBooksData(){
         ArrayList<Products> boookList = new ArrayList<>();
         try{
@@ -87,6 +115,34 @@ public class DataManagement {
                 while(resultSet.next()){
                     boookList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("TITLE"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
                     ,resultSet.getString("PUBLISHER"),resultSet.getInt("AMOUNT"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
+                }
+                ConnectionResult="successful";
+                isSuccess=true;
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+
+        }
+        return boookList;
+
+    }
+    public ArrayList<Products> getAllBooksData(String category){
+        ArrayList<Products> boookList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT * FROM BOOK WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"'";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    boookList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("TITLE"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
+                            ,resultSet.getString("PUBLISHER"),resultSet.getInt("AMOUNT"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
