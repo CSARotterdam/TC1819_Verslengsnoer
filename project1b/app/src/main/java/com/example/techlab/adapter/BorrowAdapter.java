@@ -86,7 +86,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
                                     //DB code here
                                     dataManagement.DelRequestBorrowItem(currentItem.getmPKID());
                                     mBorrowItemList.remove(position);
-                                    notifyDataSetChanged();
+                                    notifyDataSetChanged(); //Update view.
                                 }
                             })
                             .setNegativeButton("Terug", null);
