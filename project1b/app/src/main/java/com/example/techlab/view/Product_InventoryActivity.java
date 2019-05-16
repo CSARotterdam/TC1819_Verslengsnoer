@@ -151,15 +151,15 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
             mEditor.putInt(MainActivity.PREFERENCE_USERID,0);
             mEditor.apply();
+
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            startActivity(intent);
-            finish(); }
+            finish();
+        }
         if (id == R.id.productmanagementMenu){
             Intent intent = new Intent(getBaseContext(), Product_managementActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
             startActivity(intent);
             finish();
         }
@@ -167,13 +167,11 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             Intent intent = new Intent(getBaseContext(), Product_InventoryActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            startActivity(intent);
             finish();
         }
         if (id == R.id.borrowedProductMenu){
             Intent intent = new Intent(getBaseContext(), Student_BorrowedActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
             startActivity(intent);
             finish();
         }
@@ -181,13 +179,11 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             Intent intent = new Intent(getBaseContext(), Users_managementActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            startActivity(intent);
             finish();
         }
         if (id == R.id.ProductAdministratieMenu){
             Intent intent = new Intent(getBaseContext(), AangevraagdItems_UserList.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
             startActivity(intent);
             finish();
         }
@@ -200,7 +196,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
 
         menuUserStatus.setText(user.getUserType());
         menuUserName.setText(user.getFirstName());
-
 
         if(user.getUserType().matches("student")){
             menu.findItem(R.id.productmanagementMenu).setVisible(false);

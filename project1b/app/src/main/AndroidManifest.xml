@@ -33,7 +33,6 @@
             android:label="Product toevoegen"/>
         <activity android:name=".view.Product_managementActivity"
             android:label="Productbeheer"/>
-        <activity android:name=".view.MenuActivity" />
         <activity android:name=".view.SignUpActivity" />
         <activity android:name=".view.AangevraagdItems_UserList"
             android:label="Product Administratie"/>
