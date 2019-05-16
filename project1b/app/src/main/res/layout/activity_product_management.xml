@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="products"
             type="com.example.techlab.model.Products" />
     </data>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,38 +15,35 @@
         android:orientation="vertical"
         tools:context=".view.Product_managementActivity">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:gravity="center"
             android:orientation="horizontal">
-
             <Button
                 android:id="@+id/addProductButton"
-                android:layout_width="100sp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/color_button1"
                 android:onClick="addProductPageButton"
                 android:shadowColor="@android:color/black"
                 android:text="@string/productToevoegen"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
-
-                />
-
+                android:textSize="12sp" />
             <Button
                 android:id="@+id/addBookButton"
-                android:layout_width="100sp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/color_button1"
                 android:onClick="addBOOKPageButton"
                 android:shadowColor="@android:color/black"
-                android:text="Book toevoegen"
+                android:text="Boek toevoegen"
                 android:textColor="@android:color/white"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -57,29 +51,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
             android:orientation="horizontal"
-            android:weightSum="3">
-
+            android:weightSum="2">
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
                 android:text="@string/naam"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="1"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp"
+                android:layout_height="wrap_content"
                 android:text="@string/voorraad"
                 android:textStyle="bold" />
-
-
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

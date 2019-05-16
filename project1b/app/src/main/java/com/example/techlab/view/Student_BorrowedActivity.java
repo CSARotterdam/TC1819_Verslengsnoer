@@ -43,7 +43,6 @@ public class Student_BorrowedActivity extends AppCompatActivity {
     }
 
     public void BorrowItemRecyclerView(View view){
-
     }
 
     @Override
@@ -52,5 +51,4 @@ public class Student_BorrowedActivity extends AppCompatActivity {
         Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
         startActivity(startNewActivity);
     }
-
 }

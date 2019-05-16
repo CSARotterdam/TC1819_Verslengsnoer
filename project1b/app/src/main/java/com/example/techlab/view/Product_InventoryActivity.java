@@ -77,7 +77,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
                 ArrayList<Products> products2 = new ArrayList<>();
                 if (parent.getSelectedItem().toString().matches("Alle Producten")){
                     products2 = dataManagement.getAllElectronicsData();
