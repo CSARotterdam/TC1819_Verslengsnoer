@@ -2,7 +2,7 @@ package com.example.techlab.model;
 
 
 public class Borrow {
-
+    private String mGebrnaam;
     private byte[] mImageResource;
     private String mProductName;
     private String mTurnInDate;
@@ -11,7 +11,8 @@ public class Borrow {
     private int mPKID;
     String mProductType;
 
-    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID, String ProductType, byte[] image){
+    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID, String ProductType, byte[] image, String Gebrnaam){
+        mGebrnaam = Gebrnaam;
         mImageResource = image;
         mProductName = PName;
         mTurnInDate = TurnInDate;
@@ -19,6 +20,10 @@ public class Borrow {
         mProductStatus = PStatus;
         mPKID = PKID;
         mProductType =ProductType;
+    }
+
+    public String getmGebrnaam() {
+        return mGebrnaam;
     }
 
     public String getmProductType() {

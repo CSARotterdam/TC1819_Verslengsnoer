@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.techlab.R;
 import com.example.techlab.adapter.AangevraagdItems_UserList_Adapter;
 import com.example.techlab.db.DataManagement;
+import com.example.techlab.model.Borrow;
 
 import java.util.ArrayList;
 
@@ -29,12 +31,12 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
 //        loanUsersList.add(new Itemadapter_loanUsers("Poduct2", "Gebruiker1"));
 //        loanUsersList.add(new Itemadapter_loanUsers("Poduct3", "Gebruiker2"));
 
-        ArrayList<Itemadapter_loanUsers> loanUsersList  = dataManagement.getBorrowDataList();
+        ArrayList<Borrow> loanUsersList  = dataManagement.getBorrowDataList();
 
         mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);
         mRecyclerView.setHasFixedSize(true);
         mLayoutmanager = new LinearLayoutManager(this);
-        mAdapter = new AangevraagdItems_UserList_Adapter(loanUsersList);
+        mAdapter = new AangevraagdItems_UserList_Adapter(this,loanUsersList);
 
         mRecyclerView.setLayoutManager(mLayoutmanager);
         mRecyclerView.setAdapter(mAdapter);

@@ -1,24 +1,33 @@
 package com.example.techlab.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.techlab.R;
+import com.example.techlab.model.Borrow;
 import com.example.techlab.view.AangevraagdItems_UserList;
 import com.example.techlab.view.Itemadapter_loanUsers;
+import com.example.techlab.view.pr_Aanvraag_Return;
 
 import java.util.ArrayList;
 
 public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<AangevraagdItems_UserList_Adapter.AangevraagdItems_UserListViewHolder> {
+    private Context mContext;
 
-    private ArrayList<Itemadapter_loanUsers> mItemadapter_loanUsers;
+
+    private ArrayList<Borrow> mBorrowItemlist;
 
     public static class AangevraagdItems_UserListViewHolder extends RecyclerView.ViewHolder{
 
+        RelativeLayout parentLayout;
         public TextView mPrnaam;
         public TextView mGebrnaam;
 
@@ -26,11 +35,13 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
             super(itemView);
             mPrnaam = itemView.findViewById(R.id.Productnaam_Textview);
             mGebrnaam = itemView.findViewById(R.id.Gebruiker_Textview);
+            parentLayout = itemView.findViewById(R.id.pr_aanvraag_returnOnclick);
         }
     }
 
-    public AangevraagdItems_UserList_Adapter(ArrayList<Itemadapter_loanUsers> Itemadapter_loanUsersList){
-        mItemadapter_loanUsers = Itemadapter_loanUsersList;
+    public AangevraagdItems_UserList_Adapter(Context context ,ArrayList<Borrow> Itemadapter_loanUsersList){
+        mBorrowItemlist = Itemadapter_loanUsersList;
+        mContext = context;
     }
 
 
@@ -44,14 +55,33 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
 
     @Override
     public void onBindViewHolder(@NonNull AangevraagdItems_UserListViewHolder holder, int i) {
-        Itemadapter_loanUsers  currentItem  = mItemadapter_loanUsers.get(i);
+        final Borrow  currentItem  = mBorrowItemlist.get(i);
 
-        holder.mPrnaam.setText(currentItem.getPrnaam());
-        holder.mGebrnaam.setText(currentItem.getGebrnaam());
+        holder.mPrnaam.setText(currentItem.getProductName());
+        holder.mGebrnaam.setText(currentItem.getmGebrnaam());
+
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, pr_Aanvraag_Return.class);
+                int s =currentItem.getmPKID();
+                String sd = currentItem.getProductName();
+                String sdf = currentItem.getmGebrnaam();
+                int srt = currentItem.getBorrowItemAmount();
+
+                intent.putExtra("P_id_ProductBorrowlist",currentItem.getmPKID());
+                intent.putExtra("productnaam_ProductBorrowlist",currentItem.getProductName());
+                intent.putExtra("gebruikernaam_ProductBorrowlist",currentItem.getmGebrnaam());
+                intent.putExtra("aantalaangevr_ProductBorrowlist",currentItem.getBorrowItemAmount());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mItemadapter_loanUsers.size();
+        return mBorrowItemlist.size();
     }
+
+
 }

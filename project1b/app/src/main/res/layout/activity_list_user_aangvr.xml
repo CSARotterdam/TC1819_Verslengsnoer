@@ -9,11 +9,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/AangevraagUserlist_Recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="354dp"
+        android:layout_height="420dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="248dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginBottom="0dp"
         android:padding="4dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="39dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="21dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="72dp"
         android:layout_marginRight="72dp"
-        android:layout_marginBottom="460dp"
+        android:layout_marginBottom="472dp"
         android:text="recview(pers and item) + filter and search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -64,11 +64,11 @@
         app:layout_constraintVertical_bias="0.309" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerAanvraag_Geleend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="146dp"
+        android:layout_marginTop="76dp"
         android:spinnerMode="dropdown" />
 
 </RelativeLayout>

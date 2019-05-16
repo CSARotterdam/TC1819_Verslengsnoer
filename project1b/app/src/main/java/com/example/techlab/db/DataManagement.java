@@ -367,6 +367,25 @@ public class DataManagement {
             ConnectionResult=ex.getMessage();
         }
     }
+    public void updateBorrowStatus( String status, int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "UPDATE BORROW SET STATUS = '"+status+"' WHERE _ID = "+ID_+";";
+
+                Statement statement = connect.createStatement();
+                statement.executeQuery(query);
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
     public void DeleteProduct(int ID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -389,24 +408,26 @@ public class DataManagement {
     }
     public void DeleteBook(int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                ConnectionResult = "Check your internet access";
-            }
-            else{
-
-
-                String query = "DELETE FROM BOOK WHERE ID_ ="+ID_+";";
-                Statement statement = connect.createStatement();
-                statement.executeQuery(query);
-                connect.close();
-            }
-        }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+        ConnectionHelper connectionHelper = new ConnectionHelper();
+        connect = connectionHelper.connection();
+        if (connect == null){
+            ConnectionResult = "Check your internet access";
         }
+        else{
+
+
+            String query = "DELETE FROM BOOK WHERE ID_ ="+ID_+";";
+            Statement statement = connect.createStatement();
+            statement.executeQuery(query);
+            connect.close();
+        }
+    }catch(Exception ex){
+        isSuccess=false;
+        ConnectionResult=ex.getMessage();
     }
+}
+
+
     public void DeleteUser(int ID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -528,7 +549,8 @@ public class DataManagement {
                             resultSet.getString("STATUS"),
                             resultSet.getInt("_ID"),
                             productType,
-                            image));
+                            image,
+                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
 
                 }
                 ConnectionResult="successful";
@@ -626,8 +648,8 @@ public class DataManagement {
     }
 
 
-    public ArrayList<Itemadapter_loanUsers> getBorrowDataList(){
-        ArrayList<Itemadapter_loanUsers> loanUsersList = new ArrayList<>();
+    public ArrayList<Borrow> getBorrowDataList(){
+        ArrayList<Borrow> loanUsersList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -638,15 +660,28 @@ public class DataManagement {
                 String query = "SELECT * FROM BORROW ";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
-                String productName;
 
                 while(resultSet.next()){
+                    String productName;
+                    String productType;
+                    byte[] image;
                     if(resultSet.getString("PRODUCT_TYPE").matches("book")){
                         productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
+                        image = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getImage();
+                        productType = "book";
                     }else{
                         productName = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName();
+                        image = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getImage();
+                        productType = "electronic";
                     }
-                    loanUsersList.add(new Itemadapter_loanUsers(productName,getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
+                    loanUsersList.add(new Borrow(productName,
+                            resultSet.getString("RETURN_DATE"),
+                            resultSet.getInt("AMOUNT"),
+                            resultSet.getString("STATUS"),
+                            resultSet.getInt("_ID"),
+                            productType,
+                            image,
+                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
