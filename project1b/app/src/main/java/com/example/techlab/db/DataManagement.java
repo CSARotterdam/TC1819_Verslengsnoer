@@ -375,8 +375,6 @@ public class DataManagement {
                 ConnectionResult = "Check your internet access";
             }
             else{
-
-
                 String query = "DELETE FROM ELECTRONICS WHERE ID_ ="+ID_+";";
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
