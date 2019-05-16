@@ -42,6 +42,8 @@
         <activity android:name=".view.AangevraagdItems_UserList"
             android:label="Product Administratie"/>
 >>>>>>> 3c68d433539b71bd0ea9f4f5b64b442c1b51b05f
+        <activity android:name=".view.AangevraagdItems_UserList"
+            android:label="Product Administratie"/>
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
@@ -60,4 +62,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
