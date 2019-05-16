@@ -42,7 +42,6 @@ public class Product_ItemDescription extends AppCompatActivity {
         dataManagement =  new DataManagement();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         Buttons();
-
     }
 
     // checks for incoming intent

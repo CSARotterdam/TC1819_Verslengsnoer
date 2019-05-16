@@ -115,8 +115,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
 //        }
 //    }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)){
@@ -157,15 +155,13 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             startActivity(intent);
-            finish();
-        }
+            finish(); }
         if (id == R.id.productmanagementMenu){
             Intent intent = new Intent(getBaseContext(), Product_managementActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             startActivity(intent);
             finish();
-
         }
         if (id == R.id.inventarisMenu){
             Intent intent = new Intent(getBaseContext(), Product_InventoryActivity.class);

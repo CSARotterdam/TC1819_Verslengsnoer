@@ -52,7 +52,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"/>
             <ImageButton
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
@@ -61,38 +61,6 @@
                 android:layout_gravity="center|bottom"
                 android:background="@android:color/transparent"/>
         </com.ms.square.android.expandabletextview.ExpandableTextView>
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/product_description"-->
-            <!--android:text="Description"-->
-
-            <!--android:paddingBottom="10dp"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:paddingRight="15dp"-->
-            <!--android:textSize="15sp"-->
-            <!--android:gravity="start"-->
-            <!--android:textColor="#000" />-->
-
-        <!--<com.borjabravo.readmoretextview.ReadMoreTextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/product_description"-->
-            <!--android:text="Description"-->
-
-            <!--app:trimExpandedText="Meer Weergeven"-->
-            <!--app:trimCollapsedText="Minder Weergeven"-->
-            <!--app:trimMode="trimModeLine"-->
-            <!--app:trimLength="5"-->
-            <!--app:colorClickableText="@color/colorButton"-->
-
-            <!--android:paddingBottom="10dp"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:paddingRight="15dp"-->
-            <!--android:textSize="15sp"-->
-            <!--android:gravity="start"-->
-            <!--android:textColor="#000"/>-->
 
         <!--<Button-->
             <!--android:id="@+id/VoorwaardenBtn"-->
@@ -108,7 +76,9 @@
             android:id="@+id/requestBtn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="15dp"
             android:text="@string/RequestBtn"
             android:textColor="#FFF"
             android:background="@drawable/color_button1"
