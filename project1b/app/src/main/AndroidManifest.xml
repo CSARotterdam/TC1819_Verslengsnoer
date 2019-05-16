@@ -21,7 +21,6 @@
             android:label="Gebruiker Info"/>
         <activity android:name=".view.Users_managementActivity"
             android:label="Gebruikersbeheer"/>
-        <activity android:name=".view.Admin_PendingItem1GebruikerA" />
         <activity
             android:name=".view.Student_BorrowedActivity"
             android:label="Geleende / aangevraagde producten" />
