@@ -68,16 +68,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void Buttons(){
-
-        BorrowedItemsUserListButton = findViewById(R.id.BorrowedItemsUserListBtn);
-        BorrowedItemsUserListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent borrow = new Intent(getBaseContext(), Admin_BorrowedItemsUserList.class);
-                startActivity(borrow);
-            }
-        });
-
         ButtonPrAanvraagUserList = findViewById(R.id.AangevrPrButton);
         ButtonPrAanvraagUserList.setOnClickListener(new View.OnClickListener() {
             @Override

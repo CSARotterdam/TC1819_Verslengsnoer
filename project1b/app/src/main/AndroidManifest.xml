@@ -21,10 +21,7 @@
             android:label="Gebruiker Info"/>
         <activity android:name=".view.Users_managementActivity"
             android:label="Gebruikersbeheer"/>
-        <activity android:name=".view.Product_ShoppingCartActivity" />
         <activity android:name=".view.Admin_PendingItem1GebruikerA" />
-        <activity android:name=".view.Admin_GebruikerA" />
-        <activity android:name=".view.Admin_BorrowedItemsUserList" />
         <activity
             android:name=".view.Student_BorrowedActivity"
             android:label="Geleende / aangevraagde producten" />
@@ -38,7 +35,8 @@
             android:label="Productbeheer"/>
         <activity android:name=".view.MenuActivity" />
         <activity android:name=".view.SignUpActivity" />
-        <activity android:name=".view.AangevraagdItems_UserList" />
+        <activity android:name=".view.AangevraagdItems_UserList"
+            android:label="Product Administratie"/>
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
@@ -57,5 +55,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
