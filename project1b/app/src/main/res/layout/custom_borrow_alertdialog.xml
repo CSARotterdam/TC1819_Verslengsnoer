@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent" >
+
+<TextView
+    android:id="@+id/AlertDialogText"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:padding="2dp"
+    android:layout_marginBottom="0dp"
+    android:layout_marginTop="0dp"
+    android:textColor="@color/black"
+    />
+
+    <Button
+        android:id="@+id/AlertDialogButtonVoorwaarden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Klik hier voor de Algemene Voorwaarden"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:textSize="12sp"
+        android:layout_below="@id/AlertDialogText"
+        android:background="@color/colorBackground"
+        android:textColor="@color/colorAccent"
+    />
+</RelativeLayout>
+

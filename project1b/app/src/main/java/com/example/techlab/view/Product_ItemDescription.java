@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,7 +10,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,13 +24,13 @@ import com.example.techlab.imageHelper.imageConverter;
 import com.example.techlab.model.Products;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
-import java.util.ArrayList;
+//import java.util.ArrayList; ////Belongs to the code of Guan Version 1
 
 public class Product_ItemDescription extends AppCompatActivity {
     private static final String TAG = "Product_ItemDescription";
     private Button Button_Request2Borrow;
-    private Button VoorwaardenBtn;
-    private ArrayList<Integer> mSelectedItems = new ArrayList<>();
+//    private Button VoorwaardenBtn; //Belongs to Guan Version 1
+//    private ArrayList<Integer> mSelectedItems = new ArrayList<>(); //Belongs to Guan Version 1
     private Integer productID;
     DataManagement dataManagement;
     private SharedPreferences mSharedPreferences;
@@ -94,41 +97,89 @@ public class Product_ItemDescription extends AppCompatActivity {
     //all Buttons
     public void Buttons(){
         Button_Request2Borrow = findViewById(R.id.requestBtn);
-        Button_Request2Borrow.setOnClickListener(new View.OnClickListener() {
+        Button_Request2Borrow.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Guan Popup Version 2 to match all screen.
+                LayoutInflater li = LayoutInflater.from(Product_ItemDescription.this);
+                View contentVoorwaarden = li.inflate(R.layout.custom_borrow_alertdialog, null);
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
+                RequestItemAlertDialog.setView(contentVoorwaarden);
                 RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
-                .setMessage("Ga akkoord met de voorwaarden als je dit product wilt lenen.")
-                .setCancelable(false)
-                .setNeutralButton("Annuleer",null)
-                .setNegativeButton("Voorwaarden", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick( DialogInterface dialog, int which){
+                                dialog.cancel();
+                            }
+                        })
+                        .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
+                                //DB code here
+                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType);
+                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+                                startActivity(BorrowActivity);
+                            }
+                        })
+                        .setCancelable(false);
+
+                TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
+                textmsg.setText("Ga akkoord met de voorwaarden als je dit product wilt lenen.");
+
+                Button voorwaardenBtn = contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden);
+
+                voorwaardenBtn.setOnClickListener(new OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
                         Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
                         startActivity(Voorwaarden);
-                    }
-                })
-                .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
-                        //DB code here
-                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
-                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
-                        startActivity(BorrowActivity);
                     }
                 });
 
                 //Creating dialog box
                 AlertDialog dialog  = RequestItemAlertDialog.create();
                 dialog.show();
-                dialog.getWindow().setLayout(1100, 600);
             }
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Saloua version
+//            @Override
+//            public void onClick(View v) {
 //                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
 //                RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
-////                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
+//                .setMessage("Ga akkoord met de voorwaarden als je dit product wilt lenen.")
+//                .setCancelable(false)
+//                .setNeutralButton("Annuleer",null)
+//                .setNegativeButton("Voorwaarden", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
+//                        startActivity(Voorwaarden);
+//                    }
+//                })
+//                .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
+//                        //DB code here
+//                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
+//                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+//                        startActivity(BorrowActivity);
+//                    }
+//                });
+//
+//                //Creating dialog box
+//                AlertDialog dialog  = RequestItemAlertDialog.create();
+//                dialog.show();
+//                dialog.getWindow().setLayout(1100, 600);
+//            }
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Guan version1
+//            @Override
+//            public void onClick(View v) {
+//                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
+//                RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
+//                        .setMessage("Gaat u hiermee akkoord met de voorwaarden?")
 //                        .setMultiChoiceItems(R.array.AgreeToS, null, new DialogInterface.OnMultiChoiceClickListener() {
 //                            @Override
 //                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
