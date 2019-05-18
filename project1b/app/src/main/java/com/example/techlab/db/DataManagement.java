@@ -5,12 +5,15 @@ import com.example.techlab.model.Borrow;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
+import com.example.techlab.util.DateUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+
 
 public class DataManagement {
     Connection connect;
@@ -366,7 +369,7 @@ public class DataManagement {
             ConnectionResult=ex.getMessage();
         }
     }
-    public void updateBorrowStatus( String status, int ID_){
+    public void updateBorrowStatus( String status,Timestamp Borrow_DateTime, int ID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -374,10 +377,11 @@ public class DataManagement {
                 ConnectionResult = "Check your internet access";
             }
             else{
-                String query = "UPDATE BORROW SET STATUS = '"+status+"' WHERE _ID = "+ID_+";";
-
-                Statement statement = connect.createStatement();
-                statement.executeQuery(query);
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,BORROW_DATE=? WHERE _ID=?");
+                pstmt.setString(1,status);
+                pstmt.setTimestamp(2,Borrow_DateTime);
+                pstmt.setInt(3,ID_);
+                pstmt.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -448,7 +452,7 @@ public class DataManagement {
         }
     }
 
-    public void InsertRequestBorrowItem(int ProductID, int UserID, int Amount, String Status,String objectType){
+    public void InsertRequestBorrowItem(int ProductID, int UserID, int Amount, String Status, String objectType, Timestamp BorrowRequestDateTime){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -457,12 +461,13 @@ public class DataManagement {
             }
             else{
 
-                PreparedStatement pstmt = connect.prepareStatement("Insert into BORROW (PRODUCTS_P_ID, USERS_P_ID, AMOUNT, STATUS, PRODUCT_TYPE) values (?,?,?,?,?)");
+                PreparedStatement pstmt = connect.prepareStatement("Insert into BORROW (PRODUCTS_P_ID, USERS_P_ID, AMOUNT, STATUS, PRODUCT_TYPE, REQUEST_BORROW_DATE) values (?,?,?,?,?,?)");
                 pstmt.setInt(1,ProductID);
                 pstmt.setInt(2,UserID);
                 pstmt.setInt(3,Amount);
                 pstmt.setString(4,Status);
                 pstmt.setString(5,objectType);
+                pstmt.setTimestamp(6,BorrowRequestDateTime);
                 pstmt.execute();
                 connect.close();
             }
@@ -532,6 +537,8 @@ public class DataManagement {
                 while(resultSet.next()){
                     String productName;
                     String productType;
+                    String RequestDate;
+                    String BorrowDate;
                     byte[] image;
                     if(resultSet.getString("PRODUCT_TYPE").matches("book")){
                         productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
@@ -542,8 +549,21 @@ public class DataManagement {
                         image = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getImage();
                         productType = "electronic";
                     }
-                    BorrowList.add(new Borrow(productName,
-                            resultSet.getString("RETURN_DATE"),
+                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
+                        RequestDate = "";
+                    }else{
+                        RequestDate = DateUtils.getCurrentDate(resultSet.getDate("REQUEST_BORROW_DATE"));
+                    }
+
+                    if (resultSet.getDate("BORROW_DATE")==null){
+                        BorrowDate = "";
+                    }else{
+                        BorrowDate = DateUtils.getCurrentDate(resultSet.getDate("BORROW_DATE"));
+                    }
+                    BorrowList.add(new Borrow(
+                            productName,
+                            RequestDate,
+                            BorrowDate,
                             resultSet.getInt("AMOUNT"),
                             resultSet.getString("STATUS"),
                             resultSet.getInt("_ID"),
@@ -663,6 +683,8 @@ public class DataManagement {
                 while(resultSet.next()){
                     String productName;
                     String productType;
+                    String RequestDate;
+                    String BorrowDate;
                     byte[] image;
                     if(resultSet.getString("PRODUCT_TYPE").matches("book")){
                         productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
@@ -672,9 +694,21 @@ public class DataManagement {
                         productName = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName();
                         image = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getImage();
                         productType = "electronic";
+                    }if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
+                        RequestDate = "";
+                    }else{
+                        RequestDate = DateUtils.getCurrentDate(resultSet.getDate("REQUEST_BORROW_DATE"));
                     }
-                    loanUsersList.add(new Borrow(productName,
-                            resultSet.getString("RETURN_DATE"),
+
+                    if (resultSet.getDate("BORROW_DATE")==null){
+                        BorrowDate = "";
+                    }else{
+                        BorrowDate = DateUtils.getCurrentDate(resultSet.getDate("BORROW_DATE"));
+                    }
+                    loanUsersList.add(new Borrow(
+                            productName,
+                            RequestDate,
+                            BorrowDate,
                             resultSet.getInt("AMOUNT"),
                             resultSet.getString("STATUS"),
                             resultSet.getInt("_ID"),

@@ -1,6 +1,5 @@
 package com.example.techlab.view;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +19,8 @@ import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.DateUtils;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Products;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
@@ -75,7 +75,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         description.setText(productDescription);
 
         ImageView image = findViewById(R.id.image);
-        image.setImageBitmap(imageConverter.getImage(imageByte));
+        image.setImageBitmap(ImageUtils.getImage(imageByte));
     }
     @Override
     protected void onResume(){
@@ -117,7 +117,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
                                 //DB code here
-                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType);
+                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType, DateUtils.getCurrentDate());
                                 Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
                                 startActivity(BorrowActivity);
                             }

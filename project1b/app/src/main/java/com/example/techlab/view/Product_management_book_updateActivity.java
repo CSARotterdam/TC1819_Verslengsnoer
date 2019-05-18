@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Books;
 
 public class Product_management_book_updateActivity extends AppCompatActivity {
@@ -44,7 +44,7 @@ public class Product_management_book_updateActivity extends AppCompatActivity {
         bookPublisher.getEditText().setText(book.getPublisher());
         bookIsbn.getEditText().setText(book.getISBN());
         bookDescription.getEditText().setText(String.valueOf(book.getDescription()));
-        bookUploadImageView.setImageBitmap(imageConverter.getImage(book.getImage()));
+        bookUploadImageView.setImageBitmap(ImageUtils.getImage(book.getImage()));
 
     }
 
@@ -80,8 +80,8 @@ public class Product_management_book_updateActivity extends AppCompatActivity {
         productCategoryCheck = productCategoryValidation();
         productDescriptionCheck = productDescriptionValidation();
         if (productIdCheck && productManufacturerCheck && productNameCheck && productStockCheck && productCategoryCheck && productDescriptionCheck ){
-            resizedImage = imageConverter.scaleDown(((BitmapDrawable)bookUploadImageView.getDrawable()).getBitmap(),250f,true);
-            byte[] imageByte = imageConverter.getByte(resizedImage);
+            resizedImage = ImageUtils.scaleDown(((BitmapDrawable)bookUploadImageView.getDrawable()).getBitmap(),250f,true);
+            byte[] imageByte = ImageUtils.getByte(resizedImage);
             dataManagement.updateBookData(bookTitle.getEditText().getText().toString(),bookWriters.getEditText().getText().toString()
                     ,bookIsbn.getEditText().getText().toString(),bookPublisher.getEditText().getText().toString(),Integer.parseInt(bookAmount.getEditText().getText().toString())
                     ,bookDescription.getEditText().getText().toString(),imageByte,"book",getIntent().getIntExtra("ID_",-1));

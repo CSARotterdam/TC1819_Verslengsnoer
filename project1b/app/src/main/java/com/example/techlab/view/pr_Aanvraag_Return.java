@@ -8,10 +8,11 @@ import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
+import com.example.techlab.util.DateUtils;
 
 public class pr_Aanvraag_Return extends AppCompatActivity {
     Intent intent;
-    TextView prnaam, gebrnaam, aantalpr;
+    TextView prnaam, gebrnaam, aantalpr, status;
     DataManagement dataManagement;
 
 
@@ -25,9 +26,12 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
         prnaam = findViewById(R.id.leenavraagProduct);
         gebrnaam = findViewById(R.id.leenavraagUser);
         aantalpr = findViewById(R.id.leenavraagAantal);
-        prnaam.setText(getIntent().getStringExtra("productnaam_ProductBorrowlist"));
-        gebrnaam.setText(getIntent().getStringExtra("gebruikernaam_ProductBorrowlist"));
-        aantalpr.setText(getIntent().getIntExtra("aantalaangevr_ProductBorrowlist", -1)+"");
+        status = findViewById(R.id.productRequestListProductStatus);
+        prnaam.setText("Aangevraagde product: "+getIntent().getStringExtra("productnaam_ProductBorrowlist"));
+        gebrnaam.setText("Aangevraagd door: "+getIntent().getStringExtra("gebruikernaam_ProductBorrowlist"));
+        aantalpr.setText("Aanvraagde aantal: "+getIntent().getIntExtra("aantalaangevr_ProductBorrowlist", -1)+"");
+        status.setText("Aanvraag status: "+getIntent().getStringExtra("status_ProductBorrowlist")+"");
+
 //        if(intent.getStringExtra("productnaam_ProductBorrowlist")!=null && intent.getStringExtra("gebruikernaam_ProductBorrowlist") != null && intent.getIntExtra("aantalaangevr_ProductBorrowlist", -1) != -1){
 //            prnaam.setText(intent.getStringExtra("productnaam_ProductBorrowlist"));
 //            gebrnaam.setText(intent.getStringExtra("gebruikernaam_ProductBorrowlist"));
@@ -38,7 +42,8 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     }
 
     public void lendProductButton(View view){
-        dataManagement.updateBorrowStatus("Geleend", getIntent().getIntExtra("P_id_ProductBorrowlist", -1));
+        dataManagement.updateBorrowStatus("Geleend", DateUtils.getCurrentDate(), getIntent().getIntExtra("P_id_ProductBorrowlist", -1));
+        status.setText("Aanvraag status: Geleend");
 
     }
 

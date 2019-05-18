@@ -1,11 +1,11 @@
-package com.example.techlab.imageHelper;
+package com.example.techlab.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 
-public class imageConverter {
+public class ImageUtils {
     public static byte[] getByte(Bitmap bitmap){
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,0,stream);

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Electronics;
 
 public class Product_management_product_infoActivity extends AppCompatActivity {
@@ -47,7 +47,7 @@ public class Product_management_product_infoActivity extends AppCompatActivity {
         productManufacturer.setText(product.getProductManufacturer());
         productDescription.setText(product.getDescription());
         byte[] Image = dataManagement.getImage(getIntent().getIntExtra("ID_",-1));
-        Bitmap decodedByte = imageConverter.getImage(Image);
+        Bitmap decodedByte = ImageUtils.getImage(Image);
         productManagementImageView.setImageBitmap(decodedByte);
     }
 

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 
 public class Product_management_add_bookActivity extends AppCompatActivity {
 
@@ -69,8 +69,8 @@ public class Product_management_add_bookActivity extends AppCompatActivity {
         productDescriptionCheck = productDescriptionValidation();
         imageCheck = imageSelected;
         if (productIdCheck && productManufacturerCheck && productNameCheck && productStockCheck && productCategoryCheck && productDescriptionCheck && imageCheck){
-            resizedImage = imageConverter.scaleDown(((BitmapDrawable)bookUploadimageView.getDrawable()).getBitmap(),150f,true);
-            byte[] imageByte = imageConverter.getByte(resizedImage);
+            resizedImage = ImageUtils.scaleDown(((BitmapDrawable)bookUploadimageView.getDrawable()).getBitmap(),150f,true);
+            byte[] imageByte = ImageUtils.getByte(resizedImage);
             dataManagement.InsertBookItem(bookTitle.getEditText().getText().toString(),bookWriters.getEditText().getText().toString()
                     ,bookIsbn.getEditText().getText().toString(),bookPublisher.getEditText().getText().toString(),Integer.parseInt(bookAmount.getEditText().getText().toString())
                     ,bookDescription.getEditText().getText().toString(),imageByte,"book");

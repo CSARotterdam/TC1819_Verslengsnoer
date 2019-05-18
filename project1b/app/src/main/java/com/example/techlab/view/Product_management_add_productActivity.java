@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 
 public class Product_management_add_productActivity extends AppCompatActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -65,8 +65,8 @@ public class Product_management_add_productActivity extends AppCompatActivity {
         productDescriptionCheck = productDescriptionValidation();
         imageCheck = imageSelected;
         if (productIdCheck && productManufacturerCheck && productNameCheck && productStockCheck && productCategoryCheck && productDescriptionCheck && imageCheck){
-            resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),150f,true);
-            byte[] imageByte = imageConverter.getByte(resizedImage);
+            resizedImage = ImageUtils.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),150f,true);
+            byte[] imageByte = ImageUtils.getByte(resizedImage);
             dataManagement.addProductData(productId.getEditText().getText().toString(),productManufacturer.getEditText().getText().toString()
                     ,productCategory.getEditText().getText().toString(),productName.getEditText().getText().toString(),Integer.parseInt(productStock.getEditText().getText().toString())
                     ,0,imageByte,productDescription.getEditText().getText().toString());

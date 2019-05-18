@@ -16,7 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.ActivityInventoryItemBinding;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Books;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
@@ -56,7 +56,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
         Log.d(TAG, "onBindViewHolder: called.");
         final Products product = products.get(i);
         // Here we get the images
-        viewHolder.image.setImageBitmap(imageConverter.getImage(product.getImage()));
+        viewHolder.image.setImageBitmap(ImageUtils.getImage(product.getImage()));
 
         viewHolder.productItemBinding.setProduct(product);
 //        holder.productDescription.setText(mProductDescription.get(position)); // It crashes here

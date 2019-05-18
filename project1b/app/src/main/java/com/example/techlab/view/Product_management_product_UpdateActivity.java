@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Electronics;
 
 public class Product_management_product_UpdateActivity extends AppCompatActivity {
@@ -50,7 +50,7 @@ public class Product_management_product_UpdateActivity extends AppCompatActivity
         productCategory.setText(electronics.getCategory());
         productDescription.setText(electronics.getDescription());
         amountBroken.setText(String.valueOf(electronics.getAmountBroken()));
-        productUpdateImageView.setImageBitmap(imageConverter.getImage(electronics.getImage()));
+        productUpdateImageView.setImageBitmap(ImageUtils.getImage(electronics.getImage()));
 
 
     }
@@ -71,8 +71,8 @@ public class Product_management_product_UpdateActivity extends AppCompatActivity
     }
 
     public void upDateProductButton(View view){
-        resizedImage = imageConverter.scaleDown(((BitmapDrawable)productUpdateImageView.getDrawable()).getBitmap(),250f,true);
-        byte[] imageByte = imageConverter.getByte(resizedImage);
+        resizedImage = ImageUtils.scaleDown(((BitmapDrawable)productUpdateImageView.getDrawable()).getBitmap(),250f,true);
+        byte[] imageByte = ImageUtils.getByte(resizedImage);
         dataManagement.updateProductData( productManufacturer.getText().toString(), productCategory.getText().toString(),
                 productName.getText().toString(),Integer.parseInt(productStock.getText().toString()),
                 Integer.parseInt(amountBroken.getText().toString()), productDescription.getText().toString(),

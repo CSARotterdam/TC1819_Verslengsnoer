@@ -7,14 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.model.Borrow;
-import com.example.techlab.view.AangevraagdItems_UserList;
-import com.example.techlab.view.Itemadapter_loanUsers;
 import com.example.techlab.view.pr_Aanvraag_Return;
 
 import java.util.ArrayList;
@@ -73,6 +70,8 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
                 intent.putExtra("productnaam_ProductBorrowlist",currentItem.getProductName());
                 intent.putExtra("gebruikernaam_ProductBorrowlist",currentItem.getmGebrnaam());
                 intent.putExtra("aantalaangevr_ProductBorrowlist",currentItem.getBorrowItemAmount());
+                intent.putExtra("status_ProductBorrowlist",currentItem.getBorrowStatus());
+
                 mContext.startActivity(intent);
             }
         });

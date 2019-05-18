@@ -5,21 +5,27 @@ public class Borrow {
     private String mGebrnaam;
     private byte[] mImageResource;
     private String mProductName;
-    private String mTurnInDate;
+    private String mRequestDate;
+    private String mBorrowDate;
     private int mProductAmount;
     private String mProductStatus;
     private int mPKID;
     String mProductType;
 
-    public Borrow(String PName, String TurnInDate, int PAmount, String PStatus, int PKID, String ProductType, byte[] image, String Gebrnaam){
+    public Borrow(String PName, String RequestDate,String borrowDate, int PAmount, String PStatus, int PKID, String ProductType, byte[] image, String Gebrnaam){
         mGebrnaam = Gebrnaam;
         mImageResource = image;
         mProductName = PName;
-        mTurnInDate = TurnInDate;
+        mRequestDate = RequestDate;
+        mBorrowDate = borrowDate;
         mProductAmount = PAmount;
         mProductStatus = PStatus;
         mPKID = PKID;
         mProductType =ProductType;
+    }
+
+    public String getmBorrowDate() {
+        return mBorrowDate;
     }
 
     public String getmGebrnaam() {
@@ -38,13 +44,10 @@ public class Borrow {
         return mProductName;
     }
 
-    public String getTurnInDate(){
-        return mTurnInDate;
+    public String getRequestDate(){
+        return mRequestDate;
     }
 
-    public void setTurnInDate( String RequestedDate){
-        this.mTurnInDate = RequestedDate;
-    }
 
     public int getBorrowItemAmount(){
         return mProductAmount;
@@ -54,9 +57,6 @@ public class Borrow {
         return mProductStatus;
     }
 
-    public void setBorrowStatus(String borrowStatus){
-        this.mProductStatus = borrowStatus;
-    }
 
     public int getmPKID() {
         return mPKID;

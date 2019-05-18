@@ -1,86 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pr_aanvraag_returna"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/leenavraagUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gebruiker"
+        android:textSize="15sp" />
 
+    <TextView
+        android:layout_marginLeft="35dp"
+        android:id="@+id/leenavraagAantal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aantal"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:layout_marginLeft="35dp"
+        android:id="@+id/leenavraagProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Productnaam"
+        android:textSize="15sp" />
+    <TextView
+        android:layout_marginLeft="35dp"
+        android:id="@+id/productRequestListProductStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:layout_marginBottom="30dp"/>
+    <CheckBox
+        android:layout_marginLeft="15dp"
+        android:id="@+id/checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Producten zijn niet beschadigd" />
     <Button
         android:id="@+id/button3"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:layout_marginBottom="194dp"
         android:onClick="lendProductButton"
         android:text="Product Uitlenen"
-        android:textSize="18sp" />
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/color_button1"
+        android:textColor="@android:color/white"
+        android:layout_marginVertical="5dp"
+
+        />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
-        android:layout_marginBottom="-112dp"
         android:onClick="returnProductButton"
         android:text="Product Terugnemen"
-        android:textSize="18sp" />
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/color_button1"
+        android:textColor="@android:color/white"
+        android:layout_marginVertical="5dp"
 
-    <TextView
-        android:id="@+id/leenavraagUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/leenavraagProduct"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="177dp"
-        android:layout_marginRight="177dp"
-        android:layout_marginBottom="17dp"
-        android:text="gebruiker"
-        android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/leenavraagAantal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="190dp"
-        android:layout_marginRight="190dp"
-        android:layout_marginBottom="396dp"
-        android:text="Aantal"
-        android:textSize="20dp" />
+ />
 
-    <TextView
-        android:id="@+id/leenavraagProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/leenavraagAantal"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="158dp"
-        android:layout_marginRight="158dp"
-        android:layout_marginBottom="19dp"
-        android:text="Productnaam"
-        android:textSize="20dp" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="107dp"
-        android:layout_marginRight="107dp"
-        android:layout_marginBottom="330dp"
-        android:text="Producten zijn niet beschadigd" />
 
-</RelativeLayout>
+
+
+
+
+</LinearLayout>

@@ -37,7 +37,7 @@
         <activity android:name=".view.pr_Aanvraag_Return"
             android:label=""/>
         <activity android:name=".view.AangevraagdItems_UserList"
-            android:label="Product Administratie"/>
+            android:label="Producten leen aanvragen Lijst"/>
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Books;
 
 public class Product_management_book_infoActivity extends AppCompatActivity {
@@ -43,7 +43,7 @@ public class Product_management_book_infoActivity extends AppCompatActivity {
         publisher.setText(book.getPublisher());
         amount.setText(String.valueOf(book.getStock()));
         description.setText(book.getDescription());
-        Bitmap decodedByte = imageConverter.getImage(book.getImage());
+        Bitmap decodedByte = ImageUtils.getImage(book.getImage());
         bookManagementImageView.setImageBitmap(decodedByte);
     }
 

@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.imageHelper.imageConverter;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Borrow;
 
 import java.util.ArrayList;
@@ -29,10 +29,8 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     public static class BorrowViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView mImageView;
-        public TextView mProductName;
-        public TextView mTurnInDate;
-        public TextView mProductAmount;
-        public TextView mProductStatus;
+        private TextView mProductName,mBorrow,mProductAmount,mProductStatus,mRequest;
+
         RelativeLayout relativeLayout;
 
 
@@ -40,7 +38,8 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
             super(itemView);
             mImageView = itemView.findViewById(R.id.ListItemImage);
             mProductName = itemView.findViewById(R.id.ListItemText_ProductName);
-            mTurnInDate = itemView.findViewById(R.id.ListItemText_TurnInDate);
+            mBorrow = itemView.findViewById(R.id.ListItemText_ProductBorrow);
+            mRequest = itemView.findViewById(R.id.ListItemText_ProductRequest);
             mProductAmount = itemView.findViewById(R.id.ListItemText_ProductAmount);
             mProductStatus = itemView.findViewById(R.id.ListItemText_ProductStatus);
             relativeLayout = itemView.findViewById(R.id.BorrowedItemContainer);
@@ -66,9 +65,10 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     public void onBindViewHolder(@NonNull BorrowViewHolder borrowViewHolder, int position_index) {
         final Borrow currentItem = mBorrowItemList.get(position_index);
         final int position = position_index;
-        borrowViewHolder.mImageView.setImageBitmap(imageConverter.getImage(currentItem.getImageResource()));
+        borrowViewHolder.mImageView.setImageBitmap(ImageUtils.getImage(currentItem.getImageResource()));
         borrowViewHolder.mProductName.setText(currentItem.getProductName());
-        borrowViewHolder.mTurnInDate.setText(currentItem.getTurnInDate());
+        borrowViewHolder.mBorrow.setText(currentItem.getmBorrowDate());
+        borrowViewHolder.mRequest.setText(currentItem.getRequestDate());
         borrowViewHolder.mProductAmount.setText(Integer.toString(currentItem.getBorrowItemAmount()));
         borrowViewHolder.mProductStatus.setText(currentItem.getBorrowStatus());
         if (currentItem.getBorrowStatus().matches("Pending")) {
