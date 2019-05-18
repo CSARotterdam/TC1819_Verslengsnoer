@@ -596,7 +596,7 @@ public class DataManagement {
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "Niet beschikbaar";
+                        BorrowDate = "..............";
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getDate("BORROW_DATE"));
                     }

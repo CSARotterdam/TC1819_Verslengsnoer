@@ -48,7 +48,7 @@
             android:label="" />
         <activity
             android:name=".view.AangevraagdItems_UserList"
-            android:label="Producten leen aanvragen Lijst" />
+            android:label="product leen aanvraaglijst" />
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
