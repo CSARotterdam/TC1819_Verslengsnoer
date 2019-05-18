@@ -183,6 +183,13 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             startActivity(intent);
             finish();
         }
+        if (id == R.id.userAccountSetting){
+            Intent intent = new Intent(getBaseContext(), User_information_changeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+
         return false;
     }
     public void menuButtonManager(){
