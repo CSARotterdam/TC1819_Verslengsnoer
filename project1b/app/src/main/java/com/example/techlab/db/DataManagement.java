@@ -590,13 +590,13 @@ public class DataManagement {
                         productType = "electronic";
                     }
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
-                        RequestDate = "";
+                        RequestDate = "Niet beschikbaar";
                     }else{
                         RequestDate = DateUtils.getCurrentDate(resultSet.getDate("REQUEST_BORROW_DATE"));
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "";
+                        BorrowDate = "Niet beschikbaar";
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getDate("BORROW_DATE"));
                     }
