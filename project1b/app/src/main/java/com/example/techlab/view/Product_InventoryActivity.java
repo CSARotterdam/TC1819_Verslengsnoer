@@ -21,7 +21,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
@@ -32,7 +31,6 @@ import com.example.techlab.model.Users;
 import java.util.ArrayList;
 
 public class Product_InventoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private static final String TAG = "Product_InventoryActivity";
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
@@ -45,7 +43,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
 
     // Array van de namen en afbeeldingen van elk product
     ArrayList<Products> books;
-    ArrayList<Products> products = new ArrayList<>();
     DataManagement dataManagement;
 
     @Override
@@ -69,7 +66,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
         menuButtonManager();
 
-        Spinner CategorySpinner = (Spinner) findViewById(R.id.CategoryBttn);
+        Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.Categorie, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
@@ -77,7 +74,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<Products> products2 = new ArrayList<>();
+                ArrayList<Products> products2;
                 if (parent.getSelectedItem().toString().matches("Alle Producten")){
                     products2 = dataManagement.getAllElectronicsData();
                     books = dataManagement.getAllBooksData();

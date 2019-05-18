@@ -118,7 +118,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                                 Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
                                 //DB code here
                                 dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType);
-                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+                                Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
                                 startActivity(BorrowActivity);
                             }
                         })
