@@ -42,9 +42,6 @@ public class Student_BorrowedActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void BorrowItemRecyclerView(View view){
-    }
-
     @Override
     public void onBackPressed() {
         finish();

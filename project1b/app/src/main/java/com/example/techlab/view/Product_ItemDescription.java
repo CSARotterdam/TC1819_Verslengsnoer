@@ -143,6 +143,7 @@ public class Product_ItemDescription extends AppCompatActivity {
             }
 
 //Saloua version
+//        Button_Request2Borrow.setOnClickListener(new OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
@@ -172,7 +173,8 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                AlertDialog dialog  = RequestItemAlertDialog.create();
 //                dialog.show();
 //                dialog.getWindow().setLayout(1100, 600);
-//            }
+//            }}
+//        )
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Guan version1
 //            @Override

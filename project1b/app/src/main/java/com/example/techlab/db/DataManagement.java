@@ -5,7 +5,6 @@ import com.example.techlab.model.Borrow;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
 import com.example.techlab.model.Users;
-import com.example.techlab.view.Itemadapter_loanUsers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
