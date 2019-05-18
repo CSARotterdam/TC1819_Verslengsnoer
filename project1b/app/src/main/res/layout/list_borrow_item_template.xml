@@ -54,7 +54,7 @@
             android:layout_toRightOf="@id/ListItemText_TurnInDate"
             android:text="#"
             android:textSize="12sp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:paddingRight="10dp"
 
             android:layout_below="@id/ListItemText_ProductName"/>
@@ -75,7 +75,7 @@
             android:text="#"
             android:textSize="12sp"
             android:paddingRight="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:layout_below="@id/ListItemText_borrow"/>
 
 

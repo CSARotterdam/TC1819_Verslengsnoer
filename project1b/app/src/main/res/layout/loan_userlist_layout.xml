@@ -11,37 +11,27 @@
     app:cardCornerRadius="6dp"
     android:background="@color/colorBackground">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/pr_aanvraag_returnOnclick"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_margin="4dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/Gebruiker_Textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="75dp"
-            android:layout_marginRight="75dp"
-            android:layout_marginBottom="12dp"
             android:text="gebruiker"
+            android:layout_marginLeft="15dp"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/Productnaam_Textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="15dp"
             android:text="Productnaam"
             android:textSize="20dp" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
