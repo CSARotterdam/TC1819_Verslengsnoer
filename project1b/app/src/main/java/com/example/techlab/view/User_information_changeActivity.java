@@ -54,7 +54,7 @@ public class User_information_changeActivity extends AppCompatActivity {
             userSurnameInput.getEditText().setText("");
             passwordInput.getEditText().setText("");
             confirmPasswordInput.getEditText().setText("");
-            Toast.makeText(this, "Wachtwoord  is met succes gewijzigd", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Het wachtwoord  is met succes gewijzigd", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, User_information_changeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -71,7 +71,7 @@ public class User_information_changeActivity extends AppCompatActivity {
             userSurnameInput.getEditText().setText("");
             passwordInput.getEditText().setText("");
             confirmPasswordInput.getEditText().setText("");
-            Toast.makeText(this, "Gebruikersnaam is met succes gewijzigd", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "De gebruikersnaam is met succes gewijzigd", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, User_information_changeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
