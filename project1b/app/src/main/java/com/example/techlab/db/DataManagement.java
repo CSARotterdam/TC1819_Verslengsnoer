@@ -214,6 +214,7 @@ public class DataManagement {
         return usersList;
 
     }
+
     public Electronics getProductData(int id_){
         ArrayList<Electronics> electronicsList = new ArrayList<>();
         try{
@@ -362,6 +363,45 @@ public class DataManagement {
 
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
+    public void updateUserPassword( String Password, int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE USERS SET PASSWORD=? WHERE ID_=?");
+                pstmt.setString(1,Password);
+                pstmt.setInt(2,ID_);
+                pstmt.executeUpdate();
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
+    public void updateUserNames(String firstName, String surname, int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE USERS SET FIRSTNAME=?,SURNAME=? WHERE ID_=?");
+                pstmt.setString(1,firstName);
+                pstmt.setString(2,surname);
+                pstmt.setInt(3,ID_);
+                pstmt.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -550,13 +590,13 @@ public class DataManagement {
                         productType = "electronic";
                     }
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
-                        RequestDate = "";
+                        RequestDate = "Niet beschikbaar";
                     }else{
                         RequestDate = DateUtils.getCurrentDate(resultSet.getDate("REQUEST_BORROW_DATE"));
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "";
+                        BorrowDate = "..............";
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getDate("BORROW_DATE"));
                     }

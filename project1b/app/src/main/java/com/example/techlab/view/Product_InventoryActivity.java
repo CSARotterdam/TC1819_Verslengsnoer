@@ -41,8 +41,9 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     RecyclerViewAdapter adapter;
     View headerView;
 
-    // Array van de namen en afbeeldingen van elk product
+
     ArrayList<Products> books;
+    ArrayList<Products> products;
     DataManagement dataManagement;
 
     @Override
@@ -74,22 +75,22 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<Products> products2;
+
                 if (parent.getSelectedItem().toString().matches("Alle Producten")){
-                    products2 = dataManagement.getAllElectronicsData();
+                    products = dataManagement.getAllElectronicsData();
                     books = dataManagement.getAllBooksData();
                     for (int i = 0; books.size() >i ; i++) {
-                        products2.add(books.get(i));
+                        products.add(books.get(i));
                     }
                 }else{
-                    products2 = dataManagement.getAllElectronicsData(parent.getSelectedItem().toString());
+                    products = dataManagement.getAllElectronicsData(parent.getSelectedItem().toString());
                     books = dataManagement.getAllBooksData(parent.getSelectedItem().toString());
                     for (int i = 0; books.size() >i ; i++) {
-                        products2.add(books.get(i));
+                        products.add(books.get(i));
                     }
                 }
                 RecyclerView recyclerView = findViewById(R.id.recycler_view);
-                adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products2);
+                adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
             }
@@ -183,6 +184,13 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             startActivity(intent);
             finish();
         }
+        if (id == R.id.userAccountSetting){
+            Intent intent = new Intent(getBaseContext(), User_information_changeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+
         return false;
     }
     public void menuButtonManager(){

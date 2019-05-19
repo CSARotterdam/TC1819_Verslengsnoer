@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
@@ -14,6 +16,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     Intent intent;
     TextView prnaam, gebrnaam, aantalpr, status;
     DataManagement dataManagement;
+    CheckBox ProductIsNotDamaged;
 
 
     @Override
@@ -27,6 +30,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
         gebrnaam = findViewById(R.id.leenavraagUser);
         aantalpr = findViewById(R.id.leenavraagAantal);
         status = findViewById(R.id.productRequestListProductStatus);
+        ProductIsNotDamaged = findViewById(R.id.ProductIsNotDamagedCheckBox);
         prnaam.setText("Aangevraagde product: "+getIntent().getStringExtra("productnaam_ProductBorrowlist"));
         gebrnaam.setText("Aangevraagd door: "+getIntent().getStringExtra("gebruikernaam_ProductBorrowlist"));
         aantalpr.setText("Aanvraagde aantal: "+getIntent().getIntExtra("aantalaangevr_ProductBorrowlist", -1)+"");
@@ -43,18 +47,20 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
 
     public void lendProductButton(View view){
         dataManagement.updateBorrowStatus("Geleend", DateUtils.getCurrentDate(), getIntent().getIntExtra("P_id_ProductBorrowlist", -1));
+        Toast.makeText(this, "het product is met succes uitgeleend", Toast.LENGTH_LONG).show();
         status.setText("Aanvraag status: Geleend");
 
     }
 
     public void returnProductButton(View view){
-        dataManagement.DelRequestBorrowItem(getIntent().getIntExtra("P_id_ProductBorrowlist", -1) );
-
-        Intent intent = new Intent(this, AangevraagdItems_UserList.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
-
+        if(ProductIsNotDamaged.isChecked()){
+            dataManagement.DelRequestBorrowItem(getIntent().getIntExtra("P_id_ProductBorrowlist", -1) );
+            Intent intent = new Intent(this, AangevraagdItems_UserList.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Toast.makeText(this, "het product is met succes teruggenomen", Toast.LENGTH_LONG).show();
+            startActivity(intent);
+            finish();
+        }
     }
 
 

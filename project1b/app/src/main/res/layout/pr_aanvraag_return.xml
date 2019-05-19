@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     >
     <TextView
         android:layout_marginLeft="35dp"
@@ -38,7 +39,7 @@
         android:layout_marginBottom="30dp"/>
     <CheckBox
         android:layout_marginLeft="15dp"
-        android:id="@+id/checkBox"
+        android:id="@+id/ProductIsNotDamagedCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Producten zijn niet beschadigd" />

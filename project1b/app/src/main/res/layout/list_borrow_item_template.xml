@@ -17,23 +17,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp">
+        android:layout_margin="2dp"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/ListItemImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
+            android:layout_margin="10dp"/>
 
         <TextView
             android:id="@+id/ListItemText_ProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxWidth="250dp"
+            android:layout_marginTop="6dp"
             android:text="Product Name template"
             android:textSize="20sp"
             android:layout_toRightOf="@id/ListItemImage"
@@ -42,7 +40,7 @@
             android:id="@+id/ListItemText_borrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Geleend: "
+            android:text="Geleend op: "
             android:textSize="15sp"
             android:layout_toRightOf="@id/ListItemImage"
             android:layout_toEndOf="@id/ListItemImage"
@@ -51,10 +49,10 @@
             android:id="@+id/ListItemText_ProductBorrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ListItemText_TurnInDate"
+            android:layout_toRightOf="@id/ListItemText_borrow"
             android:text="#"
             android:textSize="12sp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3.5dp"
             android:paddingRight="10dp"
 
             android:layout_below="@id/ListItemText_ProductName"/>
@@ -65,7 +63,7 @@
             android:layout_below="@id/ListItemText_borrow"
             android:layout_toRightOf="@id/ListItemImage"
             android:layout_toEndOf="@id/ListItemImage"
-            android:text="Aangevraagd: "
+            android:text="Aangevraagd op: "
             android:textSize="15sp" />
         <TextView
             android:id="@+id/ListItemText_ProductRequest"
@@ -75,7 +73,7 @@
             android:text="#"
             android:textSize="12sp"
             android:paddingRight="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3.5dp"
             android:layout_below="@id/ListItemText_borrow"/>
 
 

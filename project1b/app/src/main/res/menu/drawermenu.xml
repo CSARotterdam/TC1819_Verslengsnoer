@@ -7,6 +7,7 @@
     <item android:id="@+id/ProductAdministratieMenu" android:title="Product Administratie " android:icon="@drawable/ic_product_administration"/>
     <item android:id="@+id/productmanagementMenu" android:title="Productbeheer" android:icon="@drawable/ic_product_management"/>
     <item android:id="@+id/userManagementMenu" android:title="Gebruikersbeheer" android:icon="@drawable/ic_user_management"/>
+    <item android:id="@+id/userAccountSetting" android:title="Account instellingen" android:icon="@drawable/ic_user_account_setting"/>
     <item android:id="@+id/LogoutMenu" android:title="Uitloggen" android:icon="@drawable/ic_logout"/>
 
 

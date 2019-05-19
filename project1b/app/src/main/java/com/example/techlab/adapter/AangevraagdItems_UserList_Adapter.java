@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.techlab.R;
@@ -24,7 +24,7 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
 
     public static class AangevraagdItems_UserListViewHolder extends RecyclerView.ViewHolder{
 
-        RelativeLayout parentLayout;
+        LinearLayout parentLayout;
         public TextView mPrnaam;
         public TextView mGebrnaam;
 

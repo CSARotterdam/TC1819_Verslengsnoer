@@ -11,40 +11,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.Product_management_book_updateActivity"
-            android:label="Product update"></activity>
-        <activity android:name=".view.Product_management_book_infoActivity"
-            android:label="Product info"/>
-        <activity android:name=".view.Product_management_add_bookActivity"
-            android:label="Product toevoegen"/>
-        <activity android:name=".view.User_management_user_InfoActivity"
-            android:label="Gebruiker Info"/>
-        <activity android:name=".view.Users_managementActivity"
-            android:label="Gebruikersbeheer"/>
+        <activity android:name=".view.User_information_changeActivity"
+            android:label="Account instellingen"></activity>
+        <activity
+            android:name=".view.Product_management_book_updateActivity"
+            android:label="Product update" />
+        <activity
+            android:name=".view.Product_management_book_infoActivity"
+            android:label="Product info" />
+        <activity
+            android:name=".view.Product_management_add_bookActivity"
+            android:label="Product toevoegen" />
+        <activity
+            android:name=".view.User_management_user_InfoActivity"
+            android:label="Gebruiker Info" />
+        <activity
+            android:name=".view.Users_managementActivity"
+            android:label="Gebruikersbeheer" />
         <activity
             android:name=".view.Student_BorrowedActivity"
             android:label="Geleende / aangevraagde producten" />
-        <activity android:name=".view.Product_management_product_UpdateActivity"
-            android:label="Product update"/>
-        <activity android:name=".view.Product_management_product_infoActivity"
-            android:label="Product info"/>
-        <activity android:name=".view.Product_management_add_productActivity"
-            android:label="Product toevoegen"/>
-        <activity android:name=".view.Product_managementActivity"
-            android:label="Productbeheer"/>
-        <activity android:name=".view.SignUpActivity" />
-
-        <activity android:name=".view.pr_Aanvraag_Return"
-            android:label=""/>
-        <activity android:name=".view.AangevraagdItems_UserList"
-            android:label="Producten leen aanvragen Lijst"/>
+        <activity
+            android:name=".view.Product_management_product_UpdateActivity"
+            android:label="Product update" />
+        <activity
+            android:name=".view.Product_management_product_infoActivity"
+            android:label="Product info" />
+        <activity
+            android:name=".view.Product_management_add_productActivity"
+            android:label="Product toevoegen" />
+        <activity
+            android:name=".view.Product_managementActivity"
+            android:label="Productbeheer" />
+        <activity android:name=".view.SignUpActivity"
+            android:label="Aanmeldingspagina" />
+        <activity
+            android:name=".view.pr_Aanvraag_Return"
+            android:label="aangevraagde productpagina" />
+        <activity
+            android:name=".view.AangevraagdItems_UserList"
+            android:label="product leen aanvraaglijst" />
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
-            android:label="Inventaris"/>
+            android:label="Inventaris" />
         <activity
-        android:name=".view.Product_ItemDescription"
-        android:label="Product Informatie" />
+            android:name=".view.Product_ItemDescription"
+            android:label="Product Informatie" />
         <activity
             android:name=".view.Product_Voorwaarden"
             android:label="Product Voorwaarden" />

@@ -1,6 +1,8 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,78 +13,76 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
 
-import java.util.List;
-
-public class SignUpActivity extends AppCompatActivity {
-    TextInputLayout userFirstNameInput, userSurnameInput, schoolEmailInput, passwordInput, confirmPasswordInput;
+public class User_information_changeActivity extends AppCompatActivity {
+    TextInputLayout userFirstNameInput, userSurnameInput, passwordInput, confirmPasswordInput;
     DataManagement dataManagement;
+    private SharedPreferences.Editor mEditor;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
-        userFirstNameInput = findViewById(R.id.firstNameInputLayout);
-        userSurnameInput = findViewById(R.id.surnameInputLayout);
-        schoolEmailInput = findViewById(R.id.schoolEmailInputLayout);
-        passwordInput = findViewById(R.id.passwordInputLayout);
-        confirmPasswordInput = findViewById(R.id.confirmPasswordInputLayout);
-        dataManagement = new DataManagement();
-    }
+        setContentView(R.layout.activity_user_information_change);
+    userFirstNameInput = findViewById(R.id.AccountSettingFirstNameInputLayout);
+    userSurnameInput = findViewById(R.id.AccountSettingSurnameInputLayout);
+    passwordInput = findViewById(R.id.AccountSettingPasswordInputLayout);
+    confirmPasswordInput = findViewById(R.id.AccountSettingConfirmPasswordInputLayout);
+    mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+    mEditor = mSharedPreferences.edit();
+    dataManagement = new DataManagement();
+    Users user = dataManagement.getUserWithId(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
+    userFirstNameInput.getEditText().setText(user.getFirstName());
+    userSurnameInput.getEditText().setText(user.getSurname());
+}
 
 
-    public void signUpButtonClicked(View view) {
+    public void ChangeMyUserPassword(View view) {
         // insert new user
-        boolean email, passWord, conformPassword, firstName, surname;
-        email = emailValidation();
+        boolean passWord, conformPassword;
+
         passWord = passwordValidation();
-        firstName = firstNameValidation();
-        surname = surnameValidation();
+
         conformPassword = confirmPasswordValidation();
 
-        if (email && passWord && firstName && surname && conformPassword) {
-            dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(),
-                    schoolEmailInput.getEditText().getText().toString().trim(), passwordInput.getEditText().getText().toString().trim());
+        if ( passWord && conformPassword) {
+            dataManagement.updateUserPassword(confirmPasswordInput.getEditText().getText().toString(),mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1) );
+
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS, confirmPasswordInput.getEditText().getText().toString());
+
             // resetting the  form input text field
             userFirstNameInput.getEditText().setText("");
             userSurnameInput.getEditText().setText("");
-            schoolEmailInput.getEditText().setText("");
             passwordInput.getEditText().setText("");
-            Toast.makeText(this, "U hebt met succes een nieuw account geregistreerd", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, MainActivity.class);
+            confirmPasswordInput.getEditText().setText("");
+            Toast.makeText(this, "Het wachtwoord  is met succes gewijzigd", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, User_information_changeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
 
     }
-
-    private boolean emailValidation() {
-        String input = schoolEmailInput.getEditText().getText().toString();
-        boolean EmailAlreadyRegisteredCheck = true;
-        List<Users> users = dataManagement.getAllUserData();
-
-        for (int i = 0; users.size() > i; i++) {
-            if (users.get(i).getSchoolEmail().equals(input)) {
-                EmailAlreadyRegisteredCheck = false;
-            }
+    public void ChangeMyUserNames(View view) {
+        boolean  firstName, surname;
+        firstName = firstNameValidation();
+        surname = surnameValidation();
+        if ( firstName && surname ) {
+            dataManagement.updateUserNames(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(), mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, -1));
+            userFirstNameInput.getEditText().setText("");
+            userSurnameInput.getEditText().setText("");
+            passwordInput.getEditText().setText("");
+            confirmPasswordInput.getEditText().setText("");
+            Toast.makeText(this, "De gebruikersnaam is met succes gewijzigd", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, User_information_changeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
-
-
-        if (input.isEmpty()) {
-            schoolEmailInput.setError("lege invoerveld is niet toegestaan");
-            return false;
-
-        } else if ((input.length() != 13)) {
-            schoolEmailInput.setError("ingevulde email is niet correct \nWe accepteren alleen schoolEmail van de hogeschool Rotterdam");
-            return false;
-        } else if (!(input.substring(input.length() - 6).matches("@hr.nl"))) {
-            schoolEmailInput.setError("ingevulde email is niet correct \nWe accepteren alleen schoolEmail van de hogeschool Rotterdam");
-            return false;
-        } else if (!(EmailAlreadyRegisteredCheck)) {
-            schoolEmailInput.setError("Deze e-mail is al gebruikt voor een ander account");
-            return false;
-        } else {
-            schoolEmailInput.setError(null);
-            return true;
-        }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, Product_InventoryActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private boolean passwordValidation() {
