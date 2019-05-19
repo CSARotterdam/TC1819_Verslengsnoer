@@ -19,17 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="3"
+        android:weightSum="1"
+            android:layout_marginLeft="15dp"
         >
 
     <TextView
         android:id="@+id/userManagementItemUserName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.7"
         android:layout_height="wrap_content"
-        android:layout_weight="2.6"
-        android:text="@{UsersItem.schoolEmail}"
+        android:text="@{UsersItem.firstName}"
         android:textColor="@color/black"
-        tools:text="LCD Display" />
+        tools:text="Tenzin sopa"
+         />
 
         <TextView
             android:id="@+id/userManagementItemBorrowedAmount"

@@ -15,13 +15,21 @@ android:background="@color/colorBackground">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:textSize="12dp"
+            android:text="De namen mogen alleen uit letters bestaan."
+            />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/AccountSettingFirstNameInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             app:errorEnabled="true">
@@ -60,11 +68,20 @@ android:background="@color/colorBackground">
             android:text="Naam Veranderen" />
 
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:textSize="12dp"
+            android:text="Het wachtwoord moet minimaal 8 tekens lang zijn"
+             />
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/AccountSettingPasswordInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             app:errorEnabled="true"

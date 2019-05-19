@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
@@ -46,6 +47,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
 
     public void lendProductButton(View view){
         dataManagement.updateBorrowStatus("Geleend", DateUtils.getCurrentDate(), getIntent().getIntExtra("P_id_ProductBorrowlist", -1));
+        Toast.makeText(this, "het product is met succes uitgeleend", Toast.LENGTH_LONG).show();
         status.setText("Aanvraag status: Geleend");
     }
 
@@ -54,6 +56,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
             dataManagement.DelRequestBorrowItem(getIntent().getIntExtra("P_id_ProductBorrowlist", -1) );
             Intent intent = new Intent(this, AangevraagdItems_UserList.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Toast.makeText(this, "het product is met succes teruggenomen", Toast.LENGTH_LONG).show();
             startActivity(intent);
             finish();
         }

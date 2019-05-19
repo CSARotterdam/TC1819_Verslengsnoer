@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.User_information_changeActivity"></activity>
+        <activity android:name=".view.User_information_changeActivity"
+            android:label="Account instellingen"></activity>
         <activity
             android:name=".view.Product_management_book_updateActivity"
             android:label="Product update" />
@@ -42,10 +43,11 @@
         <activity
             android:name=".view.Product_managementActivity"
             android:label="Productbeheer" />
-        <activity android:name=".view.SignUpActivity" />
+        <activity android:name=".view.SignUpActivity"
+            android:label="Aanmeldingspagina" />
         <activity
             android:name=".view.pr_Aanvraag_Return"
-            android:label="" />
+            android:label="aangevraagde productpagina" />
         <activity
             android:name=".view.AangevraagdItems_UserList"
             android:label="product leen aanvraaglijst" />
