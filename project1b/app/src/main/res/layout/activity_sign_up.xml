@@ -111,7 +111,7 @@
                     android:id="@+id/confirmPasswordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/wachtwoord"
+                    android:hint="@string/Herhaalwachtwoord"
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
@@ -127,7 +127,6 @@
                 android:textColor="@color/colorButton1Text"
                 android:onClick="signUpButtonClicked"
                 android:text="@string/registreren" />
-
 
         </LinearLayout>
 
