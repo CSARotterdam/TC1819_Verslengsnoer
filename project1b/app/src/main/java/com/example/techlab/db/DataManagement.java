@@ -592,13 +592,13 @@ public class DataManagement {
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
                     }else{
-                        RequestDate = DateUtils.getCurrentDate(resultSet.getDate("REQUEST_BORROW_DATE"));
+                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
                         BorrowDate = "..............";
                     }else{
-                        BorrowDate = DateUtils.getCurrentDate(resultSet.getDate("BORROW_DATE"));
+                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     BorrowList.add(new Borrow(
                             productName,
@@ -737,13 +737,13 @@ public class DataManagement {
                     }if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "";
                     }else{
-                        RequestDate = DateUtils.getCurrentDate(resultSet.getDate("REQUEST_BORROW_DATE"));
+                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
                         BorrowDate = "";
                     }else{
-                        BorrowDate = DateUtils.getCurrentDate(resultSet.getDate("BORROW_DATE"));
+                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     loanUsersList.add(new Borrow(
                             productName,
