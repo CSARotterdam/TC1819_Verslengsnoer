@@ -1,97 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pr_aanvraag_returna"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     >
-
     <TextView
-
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/leenavraagUser"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
         android:text="gebruiker"
         android:textSize="15sp" />
 
     <TextView
+        android:layout_marginLeft="35dp"
         android:id="@+id/leenavraagAantal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/productRequestListProductStatus"
-        android:layout_alignLeft="@+id/productRequestListProductStatus"
-        android:layout_alignTop="@+id/productRequestListProductStatus"
-        android:layout_marginStart="-6dp"
-        android:layout_marginLeft="-6dp"
-        android:layout_marginTop="41dp"
         android:text="Aantal"
-        android:textSize="15sp" />
+        android:textSize="15sp"/>
 
     <TextView
+        android:layout_marginLeft="35dp"
         android:id="@+id/leenavraagProduct"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/leenavraagAantal"
-        android:layout_alignLeft="@+id/leenavraagAantal"
-        android:layout_alignTop="@+id/productRequestListProductStatus"
-        android:layout_marginStart="-20dp"
-        android:layout_marginLeft="-20dp"
-        android:layout_marginTop="69dp"
         android:text="Productnaam"
         android:textSize="15sp" />
-
     <TextView
+        android:layout_marginLeft="35dp"
         android:id="@+id/productRequestListProductStatus"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/leenavraagUser"
-        android:layout_alignLeft="@+id/leenavraagUser"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="154dp"
-        android:layout_marginBottom="30dp"
-        android:text="Status" />
-
+        android:text="Status"
+        android:layout_marginBottom="30dp"/>
     <CheckBox
+        android:layout_marginLeft="15dp"
         android:id="@+id/ProductIsNotDamagedCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button6"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="339dp"
         android:text="Producten zijn niet beschadigd" />
-
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/leenavraagProduct"
         android:onClick="lendProductButton"
         android:text="Product Uitlenen"
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/color_button1"
+        android:textColor="@android:color/white"
+        android:layout_marginVertical="5dp"
+
         />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button6"
-        android:layout_marginTop="5dp"
         android:onClick="returnProductButton"
         android:text="Product Terugnemen"
-         />
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/color_button1"
+        android:textColor="@android:color/white"
+        android:layout_marginVertical="5dp"
+
+
+ />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/color_button1"
         android:onClick="annuleerbButton"
         android:text="Uitlening Annuleren"
-         />
+        android:textColor="@android:color/white"
 
 
-</RelativeLayout>
+        />
+
+
+</LinearLayout>
