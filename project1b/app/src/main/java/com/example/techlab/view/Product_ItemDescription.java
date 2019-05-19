@@ -24,6 +24,9 @@ import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Products;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 //import java.util.ArrayList; ////Belongs to the code of Guan Version 1
 
 public class Product_ItemDescription extends AppCompatActivity {
@@ -118,6 +121,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                                 Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
                                 //DB code here
                                 dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType, DateUtils.getCurrentDate());
+//                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType, Calendar.);
                                 Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
                                 startActivity(BorrowActivity);
                             }
