@@ -14,7 +14,7 @@
     <LinearLayout
         android:id="@+id/pr_aanvraag_returnOnclick"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="40dp"
         android:padding="10dp"
         android:weightSum="1">
 
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="gebruiker"
             android:layout_marginLeft="15dp"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/Productnaam_Textview"
@@ -33,7 +33,7 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="Productnaam"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
