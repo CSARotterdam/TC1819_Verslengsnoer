@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
@@ -46,6 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
             userSurnameInput.getEditText().setText("");
             schoolEmailInput.getEditText().setText("");
             passwordInput.getEditText().setText("");
+            Toast.makeText(this, "U hebt met succes een nieuw account geregistreerd", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
