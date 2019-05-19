@@ -47,7 +47,6 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     public void lendProductButton(View view){
         dataManagement.updateBorrowStatus("Geleend", DateUtils.getCurrentDate(), getIntent().getIntExtra("P_id_ProductBorrowlist", -1));
         status.setText("Aanvraag status: Geleend");
-
     }
 
     public void returnProductButton(View view){
@@ -60,6 +59,10 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
         }
     }
 
+    public void annuleerbButton(View view){
+        dataManagement.updateBorrowStatus("Pending", DateUtils.getCurrentDate(), getIntent().getIntExtra("P_id_ProductBorrowlist", -1));
+        status.setText("Aanvraag status: Pending");
+    }
 
 
 
