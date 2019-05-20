@@ -72,6 +72,12 @@ public class Product_managementActivity extends AppCompatActivity {
         Intent startNewActivity = new Intent(this, Product_management_add_bookActivity.class);
         startActivity(startNewActivity);
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
+        startActivity(startNewActivity);
+    }
 
 
 }

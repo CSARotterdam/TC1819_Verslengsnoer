@@ -113,6 +113,13 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
 //    }
 
     @Override
+    public void onBackPressed() {
+        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
+        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startNewActivity);
+        finish();
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;

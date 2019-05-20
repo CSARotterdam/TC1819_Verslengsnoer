@@ -1,6 +1,7 @@
 package com.example.techlab.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -57,5 +58,11 @@ public class Users_managementActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
+        startActivity(startNewActivity);
     }
 }
