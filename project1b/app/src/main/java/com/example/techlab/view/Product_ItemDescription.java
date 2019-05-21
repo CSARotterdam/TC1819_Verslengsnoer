@@ -125,7 +125,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                         .setCancelable(false);
 
                 TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
-                textmsg.setText("Ga akkoord met de voorwaarden als je dit product wilt lenen.");
+                textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
 
                 Button voorwaardenBtn = contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden);
 

@@ -12,4 +12,15 @@
         android:padding="10dp"/>
         <!--android:text="@string/gebruikersvoorwaarden"-->
 
+    <!--<Button-->
+        <!--android:id="@+id/VoorwaardenBtn"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_margin="3dp"-->
+        <!--android:text="@string/voorwaarden"-->
+        <!--android:textSize="15sp"-->
+        <!--android:textColor="#FFF"-->
+        <!--android:background="@drawable/color_button1"-->
+        <!--android:shadowColor="@android:color/black"/>-->
+
 </ScrollView>
