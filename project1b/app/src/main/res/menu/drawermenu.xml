@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/inventarisMenu" android:title="Inventaris" android:icon="@drawable/ic_inventaris"/>
-    <item android:id="@+id/borrowedProductMenu" android:title="Geleende Producten" android:icon="@drawable/ic_borrowed_product"/>
+    <item android:id="@+id/borrowedProductMenu" android:title="Geleende / aangevraagde producten" android:icon="@drawable/ic_borrowed_product"/>
     <item android:id="@+id/ProductAdministratieMenu" android:title="Product Administratie " android:icon="@drawable/ic_product_administration"/>
     <item android:id="@+id/productmanagementMenu" android:title="Productbeheer" android:icon="@drawable/ic_product_management"/>
     <item android:id="@+id/userManagementMenu" android:title="Gebruikersbeheer" android:icon="@drawable/ic_user_management"/>

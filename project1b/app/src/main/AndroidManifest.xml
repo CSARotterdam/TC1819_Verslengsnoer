@@ -50,7 +50,7 @@
             android:label="aangevraagde productpagina" />
         <activity
             android:name=".view.AangevraagdItems_UserList"
-            android:label="product leen aanvraaglijst" />
+            android:label="Product administratie" />
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
