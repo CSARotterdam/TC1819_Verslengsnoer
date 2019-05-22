@@ -37,11 +37,13 @@ public class Product_ItemDescription extends AppCompatActivity {
     String objectType;
     Products product;
 
+//    https://www.youtube.com/watch?v=ZXoGG2XTjzU
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "OnCreate: started.");
         setContentView(R.layout.activity_item_description);
+
         dataManagement =  new DataManagement();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         Buttons();
@@ -103,9 +105,11 @@ public class Product_ItemDescription extends AppCompatActivity {
                 // Guan Popup Version 2 to match all screen.
                 LayoutInflater li = LayoutInflater.from(Product_ItemDescription.this);
                 View contentVoorwaarden = li.inflate(R.layout.custom_borrow_alertdialog, null);
-                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
-                RequestItemAlertDialog.setView(contentVoorwaarden);
-                RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
+
+//                POP UP in Product_ItemDescription class
+                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this)
+                        .setView(contentVoorwaarden)
+                        .setTitle("Aanvraag voor lenen")
                         .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick( DialogInterface dialog, int which){
@@ -115,13 +119,16 @@ public class Product_ItemDescription extends AppCompatActivity {
                         .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+//                                Toast that shows that the request is sent
                                 Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
-                                //DB code here
+                                //takes productID, UserID, the amound lend and the currentdate from the Database
                                 dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType, DateUtils.getCurrentDate());
+//                                When you click on "Akkoord" you'll go to the Student_BorrowedActivity.class
                                 Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
                                 startActivity(BorrowActivity);
                             }
                         })
+//                        You can't click outside the popup to cancel
                         .setCancelable(false);
 
                 TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
