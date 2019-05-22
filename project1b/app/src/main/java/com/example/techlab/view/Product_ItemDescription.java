@@ -110,6 +110,8 @@ public class Product_ItemDescription extends AppCompatActivity {
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this)
                         .setView(contentVoorwaarden)
                         .setTitle("Aanvraag voor lenen")
+                        .setMessage("Als u dit product leent moet het voor 17:00 ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.")
+
                         .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick( DialogInterface dialog, int which){
@@ -131,8 +133,8 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                        You can't click outside the popup to cancel
                         .setCancelable(false);
 
-                TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
-                textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
+//                TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
+//                textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
 
                 Button voorwaardenBtn = contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden);
 
