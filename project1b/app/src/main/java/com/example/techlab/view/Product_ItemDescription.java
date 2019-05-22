@@ -111,7 +111,6 @@ public class Product_ItemDescription extends AppCompatActivity {
                         .setView(contentVoorwaarden)
                         .setTitle("Aanvraag voor lenen")
                         .setMessage("Als u dit product leent moet het voor 17:00 ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.")
-
                         .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick( DialogInterface dialog, int which){

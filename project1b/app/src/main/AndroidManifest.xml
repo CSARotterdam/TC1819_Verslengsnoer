@@ -30,7 +30,7 @@
             android:label="Gebruikersbeheer" />
         <activity
             android:name=".view.Student_BorrowedActivity"
-            android:label="Geleende / aangevraagde producten" />
+            android:label="Geleend / aangevraagd" />
         <activity
             android:name=".view.Product_management_product_UpdateActivity"
             android:label="Product update" />
