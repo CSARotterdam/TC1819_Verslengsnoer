@@ -25,11 +25,12 @@ import com.example.techlab.view.Product_ItemDescription;
 import java.util.ArrayList;
 import java.util.List;
 
+//https://www.youtube.com/watch?v=Vyqz_-sJGFk
 public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
     // This is for debugging
     private static final String TAG = "RecyclerViewAdapter";
 
-    // Array van de product Namen en fotos
+    // Array van alle product Namen en fotos
     private Context mContext;
     public List<Products> products;
     private List<Products> productsListFull;
@@ -37,8 +38,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
     public RecyclerViewAdapter(Context context,List<Products> products){
         mContext = context;
         this.products = products;
-        this.productsListFull = new ArrayList<>(products);
-    }
+        this.productsListFull = new ArrayList<>(products);}
 
     // This recycles the viewholder
     @Override
@@ -54,13 +54,14 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
+//        Here we get the product
         final Products product = products.get(i);
-        // Here we get the images
+        // Here we get the images of the product from the bitmap
         viewHolder.image.setImageBitmap(ImageUtils.getImage(product.getImage()));
 
         viewHolder.productItemBinding.setProduct(product);
 //        holder.productDescription.setText(mProductDescription.get(position)); // It crashes here
-
+//      If you click on a product you'll get the itemdescription and category
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -89,6 +89,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
                         products.add(books.get(i));
                     }
                 }
+
                 RecyclerView recyclerView = findViewById(R.id.recycler_view);
                 adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
                 recyclerView.setAdapter(adapter);

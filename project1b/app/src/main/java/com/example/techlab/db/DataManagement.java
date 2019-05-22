@@ -609,7 +609,9 @@ public class DataManagement {
                             resultSet.getInt("_ID"),
                             productType,
                             image,
-                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
+                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname(),
+                            resultSet.getInt("USERS_P_ID")));
+
 
                 }
                 ConnectionResult="successful";
@@ -754,7 +756,8 @@ public class DataManagement {
                             resultSet.getInt("_ID"),
                             productType,
                             image,
-                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()));
+                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()
+                            ,resultSet.getInt("USERS_P_ID")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;

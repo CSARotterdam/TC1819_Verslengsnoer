@@ -71,6 +71,7 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
                 intent.putExtra("gebruikernaam_ProductBorrowlist",currentItem.getmGebrnaam());
                 intent.putExtra("aantalaangevr_ProductBorrowlist",currentItem.getBorrowItemAmount());
                 intent.putExtra("status_ProductBorrowlist",currentItem.getBorrowStatus());
+                intent.putExtra("UserID", currentItem.getUserID());
 
                 mContext.startActivity(intent);
             }
