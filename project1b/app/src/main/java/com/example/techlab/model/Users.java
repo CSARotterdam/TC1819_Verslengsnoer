@@ -11,8 +11,9 @@ public class Users implements Parcelable  {
     private int loanedAmount;
     private String userType;
     private int id;
+    private int blockStatus;
 
-    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount ,String userType, int _id) {
+    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount ,String userType, int _id, int block) {
         this.firstName = firstName;
         this.surname = surname;
         this.schoolEmail = schoolEmail;
@@ -20,6 +21,7 @@ public class Users implements Parcelable  {
         this.loanedAmount = loanedAmount;
         this.userType = userType;
         this.id = _id;
+        this.blockStatus = block;
     }
 
     protected Users(Parcel in) {
@@ -29,6 +31,7 @@ public class Users implements Parcelable  {
         password = in.readString();
         loanedAmount = in.readInt();
         userType = in.readString();
+        blockStatus = in.readInt();
     }
 
     public int getId() {
@@ -99,6 +102,14 @@ public class Users implements Parcelable  {
         this.loanedAmount = loanedAmount;
     }
 
+    public int getBlockStatus() {
+        return blockStatus;
+    }
+
+    public void setBlockStatus(int blockStatus) {
+        this.blockStatus = blockStatus;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -112,5 +123,6 @@ public class Users implements Parcelable  {
         dest.writeString(password);
         dest.writeInt(loanedAmount);
         dest.writeString(userType);
+        dest.writeInt(blockStatus);
     }
 }

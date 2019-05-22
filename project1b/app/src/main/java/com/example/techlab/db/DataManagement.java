@@ -172,7 +172,7 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
-                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_")));
+                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"), resultSet.getInt("BLOCKED")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
@@ -200,7 +200,7 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
-                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_")));
+                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
@@ -370,6 +370,51 @@ public class DataManagement {
             ConnectionResult=ex.getMessage();
         }
     }
+    public void setBlockUser( int block, int ID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "UPDATE USERS SET BLOCKED = '"+block+"' WHERE ID_ = "+ID_+";";
+
+                Statement statement = connect.createStatement();
+                statement.executeQuery(query);
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+    }
+
+    public boolean ifBlocked(String email){
+        boolean result = false;
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                ConnectionResult = "Check your internet access";
+            }
+            else{
+                String query = "SELECT BLOCKED FROM USERS WHERE SCHOOL_EMAIL = '"+email+"' and BLOCKED = "+1+";";
+
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while (resultSet.next()) {
+                    result = true;
+                }
+                connect.close();
+            }
+        }catch(Exception ex){
+            isSuccess=false;
+            ConnectionResult=ex.getMessage();
+        }
+        return result;
+    }
+
     public void updateUserPassword( String Password, int ID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -639,7 +684,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
@@ -666,7 +711,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
                 }
                 ConnectionResult="successful";
                 isSuccess=true;
@@ -785,7 +830,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
+                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
                 }
                 ConnectionResult = "successful";
                 isSuccess = true;
