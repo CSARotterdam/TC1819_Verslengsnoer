@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -78,17 +77,9 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (parent.getSelectedItem().toString().matches("Alle Producten")){
-                    products = dataManagement.getAllElectronicsData();
-                    books = dataManagement.getAllBooksData();
-                    for (int i = 0; books.size() >i ; i++) {
-                        products.add(books.get(i));
-                    }
+                    products = dataManagement.getAllProducts();
                 }else{
-                    products = dataManagement.getAllElectronicsData(parent.getSelectedItem().toString());
-                    books = dataManagement.getAllBooksData(parent.getSelectedItem().toString());
-                    for (int i = 0; books.size() >i ; i++) {
-                        products.add(books.get(i));
-                    }
+                    products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
                 }
 
                 RecyclerView recyclerView = findViewById(R.id.recycler_view);

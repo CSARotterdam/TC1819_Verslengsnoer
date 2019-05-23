@@ -44,7 +44,7 @@ public class DataManagement {
             Log.d(TAG,ex.toString());
         }
     }
-    public ArrayList<Products> getAllElectronicsData(){
+    public ArrayList<Products> getAllProducts(){
         ArrayList<Products> electronicsList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -53,11 +53,16 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM ELECTRONICS";
+                String query = "SELECT * FROM PRODUCTS ";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
-                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                    if (resultSet.getString("CATEGORY").matches("Book")){
+                        electronicsList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("PRODUCT_NAME"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
+                                ,resultSet.getString("PUBLISHER"),resultSet.getInt("STOCK"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
+                    }else{
+                        electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                    }
                 }
                 connect.close();
             }
@@ -67,7 +72,7 @@ public class DataManagement {
         return electronicsList;
     }
 
-    public ArrayList<Products> getAllElectronicsData(String category){
+    public ArrayList<Products> getAllProducts(String category){
         ArrayList<Products> electronicsList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -76,11 +81,16 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM ELECTRONICS WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"';";
+                String query = "SELECT * FROM PRODUCTS WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"';";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
-                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                    if (resultSet.getString("CATEGORY").matches("Book")){
+                        electronicsList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("PRODUCT_NAME"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
+                                ,resultSet.getString("PUBLISHER"),resultSet.getInt("STOCK"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
+                    }else{
+                        electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                    }
                 }
                 connect.close();
             }
@@ -89,52 +99,7 @@ public class DataManagement {
         }
         return electronicsList;
     }
-    public ArrayList<Products> getAllBooksData(){
-        ArrayList<Products> boookList = new ArrayList<>();
-        try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
-            else{
-                String query = "SELECT * FROM BOOK";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()){
-                    boookList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("TITLE"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
-                    ,resultSet.getString("PUBLISHER"),resultSet.getInt("AMOUNT"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
-                }
-                connect.close();
-            }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
-        return boookList;
-    }
-    public ArrayList<Products> getAllBooksData(String category){
-        ArrayList<Products> boookList = new ArrayList<>();
-        try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
-            else{
-                String query = "SELECT * FROM BOOK WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"'";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()){
-                    boookList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("TITLE"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
-                            ,resultSet.getString("PUBLISHER"),resultSet.getInt("AMOUNT"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
-                }
-                connect.close();
-            }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
-        return boookList;
-    }
+
     public ArrayList<Users> getAllUserData(int ID_){
         ArrayList<Users> usersList = new ArrayList<>();
         try{
@@ -182,7 +147,7 @@ public class DataManagement {
         return usersList;
     }
 
-    public Electronics getProductData(int id_){
+    public Electronics getProductWithId(int id_){
         ArrayList<Electronics> electronicsList = new ArrayList<>();
         try{
 
@@ -192,7 +157,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM ELECTRONICS WHERE ID_ = "+id_+";";
+                String query = "SELECT * FROM PRODUCTS WHERE ID_ = "+id_+";";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
@@ -205,28 +170,7 @@ public class DataManagement {
         }
         return electronicsList.get(0);
     }
-    public byte[] getImage(int id_) {
-        ArrayList<byte[]> resultImage = new ArrayList<>();
-        try {
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null) {
-                Log.d(TAG,"Check your internet connection!");
-            } else {
-                String query = "SELECT IMAGE FROM ELECTRONICS WHERE ID_ = " + id_ + ";";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()) {
 
-                    resultImage.add(resultSet.getBytes("IMAGE") );
-                }
-                connect.close();
-            }
-        } catch (Exception ex) {
-            Log.d(TAG,ex.toString());
-        }
-        return resultImage.get(0);
-    }
     public void addProductData(String productID, String manufacturer, String category, String productName, int stock, int amountBroken, byte[] image, String description){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -235,7 +179,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("Insert into ELECTRONICS (PRODUCT_ID, MANUFACTURER, CATEGORY, PRODUCT_NAME, STOCK, AMOUNT_BROKEN, DESCRIPTION, IMAGE) " +
+                PreparedStatement pstmt = connect.prepareStatement("Insert into PRODUCTS (PRODUCT_ID, MANUFACTURER, CATEGORY, PRODUCT_NAME, STOCK, AMOUNT_BROKEN, DESCRIPTION, IMAGE) " +
                         "values ( ?,?,?,?,?,?,?,?)");
                 pstmt.setString(1,productID);
                 pstmt.setString(2,manufacturer);
@@ -260,7 +204,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("UPDATE ELECTRONICS SET MANUFACTURER=?,CATEGORY=?,PRODUCT_NAME=?,STOCK=?,AMOUNT_BROKEN=?,DESCRIPTION=?,IMAGE=? WHERE ID_=?");
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE PRODUCTS SET MANUFACTURER=?,CATEGORY=?,PRODUCT_NAME=?,STOCK=?,AMOUNT_BROKEN=?,DESCRIPTION=?,IMAGE=? WHERE ID_=?");
                 pstmt.setString(1,manufacturer);
                 pstmt.setString(2,category);
                 pstmt.setString(3,productName);
@@ -285,7 +229,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("UPDATE BOOK SET TITLE=?,WRITERS=?,ISBN=?,PUBLISHER=?,AMOUNT=?,DESCRIPTION=?,IMAGE=?,CATEGORY =? WHERE ID_=?");
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE PRODUCTS SET PRODUCT_NAME=?,WRITERS=?,ISBN=?,PUBLISHER=?,STOCK=?,DESCRIPTION=?,IMAGE=?,CATEGORY =? WHERE ID_=?");
                 pstmt.setString(1,title);
                 pstmt.setString(2,writers);
                 pstmt.setString(3,Isbn);
@@ -428,7 +372,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "DELETE FROM ELECTRONICS WHERE ID_ ="+ID_+";";
+                String query = "DELETE FROM PRODUCTS WHERE ID_ ="+ID_+";";
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
                 connect.close();
@@ -437,25 +381,7 @@ public class DataManagement {
             Log.d(TAG,ex.toString());
         }
     }
-    public void DeleteBook(int ID_){
-        try{
-        ConnectionHelper connectionHelper = new ConnectionHelper();
-        connect = connectionHelper.connection();
-        if (connect == null){
-            Log.d(TAG,"Check your internet connection!");
-        }
-        else{
 
-
-            String query = "DELETE FROM BOOK WHERE ID_ ="+ID_+";";
-            Statement statement = connect.createStatement();
-            statement.executeQuery(query);
-            connect.close();
-        }
-    }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-    }
-}
 
 
     public void DeleteUser(int ID_){
@@ -476,7 +402,7 @@ public class DataManagement {
         }
     }
 
-    public void InsertRequestBorrowItem(int ProductID, int UserID, int Amount, String Status, String objectType, Timestamp BorrowRequestDateTime){
+    public void InsertRequestBorrowItem(int ProductID, int UserID, int Amount, String Status, Timestamp BorrowRequestDateTime){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -485,13 +411,12 @@ public class DataManagement {
             }
             else{
 
-                PreparedStatement pstmt = connect.prepareStatement("Insert into BORROW (PRODUCTS_P_ID, USERS_P_ID, AMOUNT, STATUS, PRODUCT_TYPE, REQUEST_BORROW_DATE) values (?,?,?,?,?,?)");
+                PreparedStatement pstmt = connect.prepareStatement("Insert into BORROW (PRODUCTS_P_ID, USERS_P_ID, AMOUNT, STATUS, REQUEST_BORROW_DATE) values (?,?,?,?,?)");
                 pstmt.setInt(1,ProductID);
                 pstmt.setInt(2,UserID);
                 pstmt.setInt(3,Amount);
                 pstmt.setString(4,Status);
-                pstmt.setString(5,objectType);
-                pstmt.setTimestamp(6,BorrowRequestDateTime);
+                pstmt.setTimestamp(5,BorrowRequestDateTime);
                 pstmt.execute();
                 connect.close();
             }
@@ -507,7 +432,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("Insert into BOOK (TITLE, WRITERS, ISBN, PUBLISHER, AMOUNT, DESCRIPTION, IMAGE, CATEGORY) values (?,?,?,?,?,?,?,?)");
+                PreparedStatement pstmt = connect.prepareStatement("Insert into PRODUCTS (PRODUCT_NAME, WRITERS, ISBN, PUBLISHER, STOCK, DESCRIPTION, IMAGE, CATEGORY) values (?,?,?,?,?,?,?,?)");
                 pstmt.setString(1,title);
                 pstmt.setString(2,writers);
                 pstmt.setString(3,Isbn);
@@ -556,20 +481,11 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
-                    String productName;
-                    String productType;
+                    Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
+                    Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
                     String RequestDate;
                     String BorrowDate;
-                    byte[] image;
-                    if(resultSet.getString("PRODUCT_TYPE").matches("book")){
-                        productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
-                        image = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getImage();
-                        productType = "book";
-                    }else{
-                        productName = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName();
-                        image = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getImage();
-                        productType = "electronic";
-                    }
+
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
                     }else{
@@ -581,16 +497,16 @@ public class DataManagement {
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
+
                     BorrowList.add(new Borrow(
-                            productName,
+                            product.getName(),
                             RequestDate,
                             BorrowDate,
                             resultSet.getInt("AMOUNT"),
                             resultSet.getString("STATUS"),
                             resultSet.getInt("_ID"),
-                            productType,
-                            image,
-                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname(),
+                            product.getImage(),
+                            user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID")));
                 }
                 connect.close();
@@ -654,11 +570,11 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM BOOK WHERE ID_ = "+Id+";";
+                String query = "SELECT * FROM PRODUCTS WHERE ID_ = "+Id+";";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    books.add(new Books(resultSet.getInt("ID_"), resultSet.getString("TITLE"), resultSet.getString("WRITERS"), resultSet.getString("ISBN"), resultSet.getString("PUBLISHER"), resultSet.getInt("AMOUNT"), resultSet.getString("DESCRIPTION"),"book",resultSet.getBytes("IMAGE")));
+                    books.add(new Books(resultSet.getInt("ID_"), resultSet.getString("PRODUCT_NAME"), resultSet.getString("WRITERS"), resultSet.getString("ISBN"), resultSet.getString("PUBLISHER"), resultSet.getInt("STOCK"), resultSet.getString("DESCRIPTION"),"book",resultSet.getBytes("IMAGE")));
                 }
                 connect.close();
             }
@@ -681,40 +597,30 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
 
                 while(resultSet.next()){
-                    String productName;
-                    String productType;
+                    Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
+                    Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
                     String RequestDate;
                     String BorrowDate;
-                    byte[] image;
-                    if(resultSet.getString("PRODUCT_TYPE").matches("book")){
-                        productName = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getName();
-                        image = getBookWithId(resultSet.getInt("PRODUCTS_P_ID")).getImage();
-                        productType = "book";
-                    }else{
-                        productName = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getName();
-                        image = getProductData(resultSet.getInt("PRODUCTS_P_ID")).getImage();
-                        productType = "electronic";
-                    }if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
+
+                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "";
                     }else{
                         RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
                     }
-
                     if (resultSet.getDate("BORROW_DATE")==null){
                         BorrowDate = "";
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     loanUsersList.add(new Borrow(
-                            productName,
+                            product.getName(),
                             RequestDate,
                             BorrowDate,
                             resultSet.getInt("AMOUNT"),
                             resultSet.getString("STATUS"),
                             resultSet.getInt("_ID"),
-                            productType,
-                            image,
-                            getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()
+                            product.getImage(),
+                            user.getFirstName() + " " + user.getSurname()
                             ,resultSet.getInt("USERS_P_ID")));
                 }
                 connect.close();

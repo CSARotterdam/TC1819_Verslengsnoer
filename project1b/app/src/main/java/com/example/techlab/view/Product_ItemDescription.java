@@ -54,15 +54,11 @@ public class Product_ItemDescription extends AppCompatActivity {
         Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
 
         // checks if there is a intent
-        if (getIntent().hasExtra("object_type") && getIntent().hasExtra("id")){
+        if ( getIntent().hasExtra("id")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
-            objectType = getIntent().getStringExtra("object_type");
             productID = getIntent().getIntExtra("id",-1);
-            if (objectType.matches("book")){
-                product = dataManagement.getBookWithId(productID);
-            }if(objectType.matches("electronic")){
-                product = dataManagement.getProductData(productID);
-            }
+            product = dataManagement.getProductWithId(productID);
+
             pageContentFill(product.getName(), product.getDescription(),product.getImage());
 
         }
@@ -123,7 +119,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                                Toast that shows that the request is sent
                                 Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
                                 //takes productID, UserID, the amound lend and the currentdate from the Database
-                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType, DateUtils.getCurrentDate());
+                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", DateUtils.getCurrentDate());
 //                                When you click on "Akkoord" you'll go to the Student_BorrowedActivity.class
                                 Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
                                 startActivity(BorrowActivity);

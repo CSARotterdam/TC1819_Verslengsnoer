@@ -16,10 +16,8 @@ import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.ActivityInventoryItemBinding;
-import com.example.techlab.util.ImageUtils;
-import com.example.techlab.model.Books;
-import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
+import com.example.techlab.util.ImageUtils;
 import com.example.techlab.view.Product_ItemDescription;
 
 import java.util.ArrayList;
@@ -67,12 +65,6 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, Product_ItemDescription.class);
                 intent.putExtra("id", Integer.valueOf(product.getId_()));
-                if (product instanceof Books){
-                    intent.putExtra("object_type","book");
-                }
-                if (product instanceof Electronics){
-                    intent.putExtra("object_type","electronic");
-                }
                 mContext.startActivity(intent);
             }
         });

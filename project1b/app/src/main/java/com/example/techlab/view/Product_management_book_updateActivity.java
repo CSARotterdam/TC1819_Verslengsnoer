@@ -84,7 +84,7 @@ public class Product_management_book_updateActivity extends AppCompatActivity {
             byte[] imageByte = ImageUtils.getByte(resizedImage);
             dataManagement.updateBookData(bookTitle.getEditText().getText().toString(),bookWriters.getEditText().getText().toString()
                     ,bookIsbn.getEditText().getText().toString(),bookPublisher.getEditText().getText().toString(),Integer.parseInt(bookAmount.getEditText().getText().toString())
-                    ,bookDescription.getEditText().getText().toString(),imageByte,"book",getIntent().getIntExtra("ID_",-1));
+                    ,bookDescription.getEditText().getText().toString(),imageByte,"Book",getIntent().getIntExtra("ID_",-1));
 
             // reset form input text field
             bookTitle.getEditText().setText("");

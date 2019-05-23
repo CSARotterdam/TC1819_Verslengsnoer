@@ -73,7 +73,7 @@ public class Product_management_add_bookActivity extends AppCompatActivity {
             byte[] imageByte = ImageUtils.getByte(resizedImage);
             dataManagement.InsertBookItem(bookTitle.getEditText().getText().toString(),bookWriters.getEditText().getText().toString()
                     ,bookIsbn.getEditText().getText().toString(),bookPublisher.getEditText().getText().toString(),Integer.parseInt(bookAmount.getEditText().getText().toString())
-                    ,bookDescription.getEditText().getText().toString(),imageByte,"book");
+                    ,bookDescription.getEditText().getText().toString(),imageByte,"Book");
 
             imageSelected= false;
             // reset form input text field

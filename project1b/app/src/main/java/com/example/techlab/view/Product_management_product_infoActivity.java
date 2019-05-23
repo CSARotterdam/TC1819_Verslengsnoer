@@ -38,7 +38,7 @@ public class Product_management_product_infoActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        Electronics product = dataManagement.getProductData(getIntent().getIntExtra("ID_",-1));
+        Electronics product = dataManagement.getProductWithId(getIntent().getIntExtra("ID_",-1));
         productName.setText(product.getName());
         productId.setText(product.getProductId());
         productStock.setText(String.valueOf(product.getStock()));
@@ -46,8 +46,7 @@ public class Product_management_product_infoActivity extends AppCompatActivity {
         productAmountBroken.setText(String.valueOf(product.getAmountBroken()));
         productManufacturer.setText(product.getProductManufacturer());
         productDescription.setText(product.getDescription());
-        byte[] Image = dataManagement.getImage(getIntent().getIntExtra("ID_",-1));
-        Bitmap decodedByte = ImageUtils.getImage(Image);
+        Bitmap decodedByte = ImageUtils.getImage(product.getImage());
         productManagementImageView.setImageBitmap(decodedByte);
     }
 
