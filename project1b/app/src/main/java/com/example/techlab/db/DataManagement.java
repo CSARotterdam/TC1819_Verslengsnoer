@@ -1,5 +1,7 @@
 package com.example.techlab.db;
 
+import android.util.Log;
+
 import com.example.techlab.model.Books;
 import com.example.techlab.model.Borrow;
 import com.example.techlab.model.Electronics;
@@ -15,18 +17,16 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 
+
 public class DataManagement {
     Connection connect;
-    String ConnectionResult = "";
-    Boolean isSuccess=false;
-
+    private static final String TAG = "dataManagement";
     public void insertUser(String firstName,String surname, String SchoolEmail, String Password) {
-
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, PASSWORD, LOANED_AMOUNT, USER_TYPE) " +
@@ -39,21 +39,18 @@ public class DataManagement {
                 pstmt.setString(6,"student");
                 pstmt.execute();
                 connect.close();
-
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
-
     public ArrayList<Products> getAllElectronicsData(){
         ArrayList<Products> electronicsList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM ELECTRONICS";
@@ -62,17 +59,12 @@ public class DataManagement {
                 while(resultSet.next()){
                     electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return electronicsList;
-
     }
 
     public ArrayList<Products> getAllElectronicsData(String category){
@@ -81,7 +73,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM ELECTRONICS WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"';";
@@ -90,17 +82,12 @@ public class DataManagement {
                 while(resultSet.next()){
                     electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return electronicsList;
-
     }
     public ArrayList<Products> getAllBooksData(){
         ArrayList<Products> boookList = new ArrayList<>();
@@ -108,7 +95,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM BOOK";
@@ -118,17 +105,12 @@ public class DataManagement {
                     boookList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("TITLE"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
                     ,resultSet.getString("PUBLISHER"),resultSet.getInt("AMOUNT"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return boookList;
-
     }
     public ArrayList<Products> getAllBooksData(String category){
         ArrayList<Products> boookList = new ArrayList<>();
@@ -136,7 +118,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM BOOK WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"'";
@@ -146,17 +128,12 @@ public class DataManagement {
                     boookList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("TITLE"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
                             ,resultSet.getString("PUBLISHER"),resultSet.getInt("AMOUNT"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return boookList;
-
     }
     public ArrayList<Users> getAllUserData(int ID_){
         ArrayList<Users> usersList = new ArrayList<>();
@@ -164,7 +141,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM USERS WHERE NOT ID_ = "+ID_;
@@ -174,17 +151,12 @@ public class DataManagement {
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
                             ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return usersList;
-
     }
     public ArrayList<Users> getAllUserData(){
         ArrayList<Users> usersList = new ArrayList<>();
@@ -192,7 +164,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM USERS";
@@ -202,17 +174,12 @@ public class DataManagement {
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
                             ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return usersList;
-
     }
 
     public Electronics getProductData(int id_){
@@ -222,7 +189,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM ELECTRONICS WHERE ID_ = "+id_+";";
@@ -231,15 +198,10 @@ public class DataManagement {
                 while(resultSet.next()) {
                     electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"), resultSet.getString("MANUFACTURER"), resultSet.getString("CATEGORY"), resultSet.getString("PRODUCT_NAME"), resultSet.getInt("STOCK"), resultSet.getInt("AMOUNT_BROKEN"), resultSet.getString("DESCRIPTION"), resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
-
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return electronicsList.get(0);
     }
@@ -249,7 +211,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null) {
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             } else {
                 String query = "SELECT IMAGE FROM ELECTRONICS WHERE ID_ = " + id_ + ";";
                 Statement statement = connect.createStatement();
@@ -258,25 +220,19 @@ public class DataManagement {
 
                     resultImage.add(resultSet.getBytes("IMAGE") );
                 }
-                ConnectionResult = "successful";
-                isSuccess = true;
                 connect.close();
-
             }
         } catch (Exception ex) {
-            isSuccess = false;
-            ConnectionResult = ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return resultImage.get(0);
     }
-
     public void addProductData(String productID, String manufacturer, String category, String productName, int stock, int amountBroken, byte[] image, String description){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into ELECTRONICS (PRODUCT_ID, MANUFACTURER, CATEGORY, PRODUCT_NAME, STOCK, AMOUNT_BROKEN, DESCRIPTION, IMAGE) " +
@@ -291,11 +247,9 @@ public class DataManagement {
                 pstmt.setBytes(8,image);
                 pstmt.execute();
                 connect.close();
-
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void updateProductData( String manufacturer, String category, String productName, int stock, int amountBroken, String description, byte[] image, int ID_){
@@ -303,7 +257,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE ELECTRONICS SET MANUFACTURER=?,CATEGORY=?,PRODUCT_NAME=?,STOCK=?,AMOUNT_BROKEN=?,DESCRIPTION=?,IMAGE=? WHERE ID_=?");
@@ -320,8 +274,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void updateBookData( String title,String writers, String Isbn, String publisher, int amount, String description, byte[] bookImage, String category, int ID_){
@@ -329,7 +282,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE BOOK SET TITLE=?,WRITERS=?,ISBN=?,PUBLISHER=?,AMOUNT=?,DESCRIPTION=?,IMAGE=?,CATEGORY =? WHERE ID_=?");
@@ -347,8 +300,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void updateUserStatus( String status, int ID_){
@@ -356,7 +308,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "UPDATE USERS SET USER_TYPE = '"+status+"' WHERE ID_ = "+ID_+";";
@@ -366,8 +318,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void updateUserPassword( String Password, int ID_){
@@ -375,7 +326,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE USERS SET PASSWORD=? WHERE ID_=?");
@@ -385,8 +336,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void updateUserNames(String firstName, String surname, int ID_){
@@ -394,7 +344,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE USERS SET FIRSTNAME=?,SURNAME=? WHERE ID_=?");
@@ -405,8 +355,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void updateBorrowStatus( String status,Timestamp Borrow_DateTime, int ID_){
@@ -414,7 +363,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,BORROW_DATE=? WHERE _ID=?");
@@ -425,8 +374,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void DeleteProduct(int ID_){
@@ -434,19 +382,16 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
-
-
                 String query = "DELETE FROM ELECTRONICS WHERE ID_ ="+ID_+";";
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void DeleteBook(int ID_){
@@ -454,7 +399,7 @@ public class DataManagement {
         ConnectionHelper connectionHelper = new ConnectionHelper();
         connect = connectionHelper.connection();
         if (connect == null){
-            ConnectionResult = "Check your internet access";
+            Log.d(TAG,"Check your internet connection!");
         }
         else{
 
@@ -465,8 +410,7 @@ public class DataManagement {
             connect.close();
         }
     }catch(Exception ex){
-        isSuccess=false;
-        ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
     }
 }
 
@@ -476,19 +420,16 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
-
-
                 String query = "DELETE FROM USERS WHERE ID_ ="+ID_+";";
                 Statement statement = connect.createStatement();
                 statement.executeQuery(query);
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
 
@@ -497,7 +438,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
 
@@ -512,8 +453,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
     public void InsertBookItem(String title,String writers, String Isbn, String publisher, int amount, String description, byte[] bookImage, String category){
@@ -521,7 +461,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into BOOK (TITLE, WRITERS, ISBN, PUBLISHER, AMOUNT, DESCRIPTION, IMAGE, CATEGORY) values (?,?,?,?,?,?,?,?)");
@@ -538,8 +478,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
 
@@ -548,7 +487,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "DELETE FROM BORROW WHERE _ID ="+getmPKID+";";
@@ -557,8 +496,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
 
@@ -568,7 +506,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+";";
@@ -611,28 +549,21 @@ public class DataManagement {
                             image,
                             getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname(),
                             resultSet.getInt("USERS_P_ID")));
-
-
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return BorrowList;
     }
-
     public Users getUserWithEmail(String SchoolEmail){
         ArrayList<Users> UserData = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+SchoolEmail+"';";
@@ -641,15 +572,11 @@ public class DataManagement {
                 while(resultSet.next()) {
                     UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
 
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return UserData.get(0);
     }
@@ -659,7 +586,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM USERS WHERE ID_ = "+Id+";";
@@ -668,15 +595,10 @@ public class DataManagement {
                 while(resultSet.next()) {
                     UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
-
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return UserData.get(0);
     }
@@ -686,7 +608,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM BOOK WHERE ID_ = "+Id+";";
@@ -695,27 +617,20 @@ public class DataManagement {
                 while(resultSet.next()) {
                     books.add(new Books(resultSet.getInt("ID_"), resultSet.getString("TITLE"), resultSet.getString("WRITERS"), resultSet.getString("ISBN"), resultSet.getString("PUBLISHER"), resultSet.getInt("AMOUNT"), resultSet.getString("DESCRIPTION"),"book",resultSet.getBytes("IMAGE")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
-
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return books.get(0);
     }
-
-
     public ArrayList<Borrow> getBorrowDataList(){
         ArrayList<Borrow> loanUsersList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM BORROW ";
@@ -759,14 +674,10 @@ public class DataManagement {
                             getUserWithId(resultSet.getInt("USERS_P_ID")).getFirstName() + " " + getUserWithId(resultSet.getInt("USERS_P_ID")).getSurname()
                             ,resultSet.getInt("USERS_P_ID")));
                 }
-                ConnectionResult="successful";
-                isSuccess=true;
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         return loanUsersList;
     }
@@ -778,7 +689,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"' and PASSWORD = '"+passwordInput+"';";
@@ -787,21 +698,12 @@ public class DataManagement {
                 while(resultSet.next()) {
                     UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_")));
                 }
-                ConnectionResult = "successful";
-                isSuccess = true;
                 connect.close();
-
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult = ex.getMessage();
-
+            Log.d(TAG,ex.toString());
         }
         boolean exists = (UserRow.size() > 0);
         return exists;
     }
-
-
-
-
 }

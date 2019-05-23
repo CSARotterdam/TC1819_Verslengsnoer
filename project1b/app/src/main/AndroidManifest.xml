@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.User_information_changeActivity"
-            android:label="Account instellingen"></activity>
+        <activity android:name=".view.InfographicActivity"></activity>
+        <activity
+            android:name=".view.User_information_changeActivity"
+            android:label="Account instellingen" />
         <activity
             android:name=".view.Product_management_book_updateActivity"
             android:label="Product update" />
@@ -43,7 +45,8 @@
         <activity
             android:name=".view.Product_managementActivity"
             android:label="Productbeheer" />
-        <activity android:name=".view.SignUpActivity"
+        <activity
+            android:name=".view.SignUpActivity"
             android:label="Aanmeldingspagina" />
         <activity
             android:name=".view.pr_Aanvraag_Return"
