@@ -326,7 +326,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "UPDATE USERS SET BLOCKED = '"+block+"' WHERE ID_ = "+ID_+";";
@@ -336,8 +336,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
     }
 
@@ -347,7 +346,7 @@ public class DataManagement {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                ConnectionResult = "Check your internet access";
+                Log.d(TAG,"Check your internet connection!");
             }
             else{
                 String query = "SELECT BLOCKED FROM USERS WHERE SCHOOL_EMAIL = '"+email+"' and BLOCKED = "+1+";";
@@ -360,8 +359,7 @@ public class DataManagement {
                 connect.close();
             }
         }catch(Exception ex){
-            isSuccess=false;
-            ConnectionResult=ex.getMessage();
+            Log.d(TAG,ex.toString());
         }
         return result;
     }
