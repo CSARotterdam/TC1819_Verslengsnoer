@@ -225,7 +225,11 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                dialog.show();
 //            }
         });
-
+//        onStop();
+//
+//        protected void onStop(){
+//            startService(new Intent(this, NotificationService.class));
+//        }
 //        VoorwaardenBtn = findViewById(R.id.VoorwaardenBtn);
 //        VoorwaardenBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
