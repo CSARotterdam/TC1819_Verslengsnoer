@@ -31,6 +31,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pr_aanvraag_return);
+        System.out.println("Aanvraag Returned.java started");
         dataManagement = new DataManagement();
         intent = new Intent();
 //        intent.getIntExtra("P_id_ProductBorrowlist", -1);

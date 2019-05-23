@@ -12,58 +12,80 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.InfographicActivity"></activity>
+    
         <activity
             android:name=".view.User_information_changeActivity"
-            android:label="Account instellingen" />
+            android:label="Account instellingen"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_book_updateActivity"
-            android:label="Product update" />
+            android:label="Product update"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_book_infoActivity"
-            android:label="Product info" />
+            android:label="Product info"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_add_bookActivity"
-            android:label="Product toevoegen" />
+            android:label="Product toevoegen"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.User_management_user_InfoActivity"
-            android:label="Gebruiker Info" />
+            android:label="Gebruiker Info"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Users_managementActivity"
-            android:label="Gebruikersbeheer" />
+            android:label="Gebruikersbeheer"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Student_BorrowedActivity"
-            android:label="Geleende / aangevraagde producten" />
+            android:label="Geleend / aangevraagd"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_product_UpdateActivity"
-            android:label="Product update" />
+            android:label="Product update"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_product_infoActivity"
-            android:label="Product info" />
+            android:label="Product info"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_add_productActivity"
-            android:label="Product toevoegen" />
+            android:label="Product toevoegen"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_managementActivity"
-            android:label="Productbeheer" />
+            android:label="Productbeheer"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.SignUpActivity"
-            android:label="Aanmeldingspagina" />
+            android:label="Aanmeldingspagina" 
+            android:screenOrientation="portrait" />
+             />
+        <activity android:name=".view.SignUpActivity"
+            android:label="Aanmeldingspagina"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.pr_Aanvraag_Return"
-            android:label="aangevraagde productpagina" />
+            android:label="aangevraagde productpagina"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.AangevraagdItems_UserList"
-            android:label="Product administratie" />
+            android:label="Product administratie"
+            android:screenOrientation="portrait" />
         <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
-            android:label="Inventaris" />
+            android:label="Inventaris"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_ItemDescription"
-            android:label="Product Informatie" />
+            android:label="Product Informatie"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_Voorwaarden"
-            android:label="Product Voorwaarden" />
+            android:label="Product Voorwaarden"
+            android:screenOrientation="portrait" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

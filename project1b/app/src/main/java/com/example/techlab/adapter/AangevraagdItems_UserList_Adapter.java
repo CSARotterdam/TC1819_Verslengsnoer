@@ -61,10 +61,10 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, pr_Aanvraag_Return.class);
-                int s = currentItem.getmPKID();
-                String sd = currentItem.getProductName();
-                String sdf = currentItem.getmGebrnaam();
-                int srt = currentItem.getBorrowItemAmount();
+//                int s = currentItem.getmPKID();
+//                String sd = currentItem.getProductName();
+//                String sdf = currentItem.getmGebrnaam();
+//                int srt = currentItem.getBorrowItemAmount();
 
                 intent.putExtra("P_id_ProductBorrowlist",currentItem.getmPKID());
                 intent.putExtra("productnaam_ProductBorrowlist",currentItem.getProductName());
