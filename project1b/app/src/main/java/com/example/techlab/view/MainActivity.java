@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mEditor = mSharedPreferences.edit();
         stayLoggedInCheckBox = findViewById(R.id.stayLoggedInCheckBox);
         textInputLayout = findViewById(R.id.textInputLayout);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         dataManagement = new DataManagement();
 
