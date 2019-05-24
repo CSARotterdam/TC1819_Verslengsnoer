@@ -189,7 +189,7 @@ public class DataManagement {
                 pstmt.setInt(6,amountBroken);
                 pstmt.setString(7,description);
                 pstmt.setBytes(8,image);
-                pstmt.execute();
+                pstmt.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -258,7 +258,7 @@ public class DataManagement {
                 String query = "UPDATE USERS SET USER_TYPE = '"+status+"' WHERE ID_ = "+ID_+";";
 
                 Statement statement = connect.createStatement();
-                statement.executeQuery(query);
+                statement.executeUpdate(query);
                 connect.close();
             }
         }catch(Exception ex){
@@ -276,7 +276,7 @@ public class DataManagement {
                 String query = "UPDATE USERS SET BLOCKED = '"+block+"' WHERE ID_ = "+ID_+";";
 
                 Statement statement = connect.createStatement();
-                statement.executeQuery(query);
+                statement.executeUpdate(query);
                 connect.close();
             }
         }catch(Exception ex){
@@ -345,7 +345,30 @@ public class DataManagement {
             Log.d(TAG,ex.toString());
         }
     }
-    public void updateBorrowStatus( String status,Timestamp Borrow_DateTime, int ID_){
+    public void productReturned( Timestamp returnDate, int borrowID_, int amount, int userID_){
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,RETURN_DATE=? WHERE _ID=?");
+                pstmt.setString(1,"Teruggebracht");
+                pstmt.setTimestamp(2,returnDate);
+                pstmt.setInt(3,borrowID_);
+                pstmt.executeUpdate();
+                PreparedStatement pstmt2 = connect.prepareStatement("UPDATE USERS SET PRODUCT_ON_LOAN = PRODUCT_ON_LOAN - ? WHERE ID_=?");
+                pstmt2.setInt(1,amount);
+                pstmt2.setInt(2,userID_);
+                pstmt2.executeUpdate();
+                connect.close();
+            }
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+    }
+    public void lendProduct( Timestamp Borrow_DateTime,int amount, int borrowID_,int userID_,int productID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -354,10 +377,19 @@ public class DataManagement {
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,BORROW_DATE=? WHERE _ID=?");
-                pstmt.setString(1,status);
+                pstmt.setString(1,"Geleend");
                 pstmt.setTimestamp(2,Borrow_DateTime);
-                pstmt.setInt(3,ID_);
+                pstmt.setInt(3,borrowID_);
                 pstmt.executeUpdate();
+                PreparedStatement pstmt2 = connect.prepareStatement("UPDATE USERS SET LOANED_AMOUNT = LOANED_AMOUNT + ?,PRODUCT_ON_LOAN = PRODUCT_ON_LOAN + ? WHERE ID_=?");
+                pstmt2.setInt(1,amount);
+                pstmt2.setInt(2,amount);
+                pstmt2.setInt(3,userID_);
+                pstmt2.executeUpdate();
+                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET LOANED_AMOUNT = LOANED_AMOUNT + ? WHERE ID_=?");
+                pstmt3.setInt(1,amount);
+                pstmt3.setInt(2,productID_);
+                pstmt3.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -374,7 +406,7 @@ public class DataManagement {
             else{
                 String query = "DELETE FROM PRODUCTS WHERE ID_ ="+ID_+";";
                 Statement statement = connect.createStatement();
-                statement.executeQuery(query);
+                statement.executeUpdate(query);
                 connect.close();
             }
         }catch(Exception ex){
@@ -442,7 +474,7 @@ public class DataManagement {
                 pstmt.setBytes(7,bookImage);
                 pstmt.setString(8,category);
 
-                pstmt.execute();
+                pstmt.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -460,7 +492,7 @@ public class DataManagement {
             else{
                 String query = "DELETE FROM BORROW WHERE _ID ="+getmPKID+";";
                 Statement statement = connect.createStatement();
-                statement.executeQuery(query);
+                statement.executeUpdate(query);
                 connect.close();
             }
         }catch(Exception ex){
@@ -468,7 +500,7 @@ public class DataManagement {
         }
     }
 
-    public ArrayList<Borrow> getBorrowData(int UserID){
+    public ArrayList<Borrow> getBorrowDataWithUserId(int UserID){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -504,10 +536,11 @@ public class DataManagement {
                             BorrowDate,
                             resultSet.getInt("AMOUNT"),
                             resultSet.getString("STATUS"),
-                            resultSet.getInt("_ID"),
+                            resultSet.getInt("PRODUCTS_P_ID"),
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
-                            resultSet.getInt("USERS_P_ID")));
+                            resultSet.getInt("USERS_P_ID"),
+                            resultSet.getInt("_ID")));
                 }
                 connect.close();
             }
@@ -515,6 +548,55 @@ public class DataManagement {
             Log.d(TAG,ex.toString());
         }
         return BorrowList;
+    }
+    public Borrow getBorrowDataWithId(int BorrowListID){
+        ArrayList<Borrow> BorrowList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                String query = "SELECT * FROM BORROW WHERE _ID = "+BorrowListID+";";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
+                    Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
+                    String RequestDate;
+                    String BorrowDate;
+
+                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
+                        RequestDate = "Niet beschikbaar";
+                    }else{
+                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    }
+
+                    if (resultSet.getDate("BORROW_DATE")==null){
+                        BorrowDate = "..............";
+                    }else{
+                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    }
+
+                    BorrowList.add(new Borrow(
+                            product.getName(),
+                            RequestDate,
+                            BorrowDate,
+                            resultSet.getInt("AMOUNT"),
+                            resultSet.getString("STATUS"),
+                            resultSet.getInt("PRODUCTS_P_ID"),
+                            product.getImage(),
+                            user.getFirstName() + " " + user.getSurname(),
+                            resultSet.getInt("USERS_P_ID"),
+                            resultSet.getInt("_ID")));
+                }
+                connect.close();
+            }
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        return BorrowList.get(0);
     }
     public Users getUserWithEmail(String SchoolEmail){
         ArrayList<Users> UserData = new ArrayList<>();
@@ -618,10 +700,11 @@ public class DataManagement {
                             BorrowDate,
                             resultSet.getInt("AMOUNT"),
                             resultSet.getString("STATUS"),
-                            resultSet.getInt("_ID"),
+                            resultSet.getInt("PRODUCTS_P_ID"),
                             product.getImage(),
-                            user.getFirstName() + " " + user.getSurname()
-                            ,resultSet.getInt("USERS_P_ID")));
+                            user.getFirstName() + " " + user.getSurname(),
+                            resultSet.getInt("USERS_P_ID"),
+                            resultSet.getInt("_ID")));
                 }
                 connect.close();
             }

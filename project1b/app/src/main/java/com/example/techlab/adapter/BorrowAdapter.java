@@ -84,7 +84,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
                                     Toast.makeText(context, "Aanvraag geannuleerd.", Toast.LENGTH_LONG).show();
 
                                     //DB code here
-                                    dataManagement.DelRequestBorrowItem(currentItem.getmPKID());
+                                    dataManagement.DelRequestBorrowItem(currentItem.getmProductID());
                                     mBorrowItemList.remove(position);
                                     notifyDataSetChanged(); //Update view.
                                 }

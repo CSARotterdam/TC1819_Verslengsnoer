@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
@@ -31,7 +30,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_geleende_product);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
-        BorrowItemList = dataManagement.getBorrowData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
+        BorrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
 
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
         mRecyclerView.setHasFixedSize(true);

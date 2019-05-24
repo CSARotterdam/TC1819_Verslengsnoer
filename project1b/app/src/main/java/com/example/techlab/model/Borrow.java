@@ -9,11 +9,14 @@ public class Borrow {
     private String mBorrowDate;
     private int mProductAmount;
     private String mProductStatus;
-    private int mPKID;
-    private String mProductType;
+    private int mProductID;
+    private int mBorrowID;
     int mUserID;
 
-    public Borrow(String PName, String RequestDate,String borrowDate, int PAmount, String PStatus, int PKID , byte[] image, String Gebrnaam, int UserID){
+
+
+
+    public Borrow(String PName, String RequestDate, String borrowDate, int PAmount, String PStatus, int ProductID , byte[] image, String Gebrnaam, int UserID, int BorrowID){
         mGebrnaam = Gebrnaam;
         mImageResource = image;
         mProductName = PName;
@@ -21,9 +24,17 @@ public class Borrow {
         mBorrowDate = borrowDate;
         mProductAmount = PAmount;
         mProductStatus = PStatus;
-        mPKID = PKID;
+        mProductID = ProductID;
         mUserID = UserID;
+        mBorrowID = BorrowID;
+
     }
+
+    public int getBorrowID() {
+        return mBorrowID;
+    }
+
+
 
     public String getmBorrowDate() {
         return mBorrowDate;
@@ -59,7 +70,7 @@ public class Borrow {
         return mUserID;
     }
 
-    public int getmPKID() {
-        return mPKID;
+    public int getmProductID() {
+        return mProductID;
     }
 }
