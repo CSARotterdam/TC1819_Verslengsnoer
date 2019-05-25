@@ -482,7 +482,7 @@ public class DataManagement {
         }
     }
 
-    public void DelRequestBorrowItem(int getmPKID){
+    public void DeleteRequestBorrowItem(int getmPKID){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -499,8 +499,56 @@ public class DataManagement {
             Log.d(TAG,ex.toString());
         }
     }
+    public ArrayList<Borrow> getBorrowDataListWithStatus(String status){
+        ArrayList<Borrow> loanUsersList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                String query = "SELECT * FROM BORROW WHERE CONVERT(VARCHAR, STATUS) = '"+status+"'";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
 
-    public ArrayList<Borrow> getBorrowDataWithUserId(int UserID){
+                while(resultSet.next()){
+                    Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
+                    Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
+                    String RequestDate;
+                    String BorrowDate;
+
+                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
+                        RequestDate = "";
+                    }else{
+                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    }
+                    if (resultSet.getDate("BORROW_DATE")==null){
+                        BorrowDate = "";
+                    }else{
+                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    }
+                    loanUsersList.add(new Borrow(
+                            product.getName(),
+                            RequestDate,
+                            BorrowDate,
+                            resultSet.getInt("AMOUNT"),
+                            resultSet.getString("STATUS"),
+                            resultSet.getInt("PRODUCTS_P_ID"),
+                            product.getImage(),
+                            user.getFirstName() + " " + user.getSurname(),
+                            resultSet.getInt("USERS_P_ID"),
+                            resultSet.getInt("_ID")));
+                }
+                connect.close();
+            }
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        return loanUsersList;
+    }
+
+    public ArrayList<Borrow> getBorrowDataWithUserId(int UserID,String status){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -509,7 +557,56 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+";";
+                String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status+"';";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
+                    Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
+                    String RequestDate;
+                    String BorrowDate;
+
+                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
+                        RequestDate = "Niet beschikbaar";
+                    }else{
+                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    }
+
+                    if (resultSet.getDate("BORROW_DATE")==null){
+                        BorrowDate = "..............";
+                    }else{
+                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    }
+
+                    BorrowList.add(new Borrow(
+                            product.getName(),
+                            RequestDate,
+                            BorrowDate,
+                            resultSet.getInt("AMOUNT"),
+                            resultSet.getString("STATUS"),
+                            resultSet.getInt("PRODUCTS_P_ID"),
+                            product.getImage(),
+                            user.getFirstName() + " " + user.getSurname(),
+                            resultSet.getInt("USERS_P_ID"),
+                            resultSet.getInt("_ID")));
+                }
+                connect.close();
+            }
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        return BorrowList;
+    }
+    public ArrayList<Borrow> getBorrowDataWithUserId(int UserID,String status, String status2){
+        ArrayList<Borrow> BorrowList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status+"' or USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status2+"'";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
@@ -665,54 +762,7 @@ public class DataManagement {
         }
         return books.get(0);
     }
-    public ArrayList<Borrow> getBorrowDataList(){
-        ArrayList<Borrow> loanUsersList = new ArrayList<>();
-        try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
-            else{
-                String query = "SELECT * FROM BORROW ";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
 
-                while(resultSet.next()){
-                    Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
-                    Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
-                    String RequestDate;
-                    String BorrowDate;
-
-                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
-                        RequestDate = "";
-                    }else{
-                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
-                    }
-                    if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "";
-                    }else{
-                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
-                    }
-                    loanUsersList.add(new Borrow(
-                            product.getName(),
-                            RequestDate,
-                            BorrowDate,
-                            resultSet.getInt("AMOUNT"),
-                            resultSet.getString("STATUS"),
-                            resultSet.getInt("PRODUCTS_P_ID"),
-                            product.getImage(),
-                            user.getFirstName() + " " + user.getSurname(),
-                            resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("_ID")));
-                }
-                connect.close();
-            }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
-        return loanUsersList;
-    }
 
     // check
     public boolean ifExists(String emailInput, String passwordInput) {

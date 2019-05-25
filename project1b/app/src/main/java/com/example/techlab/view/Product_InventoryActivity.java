@@ -38,11 +38,10 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
     private TextView  menuUserName, menuUserStatus;
+
     RecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
     View headerView;
-
-
-    ArrayList<Products> books;
     ArrayList<Products> products;
     DataManagement dataManagement;
 
@@ -52,6 +51,12 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         setContentView(R.layout.activity_inventory);
         //Log.d(TAG, "onCreate: started.");
         dataManagement = new DataManagement();
+        products = new ArrayList<>();
+        recyclerView = findViewById(R.id.recycler_view);
+        adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
         navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
@@ -68,7 +73,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuButtonManager();
 
         Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.Categorie, android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
 
@@ -82,10 +87,8 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
                     products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
                 }
 
-                RecyclerView recyclerView = findViewById(R.id.recycler_view);
                 adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
                 recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
             }
 
             @Override

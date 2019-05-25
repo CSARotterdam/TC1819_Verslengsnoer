@@ -87,30 +87,26 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
 //    }
 
     public void lendProductButton(View view){
-
-        if(borrow.getBorrowStatus().matches("Pending")){
+        if(borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
             dataManagement.lendProduct( DateUtils.getCurrentDate(), borrow.getBorrowItemAmount(),borrow.getBorrowID()
                     ,borrow.getUserID(),borrow.getmProductID());
             borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
-            if (borrow.getBorrowStatus().matches("Geleend")){
+            if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
                 Toast.makeText(this, "Het product is met succes uitgeleend", Toast.LENGTH_LONG).show();
                 status.setText("Aanvraag status: " + borrow.getBorrowStatus());
             }else {
                 Toast.makeText(this, "het product uitgelenen is mislukt", Toast.LENGTH_LONG).show();
             }
-
         }else{
             Toast.makeText(this, "Dit product is staat niet op pending, dus u kunt dit product niet uitlenen", Toast.LENGTH_LONG).show();
         }
     }
-
     public void returnProductButton(View view){
-        borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
         if(ProductIsNotDamaged.isChecked()){
-            if (borrow.getBorrowStatus().matches("Geleend")){
+            if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
                 dataManagement.productReturned( DateUtils.getCurrentDate(),borrow.getBorrowID(),borrow.getBorrowItemAmount(), borrow.getUserID());
-
-                if(borrow.getBorrowStatus().matches("Teruggebracht")){
+                borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
+                if(borrow.getBorrowStatus().matches(getString(R.string.productStatusReturned))){
                     Toast.makeText(this, "Het product is met succes teruggenomen", Toast.LENGTH_LONG).show();
                     status.setText("Aanvraag status: " + borrow.getBorrowStatus());
                 }else{
@@ -124,9 +120,9 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
         }
     }
 
-    public void annuleerbButton(View view){
-        if (borrow.getBorrowStatus().matches("Panding")){
-            dataManagement.DelRequestBorrowItem(getIntent().getIntExtra("P_id_ProductBorrowlist", -1) );
+    public void productCancelButton(View view){
+        if (borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
+            dataManagement.DeleteRequestBorrowItem(getIntent().getIntExtra("P_id_ProductBorrowlist", -1) );
             Intent intent = new Intent(this, AangevraagdItems_UserList.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             Toast.makeText(this, "het product is met succes geannuleerd", Toast.LENGTH_LONG).show();
@@ -135,11 +131,15 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Dit product is staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
         }
-
-
+    }
+    public void AanvraagAccepteren(View view){
     }
 
-    public void AanvraagAccepteren(View view){
-
+    @Override
+    public void onBackPressed() {
+        Intent startNewActivity = new Intent(this, AangevraagdItems_UserList.class);
+        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startNewActivity);
+        finish();
     }
 }

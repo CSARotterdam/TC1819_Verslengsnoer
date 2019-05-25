@@ -8,6 +8,13 @@
     android:orientation="vertical"
     tools:context="view.AangevraagdItems_UserList"
     android:background="@color/colorBackground">
+    <Spinner
+        android:id="@+id/BorrowCategoryButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        app:backgroundTint="@color/Red" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/AangevraagUserlist_Recyclerview"

@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume(){
-        System.out.println("OnResume...");
         super.onResume();
         if (dataManagement.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
             System.out.println("OnResume>Exist = true");
@@ -83,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause(){
         super.onPause();
-        System.out.println("onPause...");
         loginPasswordInput.setText("");
         loginEmailInput.setText("");
         mEditor.apply();
@@ -92,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-        System.out.println("onStop...");
     }
 
 

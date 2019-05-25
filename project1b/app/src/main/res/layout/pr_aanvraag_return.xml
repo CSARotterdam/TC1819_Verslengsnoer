@@ -74,7 +74,7 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="5dp"
         android:background="@drawable/color_button1"
-        android:onClick="annuleerbButton"
+        android:onClick="productCancelButton"
         android:text="Uitlening Annuleren"
         android:textColor="@android:color/white" />
 

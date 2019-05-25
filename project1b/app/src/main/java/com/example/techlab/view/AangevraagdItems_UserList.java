@@ -1,11 +1,14 @@
 package com.example.techlab.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.AangevraagdItems_UserList_Adapter;
@@ -19,27 +22,47 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
     DataManagement dataManagement;
+    ArrayList<Borrow> loanUsersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_user_aangvr);
         dataManagement = new DataManagement();
-
-//        ArrayList<Itemadapter_loanUsers> loanUsersList  = new ArrayList<>();
-//        loanUsersList.add(new Itemadapter_loanUsers("Poduct1", "Gebruiker1"));
-//        loanUsersList.add(new Itemadapter_loanUsers("Poduct2", "Gebruiker1"));
-//        loanUsersList.add(new Itemadapter_loanUsers("Poduct3", "Gebruiker2"));
-
-        ArrayList<Borrow> loanUsersList  = dataManagement.getBorrowDataList();
-
+        loanUsersList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutmanager = new LinearLayoutManager(this);
-        mAdapter = new AangevraagdItems_UserList_Adapter(this,loanUsersList);
-
+        mLayoutmanager = new LinearLayoutManager(AangevraagdItems_UserList.this);
+        mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);
         mRecyclerView.setLayoutManager(mLayoutmanager);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        Spinner CategorySpinner = findViewById(R.id.BorrowCategoryButton);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategory, android.R.layout.simple_dropdown_item_1line);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        CategorySpinner.setAdapter(adapter2);
+
+        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (parent.getSelectedItem().toString().matches("Alle aangevraagde producten")){
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusPending));
+                }else if(parent.getSelectedItem().toString().matches("Alle Uitgeleende producten")){
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusOnLoan));
+                }else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusReturned));
+                }
+
+                mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override

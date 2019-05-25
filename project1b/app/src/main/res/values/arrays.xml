@@ -3,4 +3,29 @@
     <string-array name="AgreeToS">
         <item>Akkoord met de algemene voorwaarden.</item>
     </string-array>
+    <string-array name="BorrowCategory">
+        <item>Alle aangevraagde producten</item>
+        <item>Alle Uitgeleende producten</item>
+        <item>Alle teruggebrachte producten</item>
+    </string-array>
+
+    <string-array name="BorrowCategoryStudent">
+        <item>Alle aangevraagde en geleende producten</item>
+        <item>Alle teruggebrachte producten</item>
+    </string-array>
+    <!--Drop down of category Button-->
+    <string-array name="ProductCategory">
+        <item>Alle Producten</item>
+        <item>Virtual Reality</item>
+        <item>Gameconsole</item>
+        <item>MicroComputer</item>
+        <item>Drone</item>
+        <item>Radio Controlled</item>
+        <item>Game</item>
+        <item>Smart Technology</item>
+        <item>Kabels</item>
+        <item>Internet</item>
+        <item>Computer</item>
+        <item>Book</item>
+    </string-array>
 </resources>
