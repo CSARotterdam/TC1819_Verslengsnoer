@@ -104,7 +104,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     public void returnProductButton(View view){
         if(ProductIsNotDamaged.isChecked()){
             if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
-                dataManagement.productReturned( DateUtils.getCurrentDate(),borrow.getBorrowID(),borrow.getBorrowItemAmount(), borrow.getUserID());
+                dataManagement.productReturned( DateUtils.getCurrentDate(),borrow.getBorrowID(),borrow.getBorrowItemAmount(), borrow.getUserID(),borrow.getmProductID());
                 borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
                 if(borrow.getBorrowStatus().matches(getString(R.string.productStatusReturned))){
                     Toast.makeText(this, "Het product is met succes teruggenomen", Toast.LENGTH_LONG).show();
@@ -122,7 +122,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
 
     public void productCancelButton(View view){
         if (borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
-            dataManagement.DeleteRequestBorrowItem(getIntent().getIntExtra("P_id_ProductBorrowlist", -1) );
+            dataManagement.DeleteRequestBorrowItem(borrow.getBorrowID(),borrow.getBorrowItemAmount(),borrow.getmProductID());
             Intent intent = new Intent(this, AangevraagdItems_UserList.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             Toast.makeText(this, "het product is met succes geannuleerd", Toast.LENGTH_LONG).show();

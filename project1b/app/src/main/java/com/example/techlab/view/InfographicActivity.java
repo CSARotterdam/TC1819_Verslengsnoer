@@ -26,16 +26,16 @@ public class InfographicActivity extends AppCompatActivity {
         dataManagementInfographic = new DataManagementInfographic();
         ArrayList<PieEntry> Value = dataManagementInfographic.getBorrowDataList();
         pieChart = findViewById(R.id.mostPopularProductChart);
-        pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(10,10,10,10);
         pieChart.setDragDecelerationFrictionCoef(0.95f);
-        pieChart.setDrawHoleEnabled(true);
         pieChart.setEntryLabelColor(Color.BLACK);
+
         pieChart.setTransparentCircleRadius(61f);
         pieChart.animateY(1000, Easing.EaseInOutCubic);
         PieDataSet dataSet = new PieDataSet(Value, "Meest populaire producten");
         dataSet.setSliceSpace(1f);
+
         dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         PieData data = new PieData((dataSet));
         data.setValueTextSize(10f);

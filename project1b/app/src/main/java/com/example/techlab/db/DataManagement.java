@@ -59,9 +59,12 @@ public class DataManagement {
                 while(resultSet.next()){
                     if (resultSet.getString("CATEGORY").matches("Book")){
                         electronicsList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("PRODUCT_NAME"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
-                                ,resultSet.getString("PUBLISHER"),resultSet.getInt("STOCK"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
+                                ,resultSet.getString("PUBLISHER"),resultSet.getInt("STOCK"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")
+                                ,resultSet.getInt("PRODUCTS_ON_LOAN")));
                     }else{
-                        electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                        electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),
+                                resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),
+                                resultSet.getInt("ID_"),resultSet.getBytes("IMAGE"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                     }
                 }
                 connect.close();
@@ -87,9 +90,13 @@ public class DataManagement {
                 while(resultSet.next()){
                     if (resultSet.getString("CATEGORY").matches("Book")){
                         electronicsList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("PRODUCT_NAME"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
-                                ,resultSet.getString("PUBLISHER"),resultSet.getInt("STOCK"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")));
+                                ,resultSet.getString("PUBLISHER"),resultSet.getInt("STOCK"),resultSet.getString("DESCRIPTION"),resultSet.getString("CATEGORY"),resultSet.getBytes("IMAGE")
+                                ,resultSet.getInt("PRODUCTS_ON_LOAN")));
                     }else{
-                        electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                        electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"),resultSet.getString("MANUFACTURER"),resultSet.getString("CATEGORY"),
+                                resultSet.getString("PRODUCT_NAME"),resultSet.getInt("STOCK"),resultSet.getInt("AMOUNT_BROKEN"),
+                                resultSet.getString("DESCRIPTION"),resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")
+                                ,resultSet.getInt("PRODUCTS_ON_LOAN")));
                     }
                 }
                 connect.close();
@@ -161,7 +168,10 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"), resultSet.getString("MANUFACTURER"), resultSet.getString("CATEGORY"), resultSet.getString("PRODUCT_NAME"), resultSet.getInt("STOCK"), resultSet.getInt("AMOUNT_BROKEN"), resultSet.getString("DESCRIPTION"), resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")));
+                    electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"), resultSet.getString("MANUFACTURER"), resultSet.getString("CATEGORY"),
+                            resultSet.getString("PRODUCT_NAME"), resultSet.getInt("STOCK"), resultSet.getInt("AMOUNT_BROKEN"),
+                            resultSet.getString("DESCRIPTION"), resultSet.getInt("ID_"),resultSet.getBytes("IMAGE")
+                            ,resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
@@ -345,7 +355,7 @@ public class DataManagement {
             Log.d(TAG,ex.toString());
         }
     }
-    public void productReturned( Timestamp returnDate, int borrowID_, int amount, int userID_){
+    public void productReturned( Timestamp returnDate, int borrowID_, int amount, int userID_, int productID_){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -362,6 +372,10 @@ public class DataManagement {
                 pstmt2.setInt(1,amount);
                 pstmt2.setInt(2,userID_);
                 pstmt2.executeUpdate();
+                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN - ? WHERE ID_=?");
+                pstmt3.setInt(1,amount);
+                pstmt3.setInt(2,productID_);
+                pstmt3.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -386,9 +400,10 @@ public class DataManagement {
                 pstmt2.setInt(2,amount);
                 pstmt2.setInt(3,userID_);
                 pstmt2.executeUpdate();
-                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET LOANED_AMOUNT = LOANED_AMOUNT + ? WHERE ID_=?");
+                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET LOANED_AMOUNT = LOANED_AMOUNT + ?, PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN + ? WHERE ID_=?");
                 pstmt3.setInt(1,amount);
-                pstmt3.setInt(2,productID_);
+                pstmt3.setInt(2,amount);
+                pstmt3.setInt(3,productID_);
                 pstmt3.executeUpdate();
                 connect.close();
             }
@@ -450,6 +465,10 @@ public class DataManagement {
                 pstmt.setString(4,Status);
                 pstmt.setTimestamp(5,BorrowRequestDateTime);
                 pstmt.execute();
+                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN + ? WHERE ID_=?");
+                pstmt3.setInt(1,Amount);
+                pstmt3.setInt(2,ProductID);
+                pstmt3.executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){
@@ -482,7 +501,7 @@ public class DataManagement {
         }
     }
 
-    public void DeleteRequestBorrowItem(int getmPKID){
+    public void DeleteRequestBorrowItem(int borrowID, int amount, int productID){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -490,7 +509,11 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "DELETE FROM BORROW WHERE _ID ="+getmPKID+";";
+                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN - ? WHERE ID_=?");
+                pstmt3.setInt(1,amount);
+                pstmt3.setInt(2,productID);
+                pstmt3.executeUpdate();
+                String query = "DELETE FROM BORROW WHERE _ID ="+borrowID+";";
                 Statement statement = connect.createStatement();
                 statement.executeUpdate(query);
                 connect.close();
@@ -753,7 +776,9 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    books.add(new Books(resultSet.getInt("ID_"), resultSet.getString("PRODUCT_NAME"), resultSet.getString("WRITERS"), resultSet.getString("ISBN"), resultSet.getString("PUBLISHER"), resultSet.getInt("STOCK"), resultSet.getString("DESCRIPTION"),"book",resultSet.getBytes("IMAGE")));
+                    books.add(new Books(resultSet.getInt("ID_"), resultSet.getString("PRODUCT_NAME"), resultSet.getString("WRITERS"), resultSet.getString("ISBN"),
+                            resultSet.getString("PUBLISHER"), resultSet.getInt("STOCK"), resultSet.getString("DESCRIPTION"),
+                            "book",resultSet.getBytes("IMAGE") ,resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
