@@ -31,12 +31,13 @@ public class DataManagementInfographic {
                         Value.add(new PieEntry(resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("PRODUCT_NAME")));
                         i++;
                     }else {
-                        i++;
+                        i=i+resultSet.getInt("LOANED_AMOUNT");
                     }
-
                 }
-                Value.add(new PieEntry(i-5, "Anderen producten"));
-                connect.close();
+                if(i>5){
+                    Value.add(new PieEntry(i-5, "Anderen producten"));
+                    connect.close();
+                }
             }
         } catch (Exception ex) {
             Value.add(new PieEntry(1, "No data available"));
