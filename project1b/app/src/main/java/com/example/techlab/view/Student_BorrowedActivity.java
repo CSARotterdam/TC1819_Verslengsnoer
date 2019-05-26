@@ -51,9 +51,9 @@ public class Student_BorrowedActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getSelectedItem().toString().matches("Alle aangevraagde en geleende producten")){
-                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1),getString(R.string.productStatusPending),getString(R.string.productStatusOnLoan));
+                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1),getString(R.string.productStatusPending),getString(R.string.productStatusOnLoan));
                 } else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
-                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1),getString(R.string.productStatusReturned));
+                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1),getString(R.string.productStatusReturned));
                 }
                 mAdapter = new BorrowAdapter(borrowItemList, Student_BorrowedActivity.this);
                 mRecyclerView.setAdapter(mAdapter);

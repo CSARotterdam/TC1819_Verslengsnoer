@@ -136,7 +136,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                                Toast that shows that the request is sent
                         Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
                         //takes productID, UserID, the amound lend and the currentdate from the Database
-                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
+                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
 //                                When you click on "Akkoord" you'll go to the Student_BorrowedActivity.class
                         Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
                         startActivity(BorrowActivity);
@@ -184,7 +184,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                    public void onClick(DialogInterface dialog, int which) {
 //                        Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
 //                        //DB code here
-//                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
+//                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, "Pending",objectType);
 //                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
 //                        startActivity(BorrowActivity);
 //                    }
@@ -223,7 +223,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
 //
 //                                //DB code here
-//                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
+//                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, "Pending",objectType);
 //                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
 //                                startActivity(BorrowActivity);}
 //                                else {

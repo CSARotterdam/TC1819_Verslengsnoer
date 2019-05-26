@@ -20,8 +20,10 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     TextView prnaam, gebrnaam, aantalpr, status;
     DataManagement dataManagement;
     CheckBox ProductIsNotDamaged;
-    SharedPreferences mSharedPreferences;
     Borrow borrow;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
 
 
     @Override
@@ -38,11 +40,17 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
         status = findViewById(R.id.productRequestListProductStatus);
         ProductIsNotDamaged = findViewById(R.id.ProductIsNotDamagedCheckBox);
         borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,borrow.getBorrowStatus());
+        mEditor.apply();
         prnaam.setText("Aangevraagde product: " + borrow.getProductName());
         gebrnaam.setText("Aangevraagd door: " + borrow.getmGebrnaam());
         aantalpr.setText("Aanvraagde aantal: " + borrow.getBorrowItemAmount());
         status.setText("Aanvraag status: " + borrow.getBorrowStatus());
-        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+
+
+        String s = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE, "sdfsdf");
 
 
 //        Button LeenKnop = findViewById(R.id.button3);
@@ -64,7 +72,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
 ////    https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
 ////    This method creates a Notification that shows
 //    private void addNotification(){
-////        int currentuserID = mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1);
+////        int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
 //        int userID = getIntent().getIntExtra("UserID", -1);
 ////
 ////        if (currentuserID==userID){
@@ -135,11 +143,11 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     public void AanvraagAccepteren(View view){
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent startNewActivity = new Intent(this, AangevraagdItems_UserList.class);
-        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(startNewActivity);
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent startNewActivity = new Intent(this, AangevraagdItems_UserList.class);
+//        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(startNewActivity);
+//        finish();
+//    }
 }

@@ -30,7 +30,7 @@ public class User_information_changeActivity extends AppCompatActivity {
     mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
     mEditor = mSharedPreferences.edit();
     dataManagement = new DataManagement();
-    Users user = dataManagement.getUserWithId(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
+    Users user = dataManagement.getUserWithId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
     userFirstNameInput.getEditText().setText(user.getFirstName());
     userSurnameInput.getEditText().setText(user.getSurname());
 }
@@ -45,7 +45,7 @@ public class User_information_changeActivity extends AppCompatActivity {
         conformPassword = confirmPasswordValidation();
 
         if ( passWord && conformPassword) {
-            dataManagement.updateUserPassword(confirmPasswordInput.getEditText().getText().toString(),mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1) );
+            dataManagement.updateUserPassword(confirmPasswordInput.getEditText().getText().toString(),mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1) );
 
             mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS, confirmPasswordInput.getEditText().getText().toString());
 
@@ -66,7 +66,7 @@ public class User_information_changeActivity extends AppCompatActivity {
         firstName = firstNameValidation();
         surname = surnameValidation();
         if ( firstName && surname ) {
-            dataManagement.updateUserNames(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(), mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, -1));
+            dataManagement.updateUserNames(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(), mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1));
             userFirstNameInput.getEditText().setText("");
             userSurnameInput.getEditText().setText("");
             passwordInput.getEditText().setText("");

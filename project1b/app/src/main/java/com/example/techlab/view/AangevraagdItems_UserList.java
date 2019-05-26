@@ -1,6 +1,8 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,9 +23,12 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
+
     DataManagement dataManagement;
     ArrayList<Borrow> loanUsersList;
     Spinner CategorySpinner;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,11 +43,36 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutmanager);
         mRecyclerView.setAdapter(mAdapter);
 
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,getString(R.string.productStatusPending));
+        mEditor.apply();
 
+
+
+
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int spinnerPosition;
+        String spinnerState = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,"");
+        if (spinnerState.matches(getString(R.string.productStatusReturned))){
+            spinnerPosition = 2;
+        }else if (spinnerState.matches(getString(R.string.productStatusOnLoan))){
+            spinnerPosition = 1;
+        }else {
+            spinnerPosition = 0;
+        }
         CategorySpinner = findViewById(R.id.BorrowCategoryButton);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
+        CategorySpinner.setSelection(spinnerPosition);
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -63,15 +93,9 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
 
-    }
 
     @Override
     public void onBackPressed() {

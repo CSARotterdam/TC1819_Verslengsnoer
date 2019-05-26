@@ -32,7 +32,7 @@ public class Users_managementActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_users_management);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
-        ArrayList<Users> userList = dataManagement.getAllUserData(mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID,-1));
+        ArrayList<Users> userList = dataManagement.getAllUserData(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
         adapter = new UsersManagementAdapter(userList,this);
         binding.usersListItem.setAdapter(adapter);
         binding.usersListItem.setLayoutManager(new LinearLayoutManager(this));
