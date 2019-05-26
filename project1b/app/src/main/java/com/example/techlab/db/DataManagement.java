@@ -363,12 +363,12 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,RETURN_DATE=? WHERE _ID=?");
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,RETURN_DATE=? WHERE ID_=?");
                 pstmt.setString(1,"Teruggebracht");
                 pstmt.setTimestamp(2,returnDate);
                 pstmt.setInt(3,borrowID_);
                 pstmt.executeUpdate();
-                PreparedStatement pstmt2 = connect.prepareStatement("UPDATE USERS SET PRODUCT_ON_LOAN = PRODUCT_ON_LOAN - ? WHERE ID_=?");
+                PreparedStatement pstmt2 = connect.prepareStatement("UPDATE USERS SET PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN - ? WHERE ID_=?");
                 pstmt2.setInt(1,amount);
                 pstmt2.setInt(2,userID_);
                 pstmt2.executeUpdate();
@@ -390,12 +390,12 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,BORROW_DATE=? WHERE _ID=?");
+                PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,BORROW_DATE=? WHERE ID_=?");
                 pstmt.setString(1,"Geleend");
                 pstmt.setTimestamp(2,Borrow_DateTime);
                 pstmt.setInt(3,borrowID_);
                 pstmt.executeUpdate();
-                PreparedStatement pstmt2 = connect.prepareStatement("UPDATE USERS SET LOANED_AMOUNT = LOANED_AMOUNT + ?,PRODUCT_ON_LOAN = PRODUCT_ON_LOAN + ? WHERE ID_=?");
+                PreparedStatement pstmt2 = connect.prepareStatement("UPDATE USERS SET LOANED_AMOUNT = LOANED_AMOUNT + ?,PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN + ? WHERE ID_=?");
                 pstmt2.setInt(1,amount);
                 pstmt2.setInt(2,amount);
                 pstmt2.setInt(3,userID_);
@@ -513,7 +513,7 @@ public class DataManagement {
                 pstmt3.setInt(1,amount);
                 pstmt3.setInt(2,productID);
                 pstmt3.executeUpdate();
-                String query = "DELETE FROM BORROW WHERE _ID ="+borrowID+";";
+                String query = "DELETE FROM BORROW WHERE ID_ ="+borrowID+";";
                 Statement statement = connect.createStatement();
                 statement.executeUpdate(query);
                 connect.close();
@@ -561,7 +561,7 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("_ID")));
+                            resultSet.getInt("ID_")));
                 }
                 connect.close();
             }
@@ -611,7 +611,7 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("_ID")));
+                            resultSet.getInt("ID_")));
                 }
                 connect.close();
             }
@@ -660,7 +660,7 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("_ID")));
+                            resultSet.getInt("ID_")));
                 }
                 connect.close();
             }
@@ -709,7 +709,7 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("_ID")));
+                            resultSet.getInt("ID_")));
                 }
                 connect.close();
             }
