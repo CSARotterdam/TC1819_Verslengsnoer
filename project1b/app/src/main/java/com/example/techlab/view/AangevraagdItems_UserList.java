@@ -23,6 +23,7 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutmanager;
     DataManagement dataManagement;
     ArrayList<Borrow> loanUsersList;
+    Spinner CategorySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,11 +39,10 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
 
-        Spinner CategorySpinner = findViewById(R.id.BorrowCategoryButton);
+        CategorySpinner = findViewById(R.id.BorrowCategoryButton);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
-
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -63,6 +63,14 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
     }
 
     @Override

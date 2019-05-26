@@ -678,7 +678,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM BORROW WHERE _ID = "+BorrowListID+";";
+                String query = "SELECT * FROM BORROW WHERE ID_ = "+BorrowListID+";";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
