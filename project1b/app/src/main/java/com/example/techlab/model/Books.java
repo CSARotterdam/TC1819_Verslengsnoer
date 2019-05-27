@@ -6,7 +6,7 @@ public class Books extends Products {
     public String ISBN;
     public String Writers;
 
-    public Books(int ID_, String bookTitle, String productWriters, String productISBN, String productPublisher, int productStock, String productDescription, String category, byte[] image) {
+    public Books(int ID_, String bookTitle, String productWriters, String productISBN, String productPublisher, int productStock, String productDescription, String category, byte[] image,int productOnLoan) {
         this.ISBN = productISBN;
         this.Publisher = productPublisher;
         this.Writers = productWriters;
@@ -17,6 +17,7 @@ public class Books extends Products {
         super.id_ = ID_;
         super.category = category;
         super.image = image;
+        super.productOnLoan = productOnLoan;
     }
 
 

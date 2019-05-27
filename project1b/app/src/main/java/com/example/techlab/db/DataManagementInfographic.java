@@ -13,37 +13,70 @@ public class DataManagementInfographic {
     Connection connect;
     private static final String TAG = "dataManagement";
 
-    public ArrayList<PieEntry> getBorrowDataList(){
+    public ArrayList<PieEntry> getMostPopularProductData() {
         ArrayList<PieEntry> Value = new ArrayList<>();
-        int Product1 = 0,Product2 = 0,Product3 = 0,Product4 = 0,Product5 = 0;
-        String ProductName1 = "",ProductName2 = "",ProductName3 = "",ProductName4 = "",ProductName5 = "";
-        try{
+
+        try {
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
-            else{
-                String query = "SELECT * FROM BORROW ";
+            if (connect == null) {
+                Log.d(TAG, "Check your internet connection!");
+            } else {
+                String query = "SELECT * FROM PRODUCTS ORDER BY LOANED_AMOUNT DESC";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()){
-
+                int i = 0;
+                while (resultSet.next()) {
+                    if (i < 5&&resultSet.getInt("LOANED_AMOUNT")>0) {
+                        Value.add(new PieEntry(resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("PRODUCT_NAME")));
+                        i++;
+                    }else {
+                        i=i+resultSet.getInt("LOANED_AMOUNT");
+                    }
                 }
-                Value.add(new PieEntry(Product1 ,ProductName1));
-                Value.add(new PieEntry(Product2 ,ProductName2));
-                Value.add(new PieEntry(Product3 ,ProductName3));
-                Value.add(new PieEntry(Product4 ,ProductName4));
-                Value.add(new PieEntry(Product5 ,ProductName5));
-
-
-                connect.close();
+                if(i>5){
+                    Value.add(new PieEntry(i-5, "Anderen producten"));
+                    connect.close();
+                }
             }
-        }catch(Exception ex){
-            Value.add(new PieEntry(1 ,"No data available"));
-            Log.d(TAG,ex.toString());
+        } catch (Exception ex) {
+            Value.add(new PieEntry(1, "No data available"));
+            Log.d(TAG, ex.toString());
         }
         return Value;
     }
+    public ArrayList<PieEntry> getMostActiveUserData() {
+        ArrayList<PieEntry> Value = new ArrayList<>();
+
+        try {
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null) {
+                Log.d(TAG, "Check your internet connection!");
+            } else {
+                String query = "SELECT * FROM USERS ORDER BY LOANED_AMOUNT DESC";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                int i = 0;
+                while (resultSet.next()) {
+                    if (i < 5&&resultSet.getInt("LOANED_AMOUNT")>0) {
+                        Value.add(new PieEntry(resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("FIRSTNAME")+" "+resultSet.getString("SURNAME")));
+                        i++;
+                    }else {
+                        i=i+resultSet.getInt("LOANED_AMOUNT");
+                    }
+                }
+                if(i>5){
+                    Value.add(new PieEntry(i-5, "Anderen gebruikers"));
+                    connect.close();
+                }
+            }
+        } catch (Exception ex) {
+            Value.add(new PieEntry(1, "No data available"));
+            Log.d(TAG, ex.toString());
+        }
+        return Value;
+    }
+
 
 }

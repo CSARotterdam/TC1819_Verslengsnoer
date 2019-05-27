@@ -52,7 +52,7 @@ public class Product_management_book_infoActivity extends AppCompatActivity {
         super.onPause();
     }
     public void bookDeleteProduct(View view){
-        dataManagement.DeleteBook(getIntent().getIntExtra("ID_",-1));
+        dataManagement.DeleteProduct(getIntent().getIntExtra("ID_",-1));
         Intent startNewActivity = new Intent(this, Product_managementActivity.class);
         startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startNewActivity);

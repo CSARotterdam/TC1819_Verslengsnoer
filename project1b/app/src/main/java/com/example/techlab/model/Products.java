@@ -7,6 +7,11 @@ public class Products {
     protected String category;
     protected int id_;
     protected byte[] image;
+    protected int productOnLoan;
+
+    public int getProductOnLoan() {
+        return productOnLoan;
+    }
 
     public byte[] getImage() {
         return image;

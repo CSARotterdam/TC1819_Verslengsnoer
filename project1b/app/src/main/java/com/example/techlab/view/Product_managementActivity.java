@@ -30,11 +30,7 @@ public class Product_managementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_management);
         dataManagement = new DataManagement();
-        ArrayList<Products> Productlist = dataManagement.getAllElectronicsData();
-        ArrayList<Products> bookList = dataManagement.getAllBooksData();
-        for (int i = 0; i < bookList.size(); i++){
-            Productlist.add(bookList.get(i));
-        }
+        ArrayList<Products> Productlist = dataManagement.getAllProducts();
         adapter = new ProductManagementAdapter(Productlist,this);
         binding.electronicsListItems.setAdapter(adapter);
         binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));

@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,11 +38,10 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
     private TextView  menuUserName, menuUserStatus;
+
     RecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
     View headerView;
-
-
-    ArrayList<Products> books;
     ArrayList<Products> products;
     DataManagement dataManagement;
 
@@ -53,6 +51,12 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         setContentView(R.layout.activity_inventory);
         //Log.d(TAG, "onCreate: started.");
         dataManagement = new DataManagement();
+        products = new ArrayList<>();
+        recyclerView = findViewById(R.id.recycler_view);
+        adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
         navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
@@ -69,7 +73,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuButtonManager();
 
         Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.Categorie, android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
 
@@ -78,23 +82,13 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (parent.getSelectedItem().toString().matches("Alle Producten")){
-                    products = dataManagement.getAllElectronicsData();
-                    books = dataManagement.getAllBooksData();
-                    for (int i = 0; books.size() >i ; i++) {
-                        products.add(books.get(i));
-                    }
+                    products = dataManagement.getAllProducts();
                 }else{
-                    products = dataManagement.getAllElectronicsData(parent.getSelectedItem().toString());
-                    books = dataManagement.getAllBooksData(parent.getSelectedItem().toString());
-                    for (int i = 0; books.size() >i ; i++) {
-                        products.add(books.get(i));
-                    }
+                    products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
                 }
 
-                RecyclerView recyclerView = findViewById(R.id.recycler_view);
                 adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
                 recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
             }
 
             @Override
@@ -155,7 +149,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         if (id == R.id.LogoutMenu){
             mEditor.putString(MainActivity.KEY_ACTIVE_USER_EMAIL, "4ikikikilio.i;5534");
             mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
-            mEditor.putInt(MainActivity.PREFERENCE_USERID,0);
+            mEditor.putInt(MainActivity.KEY_ACTIVE_USER_ID,0);
             mEditor.apply();
 
             Intent intent = new Intent(getBaseContext(), MainActivity.class);

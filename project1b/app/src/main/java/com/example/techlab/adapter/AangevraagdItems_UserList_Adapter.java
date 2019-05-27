@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<AangevraagdItems_UserList_Adapter.AangevraagdItems_UserListViewHolder> {
     private Context mContext;
-
-
     private ArrayList<Borrow> mBorrowItemlist;
 
     public static class AangevraagdItems_UserListViewHolder extends RecyclerView.ViewHolder{
@@ -61,17 +59,12 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, pr_Aanvraag_Return.class);
-//                int s = currentItem.getmPKID();
+//                int s = currentItem.getmProductID();
 //                String sd = currentItem.getProductName();
 //                String sdf = currentItem.getmGebrnaam();
 //                int srt = currentItem.getBorrowItemAmount();
 
-                intent.putExtra("P_id_ProductBorrowlist",currentItem.getmPKID());
-                intent.putExtra("productnaam_ProductBorrowlist",currentItem.getProductName());
-                intent.putExtra("gebruikernaam_ProductBorrowlist",currentItem.getmGebrnaam());
-                intent.putExtra("aantalaangevr_ProductBorrowlist",currentItem.getBorrowItemAmount());
-                intent.putExtra("status_ProductBorrowlist",currentItem.getBorrowStatus());
-                intent.putExtra("UserID", currentItem.getUserID());
+                intent.putExtra("P_id_ProductBorrowList",currentItem.getBorrowID());
 
                 mContext.startActivity(intent);
             }

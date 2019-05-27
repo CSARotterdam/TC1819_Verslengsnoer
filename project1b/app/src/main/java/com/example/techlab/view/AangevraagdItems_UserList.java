@@ -2,10 +2,15 @@ package com.example.techlab.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.AangevraagdItems_UserList_Adapter;
@@ -18,29 +23,79 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
+
     DataManagement dataManagement;
+    ArrayList<Borrow> loanUsersList;
+    Spinner CategorySpinner;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_user_aangvr);
         dataManagement = new DataManagement();
-
-//        ArrayList<Itemadapter_loanUsers> loanUsersList  = new ArrayList<>();
-//        loanUsersList.add(new Itemadapter_loanUsers("Poduct1", "Gebruiker1"));
-//        loanUsersList.add(new Itemadapter_loanUsers("Poduct2", "Gebruiker1"));
-//        loanUsersList.add(new Itemadapter_loanUsers("Poduct3", "Gebruiker2"));
-
-        ArrayList<Borrow> loanUsersList  = dataManagement.getBorrowDataList();
-
+        loanUsersList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutmanager = new LinearLayoutManager(this);
-        mAdapter = new AangevraagdItems_UserList_Adapter(this,loanUsersList);
-
+        mLayoutmanager = new LinearLayoutManager(AangevraagdItems_UserList.this);
+        mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);
         mRecyclerView.setLayoutManager(mLayoutmanager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,getString(R.string.productStatusPending));
+        mEditor.apply();
+
+
+
+
+
+
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int spinnerPosition;
+        String spinnerState = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,"");
+        if (spinnerState.matches(getString(R.string.productStatusReturned))){
+            spinnerPosition = 2;
+        }else if (spinnerState.matches(getString(R.string.productStatusOnLoan))){
+            spinnerPosition = 1;
+        }else {
+            spinnerPosition = 0;
+        }
+        CategorySpinner = findViewById(R.id.BorrowCategoryButton);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategory, android.R.layout.simple_dropdown_item_1line);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        CategorySpinner.setAdapter(adapter2);
+        CategorySpinner.setSelection(spinnerPosition);
+        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (parent.getSelectedItem().toString().matches("Alle aangevraagde producten")){
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusPending));
+                }else if(parent.getSelectedItem().toString().matches("Alle Uitgeleende producten")){
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusOnLoan));
+                }else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusReturned));
+                }
+
+                mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+
 
     @Override
     public void onBackPressed() {

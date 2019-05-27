@@ -19,9 +19,9 @@ import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
+import com.example.techlab.model.Products;
 import com.example.techlab.util.DateUtils;
 import com.example.techlab.util.ImageUtils;
-import com.example.techlab.model.Products;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 //import java.util.ArrayList; ////Belongs to the code of Guan Version 1
@@ -29,7 +29,7 @@ import com.ms.square.android.expandabletextview.ExpandableTextView;
 public class Product_ItemDescription extends AppCompatActivity {
     private static final String TAG = "Product_ItemDescription";
     private Button Button_Request2Borrow;
-//    private Button VoorwaardenBtn; //Belongs to Guan Version 1
+    //    private Button VoorwaardenBtn; //Belongs to Guan Version 1
 //    private ArrayList<Integer> mSelectedItems = new ArrayList<>(); //Belongs to Guan Version 1
     private Integer productID;
     DataManagement dataManagement;
@@ -37,37 +37,34 @@ public class Product_ItemDescription extends AppCompatActivity {
     String objectType;
     Products product;
 
-//    https://www.youtube.com/watch?v=ZXoGG2XTjzU
+    //    https://www.youtube.com/watch?v=ZXoGG2XTjzU
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "OnCreate: started.");
         setContentView(R.layout.activity_item_description);
 
-        dataManagement =  new DataManagement();
+        dataManagement = new DataManagement();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         Buttons();
     }
 
     // checks for incoming intent
-    private void getIncomingIntent(){
+    private void getIncomingIntent() {
         Log.d(TAG, "getIncomingIntent: checking for incoming intents.");
 
         // checks if there is a intent
-        if (getIntent().hasExtra("object_type") && getIntent().hasExtra("id")){
-            Log.d(TAG, "getIncomingIntent: found intent extras.");
-            objectType = getIntent().getStringExtra("object_type");
-            productID = getIntent().getIntExtra("id",-1);
-            if (objectType.matches("book")){
-                product = dataManagement.getBookWithId(productID);
-            }if(objectType.matches("electronic")){
-                product = dataManagement.getProductData(productID);
-            }
-            pageContentFill(product.getName(), product.getDescription(),product.getImage());
+        if (getIntent().hasExtra("id")) {
+            productID = getIntent().getIntExtra("id", -1);
+            product = dataManagement.getProductWithId(productID);
+
+
+            pageContentFill(product.getName(), product.getDescription(), product.getImage());
 
         }
     }
-    private void pageContentFill(String productName, String productDescription, byte[] imageByte ){
+
+    private void pageContentFill(String productName, String productDescription, byte[] imageByte) {
         Log.d(TAG, "pageContentFill: setting the image and name to widgets.");
 
         TextView name = findViewById(R.id.product_name);
@@ -79,13 +76,15 @@ public class Product_ItemDescription extends AppCompatActivity {
         ImageView image = findViewById(R.id.image);
         image.setImageBitmap(ImageUtils.getImage(imageByte));
     }
+
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         getIncomingIntent();
     }
+
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
     }
 
@@ -97,58 +96,72 @@ public class Product_ItemDescription extends AppCompatActivity {
     }
 
     //all Buttons
-    public void Buttons(){
+    public void Buttons() {
         Button_Request2Borrow = findViewById(R.id.requestBtn);
         Button_Request2Borrow.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Guan Popup Version 2 to match all screen.
-                LayoutInflater li = LayoutInflater.from(Product_ItemDescription.this);
-                View contentVoorwaarden = li.inflate(R.layout.custom_borrow_alertdialog, null);
+                if (getIntent().hasExtra("id")) {
+                    productID = getIntent().getIntExtra("id", -1);
+                    product = dataManagement.getProductWithId(productID);
+                }
+                if ((product.getStock() - product.getProductOnLoan() > 0)) {
+                    alertDialog();
+                } else {
+                    Toast.makeText(Product_ItemDescription.this, "dit product is momenteel niet beschikbaar", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    public void alertDialog() {
+        // Guan Popup Version 2 to match all screen.
+        LayoutInflater li = LayoutInflater.from(Product_ItemDescription.this);
+        View contentVoorwaarden = li.inflate(R.layout.custom_borrow_alertdialog, null);
 
 //                POP UP in Product_ItemDescription class
-                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this)
-                        .setView(contentVoorwaarden)
-                        .setTitle("Aanvraag voor lenen")
-                        .setMessage("Als u dit product leent moet het voor 17:00 ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.")
-                        .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick( DialogInterface dialog, int which){
-                                dialog.cancel();
-                            }
-                        })
-                        .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+        AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this)
+                .setView(contentVoorwaarden)
+                .setTitle("Aanvraag voor lenen")
+                .setMessage("Als u dit product leent moet het voor 17:00 ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.")
+                .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 //                                Toast that shows that the request is sent
-                                Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
-                                //takes productID, UserID, the amound lend and the currentdate from the Database
-                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending", objectType, DateUtils.getCurrentDate());
+                        Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
+                        //takes productID, UserID, the amound lend and the currentdate from the Database
+                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
 //                                When you click on "Akkoord" you'll go to the Student_BorrowedActivity.class
-                                Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
-                                startActivity(BorrowActivity);
-                            }
-                        })
+                        Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
+                        startActivity(BorrowActivity);
+                    }
+                })
 //                        You can't click outside the popup to cancel
-                        .setCancelable(false);
+                .setCancelable(false);
 
 //                TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
 //                textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
 
-                Button voorwaardenBtn = contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden);
+        Button voorwaardenBtn = contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden);
 
-                voorwaardenBtn.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
-                        startActivity(Voorwaarden);
-                    }
-                });
-
-                //Creating dialog box
-                AlertDialog dialog  = RequestItemAlertDialog.create();
-                dialog.show();
+        voorwaardenBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
+                startActivity(Voorwaarden);
             }
+        });
+
+        //Creating dialog box
+        AlertDialog dialog = RequestItemAlertDialog.create();
+        dialog.show();
+    }
 
 //Saloua version
 //        Button_Request2Borrow.setOnClickListener(new OnClickListener() {
@@ -171,7 +184,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                    public void onClick(DialogInterface dialog, int which) {
 //                        Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
 //                        //DB code here
-//                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
+//                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, "Pending",objectType);
 //                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
 //                        startActivity(BorrowActivity);
 //                    }
@@ -210,7 +223,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                                Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
 //
 //                                //DB code here
-//                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.PREFERENCE_USERID, 0), 1, "Pending",objectType);
+//                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, "Pending",objectType);
 //                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
 //                                startActivity(BorrowActivity);}
 //                                else {
@@ -224,7 +237,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                AlertDialog dialog  = RequestItemAlertDialog.create();
 //                dialog.show();
 //            }
-        });
+
 //        onStop();
 //
 //        protected void onStop(){
@@ -238,5 +251,5 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                startActivity(Voorwaarden);
 //            }
 //        });
-    }
+
 }

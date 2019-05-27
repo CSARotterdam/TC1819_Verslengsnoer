@@ -43,7 +43,7 @@ public class Product_management_product_UpdateActivity extends AppCompatActivity
         productUpdateImageView = findViewById(R.id.productImageUpdateView);
         dataManagement = new DataManagement();
 
-        Electronics electronics = dataManagement.getProductData(getIntent().getIntExtra("ID_",-1));
+        Electronics electronics = dataManagement.getProductWithId(getIntent().getIntExtra("ID_",-1));
         productManufacturer.setText(electronics.getProductManufacturer());
         productName.setText(electronics.getName());
         productStock.setText(String.valueOf(electronics.getStock()));

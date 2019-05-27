@@ -20,11 +20,12 @@ import com.example.techlab.model.Users;
 
 
 public class MainActivity extends AppCompatActivity {
-    protected static final String PREFERENCE_USERID = "CurrentUserID";
+    protected static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
     protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
     protected static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
     protected static final String KEY_ACTIVE_USER_PASS = "keyActiveUserPass";
     protected static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
+    protected static final String KEY_PRODUCT_ADMINISTER_SPINNER_STATE = "keyProductAdministerState";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     EditText loginEmailInput;
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume(){
-        System.out.println("OnResume...");
         super.onResume();
         if (dataManagement.ifExists(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),mSharedPreferences.getString(KEY_ACTIVE_USER_PASS,""))) {
             System.out.println("OnResume>Exist = true");
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause(){
         super.onPause();
-        System.out.println("onPause...");
         loginPasswordInput.setText("");
         loginEmailInput.setText("");
         mEditor.apply();
@@ -92,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-        System.out.println("onStop...");
     }
 
 
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 Users user = dataManagement.getUserWithEmail(loginEmailInput.getText().toString());
                 Intent startNewActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
                 mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
-                mEditor.putInt(PREFERENCE_USERID, user.getId());
+                mEditor.putInt(KEY_ACTIVE_USER_ID, user.getId());
                 mEditor.putString(KEY_ACTIVE_USER_STATUS, user.getUserType());
                 if (stayLoggedInCheckBox.isChecked()) {
                     mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
