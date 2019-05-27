@@ -15,7 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="30dp">
+        android:background="@drawable/recyclerview_background"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/productManufacturerTextInputUpDateLayout"
@@ -151,8 +156,8 @@
             android:id="@+id/addProductButtonUpDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginHorizontal="5dp"
             android:onClick="upDateProductButton"
             android:text="@string/productUpdate"
             android:background="@drawable/color_button1"

@@ -11,7 +11,13 @@ android:background="@color/colorBackground">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/recyclerview_background"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginBottom="20dp"
+    android:padding="10dp">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/bookTitleUpdateTextInput"
@@ -112,7 +118,10 @@ android:background="@color/colorBackground">
         android:id="@+id/bookUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/color_button1"
         android:textColor="@color/colorButton1Text"
         android:onClick="updateBookButton"
