@@ -400,7 +400,7 @@ public class DataManagement {
                 pstmt2.setInt(2,amount);
                 pstmt2.setInt(3,userID_);
                 pstmt2.executeUpdate();
-                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET LOANED_AMOUNT = LOANED_AMOUNT + ?, PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN + ? WHERE ID_=?");
+                PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET LOANED_AMOUNT = LOANED_AMOUNT + ? WHERE ID_=?");
                 pstmt3.setInt(1,amount);
                 pstmt3.setInt(2,amount);
                 pstmt3.setInt(3,productID_);
