@@ -16,15 +16,17 @@
     android:background="@drawable/recyclerview_background"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="10dp">
 
     <ImageView
         android:contentDescription="Product "
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_margin="10dp"
+        android:paddingStart="10dp"
         android:paddingLeft="10dp"
+        android:paddingRight="0dp"
+        android:paddingEnd="0dp"
         android:scaleType="fitCenter"
         android:id="@+id/image"
         android:src="@mipmap/ic_launcher"

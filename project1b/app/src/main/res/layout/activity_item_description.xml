@@ -4,47 +4,62 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
     android:background="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <!--Product Naam-->
+        android:orientation="vertical"
+        android:background="@color/cardview_light_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp">
+
+        <!--Product Name-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/product_name"
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:text="Title"
-            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textSize="25sp"
             android:gravity="center"
-            android:textColor="#000"/>
-        <!--Foto-->
+            android:textColor="@color/black"/>
+        <!--Product Image-->
         <ImageView
+            android:contentDescription="Product Image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="225dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/image"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher"/>
+        <!--Product Description-->
         <TextView
             android:id="@+id/beschrijving"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="Beschrijving"
-            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:gravity="center"
             android:textColor="#000"/>
 
-        <!--DESCRIPTION-->
+        <!--Here the expandable text is added-->
         <com.ms.square.android.expandabletextview.ExpandableTextView
             xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
             android:id="@+id/expand_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            expandableTextView:maxCollapsedLines="5"
+            expandableTextView:maxCollapsedLines="4"
             expandableTextView:animDuration="300">
+            <!--The Description-->
             <TextView
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
@@ -53,7 +68,9 @@
                 android:paddingRight="10dp"
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
+            <!--The expandable text icon-->
             <ImageButton
+                android:contentDescription="Icon"
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +87,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="15dp"
             android:text="@string/RequestBtn"
-            android:textColor="#FFF"
+            android:textColor="@color/White"
             android:background="@drawable/color_button1"
             android:shadowColor="@android:color/black"/>
     </LinearLayout>

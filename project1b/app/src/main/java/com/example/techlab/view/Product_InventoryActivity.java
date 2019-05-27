@@ -47,6 +47,10 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        findViewById(R.id.progressBar).setVisibility(View.GONE);
+//        recyclerView.setVisibility(View.VISIBLE);
+//        adapter.notifyDataSetChanged();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         //Log.d(TAG, "onCreate: started.");
