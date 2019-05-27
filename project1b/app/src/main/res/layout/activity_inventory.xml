@@ -14,6 +14,7 @@
     android:orientation="vertical"
     android:background="@color/colorBackground">
 
+        <!--Drop Down Category-->
         <Spinner
             android:id="@+id/CategoryBttn"
             android:layout_width="match_parent"

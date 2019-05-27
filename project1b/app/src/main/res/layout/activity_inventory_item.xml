@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Put this code in activity inventaris-->
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
@@ -37,8 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="54dp"
-        android:layout_marginStart="54dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@+id/image"
         android:layout_toEndOf="@id/image"
@@ -55,8 +54,6 @@
         android:layout_alignStart="@+id/product_name"
         android:layout_alignLeft="@+id/product_name"
         android:layout_alignBottom="@+id/image"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
         android:layout_marginBottom="21dp"
         android:layout_toRightOf="@+id/image"
         android:layout_toEndOf="@id/image"
