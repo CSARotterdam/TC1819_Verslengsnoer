@@ -61,10 +61,6 @@
             android:name=".view.SignUpActivity"
             android:label="Aanmeldingspagina" 
             android:screenOrientation="portrait" />
-             />
-        <activity android:name=".view.SignUpActivity"
-            android:label="Aanmeldingspagina"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".view.pr_Aanvraag_Return"
             android:label="aangevraagde productpagina"
