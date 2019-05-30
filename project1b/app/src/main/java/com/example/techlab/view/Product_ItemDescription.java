@@ -58,9 +58,7 @@ public class Product_ItemDescription extends AppCompatActivity {
             productID = getIntent().getIntExtra("id", -1);
             product = dataManagement.getProductWithId(productID);
 
-
             pageContentFill(product.getName(), product.getDescription(), product.getImage());
-
         }
     }
 
