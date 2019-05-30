@@ -56,7 +56,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     @NonNull
     @Override
     public BorrowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_borrow_item_template, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.template_borrow_item, parent, false);
         BorrowViewHolder evh = new BorrowViewHolder(v);
         return evh;
     }
