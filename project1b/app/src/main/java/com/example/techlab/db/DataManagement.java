@@ -16,8 +16,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-
-
 public class DataManagement {
     Connection connect;
     private static final String TAG = "dataManagement";

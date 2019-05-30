@@ -51,8 +51,6 @@ public class Product_management_product_UpdateActivity extends AppCompatActivity
         productDescription.setText(electronics.getDescription());
         amountBroken.setText(String.valueOf(electronics.getAmountBroken()));
         productUpdateImageView.setImageBitmap(ImageUtils.getImage(electronics.getImage()));
-
-
     }
 
 
