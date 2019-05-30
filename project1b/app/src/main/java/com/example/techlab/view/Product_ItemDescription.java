@@ -91,8 +91,7 @@ public class Product_ItemDescription extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this, Product_InventoryActivity.class));
     }
 
     //all Buttons
@@ -138,8 +137,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                         //takes productID, UserID, the amound lend and the currentdate from the Database
                         dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
 //                                When you click on "Akkoord" you'll go to the Student_BorrowedActivity.class
-                        Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
-                        startActivity(BorrowActivity);
+                        startActivity(new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class));
                     }
                 })
 //                        You can't click outside the popup to cancel
@@ -153,8 +151,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         voorwaardenBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
-                startActivity(Voorwaarden);
+                startActivity(new Intent(Product_ItemDescription.this, Product_Voorwaarden.class));
             }
         });
 

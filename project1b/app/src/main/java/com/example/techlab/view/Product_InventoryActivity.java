@@ -80,7 +80,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
-
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -203,8 +202,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             startActivity(intent);
             finish();
         }
-
-
         return false;
     }
     public void menuButtonManager(){

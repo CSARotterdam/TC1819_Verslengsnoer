@@ -80,8 +80,7 @@ public class User_information_changeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, Product_InventoryActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, Product_InventoryActivity.class));
         finish();
     }
 

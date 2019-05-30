@@ -48,8 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
             schoolEmailInput.getEditText().setText("");
             passwordInput.getEditText().setText("");
             Toast.makeText(this, "U hebt met succes een nieuw account geregistreerd", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, MainActivity.class));
         }
 
     }

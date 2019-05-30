@@ -61,18 +61,15 @@ public class Product_managementActivity extends AppCompatActivity {
 
 
     public void addProductPageButton(View view){
-        Intent startNewActivity = new Intent(this, Product_management_add_productActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this, Product_management_add_productActivity.class));
     }
     public void addBOOKPageButton(View view){
-        Intent startNewActivity = new Intent(this, Product_management_add_bookActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this, Product_management_add_bookActivity.class));
     }
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this,  Product_InventoryActivity.class));
     }
 
 

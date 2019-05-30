@@ -47,8 +47,6 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         mEditor = mSharedPreferences.edit();
         mEditor.putString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,getString(R.string.productStatusPending));
         mEditor.apply();
-
-
     }
 
     @Override
@@ -95,7 +93,6 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this, Product_InventoryActivity.class));
     }
 }
