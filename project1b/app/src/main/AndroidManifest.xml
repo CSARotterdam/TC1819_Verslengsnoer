@@ -38,7 +38,7 @@
             android:label="Gebruikersbeheer"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.Student_BorrowedActivity"
+            android:name=".view.Student_Geleend_Aangevraagd"
             android:label="Geleend / aangevraagd"
             android:screenOrientation="portrait" />
         <activity

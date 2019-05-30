@@ -32,7 +32,7 @@ public class Product_management_product_UpdateActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_management_product_up_date);
+        setContentView(R.layout.activity_product_management_product_update);
 
         productManufacturer = findViewById(R.id.productManufacturerTextInputUpDate);
         productName = findViewById(R.id.productNameTextInputUpDate);
@@ -91,7 +91,6 @@ public class Product_management_product_UpdateActivity extends AppCompatActivity
     }
     @Override
     public void onBackPressed() {
-
         Intent intent = new Intent(this, Product_managementActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

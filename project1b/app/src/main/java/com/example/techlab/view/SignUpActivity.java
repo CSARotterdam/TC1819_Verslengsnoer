@@ -116,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
             userFirstNameInput.setError("U mag alleen letters gebruiken");
             return false;
         } else if ((input.length() == 1)) {
-            userFirstNameInput.setError("Naam moet langer zijn dan één letter");
+            userFirstNameInput.setError("Voornaam moet langer zijn dan één letter");
             return false;
         } else {
             userFirstNameInput.setError(null);

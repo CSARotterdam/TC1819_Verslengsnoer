@@ -19,7 +19,7 @@ import com.example.techlab.model.Borrow;
 
 import java.util.ArrayList;
 
-public class Student_BorrowedActivity extends AppCompatActivity {
+public class Student_Geleend_Aangevraagd extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -37,8 +37,8 @@ public class Student_BorrowedActivity extends AppCompatActivity {
         borrowItemList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(Student_BorrowedActivity.this);
-        mAdapter = new BorrowAdapter(borrowItemList, Student_BorrowedActivity.this);
+        mLayoutManager = new LinearLayoutManager(Student_Geleend_Aangevraagd.this);
+        mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -56,7 +56,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
                 } else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
                     borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1),getString(R.string.productStatusReturned));
                 }
-                mAdapter = new BorrowAdapter(borrowItemList, Student_BorrowedActivity.this);
+                mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
                 mRecyclerView.setAdapter(mAdapter);
             }
 

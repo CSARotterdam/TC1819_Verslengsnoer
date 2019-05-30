@@ -173,7 +173,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             finish();
         }
         if (id == R.id.borrowedProductMenu){
-            Intent intent = new Intent(getBaseContext(), Student_BorrowedActivity.class);
+            Intent intent = new Intent(getBaseContext(), Student_Geleend_Aangevraagd.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

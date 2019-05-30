@@ -85,8 +85,8 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
 //                .setSmallIcon(R.mipmap.logo_round)
 //                .setContentTitle("Leenaanvraag")
 //                .setContentText("U mag het product ophalen");
-////  When you click on the intent you go to Student_BorrowedActivity.class
-//        Intent notification = new Intent(this,Student_BorrowedActivity.class);
+////  When you click on the intent you go to Student_Geleend_Aangevraagd.class
+//        Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
 //        PendingIntent pending = PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT);
 //        builder.setContentIntent(pending);
 //
