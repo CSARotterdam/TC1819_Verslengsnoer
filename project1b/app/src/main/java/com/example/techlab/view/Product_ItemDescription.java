@@ -156,8 +156,7 @@ public class Product_ItemDescription extends AppCompatActivity {
         });
 
         //Creating dialog box
-        AlertDialog dialog = RequestItemAlertDialog.create();
-        dialog.show();
+        RequestItemAlertDialog.create().show();
     }
 
 //Saloua version

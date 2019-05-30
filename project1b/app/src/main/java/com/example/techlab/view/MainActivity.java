@@ -74,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .setCancelable(false);
                 //Creating dialog box
-                AlertDialog dialog  = RequestItemAlertDialog.create();
-                dialog.show();
+                RequestItemAlertDialog.create().show();
             }
         }
     }
@@ -123,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(false);
 
                 //Creating dialog box
-                AlertDialog dialog  = RequestItemAlertDialog.create();
-                dialog.show();
+                RequestItemAlertDialog.create().show();
             }
         }else{
             textInputLayout.setError("Het e-mailadres of wachtwoord dat je hebt ingevoerd is onjuist");

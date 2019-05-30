@@ -92,8 +92,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
                             .setNegativeButton("Terug", null);
                     
                     //Creating dialog box
-                    AlertDialog dialog = DelRequestItemAlertDialog.create();
-                    dialog.show();
+                    DelRequestItemAlertDialog.create().show();
                 }
             });
         }
