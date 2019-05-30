@@ -32,7 +32,7 @@
     <string name="productStatusPending">Pending</string>
     <string name="productStatusOnLoan">Geleend</string>
     <string name="productStatusReturned">Teruggebracht</string>
-
+    <string name="productStatusTeLaat">Te Laat</string>
 
     //Gebruikers lijst met studentennummer en aantal aangevraagde items
     <string-array name="Gebruikers">

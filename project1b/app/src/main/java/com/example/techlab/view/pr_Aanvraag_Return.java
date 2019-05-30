@@ -111,7 +111,7 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     }
     public void returnProductButton(View view){
         if(ProductIsNotDamaged.isChecked()){
-            if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
+            if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan)) | borrow.getBorrowStatus().matches(getString(R.string.productStatusTeLaat))){
                 dataManagement.productReturned( DateUtils.getCurrentDate(),borrow.getBorrowID(),borrow.getBorrowItemAmount(), borrow.getUserID(),borrow.getmProductID());
                 borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
                 if(borrow.getBorrowStatus().matches(getString(R.string.productStatusReturned))){

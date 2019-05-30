@@ -82,6 +82,8 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusOnLoan));
                 }else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusReturned));
+                }else if(parent.getSelectedItem().toString().matches("Alle Te Late producten")){
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusTeLaat));
                 }
 
                 mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);

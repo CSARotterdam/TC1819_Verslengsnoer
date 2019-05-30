@@ -7,6 +7,7 @@
         <item>Alle aangevraagde producten</item>
         <item>Alle Uitgeleende producten</item>
         <item>Alle teruggebrachte producten</item>
+        <item>Alle Te Late producten</item>
     </string-array>
 
     <string-array name="BorrowCategoryStudent">
