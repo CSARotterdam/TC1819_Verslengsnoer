@@ -25,7 +25,6 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,11 +132,11 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
             dataManagement.DeleteRequestBorrowItem(borrow.getBorrowID(),borrow.getBorrowItemAmount(),borrow.getmProductID());
             Intent intent = new Intent(this, AangevraagdItems_UserList.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            Toast.makeText(this, "het product is met succes geannuleerd", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Het product is met succes geannuleerd", Toast.LENGTH_LONG).show();
             startActivity(intent);
             finish();
         }else{
-            Toast.makeText(this, "Dit product is staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Dit product staat niet op pending, dus kunt u dit product niet annuleren", Toast.LENGTH_LONG).show();
         }
     }
     public void AanvraagAccepteren(View view){

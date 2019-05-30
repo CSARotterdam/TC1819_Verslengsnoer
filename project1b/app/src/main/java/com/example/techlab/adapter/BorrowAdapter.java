@@ -3,6 +3,7 @@ package com.example.techlab.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,7 +57,7 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     @NonNull
     @Override
     public BorrowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_borrow_item_template, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.template_borrow_item, parent, false);
         BorrowViewHolder evh = new BorrowViewHolder(v);
         return evh;
     }
