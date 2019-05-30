@@ -51,9 +51,7 @@
         android:layout_marginHorizontal="15dp"
         android:background="@drawable/color_button1"
         android:textColor="@android:color/white"
-        android:layout_marginVertical="5dp"
-
-        />
+        android:layout_marginVertical="5dp" />
 
     <Button
         android:id="@+id/button4"

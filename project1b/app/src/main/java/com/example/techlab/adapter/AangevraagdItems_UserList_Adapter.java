@@ -43,7 +43,7 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
     @NonNull
     @Override
     public AangevraagdItems_UserListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.loan_userlist_layout, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.template_loan_userlist, viewGroup, false);
         AangevraagdItems_UserListViewHolder AI_ULVH  = new AangevraagdItems_UserListViewHolder(v);
         return AI_ULVH;
     }
