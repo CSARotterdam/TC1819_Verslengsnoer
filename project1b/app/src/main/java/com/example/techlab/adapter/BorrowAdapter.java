@@ -3,6 +3,7 @@ package com.example.techlab.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,7 +34,6 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
 
         RelativeLayout relativeLayout;
 
-
         public BorrowViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.ListItemImage);
@@ -43,7 +43,6 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
             mProductAmount = itemView.findViewById(R.id.ListItemText_ProductAmount);
             mProductStatus = itemView.findViewById(R.id.ListItemText_ProductStatus);
             relativeLayout = itemView.findViewById(R.id.BorrowedItemContainer);
-
         }
     }
 
@@ -51,7 +50,6 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
         mBorrowItemList = BorrowItemList;
         this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -99,8 +97,9 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
                 }
             });
         }
-
-
+        if (currentItem.getBorrowStatus().matches("Te Laat")) {
+            borrowViewHolder.mProductStatus.setTextColor(Color.parseColor("#d8041d"));
+        }
     }
 
     @Override

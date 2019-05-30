@@ -31,7 +31,7 @@ public class Student_BorrowedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_geleende_product);
+        setContentView(R.layout.activity_geleend_aangevraagd);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
         borrowItemList = new ArrayList<>();

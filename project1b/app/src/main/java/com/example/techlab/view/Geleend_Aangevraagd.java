@@ -15,7 +15,7 @@ import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
 import com.example.techlab.util.DateUtils;
 
-public class pr_Aanvraag_Return extends AppCompatActivity {
+public class Geleend_Aangevraagd extends AppCompatActivity {
     Intent intent;
     TextView prnaam, gebrnaam, aantalpr, status;
     DataManagement dataManagement;
@@ -23,7 +23,6 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
     Borrow borrow;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
-
 
 
     @Override

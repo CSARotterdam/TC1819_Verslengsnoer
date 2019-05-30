@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.model.Borrow;
-import com.example.techlab.view.pr_Aanvraag_Return;
+import com.example.techlab.view.Geleend_Aangevraagd;
 
 import java.util.ArrayList;
 
@@ -58,7 +58,7 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, pr_Aanvraag_Return.class);
+                Intent intent = new Intent(mContext, Geleend_Aangevraagd.class);
 //                int s = currentItem.getmProductID();
 //                String sd = currentItem.getProductName();
 //                String sdf = currentItem.getmGebrnaam();

@@ -62,7 +62,7 @@
             android:label="Aanmeldingspagina" 
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.pr_Aanvraag_Return"
+            android:name=".view.Geleend_Aangevraagd"
             android:label="aangevraagde productpagina"
             android:screenOrientation="portrait" />
         <activity
