@@ -11,7 +11,7 @@
         android:id="@+id/leenavraagUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="gebruiker"
+        android:text="Gebruiker"
         android:textSize="15sp" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:id="@+id/ProductIsNotDamagedCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Producten zijn niet beschadigd" />
+        android:text="Product is niet beschadigt" />
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
@@ -74,5 +74,4 @@
         android:onClick="productCancelButton"
         android:text="Uitlening Annuleren"
         android:textColor="@android:color/white" />
-
 </LinearLayout>

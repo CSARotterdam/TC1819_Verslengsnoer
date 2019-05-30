@@ -9,7 +9,6 @@
         android:layout_height="match_parent"
         android:layout_margin="4dp"
         android:orientation="vertical">
-
         <TextView
             android:id="@+id/gebruikers_Textview"
             android:layout_width="wrap_content"
