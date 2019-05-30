@@ -9,7 +9,8 @@
     android:layout_marginRight="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    >
 
     <RelativeLayout
         android:id="@+id/BorrowedItemContainer"
@@ -74,6 +75,7 @@
             android:paddingRight="10dp"
             android:layout_marginTop="3.5dp"
             android:layout_below="@id/ListItemText_borrow"/>
+
 
         <TextView
             android:id="@+id/leenAanvraagAantalField"

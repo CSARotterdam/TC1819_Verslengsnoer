@@ -581,7 +581,7 @@ public class DataManagement {
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '17:00'");
-                
+
                 pstmt.executeUpdate();
                 connect.close();
 //                Send mail from server if status == 'Te Laat'
