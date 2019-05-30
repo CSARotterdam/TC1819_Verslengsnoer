@@ -108,7 +108,7 @@ public class Product_ItemDescription extends AppCompatActivity {
                 if ((product.getStock() - product.getProductOnLoan() > 0)) {
                     alertDialog();
                 } else {
-                    Toast.makeText(Product_ItemDescription.this, "dit product is momenteel niet beschikbaar", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Product_ItemDescription.this, "Dit product is momenteel niet beschikbaar", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -122,8 +122,8 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                POP UP in Product_ItemDescription class
         AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this)
                 .setView(contentVoorwaarden)
-                .setTitle("Aanvraag voor lenen")
-                .setMessage("Als u dit product leent moet het voor 17:00 ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.")
+                .setTitle("Leenaanvraag")
+                .setMessage("Als u dit product leent moet het voor 17:00 ingeleverd worden.\nGa akkoord met de voorwaarden als u dit product wilt lenen.")
                 .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

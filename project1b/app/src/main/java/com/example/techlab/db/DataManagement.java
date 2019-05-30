@@ -584,6 +584,10 @@ public class DataManagement {
 
                 pstmt.executeUpdate();
                 connect.close();
+//                Send mail from server if status == 'Te Laat'
+//                if (status = 'Te Laat'){
+//
+//                }
             }
         }catch(Exception ex){
             Log.d(TAG,ex.toString());

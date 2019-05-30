@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Techlab</string>
-    <string name="BorrowBtnName">Geleende Producten</string>
-    <string name="inventarisBtnName">Inventaris</string>
     <string name="RequestBtn">Aanvragen</string>
     <string name="productFabrikant">ProductFabrikant:</string>
     <string name="aantalProduct">Aantal product:</string>
@@ -22,55 +20,14 @@
     <string name="fabrikant">Fabrikant:</string>
     <string name="gebrokenAantal">Gebroken aantal:</string>
     <string name="productVerwijderen">Product verwijderen</string>
-    <string name="aanmeldingsformulier">Aanmeldingsformulier</string>
     <string name="voornaam">Voornaam:</string>
     <string name="achternaam">Achternaam:</string>
-    <string name="voorwaarden">Gebruikersvoorwaarden Lezen</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
+
     // product status type
     <string name="productStatusPending">Pending</string>
     <string name="productStatusOnLoan">Geleend</string>
     <string name="productStatusReturned">Teruggebracht</string>
     <string name="productStatusTeLaat">Te Laat</string>
-
-    //Gebruikers lijst met studentennummer en aantal aangevraagde items
-    <string-array name="Gebruikers">
-        <item>Robert Kiela</item>
-        <item>jan jansen</item>
-        <item>gerrit gerritsen</item>
-        <item>bob </item>
-        <item>dave davitsen</item>
-    </string-array>
-
-    <string-array name="Studentnummer">
-        <item>0948369</item>
-        <item>0965872</item>
-        <item>0465873</item>
-        <item>0764855</item>
-        <item>0248764</item>
-    </string-array>
-
-    <string-array name="Aantal_Items">
-        <item>2</item>
-        <item>4</item>
-        <item>1</item>
-        <item>2</item>
-        <item>1</item>
-    </string-array>
-
-
-    // Item lijst met naam van item, id nummer (?image?)
-    <string-array name="Items_Gebruikers">
-        <item>Raspberrie pie</item>
-        <item>Vr-Bril</item>
-    </string-array>
-
-    <string-array name="Id_Items">
-        <item>184151</item>
-        <item>875145</item>
-    </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

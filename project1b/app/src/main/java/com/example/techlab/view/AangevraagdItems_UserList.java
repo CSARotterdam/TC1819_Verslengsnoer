@@ -49,11 +49,6 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         mEditor.apply();
 
 
-
-
-
-
-
     }
 
     @Override
@@ -92,12 +87,9 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -105,5 +97,4 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
         startActivity(startNewActivity);
     }
-
 }

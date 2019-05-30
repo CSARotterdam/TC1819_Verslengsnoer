@@ -121,10 +121,10 @@ public class pr_Aanvraag_Return extends AppCompatActivity {
                     Toast.makeText(this, "Het product terugnemen is mislukt", Toast.LENGTH_LONG).show();
                 }
             }else {
-                Toast.makeText(this, "Dit product is niet in bruikleen, dus u kunt dit product niet terugnemen", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Dit product is niet in bruikleen, dus kunt u dit product niet terugnemen", Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(this, "check bok is not checked", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Check box is niet aangevinkt", Toast.LENGTH_LONG).show();
         }
     }
 
