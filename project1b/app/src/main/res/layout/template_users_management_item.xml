@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="UsersItem"
+            type="com.example.techlab.model.Users" />
+    </data>
+    <RelativeLayout
+        android:id="@+id/usersItemView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/recyclerview_background"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginLeft="15dp">
+            <TextView
+                android:id="@+id/userManagementItemUserName"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="wrap_content"
+                android:text="@{UsersItem.firstName}"
+                android:textColor="@color/black"
+                tools:text="Tenzin sopa" />
+
+        <TextView
+            android:id="@+id/userManagementItemBorrowedAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(UsersItem.loanedAmount)}"
+            android:textColor="@color/black"
+            tools:text="2" />
+        </LinearLayout>
+
+
+</RelativeLayout>
+</layout>

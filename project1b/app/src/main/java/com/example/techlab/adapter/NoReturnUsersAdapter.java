@@ -37,7 +37,7 @@ public class NoReturnUsersAdapter extends RecyclerView.Adapter<NoReturnUsersAdap
     @NonNull
     @Override
     public NoReturnUsersViewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-       View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_noreturn_users, viewGroup, false);
+       View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.template_noreturn_users, viewGroup, false);
        NoReturnUsersViewholder NRUVh = new NoReturnUsersViewholder(v);
        return NRUVh;
     }
