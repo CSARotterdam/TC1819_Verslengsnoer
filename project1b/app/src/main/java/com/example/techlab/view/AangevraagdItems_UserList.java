@@ -54,7 +54,9 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         super.onResume();
         int spinnerPosition;
         String spinnerState = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,"");
-        if (spinnerState.matches(getString(R.string.productStatusReturned))){
+        if(spinnerState.matches(getString(R.string.productStatusTeLaat))){
+            spinnerPosition = 3;
+        } else if (spinnerState.matches(getString(R.string.productStatusReturned))){
             spinnerPosition = 2;
         }else if (spinnerState.matches(getString(R.string.productStatusOnLoan))){
             spinnerPosition = 1;
