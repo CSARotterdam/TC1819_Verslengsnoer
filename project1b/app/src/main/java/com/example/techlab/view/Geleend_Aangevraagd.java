@@ -52,7 +52,6 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
             status.setTextColor(Color.parseColor("#d8041d")); }
 
 
-        String s = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE, "sdfsdf");
 
 
 //        Button LeenKnop = findViewById(R.id.button3);
