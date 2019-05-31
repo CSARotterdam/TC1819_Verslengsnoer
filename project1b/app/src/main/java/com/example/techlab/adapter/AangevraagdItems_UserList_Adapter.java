@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.model.Borrow;
-import com.example.techlab.view.Geleend_Aangevraagd;
+import com.example.techlab.view.pr_Aanvraag_Return;
 
 import java.util.ArrayList;
 
@@ -43,7 +43,7 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
     @NonNull
     @Override
     public AangevraagdItems_UserListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.template_loan_userlist, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.loan_userlist_layout, viewGroup, false);
         AangevraagdItems_UserListViewHolder AI_ULVH  = new AangevraagdItems_UserListViewHolder(v);
         return AI_ULVH;
     }
@@ -58,7 +58,7 @@ public class AangevraagdItems_UserList_Adapter extends RecyclerView.Adapter<Aang
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, Geleend_Aangevraagd.class);
+                Intent intent = new Intent(mContext, pr_Aanvraag_Return.class);
 //                int s = currentItem.getmProductID();
 //                String sd = currentItem.getProductName();
 //                String sdf = currentItem.getmGebrnaam();

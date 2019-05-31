@@ -48,7 +48,8 @@ public class SignUpActivity extends AppCompatActivity {
             schoolEmailInput.getEditText().setText("");
             passwordInput.getEditText().setText("");
             Toast.makeText(this, "U hebt met succes een nieuw account geregistreerd", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, MainActivity.class));
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
 
     }
@@ -64,11 +65,16 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }
 
+
         if (input.isEmpty()) {
-            schoolEmailInput.setError("Een leeg invoerveld is niet toegestaan");
+            schoolEmailInput.setError("lege invoerveld is niet toegestaan");
             return false;
-        } else if ((input.length() != 13) | !(input.substring(input.length() - 6).matches("@hr.nl"))) {
-            schoolEmailInput.setError("We accepteren alleen schoolEmail van de hogeschool Rotterdam");
+
+        } else if ((input.length() != 13)) {
+            schoolEmailInput.setError("ingevulde email is niet correct \nWe accepteren alleen schoolEmail van de hogeschool Rotterdam");
+            return false;
+        } else if (!(input.substring(input.length() - 6).matches("@hr.nl"))) {
+            schoolEmailInput.setError("ingevulde email is niet correct \nWe accepteren alleen schoolEmail van de hogeschool Rotterdam");
             return false;
         } else if (!(EmailAlreadyRegisteredCheck)) {
             schoolEmailInput.setError("Deze e-mail is al gebruikt voor een ander account");
@@ -82,21 +88,22 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean passwordValidation() {
         String input = passwordInput.getEditText().getText().toString();
         if (input.isEmpty()) {
-            passwordInput.setError("Een leeg invoerveld is niet toegestaan");
+            passwordInput.setError("lege invoerveld is niet toegestaan");
             return false;
         } else if (!(input.length() >= 8)) {
-            passwordInput.setError("Ingevulde wachtwoord is niet sterk genoeg");
+            passwordInput.setError("ingevulde wachtwoord is niet sterk genoeg  \nWachtwoord moet Minimaal acht tekens lang zijn");
             return false;
         } else {
             passwordInput.setError(null);
             return true;
         }
+
     }
 
     private boolean confirmPasswordValidation() {
         String input = confirmPasswordInput.getEditText().getText().toString();
         if (input.isEmpty()) {
-            confirmPasswordInput.setError("Een leeg invoerveld is niet toegestaan");
+            confirmPasswordInput.setError("lege invoerveld is niet toegestaan");
             return false;
         } else if (!(input.matches(passwordInput.getEditText().getText().toString()))) {
             confirmPasswordInput.setError("Wachtwoorden komen niet overeen");
@@ -105,15 +112,16 @@ public class SignUpActivity extends AppCompatActivity {
             confirmPasswordInput.setError(null);
             return true;
         }
+
     }
 
     private boolean firstNameValidation() {
         String input = userFirstNameInput.getEditText().getText().toString().trim();
         if (input.isEmpty()) {
-            userFirstNameInput.setError("Een leeg invoerveld is niet toegestaan");
+            userFirstNameInput.setError("lege invoerveld is niet toegestaan");
             return false;
         } else if (!(check(input))) {
-            userFirstNameInput.setError("U mag alleen letters gebruiken");
+            userFirstNameInput.setError("Voor voornaam mag je alleen letters gebruiken");
             return false;
         } else if ((input.length() == 1)) {
             userFirstNameInput.setError("Voornaam moet langer zijn dan één letter");
@@ -127,10 +135,10 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean surnameValidation() {
         String input = userSurnameInput.getEditText().getText().toString().trim();
         if (input.isEmpty()) {
-            userSurnameInput.setError("Een leeg invoerveld is niet toegestaan");
+            userSurnameInput.setError("lege invoerveld is niet toegestaan");
             return false;
         } else if (!(check(input))) {
-            userSurnameInput.setError("Achternaam mag alleen uit letters bestaan");
+            userSurnameInput.setError("Voor achternaam mag je alleen letters gebruiken");
             return false;
         } else if ((input.length() <= 1)) {
             userSurnameInput.setError("Achternaam moet langer zijn dan één letter");

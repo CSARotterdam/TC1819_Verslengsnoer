@@ -35,7 +35,7 @@ public class DataManagementInfographic {
                     }
                 }
                 if(i>5){
-                    Value.add(new PieEntry(i-5, "Andere producten"));
+                    Value.add(new PieEntry(i-5, "Anderen producten"));
                     connect.close();
                 }
             }
@@ -67,7 +67,7 @@ public class DataManagementInfographic {
                     }
                 }
                 if(i>5){
-                    Value.add(new PieEntry(i-5, "Andere gebruikers"));
+                    Value.add(new PieEntry(i-5, "Anderen gebruikers"));
                     connect.close();
                 }
             }

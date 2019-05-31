@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
     <data>
         <variable
             name="product"
@@ -19,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="3"
+            >
 
         <TextView
             android:id="@+id/productName"
@@ -27,6 +30,7 @@
             android:layout_height="wrap_content"
             android:text="@{product.name}"
             android:layout_weight="2.4"
+
             android:textColor="@color/black"
             tools:text="LCD Display" />
 
@@ -38,6 +42,7 @@
             android:textColor="@color/black"
             tools:text="2" />
         </LinearLayout>
+
 
     </RelativeLayout>
 </layout>

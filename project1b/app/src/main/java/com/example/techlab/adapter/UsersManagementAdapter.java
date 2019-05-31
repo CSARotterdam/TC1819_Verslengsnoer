@@ -13,7 +13,7 @@ import android.widget.Filterable;
 import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
-import com.example.techlab.databinding.TemplateUsersManagementItemBinding;
+import com.example.techlab.databinding.ActivityUsersManagementItemBinding;
 import com.example.techlab.model.Users;
 import com.example.techlab.view.User_management_user_InfoActivity;
 
@@ -32,9 +32,9 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
     @NonNull
     @Override
     public UsersManagementAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        TemplateUsersManagementItemBinding binding = DataBindingUtil
+        ActivityUsersManagementItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(viewGroup.getContext())
-                        , R.layout.template_users_management_item
+                        , R.layout.activity_users_management_item
                         ,viewGroup
                         ,false);
         return new ViewHolder(binding);
@@ -94,9 +94,9 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
         RelativeLayout relativeLayout;
         // Binding variables
-        public TemplateUsersManagementItemBinding usersManagementBinding;
+        public ActivityUsersManagementItemBinding usersManagementBinding;
 
-        public ViewHolder(TemplateUsersManagementItemBinding UsersManagementBinding) {
+        public ViewHolder(ActivityUsersManagementItemBinding UsersManagementBinding) {
             super(UsersManagementBinding.getRoot());
             usersManagementBinding = UsersManagementBinding;
             relativeLayout = itemView.findViewById(R.id.usersItemView);

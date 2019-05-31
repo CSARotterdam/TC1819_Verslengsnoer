@@ -3,7 +3,6 @@ package com.example.techlab.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
 import com.example.techlab.util.DateUtils;
 
-public class Geleend_Aangevraagd extends AppCompatActivity {
+public class pr_Aanvraag_Return extends AppCompatActivity {
     Intent intent;
     TextView prnaam, gebrnaam, aantalpr, status;
     DataManagement dataManagement;
@@ -24,6 +23,7 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
     Borrow borrow;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+
 
 
     @Override
@@ -48,8 +48,6 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
         gebrnaam.setText("Aangevraagd door: " + borrow.getmGebrnaam());
         aantalpr.setText("Aanvraagde aantal: " + borrow.getBorrowItemAmount());
         status.setText("Aanvraag status: " + borrow.getBorrowStatus());
-        if (borrow.getBorrowStatus().matches(getString(R.string.productStatusTeLaat))) {
-            status.setTextColor(Color.parseColor("#d8041d")); }
 
 
         String s = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE, "sdfsdf");
@@ -85,8 +83,8 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
 //                .setSmallIcon(R.mipmap.logo_round)
 //                .setContentTitle("Leenaanvraag")
 //                .setContentText("U mag het product ophalen");
-////  When you click on the intent you go to Student_Geleend_Aangevraagd.class
-//        Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
+////  When you click on the intent you go to Student_BorrowedActivity.class
+//        Intent notification = new Intent(this,Student_BorrowedActivity.class);
 //        PendingIntent pending = PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT);
 //        builder.setContentIntent(pending);
 //

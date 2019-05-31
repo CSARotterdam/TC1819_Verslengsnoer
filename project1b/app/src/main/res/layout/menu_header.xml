@@ -14,13 +14,16 @@
         android:text="Navigatiemenu"
         android:textColor="@color/colorButton1Text"
         android:textStyle="bold"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,22 +31,26 @@
             android:textColor="@color/colorButton1Text"
             android:textStyle="bold"
             android:textSize="12sp"
-            android:text="Status: " />
+            android:text="Status: "
+
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@color/colorButton1Text"
             android:textSize="12sp"
             android:text="Onbekend"
-            android:id="@+id/menuUserStatus" />
-    </LinearLayout>
+            android:id="@+id/menuUserStatus"
 
+            />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,13 +58,20 @@
             android:textColor="@color/colorButton1Text"
             android:textStyle="bold"
             android:textSize="12sp"
-            android:text="Hi :)  "/>
+            android:text="Hi :)  "
+
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="@color/colorButton1Text"
             android:textSize="12sp"
             android:id="@+id/menuUserName"
-            android:text="" />
+            android:text=""
+
+            />
     </LinearLayout>
+
+
+
 </LinearLayout>

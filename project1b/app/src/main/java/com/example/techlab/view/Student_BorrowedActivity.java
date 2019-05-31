@@ -19,7 +19,7 @@ import com.example.techlab.model.Borrow;
 
 import java.util.ArrayList;
 
-public class Student_Geleend_Aangevraagd extends AppCompatActivity {
+public class Student_BorrowedActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -31,14 +31,14 @@ public class Student_Geleend_Aangevraagd extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_geleend_aangevraagd);
+        setContentView(R.layout.activity_geleende_product);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
         borrowItemList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(Student_Geleend_Aangevraagd.this);
-        mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
+        mLayoutManager = new LinearLayoutManager(Student_BorrowedActivity.this);
+        mAdapter = new BorrowAdapter(borrowItemList, Student_BorrowedActivity.this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -56,7 +56,7 @@ public class Student_Geleend_Aangevraagd extends AppCompatActivity {
                 } else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
                     borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1),getString(R.string.productStatusReturned));
                 }
-                mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
+                mAdapter = new BorrowAdapter(borrowItemList, Student_BorrowedActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
             }
 
@@ -70,6 +70,7 @@ public class Student_Geleend_Aangevraagd extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(this,  Product_InventoryActivity.class));
+        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
+        startActivity(startNewActivity);
     }
 }

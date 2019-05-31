@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("OnResume>Exist = true");
             if (!(dataManagement.ifBlocked(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL,"")))) {
                 System.out.println("OnResume>Exist = true>Blocked check...");
-                startActivity(new Intent(this, Product_InventoryActivity.class));
+                Intent intent = new Intent(this, Product_InventoryActivity.class);
+                startActivity(intent);
             }
             else{
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(MainActivity.this)
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .setCancelable(false);
                 //Creating dialog box
-                RequestItemAlertDialog.create().show();
+                AlertDialog dialog  = RequestItemAlertDialog.create();
+                dialog.show();
             }
         }
     }
@@ -93,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void signUpPageButton(View view){
-        startActivity(new Intent(this, SignUpActivity.class));
+        Intent startNewActivity = new Intent(this, SignUpActivity.class);
+        startActivity(startNewActivity);
     }
 
     public void loginButton(View view){
@@ -122,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(false);
 
                 //Creating dialog box
-                RequestItemAlertDialog.create().show();
+                AlertDialog dialog  = RequestItemAlertDialog.create();
+                dialog.show();
             }
         }else{
             textInputLayout.setError("Het e-mailadres of wachtwoord dat je hebt ingevoerd is onjuist");
@@ -132,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(this, MainActivity.class));
+        Intent startNewActivity = new Intent(this, MainActivity.class);
+        startActivity(startNewActivity);
     }
 }

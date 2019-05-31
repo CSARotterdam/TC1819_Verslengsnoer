@@ -155,7 +155,8 @@ public class Product_management_add_bookActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, Product_managementActivity.class));
+        Intent startNewActivity = new Intent(this, Product_managementActivity.class);
+        startActivity(startNewActivity);
         finish();
     }
 }

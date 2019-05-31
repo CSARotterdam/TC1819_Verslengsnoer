@@ -62,6 +62,7 @@ public class Users_managementActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(this,  Product_InventoryActivity.class));
+        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
+        startActivity(startNewActivity);
     }
 }

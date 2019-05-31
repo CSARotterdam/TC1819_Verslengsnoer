@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
-import com.example.techlab.databinding.TemplateInventoryItemBinding;
+import com.example.techlab.databinding.ActivityInventoryItemBinding;
 import com.example.techlab.model.Products;
 import com.example.techlab.util.ImageUtils;
 import com.example.techlab.view.Product_ItemDescription;
@@ -41,9 +41,9 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
     // This recycles the viewholder
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        TemplateInventoryItemBinding binding = DataBindingUtil
+        ActivityInventoryItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(viewGroup.getContext())
-                        , R.layout.template_inventory_item
+                        , R.layout.activity_inventory_item
                         ,viewGroup
                         ,false);
         return new RecyclerViewAdapter.ViewHolder(binding);
@@ -111,9 +111,9 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
         RelativeLayout parentLayout;
-        public TemplateInventoryItemBinding productItemBinding;
+        public ActivityInventoryItemBinding productItemBinding;
 
-        public ViewHolder(TemplateInventoryItemBinding ProductItemBinding) {
+        public ViewHolder(ActivityInventoryItemBinding ProductItemBinding) {
             super(ProductItemBinding.getRoot());
             productItemBinding =ProductItemBinding;
             image = itemView.findViewById(R.id.image);
