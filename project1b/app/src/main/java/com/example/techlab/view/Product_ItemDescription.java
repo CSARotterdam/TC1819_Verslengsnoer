@@ -91,8 +91,7 @@ public class Product_ItemDescription extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this, Product_InventoryActivity.class));
     }
 
     //all Buttons
@@ -137,9 +136,8 @@ public class Product_ItemDescription extends AppCompatActivity {
                         Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
                         //takes productID, UserID, the amound lend and the currentdate from the Database
                         dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
-//                                When you click on "Akkoord" you'll go to the Student_BorrowedActivity.class
-                        Intent BorrowActivity = new Intent(Product_ItemDescription.this, Student_BorrowedActivity.class);
-                        startActivity(BorrowActivity);
+//                                When you click on "Akkoord" you'll go to the Student_Geleend_Aangevraagd.class
+                        startActivity(new Intent(Product_ItemDescription.this, Student_Geleend_Aangevraagd.class));
                     }
                 })
 //                        You can't click outside the popup to cancel
@@ -153,14 +151,12 @@ public class Product_ItemDescription extends AppCompatActivity {
         voorwaardenBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
-                startActivity(Voorwaarden);
+                startActivity(new Intent(Product_ItemDescription.this, Product_Voorwaarden.class));
             }
         });
 
         //Creating dialog box
-        AlertDialog dialog = RequestItemAlertDialog.create();
-        dialog.show();
+        RequestItemAlertDialog.create().show();
     }
 
 //Saloua version
@@ -185,7 +181,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //                        Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
 //                        //DB code here
 //                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, "Pending",objectType);
-//                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+//                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_Geleend_Aangevraagd.class);
 //                        startActivity(BorrowActivity);
 //                    }
 //                });
@@ -224,7 +220,7 @@ public class Product_ItemDescription extends AppCompatActivity {
 //
 //                                //DB code here
 //                                dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, "Pending",objectType);
-//                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_BorrowedActivity.class);
+//                                Intent BorrowActivity = new Intent(getApplicationContext(), Student_Geleend_Aangevraagd.class);
 //                                startActivity(BorrowActivity);}
 //                                else {
 //                                    Toast.makeText(Product_ItemDescription.this, "Accepteer de voorwaarden eerst.", Toast.LENGTH_LONG).show();

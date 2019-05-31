@@ -13,7 +13,7 @@ import android.widget.Filterable;
 import android.widget.RelativeLayout;
 
 import com.example.techlab.R;
-import com.example.techlab.databinding.ActivityProductManagementItemBinding;
+import com.example.techlab.databinding.TemplateProductManagementItemBinding;
 import com.example.techlab.model.Books;
 import com.example.techlab.model.Electronics;
 import com.example.techlab.model.Products;
@@ -35,9 +35,9 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
     @NonNull
     @Override
     public ProductManagementAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        ActivityProductManagementItemBinding binding = DataBindingUtil
+        TemplateProductManagementItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(viewGroup.getContext())
-                , R.layout.activity_product_management_item
+                , R.layout.template_product_management_item
                 ,viewGroup
                 ,false);
         return new ViewHolder(binding);
@@ -60,9 +60,7 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
                     Intent intent = new Intent(context, Product_management_book_infoActivity.class);
                     intent.putExtra("ID_",product.getId_());
                     context.startActivity(intent);
-
                 }
-
             }
         });
     }
@@ -108,14 +106,13 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
 
         RelativeLayout relativeLayout;
         // Binding variables
-        public ActivityProductManagementItemBinding productItemBinding;
+        public TemplateProductManagementItemBinding productItemBinding;
 
-        public ViewHolder(ActivityProductManagementItemBinding productLayoutBinding) {
+        public ViewHolder(TemplateProductManagementItemBinding productLayoutBinding) {
             super(productLayoutBinding.getRoot());
             productItemBinding = productLayoutBinding;
             relativeLayout = itemView.findViewById(R.id.productItemView);
 
         }
     }
-
 }

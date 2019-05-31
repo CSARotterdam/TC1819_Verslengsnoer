@@ -80,7 +80,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
-
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -174,7 +173,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             finish();
         }
         if (id == R.id.borrowedProductMenu){
-            Intent intent = new Intent(getBaseContext(), Student_BorrowedActivity.class);
+            Intent intent = new Intent(getBaseContext(), Student_Geleend_Aangevraagd.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
@@ -203,8 +202,6 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             startActivity(intent);
             finish();
         }
-
-
         return false;
     }
     public void menuButtonManager(){

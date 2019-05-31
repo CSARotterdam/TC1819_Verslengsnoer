@@ -82,8 +82,7 @@ public class InfographicActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this,  Product_InventoryActivity.class));
     }
 
 

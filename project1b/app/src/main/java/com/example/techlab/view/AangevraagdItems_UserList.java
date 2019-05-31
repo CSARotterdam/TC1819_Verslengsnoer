@@ -47,8 +47,6 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         mEditor = mSharedPreferences.edit();
         mEditor.putString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,getString(R.string.productStatusPending));
         mEditor.apply();
-
-
     }
 
     @Override
@@ -79,6 +77,7 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusReturned));
                 }else if(parent.getSelectedItem().toString().matches("Alle Te Late producten")){
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusTeLaat));
+
                 }
 
                 mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);
@@ -94,7 +93,6 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
-        startActivity(startNewActivity);
+        startActivity(new Intent(this, Product_InventoryActivity.class));
     }
 }
