@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/inventarisMenu" android:title="Inventaris" android:icon="@drawable/ic_inventaris"/>
-    <item android:id="@+id/borrowedProductMenu" android:title="Geleend / aangevraagd" android:icon="@drawable/ic_borrowed_product"/>
-    <item android:id="@+id/ProductAdministratieMenu" android:title="Product Administratie " android:icon="@drawable/ic_product_administration"/>
-    <item android:id="@+id/productmanagementMenu" android:title="Productbeheer" android:icon="@drawable/ic_product_management"/>
-    <item android:id="@+id/userManagementMenu" android:title="Gebruikersbeheer" android:icon="@drawable/ic_user_management"/>
-    <item android:id="@+id/userAccountSetting" android:title="Account instellingen" android:icon="@drawable/ic_user_account_setting"/>
-    <item android:id="@+id/infographic" android:title="infographic" android:icon="@drawable/ic_pie_chart"/>
-    <item android:id="@+id/LogoutMenu" android:title="Uitloggen" android:icon="@drawable/ic_logout"/>
+    <item android:id="@+id/inventarisMenu" android:title="@string/Inventory" android:icon="@drawable/ic_inventaris"/>
+    <item android:id="@+id/borrowedProductMenu" android:title="@string/items_requested_and_borrowed" android:icon="@drawable/ic_borrowed_product"/>
+    <item android:id="@+id/ProductAdministratieMenu" android:title="@string/product_administration" android:icon="@drawable/ic_product_administration"/>
+    <item android:id="@+id/productmanagementMenu" android:title="@string/product_management" android:icon="@drawable/ic_product_management"/>
+    <item android:id="@+id/userManagementMenu" android:title="@string/user_management" android:icon="@drawable/ic_user_management"/>
+    <item android:id="@+id/userAccountSetting" android:title="@string/account_settings" android:icon="@drawable/ic_user_account_setting"/>
+    <item android:id="@+id/infographic" android:title="@string/infographic" android:icon="@drawable/ic_pie_chart"/>
+    <item android:id="@+id/contact" android:title="@string/contact" android:icon="@drawable/ic_info_icon"/>
+    <item android:id="@+id/LogoutMenu" android:title="@string/logout" android:icon="@drawable/ic_logout"/>
     <item android:id="@+id/menu" android:title="menu" android:icon="@drawable/ic_logout"/>
 
 

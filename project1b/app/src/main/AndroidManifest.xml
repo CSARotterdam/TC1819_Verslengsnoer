@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.DrawerMenu"></activity>
+        <activity android:name=".view.Contact" />
         <activity android:name=".view.InfographicActivity" />
         <activity
             android:name=".view.User_information_changeActivity"

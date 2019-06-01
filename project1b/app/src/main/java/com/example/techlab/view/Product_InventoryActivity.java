@@ -31,14 +31,15 @@ import com.example.techlab.model.Users;
 import java.util.ArrayList;
 
 //Inventaris Page
-public class Product_InventoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Product_InventoryActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
-    private TextView  menuUserName, menuUserStatus;
+    private TextView menuUserName, menuUserStatus;
 
     RecyclerViewAdapter adapter;
     RecyclerView recyclerView;
@@ -48,9 +49,9 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        findViewById(R.id.progressBar).setVisibility(View.GONE);
-//        recyclerView.setVisibility(View.VISIBLE);
-//        adapter.notifyDataSetChanged();
+        // findViewById(R.id.progressBar).setVisibility(View.GONE);
+        // recyclerView.setVisibility(View.VISIBLE);
+        // adapter.notifyDataSetChanged();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
@@ -60,14 +61,14 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
+        navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
 
-        navigationView=findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawer);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.Open,R.string.Close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         actionBarDrawerToggle.syncState();
@@ -77,16 +78,17 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         menuButtonManager();
 
         Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory,
+                android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
-        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (parent.getSelectedItem().toString().matches("Alle Producten")){
+                if (parent.getSelectedItem().toString().matches("Alle Producten")) {
                     products = dataManagement.getAllProducts();
-                }else{
+                } else {
                     products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
                 }
 
@@ -100,31 +102,36 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             }
         });
     }
-//    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-//        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-//            // An item was selected. You can retrieve the selected item using
-//            // parent.getItemAtPosition(pos)
-//            Toast.makeText(Product_InventoryActivity.this, parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-//        }
-//        public void onNothingSelected(AdapterView<?> parent) {
-//            // Another interface callback
-//        }
-//    }
+    // public class SpinnerActivity extends Activity implements
+    // AdapterView.OnItemSelectedListener {
+    // public void onItemSelected(AdapterView<?> parent, View view, int pos, long
+    // id) {
+    // // An item was selected. You can retrieve the selected item using
+    // // parent.getItemAtPosition(pos)
+    // Toast.makeText(Product_InventoryActivity.this,
+    // parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+    // }
+    // public void onNothingSelected(AdapterView<?> parent) {
+    // // Another interface callback
+    // }
+    // }
 
     @Override
     public void onBackPressed() {
-        Intent startNewActivity = new Intent(this,  Product_InventoryActivity.class);
+        Intent startNewActivity = new Intent(this, Product_InventoryActivity.class);
         startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startNewActivity);
         finish();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)){
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -146,13 +153,14 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         });
         return true;
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        if (id == R.id.LogoutMenu){
+        if (id == R.id.LogoutMenu) {
             mEditor.putString(MainActivity.KEY_ACTIVE_USER_EMAIL, "4ikikikilio.i;5534");
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
-            mEditor.putInt(MainActivity.KEY_ACTIVE_USER_ID,0);
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS, "4ikikikilio.i;5534");
+            mEditor.putInt(MainActivity.KEY_ACTIVE_USER_ID, 0);
             mEditor.apply();
 
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
@@ -160,70 +168,78 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
             startActivity(intent);
             finish();
         }
-        if (id == R.id.productmanagementMenu){
+        if (id == R.id.productmanagementMenu) {
             Intent intent = new Intent(getBaseContext(), Product_managementActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
-        if (id == R.id.inventarisMenu){
+        if (id == R.id.inventarisMenu) {
             Intent intent = new Intent(getBaseContext(), Product_InventoryActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
-        if (id == R.id.borrowedProductMenu){
+        if (id == R.id.borrowedProductMenu) {
             Intent intent = new Intent(getBaseContext(), Student_Geleend_Aangevraagd.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
-        if (id == R.id.userManagementMenu){
+        if (id == R.id.userManagementMenu) {
             Intent intent = new Intent(getBaseContext(), Users_managementActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
-        if (id == R.id.ProductAdministratieMenu){
+        if (id == R.id.ProductAdministratieMenu) {
             Intent intent = new Intent(getBaseContext(), AangevraagdItems_UserList.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
-        if (id == R.id.userAccountSetting){
+        if (id == R.id.userAccountSetting) {
             Intent intent = new Intent(getBaseContext(), User_information_changeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
-        if (id == R.id.infographic){
+        if (id == R.id.infographic) {
             Intent intent = new Intent(getBaseContext(), InfographicActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
-        if (id == R.id.menu){
+        if (id == R.id.menu) {
             Intent intent = new Intent(getBaseContext(), DrawerMenu.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+        if (id == R.id.contact) {
+            Intent intent = new Intent(getBaseContext(), Contact.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }
         return false;
     }
-    public void menuButtonManager(){
+
+    public void menuButtonManager() {
         Menu menu = navigationView.getMenu();
 
-        Users user = dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""));
+        Users user = dataManagement
+                .getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""));
 
         menuUserStatus.setText(user.getUserType());
         menuUserName.setText(user.getFirstName());
 
-        if(user.getUserType().matches("student")){
+        if (user.getUserType().matches("student")) {
             menu.findItem(R.id.productmanagementMenu).setVisible(false);
             menu.findItem(R.id.userManagementMenu).setVisible(false);
             menu.findItem(R.id.ProductAdministratieMenu).setVisible(false);
         }
-        if(user.getUserType().matches("beheerder")){
+        if (user.getUserType().matches("beheerder")) {
             menu.findItem(R.id.userManagementMenu).setVisible(false);
         }
     }
