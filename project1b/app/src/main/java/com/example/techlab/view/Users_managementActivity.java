@@ -53,7 +53,12 @@ public class Users_managementActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(Users_managementActivity.this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapter);
+    }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        System.out.println(getApplicationContext().toString()+" onResume started...");
         Spinner CategorySpinner = findViewById(R.id.CategoryUsersBtn);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.UsersCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -81,9 +86,8 @@ public class Users_managementActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
