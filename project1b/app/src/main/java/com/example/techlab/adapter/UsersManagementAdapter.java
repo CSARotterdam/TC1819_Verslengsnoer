@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
+
 import com.example.techlab.R;
 import com.example.techlab.databinding.TemplateUsersManagementItemBinding;
 import com.example.techlab.model.Users;
@@ -20,12 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 //All users Management page.
-public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder> implements Filterable {
+public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder>
+        implements Filterable {
 
+    private List<Users> usersList;
     private List<Users> usersListFull;
     private Context context;
 
     public UsersManagementAdapter(List<Users> users, Context context) {
+        this.usersList = new ArrayList<>(users);
         this.usersListFull = new ArrayList<>(users);
         this.context = context;
     }
@@ -33,23 +37,20 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
     @NonNull
     @Override
     public UsersManagementAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        TemplateUsersManagementItemBinding binding = DataBindingUtil
-                .inflate(LayoutInflater.from(viewGroup.getContext())
-                        , R.layout.template_users_management_item
-                        ,viewGroup
-                        ,false);
+        TemplateUsersManagementItemBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(viewGroup.getContext()), R.layout.template_users_management_item, viewGroup, false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Users current_users = usersListFull.get(i);
+        final Users current_users = usersList.get(i);
         viewHolder.usersManagementBinding.setUsersItem(current_users);
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, User_management_user_InfoActivity.class);
-                intent.putExtra("ID_",current_users.getId());
+                intent.putExtra("ID_", current_users.getId());
                 context.startActivity(intent);
             }
         });
@@ -57,7 +58,7 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     @Override
     public int getItemCount() {
-        return usersListFull.size();
+        return usersList.size();
     }
 
     @Override
@@ -69,12 +70,13 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Users> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(usersListFull);
-            } else{
+            } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Users user : usersListFull){
-                    if(user.getFirstName().toLowerCase().contains(filterPattern)||user.getSchoolEmail().toLowerCase().contains(filterPattern)){
+                for (Users user : usersListFull) {
+                    if (user.getFirstName().toLowerCase().contains(filterPattern)
+                            || user.getSchoolEmail().toLowerCase().contains(filterPattern)) {
                         filteredList.add(user);
                     }
 
@@ -87,13 +89,13 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            usersListFull.clear();
-            usersListFull.addAll((List)results.values);
+            usersList.clear();
+            usersList.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout relativeLayout;
         // Binding variables
