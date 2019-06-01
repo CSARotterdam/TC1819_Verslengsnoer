@@ -30,6 +30,7 @@ import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
 
+//Inventaris Page
 public class Product_InventoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private SharedPreferences mSharedPreferences;
@@ -53,7 +54,7 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        //Log.d(TAG, "onCreate: started.");
+
         dataManagement = new DataManagement();
         products = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_view);

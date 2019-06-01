@@ -105,7 +105,7 @@ public class DataManagement {
         return electronicsList;
     }
 
-    public ArrayList<Users> getAllUserData(int ID_){
+    public ArrayList<Users> getAllUserDataExceptFor(int ID_){
         ArrayList<Users> usersList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -119,7 +119,7 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
-                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"), resultSet.getInt("BLOCKED")));
+                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"), resultSet.getInt("BLOCKED")));
                 }
                 connect.close();
             }
@@ -142,7 +142,7 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
-                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getString("PASSWORD"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
+                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
                 }
                 connect.close();
             }
@@ -314,6 +314,29 @@ public class DataManagement {
             Log.d(TAG,ex.toString());
         }
         return result;
+    }
+
+    public ArrayList<Users> getBlockedUsers(){
+        ArrayList<Users> usersList = new ArrayList<>();
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                String query = "SELECT FIRSTNAME,SURNAME FROM USERS WHERE BLOCKED = "+1+";";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while(resultSet.next()){
+                    usersList.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME")));
+                }
+                connect.close();
+            }
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        return usersList;
     }
 
     public void updateUserPassword( String Password, int ID_){

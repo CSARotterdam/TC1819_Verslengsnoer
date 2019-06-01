@@ -13,6 +13,8 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
 
+
+//Settings page
 public class User_information_changeActivity extends AppCompatActivity {
     TextInputLayout userFirstNameInput, userSurnameInput, passwordInput, confirmPasswordInput;
     DataManagement dataManagement;
