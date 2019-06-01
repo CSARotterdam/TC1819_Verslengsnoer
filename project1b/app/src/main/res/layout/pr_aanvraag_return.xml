@@ -35,6 +35,27 @@
         android:layout_height="wrap_content"
         android:text="Productnaam"
         android:textSize="15sp" />
+        <TextView
+            android:layout_marginLeft="35dp"
+            android:id="@+id/productRequestDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request date"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_marginLeft="35dp"
+            android:id="@+id/productLoanDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loaned date"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_marginLeft="35dp"
+            android:id="@+id/productReturnDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Returned date"
+            android:textSize="15sp" />
     <TextView
         android:layout_marginLeft="35dp"
         android:id="@+id/productRequestListProductStatus"
@@ -42,6 +63,8 @@
         android:layout_height="wrap_content"
         android:text="Status"
         android:layout_marginBottom="30dp"/>
+
+
     <CheckBox
         android:layout_marginLeft="15dp"
         android:id="@+id/ProductIsDamagedCheckBox"

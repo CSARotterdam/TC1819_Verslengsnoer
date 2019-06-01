@@ -566,6 +566,7 @@ public class DataManagement {
                     Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
                     String RequestDate;
                     String BorrowDate;
+                    String returndate;
 
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "";
@@ -577,6 +578,11 @@ public class DataManagement {
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
+                    if(resultSet.getDate("RETURN_DATE")==null){
+                        returndate = "";
+                    }else{
+                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }
                     loanUsersList.add(new Borrow(
                             product.getName(),
                             RequestDate,
@@ -587,7 +593,8 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("ID_")));
+                            resultSet.getInt("ID_"),
+                            returndate));
                 }
                 connect.close();
             }
@@ -638,6 +645,7 @@ public class DataManagement {
                     Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
                     String RequestDate;
                     String BorrowDate;
+                    String returndate;
 
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
@@ -650,7 +658,11 @@ public class DataManagement {
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
-
+                    if(resultSet.getDate("RETURN_DATE")==null){
+                        returndate = "..............";
+                    }else{
+                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }
                     BorrowList.add(new Borrow(
                             product.getName(),
                             RequestDate,
@@ -661,7 +673,8 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("ID_")));
+                            resultSet.getInt("ID_"),
+                            returndate));
                 }
                 connect.close();
             }
@@ -687,6 +700,7 @@ public class DataManagement {
                     Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
                     String RequestDate;
                     String BorrowDate;
+                    String returndate;
 
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
@@ -699,6 +713,11 @@ public class DataManagement {
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
+                    if(resultSet.getDate("RETURN_DATE")==null){
+                        returndate = "..............";
+                    }else{
+                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }
 
                     BorrowList.add(new Borrow(
                             product.getName(),
@@ -710,7 +729,8 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("ID_")));
+                            resultSet.getInt("ID_"),
+                            returndate));
                 }
                 connect.close();
             }
@@ -736,6 +756,7 @@ public class DataManagement {
                     Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
                     String RequestDate;
                     String BorrowDate;
+                    String returndate;
 
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
@@ -748,7 +769,11 @@ public class DataManagement {
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
-
+                    if(resultSet.getDate("RETURN_DATE")==null){
+                        returndate = "";
+                    }else{
+                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }
                     BorrowList.add(new Borrow(
                             product.getName(),
                             RequestDate,
@@ -759,7 +784,8 @@ public class DataManagement {
                             product.getImage(),
                             user.getFirstName() + " " + user.getSurname(),
                             resultSet.getInt("USERS_P_ID"),
-                            resultSet.getInt("ID_")));
+                            resultSet.getInt("ID_"),
+                            returndate));
                 }
                 connect.close();
             }

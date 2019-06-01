@@ -19,7 +19,7 @@ import com.example.techlab.util.DateUtils;
 
 public class Geleend_Aangevraagd extends AppCompatActivity {
     Intent intent;
-    TextView prnaam, gebrnaam, aantalpr, status;
+    TextView prnaam, gebrnaam, aantalpr, status, productReturnDate, productLoanDate, productRequestDate;
     Button productRequestCancelButton, productTakeBackButton, productLendButton;
     DataManagement dataManagement;
     CheckBox ProductIsNotDamaged;
@@ -44,6 +44,9 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
         productTakeBackButton = findViewById(R.id.productTakeBackButton);
         productLendButton = findViewById(R.id.productLendButton);
         ProductIsNotDamaged = findViewById(R.id.ProductIsDamagedCheckBox);
+        productReturnDate =findViewById(R.id.productReturnDate);
+        productLoanDate = findViewById(R.id.productLoanDate);
+        productRequestDate = findViewById(R.id.productRequestDate);
         borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
@@ -56,18 +59,30 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
         if (borrow.getBorrowStatus().matches(getString(R.string.productStatusTeLaat))) {
             status.setTextColor(Color.parseColor("#d8041d"));
             productLendButton.setVisibility(View.GONE);
+            productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productReturnDate.setVisibility(View.GONE);
             productRequestCancelButton.setVisibility(View.GONE);
         }else if (borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
             productTakeBackButton.setVisibility(View.GONE);
             ProductIsNotDamaged.setVisibility(View.GONE);
+            productLoanDate.setVisibility(View.GONE);
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productReturnDate.setVisibility(View.GONE);
         }else if(borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
             productRequestCancelButton.setVisibility(View.GONE);
             productLendButton.setVisibility(View.GONE);
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
+            productReturnDate.setVisibility(View.GONE);
         }else{
             ProductIsNotDamaged.setVisibility(View.GONE);
             productTakeBackButton.setVisibility(View.GONE);
             productRequestCancelButton.setVisibility(View.GONE);
             productLendButton.setVisibility(View.GONE);
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+               productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
+             productReturnDate.setText("Teruggebracht op.."+borrow.getReturnDate());
         }
 
 
