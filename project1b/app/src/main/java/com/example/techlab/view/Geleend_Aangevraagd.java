@@ -136,7 +136,7 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
             borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
             if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
                 Toast.makeText(this, "Het product is met succes uitgeleend", Toast.LENGTH_LONG).show();
-                status.setText("Aanvraag status: " + borrow.getBorrowStatus());
+                status.setText("Status: " + borrow.getBorrowStatus());
             }else {
                 Toast.makeText(this, "het product uitgelenen is mislukt", Toast.LENGTH_LONG).show();
             }
@@ -154,7 +154,7 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
                 borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
                 if(borrow.getBorrowStatus().matches(getString(R.string.productStatusReturned))){
                     Toast.makeText(this, "Het product is met succes teruggenomen", Toast.LENGTH_LONG).show();
-                    status.setText("Aanvraag status: " + borrow.getBorrowStatus());
+                    status.setText("Status: " + borrow.getBorrowStatus());
                 }else{
                     Toast.makeText(this, "Het product terugnemen is mislukt", Toast.LENGTH_LONG).show();
                 }
