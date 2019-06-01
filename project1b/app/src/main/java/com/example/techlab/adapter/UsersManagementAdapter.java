@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.TemplateUsersManagementItemBinding;
