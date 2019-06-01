@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 //All users Management page.
-public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder> implements Filterable {
+public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder>
+        implements Filterable {
 
     private List<Users> usersList;
     private List<Users> usersListFull;
@@ -29,18 +30,15 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     public UsersManagementAdapter(List<Users> users, Context context) {
         this.usersList = new ArrayList<>(users);
-        this.usersListFull =new ArrayList<>(users);
+        this.usersListFull = new ArrayList<>(users);
         this.context = context;
     }
 
     @NonNull
     @Override
     public UsersManagementAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        TemplateUsersManagementItemBinding binding = DataBindingUtil
-                .inflate(LayoutInflater.from(viewGroup.getContext())
-                        , R.layout.template_users_management_item
-                        ,viewGroup
-                        ,false);
+        TemplateUsersManagementItemBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(viewGroup.getContext()), R.layout.template_users_management_item, viewGroup, false);
         return new ViewHolder(binding);
     }
 
@@ -52,7 +50,7 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, User_management_user_InfoActivity.class);
-                intent.putExtra("ID_",current_users.getId());
+                intent.putExtra("ID_", current_users.getId());
                 context.startActivity(intent);
             }
         });
@@ -72,12 +70,13 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Users> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(usersListFull);
-            } else{
+            } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Users user : usersListFull){
-                    if(user.getFirstName().toLowerCase().contains(filterPattern)||user.getSchoolEmail().toLowerCase().contains(filterPattern)){
+                for (Users user : usersListFull) {
+                    if (user.getFirstName().toLowerCase().contains(filterPattern)
+                            || user.getSchoolEmail().toLowerCase().contains(filterPattern)) {
                         filteredList.add(user);
                     }
 
@@ -91,12 +90,12 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             usersList.clear();
-            usersList.addAll((List)results.values);
+            usersList.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout relativeLayout;
         // Binding variables

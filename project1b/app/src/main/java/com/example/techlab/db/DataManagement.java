@@ -325,11 +325,11 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT FIRSTNAME,SURNAME FROM USERS WHERE BLOCKED = "+1+";";
+                String query = "SELECT FIRSTNAME,SURNAME,ID_ FROM USERS WHERE BLOCKED = "+1+";";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
-                    usersList.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME")));
+                    usersList.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getInt("ID_")));
                 }
                 connect.close();
             }
