@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,8 @@ import com.example.techlab.util.DateUtils;
 
 public class Geleend_Aangevraagd extends AppCompatActivity {
     Intent intent;
-    TextView prnaam, gebrnaam, aantalpr, status;
+    TextView prnaam, gebrnaam, aantalpr, status, productReturnDate, productLoanDate, productRequestDate;
+    Button productRequestCancelButton, productTakeBackButton, productLendButton;
     DataManagement dataManagement;
     CheckBox ProductIsNotDamaged;
     Borrow borrow;
@@ -38,7 +40,13 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
         gebrnaam = findViewById(R.id.leenavraagUser);
         aantalpr = findViewById(R.id.leenavraagAantal);
         status = findViewById(R.id.productRequestListProductStatus);
-        ProductIsNotDamaged = findViewById(R.id.ProductIsNotDamagedCheckBox);
+        productRequestCancelButton = findViewById(R.id.productRequestCancelButton);
+        productTakeBackButton = findViewById(R.id.productTakeBackButton);
+        productLendButton = findViewById(R.id.productLendButton);
+        ProductIsNotDamaged = findViewById(R.id.ProductIsDamagedCheckBox);
+        productReturnDate =findViewById(R.id.productReturnDate);
+        productLoanDate = findViewById(R.id.productLoanDate);
+        productRequestDate = findViewById(R.id.productRequestDate);
         borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
@@ -49,7 +57,33 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
         aantalpr.setText("Aanvraagde aantal: " + borrow.getBorrowItemAmount());
         status.setText("Aanvraag status: " + borrow.getBorrowStatus());
         if (borrow.getBorrowStatus().matches(getString(R.string.productStatusTeLaat))) {
-            status.setTextColor(Color.parseColor("#d8041d")); }
+            status.setTextColor(Color.parseColor("#d8041d"));
+            productLendButton.setVisibility(View.GONE);
+            productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productReturnDate.setVisibility(View.GONE);
+            productRequestCancelButton.setVisibility(View.GONE);
+        }else if (borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
+            productTakeBackButton.setVisibility(View.GONE);
+            ProductIsNotDamaged.setVisibility(View.GONE);
+            productLoanDate.setVisibility(View.GONE);
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productReturnDate.setVisibility(View.GONE);
+        }else if(borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
+            productRequestCancelButton.setVisibility(View.GONE);
+            productLendButton.setVisibility(View.GONE);
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
+            productReturnDate.setVisibility(View.GONE);
+        }else{
+            ProductIsNotDamaged.setVisibility(View.GONE);
+            productTakeBackButton.setVisibility(View.GONE);
+            productRequestCancelButton.setVisibility(View.GONE);
+            productLendButton.setVisibility(View.GONE);
+            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+               productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
+             productReturnDate.setText("Teruggebracht op.."+borrow.getReturnDate());
+        }
 
 
 
@@ -102,7 +136,7 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
             borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
             if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
                 Toast.makeText(this, "Het product is met succes uitgeleend", Toast.LENGTH_LONG).show();
-                status.setText("Aanvraag status: " + borrow.getBorrowStatus());
+                status.setText("Status: " + borrow.getBorrowStatus());
             }else {
                 Toast.makeText(this, "het product uitgelenen is mislukt", Toast.LENGTH_LONG).show();
             }
@@ -111,22 +145,22 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
         }
     }
     public void returnProductButton(View view){
-        if(ProductIsNotDamaged.isChecked()){
             if (borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan)) | borrow.getBorrowStatus().matches(getString(R.string.productStatusTeLaat))){
-                dataManagement.productReturned( DateUtils.getCurrentDate(),borrow.getBorrowID(),borrow.getBorrowItemAmount(), borrow.getUserID(),borrow.getmProductID());
+                if(ProductIsNotDamaged.isChecked()){
+                    dataManagement.brokenProductReturned(DateUtils.getCurrentDate(),borrow.getBorrowID(),borrow.getBorrowItemAmount(), borrow.getUserID(),borrow.getmProductID());
+                }else{
+                    dataManagement.productReturned( DateUtils.getCurrentDate(),borrow.getBorrowID(),borrow.getBorrowItemAmount(), borrow.getUserID(),borrow.getmProductID());
+                }
                 borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
                 if(borrow.getBorrowStatus().matches(getString(R.string.productStatusReturned))){
                     Toast.makeText(this, "Het product is met succes teruggenomen", Toast.LENGTH_LONG).show();
-                    status.setText("Aanvraag status: " + borrow.getBorrowStatus());
+                    status.setText("Status: " + borrow.getBorrowStatus());
                 }else{
                     Toast.makeText(this, "Het product terugnemen is mislukt", Toast.LENGTH_LONG).show();
                 }
             }else {
                 Toast.makeText(this, "Dit product is niet in bruikleen, dus kunt u dit product niet terugnemen", Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(this, "Check box is niet aangevinkt", Toast.LENGTH_LONG).show();
-        }
     }
 
     public void productCancelButton(View view){
