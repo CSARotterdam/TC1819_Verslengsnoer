@@ -20,15 +20,17 @@ import com.example.techlab.view.User_management_user_InfoActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+//All users Management page.
 public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder> implements Filterable {
-    private List<Users> users;
+
     private List<Users> usersListFull;
     private Context context;
+
     public UsersManagementAdapter(List<Users> users, Context context) {
-        this.users = users;
-        this.context = context;
         this.usersListFull = new ArrayList<>(users);
+        this.context = context;
     }
+
     @NonNull
     @Override
     public UsersManagementAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -42,13 +44,13 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Users users = this.users.get(i);
-        viewHolder.usersManagementBinding.setUsersItem(users);
+        final Users current_users = usersListFull.get(i);
+        viewHolder.usersManagementBinding.setUsersItem(current_users);
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, User_management_user_InfoActivity.class);
-                intent.putExtra("ID_",users.getId());
+                intent.putExtra("ID_",current_users.getId());
                 context.startActivity(intent);
             }
         });
@@ -56,8 +58,9 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return usersListFull.size();
     }
+
     @Override
     public Filter getFilter() {
         return usersFilter;
@@ -85,11 +88,12 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            users.clear();
-            users.addAll((List)results.values);
+            usersListFull.clear();
+            usersListFull.addAll((List)results.values);
             notifyDataSetChanged();
         }
     };
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         RelativeLayout relativeLayout;
