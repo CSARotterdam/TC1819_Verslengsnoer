@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -8,16 +9,17 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Books;
+import com.example.techlab.util.ImageUtils;
 
-public class Product_management_book_updateActivity extends AppCompatActivity {
+public class Product_management_book_updateActivity extends DrawerMenu {
     private static final int RESULT_LOAD_IMAGE = 1;
     TextInputLayout bookTitle,bookWriters,bookIsbn,bookPublisher,bookAmount,bookDescription;
     ImageView bookUploadImageView;
@@ -27,7 +29,10 @@ public class Product_management_book_updateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_management_book_update);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_product_management_book_update, null,false);
+        frameLayout.addView(activityView);
 
         bookTitle = findViewById(R.id.bookTitleUpdateTextInput);
         bookWriters = findViewById(R.id.bookWritersUpdateTextInput);

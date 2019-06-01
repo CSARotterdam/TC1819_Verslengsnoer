@@ -1,19 +1,21 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.util.ImageUtils;
 
-public class Product_management_product_infoActivity extends AppCompatActivity {
+public class Product_management_product_infoActivity extends DrawerMenu {
     TextView productName, productId, productStock, productCategory,productAmountBroken
             ,productManufacturer, productDescription;
     ImageView productManagementImageView;
@@ -22,7 +24,11 @@ public class Product_management_product_infoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_management_product_info);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_product_management_product_info, null,false);
+        frameLayout.addView(activityView);
+
         productName = findViewById(R.id.productNameTextView);
         productId = findViewById(R.id.productIdTextView);
         productStock = findViewById(R.id.productStockTextView);

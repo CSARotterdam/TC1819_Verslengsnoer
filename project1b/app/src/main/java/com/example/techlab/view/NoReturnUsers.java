@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.NoReturnUsersAdapter;
+import com.example.techlab.model.TelaatGebrItems;
 
 import java.util.ArrayList;
 

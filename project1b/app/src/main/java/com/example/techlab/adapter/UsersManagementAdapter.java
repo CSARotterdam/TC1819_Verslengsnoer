@@ -21,15 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 //All users Management page.
-public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder>
-        implements Filterable {
+public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder> implements Filterable {
 
     private List<Users> usersList;
     private List<Users> usersListFull;
     private Context context;
 
     public UsersManagementAdapter(List<Users> users, Context context) {
-        this.usersList = new ArrayList<>(users);
+        this.usersList = users;
         this.usersListFull = new ArrayList<>(users);
         this.context = context;
     }
@@ -86,6 +85,7 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
             results.values = filteredList;
             return results;
         }
+
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {

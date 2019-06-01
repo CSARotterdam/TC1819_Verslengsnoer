@@ -3,12 +3,11 @@ package com.example.techlab.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import com.example.techlab.R;
@@ -26,7 +26,7 @@ import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
 
-public class Users_managementActivity extends AppCompatActivity {
+public class Users_managementActivity extends DrawerMenu {
     private RecyclerView mRecyclerView;
     SharedPreferences mSharedPreferences;
     RecyclerView.LayoutManager mLayoutManager;
@@ -40,7 +40,10 @@ public class Users_managementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_users_management);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_users_management, null,false);
+        frameLayout.addView(activityView);
 //        setContentView(R.layout.activity_users_management);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
@@ -76,9 +79,7 @@ public class Users_managementActivity extends AppCompatActivity {
                 adapter = new UsersManagementAdapter(userList, Users_managementActivity.this);
                 mRecyclerView.setAdapter(adapter);
 
-                binding.usersListItem.setAdapter(adapter);
-                binding.usersListItem.setLayoutManager(new LinearLayoutManager(Users_managementActivity.this));
-                binding.usersListItem.setNestedScrollingEnabled(false);
+
             }
 
             @Override

@@ -7,9 +7,10 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.techlab.R;
@@ -17,7 +18,7 @@ import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
 
 //UsersManagementAdapter -> Per selected user page.
-public class User_management_user_InfoActivity extends AppCompatActivity {
+public class User_management_user_InfoActivity extends DrawerMenu {
     TextView name, surname, userEmail, userStatus, productOnLoanAmount, statusBlock;
     DataManagement dataManagement;
     Users user;
@@ -27,7 +28,10 @@ public class User_management_user_InfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_management_user__info);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_user_management_user__info, null,false);
+        frameLayout.addView(activityView);
         name = findViewById(R.id.userManagementUserInfoUserNameDisplay);
         surname = findViewById(R.id.userManagementUserInfoUserLastNameDisplay);
         userEmail = findViewById(R.id.userManagementUserInfoUserEmailDisplay);

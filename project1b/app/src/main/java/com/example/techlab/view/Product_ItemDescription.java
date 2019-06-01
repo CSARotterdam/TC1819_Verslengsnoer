@@ -7,12 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +26,7 @@ import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 //import java.util.ArrayList; ////Belongs to the code of Guan Version 1
 
-public class Product_ItemDescription extends AppCompatActivity {
+public class Product_ItemDescription extends DrawerMenu {
     private static final String TAG = "Product_ItemDescription";
     private Button Button_Request2Borrow;
     //    private Button VoorwaardenBtn; //Belongs to Guan Version 1
@@ -41,8 +41,11 @@ public class Product_ItemDescription extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_item_description, null,false);
+        frameLayout.addView(activityView);
         Log.d(TAG, "OnCreate: started.");
-        setContentView(R.layout.activity_item_description);
 
         dataManagement = new DataManagement();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);

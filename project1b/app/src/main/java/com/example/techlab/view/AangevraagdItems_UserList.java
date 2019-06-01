@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import com.example.techlab.R;
@@ -24,7 +25,7 @@ import com.example.techlab.model.Borrow;
 
 import java.util.ArrayList;
 
-public class AangevraagdItems_UserList extends AppCompatActivity {
+public class AangevraagdItems_UserList extends DrawerMenu {
     private RecyclerView mRecyclerView;
     private AangevraagdItems_UserList_Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
@@ -38,7 +39,10 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_user_aangvr);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_list_user_aangvr, null,false);
+        frameLayout.addView(activityView);
         dataManagement = new DataManagement();
         loanUsersList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);

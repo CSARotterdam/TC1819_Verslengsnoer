@@ -5,8 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.techlab.R;
@@ -15,7 +16,7 @@ import com.example.techlab.model.Users;
 
 
 //Settings page
-public class User_information_changeActivity extends AppCompatActivity {
+public class User_information_changeActivity extends DrawerMenu {
     TextInputLayout userFirstNameInput, userSurnameInput, passwordInput, confirmPasswordInput;
     DataManagement dataManagement;
     private SharedPreferences.Editor mEditor;
@@ -24,7 +25,10 @@ public class User_information_changeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_information_change);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_user_information_change, null,false);
+        frameLayout.addView(activityView);
     userFirstNameInput = findViewById(R.id.AccountSettingFirstNameInputLayout);
     userSurnameInput = findViewById(R.id.AccountSettingSurnameInputLayout);
     passwordInput = findViewById(R.id.AccountSettingPasswordInputLayout);

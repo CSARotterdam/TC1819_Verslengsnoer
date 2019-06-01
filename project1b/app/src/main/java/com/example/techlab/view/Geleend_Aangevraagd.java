@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
 import com.example.techlab.util.DateUtils;
 
-public class Geleend_Aangevraagd extends AppCompatActivity {
+public class Geleend_Aangevraagd extends DrawerMenu {
     Intent intent;
     TextView prnaam, gebrnaam, aantalpr, status, productReturnDate, productLoanDate, productRequestDate;
     Button productRequestCancelButton, productTakeBackButton, productLendButton;
@@ -31,7 +32,10 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pr_aanvraag_return);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.pr_aanvraag_return, null,false);
+        frameLayout.addView(activityView);
         System.out.println("Aanvraag Returned.java started");
         dataManagement = new DataManagement();
         intent = new Intent();

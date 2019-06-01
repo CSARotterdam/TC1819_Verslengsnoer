@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.techlab.R;
-import com.example.techlab.view.TelaatGebrItems;
+import com.example.techlab.model.TelaatGebrItems;
 
 import java.util.ArrayList;
 

@@ -10,7 +10,6 @@
     <item android:id="@+id/infographic" android:title="@string/infographic" android:icon="@drawable/ic_pie_chart"/>
     <item android:id="@+id/contact" android:title="@string/contact" android:icon="@drawable/ic_info_icon"/>
     <item android:id="@+id/LogoutMenu" android:title="@string/logout" android:icon="@drawable/ic_logout"/>
-    <item android:id="@+id/menu" android:title="menu" android:icon="@drawable/ic_logout"/>
 
 
 

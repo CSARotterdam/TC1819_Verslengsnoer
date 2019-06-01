@@ -1,4 +1,4 @@
-package com.example.techlab.view;
+package com.example.techlab.model;
 
 public class TelaatGebrItems {
 
