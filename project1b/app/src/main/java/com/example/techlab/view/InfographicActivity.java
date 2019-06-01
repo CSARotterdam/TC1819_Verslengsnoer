@@ -1,9 +1,12 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagementInfographic;
@@ -17,14 +20,18 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class InfographicActivity extends AppCompatActivity {
+public class InfographicActivity extends DrawerMenu  {
     PieChart pieChart;
     PieChart pieChart2;
     DataManagementInfographic dataManagementInfographic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_infographic);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_infographic, null,false);
+        frameLayout.addView(activityView);
         dataManagementInfographic = new DataManagementInfographic();
 
         ValueFormatter formatter = new ValueFormatter() {
@@ -79,6 +86,7 @@ public class InfographicActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onBackPressed() {
         finish();

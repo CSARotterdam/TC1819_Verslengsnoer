@@ -10,6 +10,7 @@
     <item android:id="@+id/userAccountSetting" android:title="Account instellingen" android:icon="@drawable/ic_user_account_setting"/>
     <item android:id="@+id/infographic" android:title="infographic" android:icon="@drawable/ic_pie_chart"/>
     <item android:id="@+id/LogoutMenu" android:title="Uitloggen" android:icon="@drawable/ic_logout"/>
+    <item android:id="@+id/menu" android:title="menu" android:icon="@drawable/ic_logout"/>
 
 
 
