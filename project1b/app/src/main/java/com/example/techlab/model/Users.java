@@ -24,9 +24,10 @@ public class Users implements Parcelable  {
         this.blockStatus = block;
     }
     //overload Users for Blocked list
-    public Users(String firstName, String surname) {
+    public Users(String firstName, String surname, int _id) {
         this.firstName = firstName;
         this.surname = surname;
+        this.id = _id;
     }
     public Users(String firstName, String surname, String schoolEmail,int loanedAmount ,String userType, int _id, int block) {
         this.firstName = firstName;

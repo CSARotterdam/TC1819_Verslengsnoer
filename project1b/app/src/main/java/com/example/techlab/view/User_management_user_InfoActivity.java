@@ -133,4 +133,10 @@ public class User_management_user_InfoActivity extends AppCompatActivity {
         //Creating dialog box
         RequestItemAlertDialog.create().show();
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this,  Users_managementActivity.class));
+    }
 }

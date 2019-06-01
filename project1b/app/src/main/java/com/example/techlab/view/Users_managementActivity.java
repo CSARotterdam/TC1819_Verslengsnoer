@@ -47,8 +47,6 @@ public class Users_managementActivity extends AppCompatActivity {
         userList = new ArrayList<>();
 
 //        System.out.println("Users_managementActivity: On Create started");
-
-        // By default: show All users.
         adapter = new UsersManagementAdapter(userList,this);
 
         mRecyclerView = findViewById(R.id.usersListItem);
@@ -67,10 +65,15 @@ public class Users_managementActivity extends AppCompatActivity {
                 if (parent.getSelectedItem().toString().matches("Alle geblokkeerde gebruikers")){
                     userList = dataManagement.getBlockedUsers();
                 }else{
+                    // By default: show All users.
                     userList = dataManagement.getAllUserDataExceptFor(1);
                 }
                 adapter = new UsersManagementAdapter(userList, Users_managementActivity.this);
                 mRecyclerView.setAdapter(adapter);
+
+                binding.usersListItem.setAdapter(adapter);
+                binding.usersListItem.setLayoutManager(new LinearLayoutManager(Users_managementActivity.this));
+                binding.usersListItem.setNestedScrollingEnabled(false);
             }
 
             @Override
@@ -80,10 +83,8 @@ public class Users_managementActivity extends AppCompatActivity {
         });
 
 
-        binding.usersListItem.setAdapter(adapter);
-        binding.usersListItem.setLayoutManager(new LinearLayoutManager(this));
-        binding.usersListItem.setNestedScrollingEnabled(false);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
