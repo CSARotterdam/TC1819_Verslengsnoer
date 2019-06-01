@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.TemplateUsersManagementItemBinding;
@@ -24,11 +23,13 @@ import java.util.List;
 //All users Management page.
 public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagementAdapter.ViewHolder> implements Filterable {
 
+    private List<Users> usersList;
     private List<Users> usersListFull;
     private Context context;
 
     public UsersManagementAdapter(List<Users> users, Context context) {
-        this.usersListFull = new ArrayList<>(users);
+        this.usersList = new ArrayList<>(users);
+        this.usersListFull =new ArrayList<>(users);
         this.context = context;
     }
 
@@ -45,7 +46,7 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Users current_users = usersListFull.get(i);
+        final Users current_users = usersList.get(i);
         viewHolder.usersManagementBinding.setUsersItem(current_users);
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,7 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
     @Override
     public int getItemCount() {
-        return usersListFull.size();
+        return usersList.size();
     }
 
     @Override
@@ -89,8 +90,8 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            usersListFull.clear();
-            usersListFull.addAll((List)results.values);
+            usersList.clear();
+            usersList.addAll((List)results.values);
             notifyDataSetChanged();
         }
     };
