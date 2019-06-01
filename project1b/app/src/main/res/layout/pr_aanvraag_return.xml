@@ -70,7 +70,7 @@
         android:id="@+id/ProductIsDamagedCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Product is beschadigt" />
+        android:text="product is beschadigd" />
     <Button
         android:id="@+id/productLendButton"
         android:layout_width="match_parent"
