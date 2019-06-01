@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.InfographicActivity"></activity>
-    
+        <activity android:name=".view.Contact"></activity>
+        <activity android:name=".view.InfographicActivity" />
         <activity
             android:name=".view.User_information_changeActivity"
             android:label="Account instellingen"
@@ -59,7 +59,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.SignUpActivity"
-            android:label="Aanmeldingspagina" 
+            android:label="Aanmeldingspagina"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Geleend_Aangevraagd"

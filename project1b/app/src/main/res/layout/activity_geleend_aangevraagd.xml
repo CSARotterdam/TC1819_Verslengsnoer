@@ -15,6 +15,7 @@
             android:layout_margin="10dp"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             app:backgroundTint="@color/Red" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/BorrowItemRecyclerView"
             android:layout_width="match_parent"

@@ -64,8 +64,10 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
         navigationView=findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+
         drawerLayout = findViewById(R.id.drawer);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -199,6 +201,12 @@ public class Product_InventoryActivity extends AppCompatActivity implements Navi
         }
         if (id == R.id.infographic){
             Intent intent = new Intent(getBaseContext(), InfographicActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+        if (id == R.id.contact){
+            Intent intent = new Intent(getBaseContext(), Contact.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

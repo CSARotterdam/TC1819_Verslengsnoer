@@ -138,10 +138,10 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
                 Toast.makeText(this, "Het product is met succes uitgeleend", Toast.LENGTH_LONG).show();
                 status.setText("Status: " + borrow.getBorrowStatus());
             }else {
-                Toast.makeText(this, "het product uitgelenen is mislukt", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Product uitlenen actie is mislukt", Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(this, "Dit product is staat niet op pending, dus u kunt dit product niet uitlenen", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Dit product staat niet op pending, dus u kunt dit product niet uitlenen", Toast.LENGTH_LONG).show();
         }
     }
     public void returnProductButton(View view){
@@ -172,7 +172,7 @@ public class Geleend_Aangevraagd extends AppCompatActivity {
             startActivity(intent);
             finish();
         }else{
-            Toast.makeText(this, "Dit product is staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Dit product staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
         }
     }
     public void AanvraagAccepteren(View view){
