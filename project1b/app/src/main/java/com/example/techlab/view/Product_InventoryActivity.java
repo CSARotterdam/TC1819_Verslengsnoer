@@ -21,12 +21,10 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
-
 import java.util.ArrayList;
 
 //Inventaris Page
@@ -116,8 +114,6 @@ public class Product_InventoryActivity extends DrawerMenu{
         finish();
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -139,6 +135,4 @@ public class Product_InventoryActivity extends DrawerMenu{
         });
         return true;
     }
-
-
 }

@@ -21,7 +21,6 @@
             android:layout_marginTop="6dp"
             android:text="Gebruikers"
             android:textSize="16sp" />
-
         <TextView
             android:id="@+id/studentennummers_Textview"
             android:layout_width="wrap_content"
@@ -33,9 +32,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="6dp"
             android:layout_toEndOf="@+id/gebruikers_Textview"
+            android:layout_toRightOf="@+id/gebruikers_Textview"
             android:text="Studentennummer"
             android:textSize="16sp" />
-
         <TextView
             android:id="@+id/telaat_pr_Textview"
             android:layout_width="wrap_content"
