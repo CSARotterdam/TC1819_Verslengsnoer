@@ -29,11 +29,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_book_infoActivity"
-            android:label="Product info"
+            android:label="Boek Informatie"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_add_bookActivity"
-            android:label="Product toevoegen"
+            android:label="Boek Toevoegen"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.User_management_user_InfoActivity"
@@ -53,7 +53,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_product_infoActivity"
-            android:label="Product info"
+            android:label="Product Informatie"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_add_productActivity"
@@ -82,7 +82,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_ItemDescription"
-            android:label="Product Informatie"
+            android:label="Product Beschrijving"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_Voorwaarden"
@@ -95,6 +95,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- declares the background service-->
         <service
             android:name="oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorService"
