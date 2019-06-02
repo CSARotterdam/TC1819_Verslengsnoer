@@ -125,6 +125,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
             menu.findItem(R.id.productmanagementMenu).setVisible(false);
             menu.findItem(R.id.userManagementMenu).setVisible(false);
             menu.findItem(R.id.ProductAdministratieMenu).setVisible(false);
+            menu.findItem(R.id.infographic).setVisible(false);
         }
         if(user.getUserType().matches("beheerder")){
             menu.findItem(R.id.userManagementMenu).setVisible(false);
