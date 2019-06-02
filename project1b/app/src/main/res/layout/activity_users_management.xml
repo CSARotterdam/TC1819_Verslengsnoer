@@ -28,25 +28,24 @@
                 android:layout_margin="10dp"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 app:backgroundTint="@color/Red" />
-
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3"
-            android:layout_marginVertical="10dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginEnd="25dp">
+            android:layout_marginRight="25dp">
 
             <TextView
                 android:id="@+id/userManagementSchoolEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/naam"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_weight="2.2"/>
 
@@ -55,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Aantal producten in bruikleen"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_marginLeft="15dp"

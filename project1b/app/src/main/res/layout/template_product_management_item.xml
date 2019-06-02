@@ -11,33 +11,30 @@
         android:id="@+id/productItemView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/recyclerview_background"
-        android:padding="15dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
+        android:padding="15dp"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/productName"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{product.name}"
-            android:layout_weight="2.4"
             android:textColor="@color/black"
             tools:text="LCD Display" />
-
         <TextView
             android:id="@+id/productStock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(product.stock)}"
             android:textColor="@color/black"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="false"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
             tools:text="2" />
-        </LinearLayout>
-
     </RelativeLayout>
 </layout>

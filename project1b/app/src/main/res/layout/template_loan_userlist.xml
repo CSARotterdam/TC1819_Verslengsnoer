@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="0dp"
     android:layout_marginBottom="4dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
@@ -17,23 +16,22 @@
         android:layout_height="40dp"
         android:padding="10dp"
         android:weightSum="1">
-
         <TextView
             android:id="@+id/Gebruiker_Textview"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:text="gebruiker"
+            android:text="Gebruiker"
             android:layout_marginLeft="15dp"
-            android:textSize="15dp" />
-
+            android:layout_marginStart="15dp"
+            android:textSize="15sp"/>
         <TextView
             android:id="@+id/Productnaam_Textview"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="Productnaam"
-            android:textSize="15dp" />
+            android:textSize="15sp"/>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

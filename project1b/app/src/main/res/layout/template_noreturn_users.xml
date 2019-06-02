@@ -20,7 +20,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="6dp"
             android:text="Gebruikers"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/studentennummers_Textview"
@@ -34,7 +34,7 @@
             android:layout_marginTop="6dp"
             android:layout_toEndOf="@+id/gebruikers_Textview"
             android:text="Studentennummer"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/telaat_pr_Textview"
@@ -47,6 +47,6 @@
             android:layout_marginLeft="300dp"
             android:layout_marginTop="10dp"
             android:text="NumPr"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

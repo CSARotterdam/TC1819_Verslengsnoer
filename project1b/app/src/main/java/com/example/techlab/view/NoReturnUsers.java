@@ -4,19 +4,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import com.example.techlab.R;
 import com.example.techlab.adapter.NoReturnUsersAdapter;
 import com.example.techlab.model.TelaatGebrItems;
-
 import java.util.ArrayList;
 
 public class NoReturnUsers extends AppCompatActivity {
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

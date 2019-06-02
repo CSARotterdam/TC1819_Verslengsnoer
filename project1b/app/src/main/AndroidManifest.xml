@@ -12,8 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.DrawerMenu"></activity>
-        <activity android:name=".view.Contact" />
-        <activity android:name=".view.InfographicActivity" />
+        <activity android:name=".view.Contact"
+            android:label="Contact"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.InfographicActivity"
+            android:label="Statistieken"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.User_information_changeActivity"
             android:label="Account instellingen"
@@ -96,7 +101,7 @@
             android:enabled="true" >
         </service>
         <!--declares the BroadcastReceiver that will be called when the message uk.ac.shef.oak.ActivityRecognition.RestartSensor -->
-        <!--is sent by the service itself when it is about to die&ndash;&gt;-->
+        <!--is sent by the service itself when it is about to die-->
         <receiver
             android:name="oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorRestarterBroadcastReceiver"
             android:enabled="true"
