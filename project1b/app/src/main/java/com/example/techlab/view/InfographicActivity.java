@@ -32,6 +32,9 @@ public class InfographicActivity extends DrawerMenu  {
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_infographic, null,false);
         frameLayout.addView(activityView);
+
+
+
         dataManagementInfographic = new DataManagementInfographic();
 
         ValueFormatter formatter = new ValueFormatter() {

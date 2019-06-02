@@ -67,7 +67,10 @@ public class SignUpActivity extends AppCompatActivity {
         if (input.isEmpty()) {
             schoolEmailInput.setError("Een leeg invoerveld is niet toegestaan");
             return false;
-        } else if ((input.length() != 13) | !(input.substring(input.length() - 6).matches("@hr.nl"))) {
+        } else if ((input.length() != 13)) {
+            schoolEmailInput.setError("We accepteren alleen schoolEmail van de hogeschool Rotterdam");
+            return false;
+        } else if ( !(input.substring(input.length() - 6).matches("@hr.nl"))){
             schoolEmailInput.setError("We accepteren alleen schoolEmail van de hogeschool Rotterdam");
             return false;
         } else if (!(EmailAlreadyRegisteredCheck)) {

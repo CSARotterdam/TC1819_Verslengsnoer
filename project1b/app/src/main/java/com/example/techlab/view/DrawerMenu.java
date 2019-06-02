@@ -34,10 +34,8 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_menu);
         dataManagement = new DataManagement();
-
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
-
         navigationView=findViewById(R.id.drawer_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawerMenu);
