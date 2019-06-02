@@ -3,15 +3,20 @@ package com.example.techlab.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.Spinner;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.UsersManagementAdapter;
@@ -21,23 +26,70 @@ import com.example.techlab.model.Users;
 
 import java.util.ArrayList;
 
-public class Users_managementActivity extends AppCompatActivity {
-    DataManagement dataManagement;
-    ActivityUsersManagementBinding binding;
-    UsersManagementAdapter adapter;
+public class Users_managementActivity extends DrawerMenu {
+    private RecyclerView mRecyclerView;
     SharedPreferences mSharedPreferences;
+    RecyclerView.LayoutManager mLayoutManager;
+
+    DataManagement dataManagement;
+    UsersManagementAdapter adapter;
+    ArrayList<Users> userList;
+
+    ActivityUsersManagementBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_users_management);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_users_management, null,false);
+        frameLayout.addView(activityView);
+//        setContentView(R.layout.activity_users_management);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
-        ArrayList<Users> userList = dataManagement.getAllUserData(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
+        userList = new ArrayList<>();
+
+//        System.out.println("Users_managementActivity: On Create started");
         adapter = new UsersManagementAdapter(userList,this);
-        binding.usersListItem.setAdapter(adapter);
-        binding.usersListItem.setLayoutManager(new LinearLayoutManager(this));
-        binding.usersListItem.setNestedScrollingEnabled(false);
+
+        mRecyclerView = findViewById(R.id.usersListItem);
+        mLayoutManager = new LinearLayoutManager(Users_managementActivity.this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        System.out.println(getApplicationContext().toString()+" onResume started...");
+        Spinner CategorySpinner = findViewById(R.id.CategoryUsersBtn);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.UsersCategory, android.R.layout.simple_dropdown_item_1line);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        CategorySpinner.setAdapter(adapter2);
+        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (parent.getSelectedItem().toString().matches("Alle geblokkeerde gebruikers")){
+                    userList = dataManagement.getBlockedUsers();
+                }else{
+                    // By default: show All users.
+                    userList = dataManagement.getAllUserDataExceptFor(1);
+                }
+                adapter = new UsersManagementAdapter(userList, Users_managementActivity.this);
+                mRecyclerView.setAdapter(adapter);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

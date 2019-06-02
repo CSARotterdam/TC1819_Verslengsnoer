@@ -1,40 +1,47 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.FrameLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.adapter.ProductManagementAdapter;
-import com.example.techlab.databinding.ActivityProductManagementBinding;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
 
 import java.util.ArrayList;
 
-public class Product_managementActivity extends AppCompatActivity {
+public class Product_managementActivity extends DrawerMenu{
+    RecyclerView recyclerView;
     DataManagement dataManagement;
-    ActivityProductManagementBinding binding;
+
     ProductManagementAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_management);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_product_management, null,false);
+        frameLayout.addView(activityView);
+
         dataManagement = new DataManagement();
         ArrayList<Products> Productlist = dataManagement.getAllProducts();
+        recyclerView = findViewById(R.id.electronicsListItems);
         adapter = new ProductManagementAdapter(Productlist,this);
-        binding.electronicsListItems.setAdapter(adapter);
-        binding.electronicsListItems.setLayoutManager(new LinearLayoutManager(this));
-        binding.electronicsListItems.setNestedScrollingEnabled(false);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(Product_managementActivity.this));
     }
 
     @Override

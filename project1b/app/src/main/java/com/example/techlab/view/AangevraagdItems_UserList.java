@@ -4,12 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import com.example.techlab.R;
@@ -19,9 +25,9 @@ import com.example.techlab.model.Borrow;
 
 import java.util.ArrayList;
 
-public class AangevraagdItems_UserList extends AppCompatActivity {
+public class AangevraagdItems_UserList extends DrawerMenu {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private AangevraagdItems_UserList_Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
 
     DataManagement dataManagement;
@@ -33,7 +39,10 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_user_aangvr);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_list_user_aangvr, null,false);
+        frameLayout.addView(activityView);
         dataManagement = new DataManagement();
         loanUsersList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);
@@ -54,7 +63,9 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
         super.onResume();
         int spinnerPosition;
         String spinnerState = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,"");
-        if (spinnerState.matches(getString(R.string.productStatusReturned))){
+        if(spinnerState.matches(getString(R.string.productStatusTeLaat))){
+            spinnerPosition = 3;
+        } else if (spinnerState.matches(getString(R.string.productStatusReturned))){
             spinnerPosition = 2;
         }else if (spinnerState.matches(getString(R.string.productStatusOnLoan))){
             spinnerPosition = 1;
@@ -94,5 +105,26 @@ public class AangevraagdItems_UserList extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         startActivity(new Intent(this, Product_InventoryActivity.class));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                mAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        return true;
     }
 }

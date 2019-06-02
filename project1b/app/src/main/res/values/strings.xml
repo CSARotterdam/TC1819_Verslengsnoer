@@ -30,4 +30,20 @@
     <string name="productStatusOnLoan">Geleend</string>
     <string name="productStatusReturned">Teruggebracht</string>
     <string name="productStatusTeLaat">Te Laat</string>
+    <string name="contact">Contact</string>
+    <string name="infographic">Statistieken</string>
+    <string name="logout">Uitloggen</string>
+    <string name="account_settings">Account instellingen</string>
+    <string name="user_management">Gebruikersbeheer</string>
+    <string name="product_management">Productbeheer</string>
+    <string name="product_administration">Product Administratie</string>
+    <string name="items_requested_and_borrowed">Geleend / aangevraagd</string>
+    <string name="Inventory">Inventaris</string>
+
+    // Contact
+    <string name="address">Wijnhaven 107</string>
+    <string name="postcode">3011 WN Rotterdam</string>
+    <string name="country">Nederland</string>
+    <string name="floor">WD.4.022</string>
+    <string name="ContactEmail">techlab@csarotterdam.nl</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.techlab.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -8,15 +9,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.util.ImageUtils;
 
-public class Product_management_add_productActivity extends AppCompatActivity {
+public class Product_management_add_productActivity extends DrawerMenu {
     private static final int RESULT_LOAD_IMAGE = 1;
     TextInputLayout productId,productManufacturer,productName,productStock,productCategory,productDescription;
     ImageView productUploadimageView;
@@ -27,7 +29,10 @@ public class Product_management_add_productActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_management_add_product);
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_product_management_add_product, null,false);
+        frameLayout.addView(activityView);
 
         productId = findViewById(R.id.productIdTextInput);
         productManufacturer = findViewById(R.id.productManufacturerTextInput);

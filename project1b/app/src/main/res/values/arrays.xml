@@ -26,4 +26,9 @@
         <item>Computer</item>
         <item>Book</item>
     </string-array>
+    <!--Drop down list for Users management page -->
+    <string-array name="UsersCategory">
+        <item>Alle gebruikers</item>
+        <item>Alle geblokkeerde gebruikers</item>
+    </string-array>
 </resources>

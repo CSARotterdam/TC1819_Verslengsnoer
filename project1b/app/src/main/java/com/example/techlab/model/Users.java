@@ -23,6 +23,22 @@ public class Users implements Parcelable  {
         this.id = _id;
         this.blockStatus = block;
     }
+    //overload Users for Blocked list
+    public Users(String firstName, String surname, int _id) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.id = _id;
+    }
+    public Users(String firstName, String surname, String schoolEmail,int loanedAmount ,String userType, int _id, int block) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.schoolEmail = schoolEmail;
+        this.loanedAmount = loanedAmount;
+        this.userType = userType;
+        this.id = _id;
+        this.blockStatus = block;
+    }
+
 
     protected Users(Parcel in) {
         firstName = in.readString();
@@ -106,9 +122,6 @@ public class Users implements Parcelable  {
         return blockStatus;
     }
 
-    public void setBlockStatus(int blockStatus) {
-        this.blockStatus = blockStatus;
-    }
 
     @Override
     public int describeContents() {

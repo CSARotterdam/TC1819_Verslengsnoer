@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="users"
@@ -15,41 +16,56 @@
     tools:context=".view.Users_managementActivity"
     android:background="@color/colorBackground">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:layout_marginVertical="30dp"
-        android:layout_marginStart="50dp"
-
-        android:layout_marginLeft="50dp">
-
-        <TextView
-            android:id="@+id/userManagementSchoolEmail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/naam"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:layout_weight="2.2"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/userManagementBorrowedAmount"
+            <Spinner
+                android:id="@+id/CategoryUsersBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                app:backgroundTint="@color/Red" />
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="aantal producten in bruikleen"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"/>
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp">
+
+            <TextView
+                android:id="@+id/userManagementSchoolEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/naam"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_weight="2.2"/>
+
+            <TextView
+                android:id="@+id/userManagementBorrowedAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aantal producten in bruikleen"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/usersListItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/usersListItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
-</LinearLayout>
 </layout>

@@ -8,6 +8,7 @@ import java.util.TimeZone;
 public class DateUtils {
     public static final String DATE_FORMAT = "dd-MM-yyyy HH:mm";
 
+
     public static Timestamp getCurrentDate() {
         java.util.Date utilDate = Calendar.getInstance().getTime();
         return new java.sql.Timestamp(utilDate.getTime());
@@ -18,4 +19,5 @@ public class DateUtils {
         dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         return dateFormat.format(date);
     }
+
 }

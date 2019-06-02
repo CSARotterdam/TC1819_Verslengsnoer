@@ -12,11 +12,12 @@ public class Borrow {
     private int mProductID;
     private int mBorrowID;
     int mUserID;
+    String mReturnDate;
 
 
 
 
-    public Borrow(String PName, String RequestDate, String borrowDate, int PAmount, String PStatus, int ProductID , byte[] image, String Gebrnaam, int UserID, int BorrowID){
+    public Borrow(String PName, String RequestDate, String borrowDate, int PAmount, String PStatus, int ProductID , byte[] image, String Gebrnaam, int UserID, int BorrowID, String returnDate){
         mGebrnaam = Gebrnaam;
         mImageResource = image;
         mProductName = PName;
@@ -27,6 +28,7 @@ public class Borrow {
         mProductID = ProductID;
         mUserID = UserID;
         mBorrowID = BorrowID;
+        mReturnDate =returnDate;
 
     }
 
@@ -34,7 +36,9 @@ public class Borrow {
         return mBorrowID;
     }
 
-
+    public String getReturnDate() {
+        return mReturnDate;
+    }
 
     public String getmBorrowDate() {
         return mBorrowDate;
