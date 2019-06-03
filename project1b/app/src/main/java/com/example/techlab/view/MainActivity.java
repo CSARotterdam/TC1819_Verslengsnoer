@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
         ctx = this;
         setContentView(R.layout.activity_main);
 
-        mSensorService = new SensorService(getCtx());
-        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
-        if (!isMyServiceRunning(mSensorService.getClass())) {
-            startService(mServiceIntent);
-        }
+//        mSensorService = new SensorService(getCtx());
+//        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
+//        if (!isMyServiceRunning(mSensorService.getClass())) {
+//            startService(mServiceIntent);
+//        }
 
         loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
