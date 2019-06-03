@@ -99,14 +99,15 @@
         <!-- declares the background service-->
         <service
             android:name="oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorService"
-            android:enabled="true" >
+            android:enabled="false"
+            android:exported="false">
         </service>
         <!--declares the BroadcastReceiver that will be called when the message uk.ac.shef.oak.ActivityRecognition.RestartSensor -->
         <!--is sent by the service itself when it is about to die-->
         <receiver
             android:name="oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorRestarterBroadcastReceiver"
-            android:enabled="true"
-            android:exported="true"
+            android:enabled="false"
+            android:exported="false"
             android:label="RestartServiceWhenStopped">
         </receiver>
     </application>

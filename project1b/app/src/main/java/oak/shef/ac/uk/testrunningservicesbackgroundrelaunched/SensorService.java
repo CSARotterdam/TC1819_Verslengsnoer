@@ -21,7 +21,7 @@ public class SensorService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        startTimer();
+//        startTimer();
         return START_STICKY;
     }
     @Override
@@ -30,7 +30,7 @@ public class SensorService extends Service {
         Log.i("EXIT", "ondestroy!");
         Intent broadcastIntent = new Intent(this, SensorRestarterBroadcastReceiver.class);
         sendBroadcast(broadcastIntent);
-        stoptimertask();
+//        stoptimertask();
     }
 
     private Timer timer;
@@ -40,7 +40,7 @@ public class SensorService extends Service {
         //set a new Timer
         timer = new Timer();
         //initialize the TimerTask's job
-        initializeTimerTask();
+//        initializeTimerTask();
         //schedule the timer, to wake up every 1 second
         timer.schedule(timerTask, 1000, 1000); //
     }
