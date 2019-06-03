@@ -119,7 +119,7 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
-                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"), resultSet.getInt("BLOCKED")));
+                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"), resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
@@ -142,7 +142,7 @@ public class DataManagement {
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
-                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
+                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
@@ -830,7 +830,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
 
@@ -853,7 +853,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
@@ -902,7 +902,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED")));
+                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }

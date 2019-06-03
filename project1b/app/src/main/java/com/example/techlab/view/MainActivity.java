@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
         ctx = this;
         setContentView(R.layout.activity_main);
 
-//        mSensorService = new SensorService(getCtx());
-//        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
-//        if (!isMyServiceRunning(mSensorService.getClass())) {
-//            startService(mServiceIntent);
-//        }
+        mSensorService = new SensorService(getCtx());
+        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
+        if (!isMyServiceRunning(mSensorService.getClass())) {
+            startService(mServiceIntent);
+        }
 
         loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginButton(View view){
-        if (dataManagement.ifExists(loginEmailInput.getText().toString(),loginPasswordInput.getText().toString())) {
+        if (dataManagement.ifExists(loginEmailInput.getText().toString().trim().toLowerCase(),loginPasswordInput.getText().toString())) {
             if (!(dataManagement.ifBlocked(loginEmailInput.getText().toString()))) {
                 Users user = dataManagement.getUserWithEmail(loginEmailInput.getText().toString());
                 Intent startNewActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
