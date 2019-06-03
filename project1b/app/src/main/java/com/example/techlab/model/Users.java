@@ -9,11 +9,12 @@ public class Users implements Parcelable  {
     private String schoolEmail;
     private String password;
     private int loanedAmount;
+    private int productOnLoan;
     private String userType;
     private int id;
     private int blockStatus;
 
-    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount ,String userType, int _id, int block) {
+    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount ,String userType, int _id, int block, int productOnLoan) {
         this.firstName = firstName;
         this.surname = surname;
         this.schoolEmail = schoolEmail;
@@ -22,6 +23,7 @@ public class Users implements Parcelable  {
         this.userType = userType;
         this.id = _id;
         this.blockStatus = block;
+        this.productOnLoan =productOnLoan;
     }
     //overload Users for Blocked list
     public Users(String firstName, String surname, int _id) {
@@ -29,7 +31,7 @@ public class Users implements Parcelable  {
         this.surname = surname;
         this.id = _id;
     }
-    public Users(String firstName, String surname, String schoolEmail,int loanedAmount ,String userType, int _id, int block) {
+    public Users(String firstName, String surname, String schoolEmail,int loanedAmount ,String userType, int _id, int block,int productOnLoan) {
         this.firstName = firstName;
         this.surname = surname;
         this.schoolEmail = schoolEmail;
@@ -37,6 +39,7 @@ public class Users implements Parcelable  {
         this.userType = userType;
         this.id = _id;
         this.blockStatus = block;
+        this.productOnLoan =productOnLoan;
     }
 
 
@@ -72,6 +75,10 @@ public class Users implements Parcelable  {
 
     public String getUserType() {
         return userType;
+    }
+
+    public int getProductOnLoan() {
+        return productOnLoan;
     }
 
     public void setUserType(String userType) {

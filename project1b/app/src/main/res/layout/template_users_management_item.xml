@@ -29,7 +29,7 @@
             android:id="@+id/userManagementItemBorrowedAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(UsersItem.loanedAmount)}"
+            android:text="@{String.valueOf(UsersItem.getProductOnLoan)}"
             tools:text="2"
             android:textColor="@color/black"
             android:layout_alignParentEnd="true"
