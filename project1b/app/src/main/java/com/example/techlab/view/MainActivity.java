@@ -20,7 +20,7 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
 
-import oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorService;
+//import oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorService;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,24 +38,24 @@ public class MainActivity extends AppCompatActivity {
     CheckBox stayLoggedInCheckBox;
     DataManagement dataManagement;
 
-    Intent mServiceIntent;
-    private SensorService mSensorService;
-    Context ctx;
-    public Context getCtx() {
-        return ctx;
-    }
+//    Intent mServiceIntent;
+//    private SensorService mSensorService;
+//    Context ctx;
+//    public Context getCtx() {
+//        return ctx;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ctx = this;
+//        ctx = this;
         setContentView(R.layout.activity_main);
 
-        mSensorService = new SensorService(getCtx());
-        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
-        if (!isMyServiceRunning(mSensorService.getClass())) {
-            startService(mServiceIntent);
-        }
+//        mSensorService = new SensorService(getCtx());
+//        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
+//        if (!isMyServiceRunning(mSensorService.getClass())) {
+//            startService(mServiceIntent);
+//        }
 
         loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
@@ -86,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onDestroy() {
-        //by stopping the service, we will force the service to call its own onDestroy which will force it to recreate itself after the app is dead
-        stopService(mServiceIntent);
-        Log.i("MAINACT", "onDestroy!");
-        super.onDestroy();
-
-    }
+//    @Override
+//    protected void onDestroy() {
+//        //by stopping the service, we will force the service to call its own onDestroy which will force it to recreate itself after the app is dead
+//        stopService(mServiceIntent);
+//        Log.i("MAINACT", "onDestroy!");
+//        super.onDestroy();
+//
+//    }
 
     @Override
     protected void onResume(){

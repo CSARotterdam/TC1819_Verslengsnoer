@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class DataManagement {
     Connection connect;
-    private static final String TAG = "sql error: ";
+    private static final String TAG = "dataManagement error: ";
     public void insertUser(String firstName,String surname, String SchoolEmail, String Password) {
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();

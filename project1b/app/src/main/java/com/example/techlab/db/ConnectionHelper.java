@@ -12,10 +12,10 @@ public class ConnectionHelper {
     String IP,DB,UserName,Password;
     @SuppressLint("NewApi")
     public Connection connection(){
-        IP = "145.24.222.204:8080";
-        DB = "TechLab";
-        UserName = "0958654";
-        Password = "Pizza123";
+        IP = "techlabapp.database.windows.net";
+        DB = "techLab";
+        UserName = "techLab";
+        Password = "987654321asd@";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -24,7 +24,7 @@ public class ConnectionHelper {
         try
         {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            ConnectionURL = "jdbc:jtds:sqlserver://" + IP +";databaseName="+ DB + ";user=" + UserName+ ";password=" + Password;
+            ConnectionURL = "jdbc:jtds:sqlserver://techlabapp.database.windows.net:1433;DatabaseName=techlabapp;user=techLab@techlabapp;password="+Password+";encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
             connection = DriverManager.getConnection(ConnectionURL);
         }
         catch (SQLException se)
@@ -33,7 +33,7 @@ public class ConnectionHelper {
         }
         catch (ClassNotFoundException e)
         {
-            Log.e("error 2: ", e.getMessage());
+            Log.e("error 1: ", e.getMessage());
         }
         catch (Exception e)
         {

@@ -70,7 +70,7 @@ public class Product_management_add_productActivity extends DrawerMenu {
         productDescriptionCheck = productDescriptionValidation();
         imageCheck = imageSelected;
         if (productIdCheck && productManufacturerCheck && productNameCheck && productStockCheck && productCategoryCheck && productDescriptionCheck && imageCheck){
-            resizedImage = ImageUtils.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),150f,true);
+            resizedImage = ImageUtils.scaleDown(((BitmapDrawable)productUploadimageView.getDrawable()).getBitmap(),250f,true);
             byte[] imageByte = ImageUtils.getByte(resizedImage);
             dataManagement.addProductData(productId.getEditText().getText().toString(),productManufacturer.getEditText().getText().toString()
                     ,productCategory.getEditText().getText().toString(),productName.getEditText().getText().toString(),Integer.parseInt(productStock.getEditText().getText().toString())
