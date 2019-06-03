@@ -14,6 +14,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:paddingBottom="20dp"
         android:background="@drawable/recyclerview_background">
 
@@ -44,11 +46,11 @@
             android:id="@+id/beschrijving"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
             android:text="Beschrijving"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#000"/>
 
         <!--Here the expandable text is added-->
@@ -83,9 +85,7 @@
             android:id="@+id/requestBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="15dp"
             android:layout_marginBottom="20dp"
             android:text="@string/RequestBtn"
             android:textColor="@color/White"
