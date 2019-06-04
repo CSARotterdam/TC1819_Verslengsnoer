@@ -99,7 +99,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
         finish();
     }
     public void BlockUser(View view){
-        if (user.getLoanedAmount() == 0) {
+        if (user.getProductOnLoan() == 0) {
             dataManagement.setBlockUser(1, getIntent().getIntExtra("ID_", -1));
             BlockBtn.setVisibility(View.GONE);
             UnBlockBtn.setVisibility(View.VISIBLE);
