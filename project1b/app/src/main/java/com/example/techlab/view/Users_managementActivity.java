@@ -47,7 +47,6 @@ public class Users_managementActivity extends DrawerMenu {
 //        setContentView(R.layout.activity_users_management);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
-        dataManagement.openDataBaseConnection();
         userList = new ArrayList<>();
 
 //        System.out.println("Users_managementActivity: On Create started");

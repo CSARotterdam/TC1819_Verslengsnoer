@@ -43,7 +43,6 @@ public class Product_management_add_bookActivity extends DrawerMenu {
         bookDescription = findViewById(R.id.bookDescriptionTextInput);
         bookUploadimageView = findViewById(R.id.bookUploadimageView);
         dataManagement = new DataManagement();
-        dataManagement.openDataBaseConnection();
 
 
     }

@@ -14,7 +14,6 @@ public class blockfunc {
         System.out.println("BlockSys function executed");
         DataManagement dataManagement;
         dataManagement = new DataManagement();
-        dataManagement.openDataBaseConnection();
         if (dataManagement.ifBlocked(email)) {
             AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(context)
                     .setTitle("Uitgelogd")

@@ -35,7 +35,6 @@ public class Product_management_book_infoActivity extends DrawerMenu {
         description = findViewById(R.id.bookDescriptionTextView);
         bookManagementImageView = findViewById(R.id.bookManagementImageView);
         dataManagement = new DataManagement();
-        dataManagement.openDataBaseConnection();
 
     }
 

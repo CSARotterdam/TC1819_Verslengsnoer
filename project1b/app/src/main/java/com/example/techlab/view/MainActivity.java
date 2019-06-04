@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         dataManagement = new DataManagement();
-        dataManagement.openDataBaseConnection();
 
         ImageView logo = findViewById(R.id.TechLabLogo);
         int ImageResource = getResources().getIdentifier("@drawable/techlablogo_small", null, this.getPackageName());
@@ -164,11 +163,5 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         startActivity(new Intent(this, MainActivity.class));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        dataManagement.closeDataBaseConnection();
     }
 }
