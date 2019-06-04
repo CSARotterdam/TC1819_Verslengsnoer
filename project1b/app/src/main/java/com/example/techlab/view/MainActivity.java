@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected static final String KEY_ACTIVE_USER_PASS = "keyActiveUserPass";
     protected static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
     protected static final String KEY_PRODUCT_ADMINISTER_SPINNER_STATE = "keyProductAdministerState";
+    protected static final String KEY_ACTIVE_USER_NAME = "keyActiveUserName";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     EditText loginEmailInput;
@@ -146,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
                 mEditor.putInt(KEY_ACTIVE_USER_ID, user.getId());
                 mEditor.putString(KEY_ACTIVE_USER_STATUS, user.getUserType());
+                mEditor.putString(KEY_ACTIVE_USER_NAME, user.getUserType());
                 if (stayLoggedInCheckBox.isChecked()) {
                     mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
                 }

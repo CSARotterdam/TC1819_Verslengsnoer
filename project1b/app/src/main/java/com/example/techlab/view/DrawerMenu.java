@@ -47,7 +47,8 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         headerView = navigationView.getHeaderView(0);
         menuUserName = headerView.findViewById(R.id.menuUserName);
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
-        user = dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""));
+
+
         menuButtonManager();
     }@Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -115,19 +116,20 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     }
     public void menuButtonManager(){
         Menu menu = navigationView.getMenu();
+        String status = mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_STATUS, "");
 
 
 
-        menuUserStatus.setText(user.getUserType());
-        menuUserName.setText(user.getFirstName());
+        menuUserStatus.setText(status);
+        menuUserName.setText(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, ""));
 
-        if(user.getUserType().matches("student")){
+        if(status.matches("student")){
             menu.findItem(R.id.productmanagementMenu).setVisible(false);
             menu.findItem(R.id.userManagementMenu).setVisible(false);
             menu.findItem(R.id.ProductAdministratieMenu).setVisible(false);
             menu.findItem(R.id.infographic).setVisible(false);
         }
-        if(user.getUserType().matches("beheerder")){
+        if(status.matches("beheerder")){
             menu.findItem(R.id.userManagementMenu).setVisible(false);
         }
     }
