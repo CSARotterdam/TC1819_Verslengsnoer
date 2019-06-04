@@ -628,22 +628,16 @@ public class DataManagement {
     }
 
     public void StatusTeLaat(){
-
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '17:00'");
-
                 pstmt.executeUpdate();
                 connect.close();
 //                Send mail from server if status == 'Te Laat'
-//                if (status = 'Te Laat'){
-//
-//                }
+//                if (status = 'Te Laat'){ }
             }
         }catch(Exception ex){
             Log.d(TAG,ex.toString());
