@@ -10,12 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:layout_margin="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:paddingBottom="20dp"
         android:background="@drawable/recyclerview_background">
 
@@ -25,19 +22,16 @@
             android:layout_height="wrap_content"
             android:id="@+id/product_name"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:text="Title"
             android:textStyle="bold"
             android:textSize="25sp"
-            android:gravity="center"
-            android:textColor="@color/black"/>
+            android:gravity="center"/>
         <!--Product Image-->
         <ImageView
             android:contentDescription="Product Image"
             android:layout_width="match_parent"
             android:layout_height="225dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
             android:id="@+id/image"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher"/>
@@ -50,8 +44,7 @@
             android:text="Beschrijving"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:gravity="start"
-            android:textColor="#000"/>
+            android:gravity="start"/>
 
         <!--Here the expandable text is added-->
         <com.ms.square.android.expandabletextview.ExpandableTextView
@@ -66,10 +59,7 @@
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:textSize="16sp"/>
             <!--The expandable text icon-->
             <ImageButton
                 android:contentDescription="Icon"
@@ -85,8 +75,6 @@
             android:id="@+id/requestBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
             android:text="@string/RequestBtn"
             android:textColor="@color/White"
             android:background="@drawable/color_button1"
