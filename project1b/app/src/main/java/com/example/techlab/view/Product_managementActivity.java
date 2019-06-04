@@ -37,6 +37,7 @@ public class Product_managementActivity extends DrawerMenu{
         frameLayout.addView(activityView);
 
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
         ArrayList<Products> Productlist = dataManagement.getAllProducts();
         recyclerView = findViewById(R.id.electronicsListItems);
         adapter = new ProductManagementAdapter(Productlist,this);

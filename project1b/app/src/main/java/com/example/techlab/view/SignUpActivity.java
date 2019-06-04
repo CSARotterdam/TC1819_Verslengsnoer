@@ -27,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInputLayout);
         confirmPasswordInput = findViewById(R.id.confirmPasswordInputLayout);
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
     }
 
 

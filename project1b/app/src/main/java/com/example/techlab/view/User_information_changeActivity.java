@@ -36,6 +36,7 @@ public class User_information_changeActivity extends DrawerMenu {
     mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
     mEditor = mSharedPreferences.edit();
     dataManagement = new DataManagement();
+    dataManagement.openDataBaseConnection();
     Users user = dataManagement.getUserWithId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
     userFirstNameInput.getEditText().setText(user.getFirstName());
     userSurnameInput.getEditText().setText(user.getSurname());

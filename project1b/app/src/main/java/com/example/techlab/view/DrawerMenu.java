@@ -35,6 +35,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_menu);
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
         navigationView=findViewById(R.id.drawer_navigation_view);
@@ -142,6 +143,11 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dataManagement.closeDataBaseConnection();
     }
 
 }

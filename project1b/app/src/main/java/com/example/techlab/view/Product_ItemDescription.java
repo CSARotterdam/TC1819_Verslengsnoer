@@ -48,6 +48,7 @@ public class Product_ItemDescription extends DrawerMenu {
         Log.d(TAG, "OnCreate: started.");
 
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         Buttons();
     }
