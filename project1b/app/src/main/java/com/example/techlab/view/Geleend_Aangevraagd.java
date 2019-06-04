@@ -110,7 +110,6 @@ public class Geleend_Aangevraagd extends DrawerMenu {
 
     }
 
-
     public void lendProductButton(View view){
         if(borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
             dataManagement.lendProduct( DateUtils.getCurrentDate(), borrow.getBorrowItemAmount(),borrow.getBorrowID()
