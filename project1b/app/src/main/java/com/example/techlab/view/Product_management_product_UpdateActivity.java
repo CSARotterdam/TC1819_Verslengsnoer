@@ -47,6 +47,7 @@ public class Product_management_product_UpdateActivity extends DrawerMenu {
         amountBroken = findViewById(R.id.amountBrokenTextInputUpdate);
         productUpdateImageView = findViewById(R.id.productImageUpdateView);
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
 
         Electronics electronics = dataManagement.getProductWithId(getIntent().getIntExtra("ID_",-1));
         productManufacturer.setText(electronics.getProductManufacturer());

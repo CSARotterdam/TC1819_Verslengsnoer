@@ -38,6 +38,7 @@ public class Geleend_Aangevraagd extends DrawerMenu {
         frameLayout.addView(activityView);
         System.out.println("Aanvraag Returned.java started");
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
         intent = new Intent();
 //        intent.getIntExtra("P_id_ProductBorrowlist", -1);
         prnaam = findViewById(R.id.leenavraagProduct);

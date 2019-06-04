@@ -42,6 +42,7 @@ public class Product_management_book_updateActivity extends DrawerMenu {
         bookDescription = findViewById(R.id.bookDescriptionUpdateTextInput);
         bookUploadImageView = findViewById(R.id.bookUploadimageUpdateView);
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
         Books book = dataManagement.getBookWithId(getIntent().getIntExtra("ID_",-1));
         bookTitle.getEditText().setText(book.getName());
         bookWriters.getEditText().setText(book.getWriters());

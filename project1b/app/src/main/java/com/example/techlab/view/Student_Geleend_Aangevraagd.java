@@ -38,6 +38,7 @@ public class Student_Geleend_Aangevraagd extends DrawerMenu {
         frameLayout.addView(activityView);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
+        dataManagement.openDataBaseConnection();
         borrowItemList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.BorrowItemRecyclerView);
         mRecyclerView.setHasFixedSize(true);
