@@ -1,16 +1,19 @@
 package com.example.techlab.view;
 
-import android.app.ActivityManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,8 +22,6 @@ import android.widget.ImageView;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
-
-import oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorService;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
     CheckBox stayLoggedInCheckBox;
     DataManagement dataManagement;
 
-    Intent mServiceIntent;
-    private SensorService mSensorService;
     Context ctx;
     public Context getCtx() {
         return ctx;
@@ -51,12 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ctx = this;
         setContentView(R.layout.activity_main);
-
-        mSensorService = new SensorService(getCtx());
-        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
-        if (!isMyServiceRunning(mSensorService.getClass())) {
-            startService(mServiceIntent);
-        }
 
         loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
@@ -71,29 +64,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView logo = findViewById(R.id.TechLabLogo);
         int ImageResource = getResources().getIdentifier("@drawable/techlablogo_small", null, this.getPackageName());
         logo.setImageResource(ImageResource);
-    }
-
-    //starts the service only when not already running
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                Log.i ("isMyServiceRunning?", true+"");
-                return true;
-            }
-        }
-        Log.i ("isMyServiceRunning?", false+"");
-        return false;
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        //by stopping the service, we will force the service to call its own onDestroy which will force it to recreate itself after the app is dead
-        stopService(mServiceIntent);
-        Log.i("MAINACT", "onDestroy!");
-        super.onDestroy();
-
     }
 
     @Override
@@ -134,13 +104,36 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-
     public void signUpPageButton(View view){
         startActivity(new Intent(this, SignUpActivity.class));
     }
 
+    //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
+    //  This method creates a Notification that shows
+    private void addNotification(){
+    //    int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
+        int userID = getIntent().getIntExtra("UserID", -1);
+        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.techlablogo_small);
+
+    //  Here we build the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.logo_round)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("1 of meer producten staan nu op te laat. Lever deze zo snel mogelijk in"))
+                .setContentTitle("Te Laat")
+                .setLargeIcon(icon);
+    //  When you click on the notification you go to Student_Geleend_Aangevraagd.class
+        Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
+        PendingIntent pending = PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pending);
+
+    //  Notify the system that there is a notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(userID,builder.build());
+    }
     public void loginButton(View view){
         if (dataManagement.ifExists(loginEmailInput.getText().toString().trim().toLowerCase(),loginPasswordInput.getText().toString())) {
+            addNotification();
             if (!(dataManagement.ifBlocked(loginEmailInput.getText().toString()))) {
                 Users user = dataManagement.getUserWithEmail(loginEmailInput.getText().toString());
                 Intent startNewActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
@@ -153,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 startActivity(startNewActivity);
             }
+
             else{
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Inlog mislukt")
@@ -164,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .setCancelable(false);
-
                 //Creating dialog box
                 RequestItemAlertDialog.create().show();
             }

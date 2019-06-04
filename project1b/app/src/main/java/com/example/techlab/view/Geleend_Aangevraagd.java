@@ -108,30 +108,6 @@ public class Geleend_Aangevraagd extends DrawerMenu {
 //        }
 
     }
-////    https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
-////    This method creates a Notification that shows
-//    private void addNotification(){
-////        int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
-//        int userID = getIntent().getIntExtra("UserID", -1);
-////
-////        if (currentuserID==userID){
-////        }
-//
-////        Here we build the notification
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-//                .setSmallIcon(R.mipmap.logo_round)
-//                .setContentTitle("Leenaanvraag")
-//                .setContentText("U mag het product ophalen");
-////  When you click on the intent you go to Student_Geleend_Aangevraagd.class
-//        Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
-//        PendingIntent pending = PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT);
-//        builder.setContentIntent(pending);
-//
-////        Notify the system that there is a notification
-//
-//        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//        manager.notify(userID,builder.build());
-//    }
 
     public void lendProductButton(View view){
         if(borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
