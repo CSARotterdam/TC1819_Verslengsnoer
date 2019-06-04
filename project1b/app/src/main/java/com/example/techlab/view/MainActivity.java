@@ -137,7 +137,9 @@ public class MainActivity extends AppCompatActivity {
                 if (stayLoggedInCheckBox.isChecked()) {
                     mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
                 }
-                startActivity(startNewActivity);}
+                startActivity(startNewActivity);
+            }
+
             else{
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Inlog mislukt")
@@ -149,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .setCancelable(false);
-
                 //Creating dialog box
                 RequestItemAlertDialog.create().show();
             }

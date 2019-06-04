@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.DrawerMenu"></activity>
+        <activity android:name=".view.DrawerMenu"/>
         <activity android:name=".view.Contact"
             android:label="Contact"
             android:screenOrientation="portrait" />
@@ -91,7 +91,7 @@
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
