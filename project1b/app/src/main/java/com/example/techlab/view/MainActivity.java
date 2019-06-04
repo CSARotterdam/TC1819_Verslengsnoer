@@ -1,6 +1,5 @@
 package com.example.techlab.view;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,8 +19,6 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
 
-import oak.shef.ac.uk.testrunningservicesbackgroundrelaunched.SensorService;
-
 
 public class MainActivity extends AppCompatActivity {
     protected static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
@@ -38,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     CheckBox stayLoggedInCheckBox;
     DataManagement dataManagement;
 
-    Intent mServiceIntent;
-    private SensorService mSensorService;
     Context ctx;
     public Context getCtx() {
         return ctx;
@@ -50,12 +45,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ctx = this;
         setContentView(R.layout.activity_main);
-
-        mSensorService = new SensorService(getCtx());
-        mServiceIntent = new Intent(getCtx(), mSensorService.getClass());
-        if (!isMyServiceRunning(mSensorService.getClass())) {
-            startService(mServiceIntent);
-        }
 
         loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
@@ -72,27 +61,10 @@ public class MainActivity extends AppCompatActivity {
         logo.setImageResource(ImageResource);
     }
 
-    //starts the service only when not already running
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                Log.i ("isMyServiceRunning?", true+"");
-                return true;
-            }
-        }
-        Log.i ("isMyServiceRunning?", false+"");
-        return false;
-    }
-
-
     @Override
     protected void onDestroy() {
-        //by stopping the service, we will force the service to call its own onDestroy which will force it to recreate itself after the app is dead
-        stopService(mServiceIntent);
         Log.i("MAINACT", "onDestroy!");
         super.onDestroy();
-
     }
 
     @Override
