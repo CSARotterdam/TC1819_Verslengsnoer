@@ -61,9 +61,7 @@ public class Product_ItemDescription extends DrawerMenu {
             productID = getIntent().getIntExtra("id", -1);
             product = dataManagement.getProductWithId(productID);
 
-
             pageContentFill(product.getName(), product.getDescription(), product.getImage());
-
         }
     }
 
@@ -136,7 +134,7 @@ public class Product_ItemDescription extends DrawerMenu {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 //                                Toast that shows that the request is sent
-                        Toast.makeText(Product_ItemDescription.this, "Aanvraag verstuurd.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Product_ItemDescription.this, "U mag dit product nu ophalen.", Toast.LENGTH_LONG).show();
                         //takes productID, UserID, the amound lend and the currentdate from the Database
                         dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
 //                                When you click on "Akkoord" you'll go to the Student_Geleend_Aangevraagd.class

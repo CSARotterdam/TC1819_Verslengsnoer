@@ -26,8 +26,7 @@
             android:text="Title"
             android:textStyle="bold"
             android:textSize="25sp"
-            android:gravity="center"
-            android:textColor="@color/black"/>
+            android:gravity="center"/>
         <!--Product Image-->
         <ImageView
             android:contentDescription="Product Image"
@@ -45,8 +44,7 @@
             android:text="Beschrijving"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:gravity="start"
-            android:textColor="#000"/>
+            android:gravity="start"/>
 
         <!--Here the expandable text is added-->
         <com.ms.square.android.expandabletextview.ExpandableTextView
@@ -61,14 +59,14 @@
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:textSize="16sp"/>
             <!--The expandable text icon-->
             <ImageButton
                 android:contentDescription="Icon"
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:layout_gravity="center|bottom"
                 android:background="@android:color/transparent"/>
         </com.ms.square.android.expandabletextview.ExpandableTextView>
@@ -77,7 +75,6 @@
             android:id="@+id/requestBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:text="@string/RequestBtn"
             android:textColor="@color/White"
             android:background="@drawable/color_button1"
