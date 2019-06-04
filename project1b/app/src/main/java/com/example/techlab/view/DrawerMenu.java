@@ -28,6 +28,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     private TextView menuUserName, menuUserStatus;
     DataManagement dataManagement;
     View headerView;
+    Users user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         headerView = navigationView.getHeaderView(0);
         menuUserName = headerView.findViewById(R.id.menuUserName);
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
+        user = dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""));
         menuButtonManager();
     }@Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -114,7 +116,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     public void menuButtonManager(){
         Menu menu = navigationView.getMenu();
 
-        Users user = dataManagement.getUserWithEmail(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""));
+
 
         menuUserStatus.setText(user.getUserType());
         menuUserName.setText(user.getFirstName());

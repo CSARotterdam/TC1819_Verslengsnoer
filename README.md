@@ -15,7 +15,7 @@ It is an application meant for students where they can borrow products at Techla
 * Reset password
 
 # Team members
-* Saluoa
+* Saloua
 * Sopa
 * Guan Hao Wu
 

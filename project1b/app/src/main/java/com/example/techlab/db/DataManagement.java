@@ -18,13 +18,13 @@ import java.util.ArrayList;
 
 public class DataManagement {
     Connection connect;
-    private static final String TAG = "dataManagement";
+    private static final String TAG = "sql error: ";
     public void insertUser(String firstName,String surname, String SchoolEmail, String Password) {
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
+                Log.d(TAG," Check your internet connection!");
             }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, PASSWORD, LOANED_AMOUNT, USER_TYPE) " +
