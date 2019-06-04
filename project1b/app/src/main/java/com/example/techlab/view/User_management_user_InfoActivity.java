@@ -38,7 +38,6 @@ public class User_management_user_InfoActivity extends DrawerMenu {
         userStatus = findViewById(R.id.userManagementUserInfoUserStatusDisplay);
         productOnLoanAmount = findViewById(R.id.userManagementUserInfoProductOnLoanAmountDisplay);
         dataManagement = new DataManagement();
-        dataManagement.openDataBaseConnection();
         user = dataManagement.getUserWithId(getIntent().getIntExtra("ID_",-1));
         name.setText(user.getFirstName());
         surname.setText(user.getSurname());

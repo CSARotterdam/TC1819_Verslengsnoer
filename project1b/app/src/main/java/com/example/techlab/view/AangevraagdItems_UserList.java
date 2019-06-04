@@ -44,7 +44,6 @@ public class AangevraagdItems_UserList extends DrawerMenu {
         View activityView = layoutInflater.inflate(R.layout.activity_list_user_aangvr, null,false);
         frameLayout.addView(activityView);
         dataManagement = new DataManagement();
-        dataManagement.openDataBaseConnection();
         loanUsersList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);
         mRecyclerView.setHasFixedSize(true);
