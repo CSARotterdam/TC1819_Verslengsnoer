@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-
     public void signUpPageButton(View view){
         startActivity(new Intent(this, SignUpActivity.class));
     }
@@ -111,8 +110,6 @@ public class MainActivity extends AppCompatActivity {
     private void addNotification(){
 //        int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
         int userID = getIntent().getIntExtra("UserID", -1);
-//
-//        if (currentuserID==userID){}
 
 //        Here we build the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
@@ -140,13 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 if (stayLoggedInCheckBox.isChecked()) {
                     mEditor.putString(KEY_ACTIVE_USER_PASS, loginPasswordInput.getText().toString());
                 }
-                startActivity(startNewActivity);
-
-            }
-//            if (){
-//
-//            }
-
+                startActivity(startNewActivity);}
             else{
                 AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Inlog mislukt")
