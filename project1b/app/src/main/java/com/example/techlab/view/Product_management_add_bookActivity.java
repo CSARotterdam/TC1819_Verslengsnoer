@@ -74,7 +74,7 @@ public class Product_management_add_bookActivity extends DrawerMenu {
         productDescriptionCheck = productDescriptionValidation();
         imageCheck = imageSelected;
         if (productIdCheck && productManufacturerCheck && productNameCheck && productStockCheck && productCategoryCheck && productDescriptionCheck && imageCheck){
-            resizedImage = ImageUtils.scaleDown(((BitmapDrawable)bookUploadimageView.getDrawable()).getBitmap(),150f,true);
+            resizedImage = ImageUtils.scaleDown(((BitmapDrawable)bookUploadimageView.getDrawable()).getBitmap(),250f,true);
             byte[] imageByte = ImageUtils.getByte(resizedImage);
             dataManagement.InsertBookItem(bookTitle.getEditText().getText().toString(),bookWriters.getEditText().getText().toString()
                     ,bookIsbn.getEditText().getText().toString(),bookPublisher.getEditText().getText().toString(),Integer.parseInt(bookAmount.getEditText().getText().toString())
