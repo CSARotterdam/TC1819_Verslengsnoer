@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
+import com.example.techlab.util.HashUtils;
 
 import java.util.List;
 
@@ -40,8 +41,10 @@ public class SignUpActivity extends AppCompatActivity {
         conformPassword = confirmPasswordValidation();
 
         if (email && passWord && firstName && surname && conformPassword) {
+            byte[] salt = HashUtils.createSalt();
+            byte[] hash = HashUtils.generateHash(passwordInput.getEditText().getText().toString().trim(),"MD5",salt);
             dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(),
-                    schoolEmailInput.getEditText().getText().toString().trim(), passwordInput.getEditText().getText().toString().trim());
+                    schoolEmailInput.getEditText().getText().toString().trim(), hash,salt);
             // resetting the  form input text field
             userFirstNameInput.getEditText().setText("");
             userSurnameInput.getEditText().setText("");

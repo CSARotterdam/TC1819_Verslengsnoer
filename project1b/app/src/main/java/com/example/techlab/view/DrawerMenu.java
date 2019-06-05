@@ -55,7 +55,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         int id = menuItem.getItemId();
         if (id == R.id.LogoutMenu){
             mEditor.putString(MainActivity.KEY_ACTIVE_USER_EMAIL, "4ikikikilio.i;5534");
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS,"4ikikikilio.i;5534");
+            mEditor.putString(MainActivity.KEY_STAY_LOGGED_IN,"4ikikikilio.i;5534");
             mEditor.putInt(MainActivity.KEY_ACTIVE_USER_ID,0);
             mEditor.apply();
 

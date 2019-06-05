@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class DataManagement {
     Connection connect;
     private static final String TAG = "sql error: ";
-    public void insertUser(String firstName,String surname, String SchoolEmail, String Password) {
+    public void insertUser(String firstName,String surname, String SchoolEmail, byte[] hash,byte[] salt) {
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -27,14 +27,15 @@ public class DataManagement {
                 Log.d(TAG," Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, PASSWORD, LOANED_AMOUNT, USER_TYPE) " +
-                        "values ( ?,?,?,?,?,?)");
+                PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, HASH, LOANED_AMOUNT, USER_TYPE,SALT) " +
+                        "values ( ?,?,?,?,?,?,?)");
                 pstmt.setString(1,firstName);
                 pstmt.setString(2,surname);
                 pstmt.setString(3,SchoolEmail);
-                pstmt.setString(4,Password);
+                pstmt.setBytes(4,hash);
                 pstmt.setInt(5,0);
                 pstmt.setString(6,"student");
+                pstmt.setBytes(7,salt);
                 pstmt.execute();
                 connect.close();
             }
@@ -881,10 +882,8 @@ public class DataManagement {
         return books.get(0);
     }
 
-
-    // check
-    public boolean ifExists(String emailInput, String passwordInput) {
-        ArrayList<Users> UserRow = new ArrayList<>();
+    public byte[] getSalt(String emailInput) {
+        byte[] salt =null;
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -892,18 +891,63 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"' and PASSWORD = '"+passwordInput+"';";
+                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"'";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
+                    salt = resultSet.getBytes("SALT");
                 }
                 connect.close();
             }
         }catch(Exception ex){
+            salt = null;
             Log.d(TAG,ex.toString());
         }
-        boolean exists = (UserRow.size() > 0);
-        return exists;
+
+        return salt;
+    }
+    // check
+    public boolean ifExists(String emailInput, byte[] hash) {
+        Boolean exist= false;
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"' and HASH = '"+hash+"';";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                exist = resultSet.next();
+                connect.close();
+            }
+        }catch(Exception ex){
+            exist = false;
+            Log.d(TAG,ex.toString());
+        }
+        return exist;
+    }
+    public boolean ifExists(String emailInput) {
+        Boolean exist= false;
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"'";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                exist = resultSet.next();
+                connect.close();
+            }
+        }catch(Exception ex){
+            exist = false;
+            Log.d(TAG,ex.toString());
+        }
+
+        return exist;
     }
 }
