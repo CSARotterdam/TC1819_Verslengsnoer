@@ -1,9 +1,15 @@
 package com.example.techlab.view;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -85,6 +91,43 @@ public class Product_InventoryActivity extends DrawerMenu{
             }
         });
     }
+
+    //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
+    //  This method creates a Notification that shows
+    private void addNotification(){
+        //    int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
+        // if one of the product status == "te laat" send notification
+
+//        int userID = getIntent().getIntExtra("UserID", -1);
+//        if(getIntent().getTe){
+//        }
+
+        //  Here we build the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.logo_round)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.logo_round))
+                .setContentTitle("Product(en) Te Laat")
+                .setContentText("Lever deze zo snel mogelijk in")
+                .setOngoing(true)       //You can see the notification in lockscreen
+                .setVibrate(new long[] {0,200})
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setColor(Color.BLUE)
+                .setAutoCancel(true);       //clear notification after click
+        //  When you click on the notification you go to Student_Geleend_Aangevraagd.class
+        Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
+        builder.setContentIntent(PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT));
+
+        //  Notify the system that there is a notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(1,builder.build());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        addNotification();
+    }
+
     // public class SpinnerActivity extends Activity implements
     // AdapterView.OnItemSelectedListener {
     // public void onItemSelected(AdapterView<?> parent, View view, int pos, long
