@@ -83,10 +83,12 @@ public class AangevraagdItems_UserList extends DrawerMenu {
                 if (parent.getSelectedItem().toString().matches("Alle aangevraagde producten")){
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusPending));
                 }else if(parent.getSelectedItem().toString().matches("Alle Uitgeleende producten")){
+                    dataManagement.StatusTeLaat();
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusOnLoan));
                 }else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusReturned));
                 }else if(parent.getSelectedItem().toString().matches("Alle Te Late producten")){
+                    dataManagement.StatusTeLaat();
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusTeLaat));
 
                 }
