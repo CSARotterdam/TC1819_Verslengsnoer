@@ -12,9 +12,7 @@ public class TelaatGebrItems {
         mTelaatPr = TelaatPr;
     }
 
-    public String getTelaatGebr(){
-        return mTelaatGebr;
-    }
+    public String getTelaatGebr(){ return mTelaatGebr; }
 
     public String getTelaatStuNum(){
         return mTelaatStuNum;

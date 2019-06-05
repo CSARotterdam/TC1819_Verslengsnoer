@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -41,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
     DataManagement dataManagement;
 
     Context ctx;
-    public Context getCtx() {
-        return ctx;
-    }
+    public Context getCtx() { return ctx; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
         mEditor = mSharedPreferences.edit();
         stayLoggedInCheckBox = findViewById(R.id.stayLoggedInCheckBox);
         textInputLayout = findViewById(R.id.textInputLayout);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         dataManagement = new DataManagement();
 
         ImageView logo = findViewById(R.id.TechLabLogo);
@@ -104,32 +98,37 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public void signUpPageButton(View view){
-        startActivity(new Intent(this, SignUpActivity.class));
-    }
+    public void signUpPageButton(View view){ startActivity(new Intent(this, SignUpActivity.class)); }
 
     //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
     //  This method creates a Notification that shows
     private void addNotification(){
     //    int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
-        int userID = getIntent().getIntExtra("UserID", -1);
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.techlablogo_small);
+        // if one of the product status == "te laat" send notification
 
-    //  Here we build the notification
+//        int userID = getIntent().getIntExtra("UserID", -1);
+//        if(getIntent().getTe){
+//        }
+
+        //  Here we build the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.logo_round)
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("1 of meer producten staan nu op te laat. Lever deze zo snel mogelijk in"))
-                .setContentTitle("Te Laat")
-                .setLargeIcon(icon);
-    //  When you click on the notification you go to Student_Geleend_Aangevraagd.class
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.logo_round))
+                .setContentTitle("Product(en) Te Laat")
+                .setContentText("Lever deze zo snel mogelijk in")
+                .setOngoing(true)       //You can see the notification in lockscreen
+                .setVibrate(new long[] { 0,10000})
+//                .setWhen
+//                .setColor(Color.BLUE)
+                .setAutoCancel(true);       //clear notification after click
+        //  When you click on the notification you go to Student_Geleend_Aangevraagd.class
         Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
-        PendingIntent pending = PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(pending);
+        builder.setContentIntent(PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT));
 
-    //  Notify the system that there is a notification
+        //  Notify the system that there is a notification
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(userID,builder.build());
+        manager.notify(1,builder.build());
+
     }
     public void loginButton(View view){
         if (dataManagement.ifExists(loginEmailInput.getText().toString().trim().toLowerCase(),loginPasswordInput.getText().toString())) {

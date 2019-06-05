@@ -39,6 +39,7 @@ public class Geleend_Aangevraagd extends DrawerMenu {
         System.out.println("Aanvraag Returned.java started");
         dataManagement = new DataManagement();
         intent = new Intent();
+
 //        intent.getIntExtra("P_id_ProductBorrowlist", -1);
         prnaam = findViewById(R.id.leenavraagProduct);
         gebrnaam = findViewById(R.id.leenavraagUser);
@@ -88,18 +89,6 @@ public class Geleend_Aangevraagd extends DrawerMenu {
                productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
              productReturnDate.setText("Teruggebracht op.."+borrow.getReturnDate());
         }
-
-
-
-
-//        Button LeenKnop = findViewById(R.id.button3);
-//        LeenKnop.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addNotification();
-//            }
-//        });
-
 
 //        if(intent.getStringExtra("productnaam_ProductBorrowlist")!=null && intent.getStringExtra("gebruikernaam_ProductBorrowlist") != null && intent.getIntExtra("aantalaangevr_ProductBorrowlist", -1) != -1){
 //            prnaam.setText(intent.getStringExtra("productnaam_ProductBorrowlist"));
@@ -155,8 +144,7 @@ public class Geleend_Aangevraagd extends DrawerMenu {
             Toast.makeText(this, "Dit product staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
         }
     }
-    public void AanvraagAccepteren(View view){
-    }
+    public void AanvraagAccepteren(View view){ }
 
 //    @Override
 //    public void onBackPressed() {

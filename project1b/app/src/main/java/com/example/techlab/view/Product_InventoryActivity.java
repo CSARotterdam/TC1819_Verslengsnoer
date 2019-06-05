@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -39,11 +38,11 @@ public class Product_InventoryActivity extends DrawerMenu{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // findViewById(R.id.progressBar).setVisibility(View.GONE);
-        // recyclerView.setVisibility(View.VISIBLE);
-        // adapter.notifyDataSetChanged();
-
         super.onCreate(savedInstanceState);
+//
+//        ProgressBar mProgressBar = findViewById(R.id.progressBar);
+//        mProgressBar.setVisibility(View.GONE);
+
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_inventory, null,false);

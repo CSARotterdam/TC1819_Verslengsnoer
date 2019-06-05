@@ -52,7 +52,5 @@ public class NoReturnUsersAdapter extends RecyclerView.Adapter<NoReturnUsersAdap
     }
 
     @Override
-    public int getItemCount() {
-        return mTelaatGebrList.size();
-    }
+    public int getItemCount() { return mTelaatGebrList.size(); }
 }
