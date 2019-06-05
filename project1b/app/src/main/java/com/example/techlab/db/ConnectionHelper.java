@@ -14,8 +14,8 @@ public class ConnectionHelper {
     public Connection connection(){
         IP = "145.24.222.204:8080";
         DB = "TechLab";
-        UserName = "0958654";
-        Password = "Pizza123";
+        UserName = "sa";
+        Password = "S77d4h";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
