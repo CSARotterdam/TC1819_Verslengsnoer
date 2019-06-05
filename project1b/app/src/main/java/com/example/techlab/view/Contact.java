@@ -1,6 +1,7 @@
 package com.example.techlab.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,12 @@ public class Contact extends DrawerMenu {
         email.setTextIsSelectable(true);
         email.setText(getResources().getString(R.string.ContactEmail));
 
+
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this,  Product_InventoryActivity.class));
     }
 
 }

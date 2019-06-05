@@ -71,17 +71,14 @@ public class Users_managementActivity extends DrawerMenu {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (parent.getSelectedItem().toString().matches("Alle geblokkeerde gebruikers")){
-                    userList = dataManagement.getBlockedUsers();
+                    userList = dataManagement.getBlockedUsers(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
                 }else{
                     // By default: show All users.
-                    userList = dataManagement.getAllUserDataExceptFor(1);
+                    userList = dataManagement.getAllUserDataExceptFor(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
                 }
                 adapter = new UsersManagementAdapter(userList, Users_managementActivity.this);
                 mRecyclerView.setAdapter(adapter);
-
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 

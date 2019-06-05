@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
-import com.example.techlab.util.HashUtils;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
     EditText loginEmailInput;
     EditText loginPasswordInput;
-    TextInputLayout textInputLayout;
+    TextInputLayout userNameInputLayout,passwordInputLayout;
     CheckBox stayLoggedInCheckBox;
     DataManagement dataManagement;
 
@@ -56,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
         stayLoggedInCheckBox = findViewById(R.id.stayLoggedInCheckBox);
-        textInputLayout = findViewById(R.id.textInputLayout);
+        userNameInputLayout = findViewById(R.id.textInputLayout);
+        passwordInputLayout = findViewById(R.id.passwordInputLayout);
         dataManagement = new DataManagement();
 
         ImageView logo = findViewById(R.id.TechLabLogo);
@@ -139,11 +139,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginButton(View view) {
-        textInputLayout.setError(null);
+        userNameInputLayout.setError(null);
         if (dataManagement.ifExists(loginEmailInput.getText().toString().trim())){
-            byte[] salt = dataManagement.getSalt(loginEmailInput.getText().toString().trim().toLowerCase().trim());
-            byte[] hash = HashUtils.generateHash(loginPasswordInput.getText().toString().trim(),"MD5",salt);
-            if (dataManagement.ifExists(loginEmailInput.getText().toString().trim().toLowerCase(), hash)) {
+            if (dataManagement.ifExists(loginEmailInput.getText().toString().trim().toLowerCase(),loginPasswordInput.getText().toString().trim())) {
                 addNotification();
                 if (!(dataManagement.ifBlocked(loginEmailInput.getText().toString()))) {
                     Users user = dataManagement.getUserWithEmail(loginEmailInput.getText().toString());
@@ -171,10 +169,10 @@ public class MainActivity extends AppCompatActivity {
                     RequestItemAlertDialog.create().show();
                 }
             } else {
-                textInputLayout.setError("het wachtwoord dat je hebt ingevoerd is onjuist");
+                passwordInputLayout.setError("het wachtwoord dat je hebt ingevoerd is onjuist");
             }
         }else{
-            textInputLayout.setError("Het e-mailadres dat je hebt ingevoerd is onjuist");
+            userNameInputLayout.setError("Het e-mailadres dat je hebt ingevoerd is onjuist");
         }
 
     }

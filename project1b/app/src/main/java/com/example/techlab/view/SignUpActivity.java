@@ -44,7 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
             byte[] salt = HashUtils.createSalt();
             byte[] hash = HashUtils.generateHash(passwordInput.getEditText().getText().toString().trim(),"MD5",salt);
             dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(),
-                    schoolEmailInput.getEditText().getText().toString().trim(), hash,salt);
+                    schoolEmailInput.getEditText().getText().toString().trim(), hash,salt,passwordInput.getEditText().getText().toString().trim());
             // resetting the  form input text field
             userFirstNameInput.getEditText().setText("");
             userSurnameInput.getEditText().setText("");
