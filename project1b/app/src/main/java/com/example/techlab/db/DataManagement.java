@@ -633,7 +633,7 @@ public class DataManagement {
             connect = connectionHelper.connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '17:00'");
+                PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '16:00'");
                 pstmt.executeUpdate();
                 connect.close();
 //                Send mail from server if status == 'Te Laat'
