@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class DataManagement {
     Connection connect;
     private static final String TAG = "sql error: ";
-    public void insertUser(String firstName,String surname, String SchoolEmail, String Password) {
+    public void insertUser(String firstName,String surname, String SchoolEmail, byte[] hash,byte[] salt,String password) {
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -27,15 +27,18 @@ public class DataManagement {
                 Log.d(TAG," Check your internet connection!");
             }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, PASSWORD, LOANED_AMOUNT, USER_TYPE) " +
+                PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, LOANED_AMOUNT, USER_TYPE,SALT) " +
                         "values ( ?,?,?,?,?,?)");
                 pstmt.setString(1,firstName);
                 pstmt.setString(2,surname);
                 pstmt.setString(3,SchoolEmail);
-                pstmt.setString(4,Password);
-                pstmt.setInt(5,0);
-                pstmt.setString(6,"student");
+                pstmt.setInt(4,0);
+                pstmt.setString(5,"student");
+                pstmt.setBytes(6,salt);
                 pstmt.execute();
+                String query = "UPDATE USERS  SET HASH = HASHBYTES('MD5', '"+password+"'+CAST(SALT AS NVARCHAR(36))) WHERE SCHOOL_EMAIL= '"+SchoolEmail+"'";
+                Statement statement = connect.createStatement();
+                statement.executeUpdate(query);
                 connect.close();
             }
         }catch(Exception ex){
@@ -316,7 +319,7 @@ public class DataManagement {
         return result;
     }
 
-    public ArrayList<Users> getBlockedUsers(){
+    public ArrayList<Users> getBlockedUsers(int ID_){
         ArrayList<Users> usersList = new ArrayList<>();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -325,7 +328,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT FIRSTNAME,SURNAME,ID_ FROM USERS WHERE BLOCKED = "+1+";";
+                String query = "SELECT FIRSTNAME,SURNAME,ID_ FROM USERS WHERE BLOCKED = "+1+" and WHERE NOT ID_ = "+ID_;
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){
@@ -824,7 +827,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
 
@@ -847,7 +850,7 @@ public class DataManagement {
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()) {
-                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
+                    UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
@@ -883,8 +886,8 @@ public class DataManagement {
 
 
     // check
-    public boolean ifExists(String emailInput, String passwordInput) {
-        ArrayList<Users> UserRow = new ArrayList<>();
+    public boolean ifExists(String emailInput, String password) {
+        Boolean exist= false;
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
@@ -892,18 +895,39 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"' and PASSWORD = '"+passwordInput+"';";
+                String query = "SELECT * FROM USERS WHERE HASH=HASHBYTES('MD5', '"+password+"'+CAST(SALT AS NVARCHAR(36))) and SCHOOL_EMAIL = '"+emailInput+"'";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()) {
-                    UserRow.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getString("PASSWORD"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
-                }
+                exist = resultSet.next();
                 connect.close();
             }
         }catch(Exception ex){
+            exist = false;
             Log.d(TAG,ex.toString());
         }
-        boolean exists = (UserRow.size() > 0);
-        return exists;
+        return exist;
     }
+    public boolean ifExists(String emailInput) {
+        Boolean exist= false;
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){
+                Log.d(TAG,"Check your internet connection!");
+            }
+            else{
+                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"'";
+                Statement statement = connect.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                exist = resultSet.next();
+                connect.close();
+            }
+        }catch(Exception ex){
+            exist = false;
+            Log.d(TAG,ex.toString());
+        }
+
+        return exist;
+    }
+
 }

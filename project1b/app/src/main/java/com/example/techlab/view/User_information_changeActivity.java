@@ -53,7 +53,7 @@ public class User_information_changeActivity extends DrawerMenu {
         if ( passWord && conformPassword) {
             dataManagement.updateUserPassword(confirmPasswordInput.getEditText().getText().toString(),mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1) );
 
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_PASS, confirmPasswordInput.getEditText().getText().toString());
+            mEditor.putString(MainActivity.KEY_STAY_LOGGED_IN, confirmPasswordInput.getEditText().getText().toString());
 
             // resetting the  form input text field
             userFirstNameInput.getEditText().setText("");
