@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.DrawerMenu"/>
-        <activity android:name=".view.Contact"
+        <activity android:name=".view.NoReturnUsers" />
+
+        <activity
+            android:name=".view.Contact"
             android:label="Contact"
             android:screenOrientation="portrait" />
         <activity
@@ -22,11 +25,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.User_information_changeActivity"
-            android:label="Account instellingen"
+            android:label="Account Instellingen"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_book_updateActivity"
-            android:label="Product update"
+            android:label="Product Update"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_book_infoActivity"
@@ -46,11 +49,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Student_Geleend_Aangevraagd"
-            android:label="Geleend / aangevraagd"
+            android:label="Geleend / Aangevraagd"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_product_UpdateActivity"
-            android:label="Product update"
+            android:label="Product Update"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_product_infoActivity"
@@ -58,7 +61,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_add_productActivity"
-            android:label="Product toevoegen"
+            android:label="Product Toevoegen"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_managementActivity"
@@ -66,17 +69,16 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.SignUpActivity"
-            android:label="Aanmeldingspagina"
+            android:label="Registratie"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Geleend_Aangevraagd"
-            android:label="aangevraagde productpagina"
+            android:label="Aangevraagde Productpagina"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.AangevraagdItems_UserList"
-            android:label="Product administratie"
+            android:label="Product Administratie"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Product_InventoryActivity"
             android:label="Inventaris"
@@ -90,6 +92,7 @@
             android:label="Product Voorwaarden"
             android:screenOrientation="portrait" />
         <activity android:name=".view.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
