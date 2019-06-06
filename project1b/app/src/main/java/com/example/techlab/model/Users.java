@@ -14,11 +14,10 @@ public class Users implements Parcelable  {
     private int id;
     private int blockStatus;
 
-    public Users(String firstName, String surname, String schoolEmail, String password ,int loanedAmount ,String userType, int _id, int block, int productOnLoan) {
+    public Users(String firstName, String surname, String schoolEmail,int loanedAmount ,String userType, int _id, int block, int productOnLoan) {
         this.firstName = firstName;
         this.surname = surname;
         this.schoolEmail = schoolEmail;
-        this.password = password;
         this.loanedAmount = loanedAmount;
         this.userType = userType;
         this.id = _id;
@@ -31,16 +30,7 @@ public class Users implements Parcelable  {
         this.surname = surname;
         this.id = _id;
     }
-    public Users(String firstName, String surname, String schoolEmail,int loanedAmount ,String userType, int _id, int block,int productOnLoan) {
-        this.firstName = firstName;
-        this.surname = surname;
-        this.schoolEmail = schoolEmail;
-        this.loanedAmount = loanedAmount;
-        this.userType = userType;
-        this.id = _id;
-        this.blockStatus = block;
-        this.productOnLoan =productOnLoan;
-    }
+
 
 
     protected Users(Parcel in) {
@@ -113,9 +103,6 @@ public class Users implements Parcelable  {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public int getLoanedAmount() {
         return loanedAmount;
@@ -140,7 +127,6 @@ public class Users implements Parcelable  {
         dest.writeString(firstName);
         dest.writeString(surname);
         dest.writeString(schoolEmail);
-        dest.writeString(password);
         dest.writeInt(loanedAmount);
         dest.writeString(userType);
         dest.writeInt(blockStatus);
