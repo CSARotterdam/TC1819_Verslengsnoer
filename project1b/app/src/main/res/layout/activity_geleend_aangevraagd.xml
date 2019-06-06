@@ -7,6 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.Student_Geleend_Aangevraagd"
     android:background="@color/colorBackground">
+
         <Spinner
             android:id="@+id/BorrowCategoryButton"
             android:layout_width="match_parent"
@@ -14,10 +15,12 @@
             android:layout_margin="10dp"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             app:backgroundTint="@color/Red" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/BorrowItemRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp"
             android:scrollbars="vertical" />
+
 </LinearLayout>

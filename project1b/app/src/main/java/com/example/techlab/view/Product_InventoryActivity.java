@@ -31,7 +31,6 @@ import com.example.techlab.model.Products;
 
 import java.util.ArrayList;
 
-//Inventaris Page
 public class Product_InventoryActivity extends DrawerMenu{
 
     private SharedPreferences mSharedPreferences;
@@ -107,7 +106,7 @@ public class Product_InventoryActivity extends DrawerMenu{
                 .setSmallIcon(R.mipmap.logo_round)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.logo_round))
                 .setContentTitle("Product(en) Te Laat")
-                .setContentText("Lever deze zo snel mogelijk in")
+                .setContentText("Tik om te late producten te zien")
                 .setOngoing(true)       //You can see the notification in lockscreen
                 .setVibrate(new long[] {0,200})
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
