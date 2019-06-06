@@ -6,15 +6,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:orientation="vertical"
         tools:context=".view.Product_managementActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
             android:gravity="center"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/addProductButton"
@@ -46,8 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_margin="10dp"
             android:weightSum="2">
             <TextView
                 android:id="@+id/textView5"
@@ -69,7 +69,6 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/electronicsListItems"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </layout>
