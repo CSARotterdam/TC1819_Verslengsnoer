@@ -54,9 +54,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.LogoutMenu){
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_EMAIL, "4ikikikilio.i;5534");
-            mEditor.putString(MainActivity.KEY_STAY_LOGGED_IN,"4ikikikilio.i;5534");
-            mEditor.putInt(MainActivity.KEY_ACTIVE_USER_ID,0);
+            mEditor.putString(MainActivity.KEY_STAY_LOGGED_IN,"off");
             mEditor.apply();
 
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
