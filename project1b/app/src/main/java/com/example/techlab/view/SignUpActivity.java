@@ -23,6 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         userFirstNameInput = findViewById(R.id.firstNameInputLayout);
+        userFirstNameInput = findViewById(R.id.firstNameInputLayout);
         userSurnameInput = findViewById(R.id.surnameInputLayout);
         schoolEmailInput = findViewById(R.id.schoolEmailInputLayout);
         passwordInput = findViewById(R.id.passwordInputLayout);
@@ -53,7 +54,6 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "U hebt met succes een nieuw account geregistreerd", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, MainActivity.class));
         }
-
     }
 
     private boolean emailValidation() {
@@ -148,9 +148,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public boolean check(String s) {
-        if (s == null) {
-            return false;
-        }
+        if (s == null) { return false; }
+
         int len = s.length();
         for (int i = 0; i < len; i++) {
             char character = s.charAt(i);
