@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class DataManagement {
     Connection connect;
     private static final String TAG = "sql error: ";
-    public void insertUser(String firstName,String surname, String SchoolEmail, byte[] hash,byte[] salt,String password) {
+    public void insertUser(String firstName,String surname, String SchoolEmail,byte[] salt,String password) {
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();

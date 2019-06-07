@@ -1,11 +1,15 @@
 package com.example.techlab.view;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
     protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
     protected static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
-    protected static final String KEY_STAY_LOGGED_IN = "keyActiveUserPass";
+    protected static final String KEY_STAY_LOGGED_IN = "keyStayLoggedInStatus";
     protected static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
     protected static final String KEY_PRODUCT_ADMINISTER_SPINNER_STATE = "keyProductAdministerState";
     protected static final String KEY_ACTIVE_USER_NAME = "keyActiveUserName";
@@ -144,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
                     mEditor.putInt(KEY_ACTIVE_USER_ID, user.getId());
                     mEditor.putString(KEY_ACTIVE_USER_STATUS, user.getUserType());
-                    mEditor.putString(KEY_ACTIVE_USER_NAME, user.getUserType());
+                    mEditor.putString(KEY_ACTIVE_USER_NAME, user.getFirstName());
                     if (stayLoggedInCheckBox.isChecked()) {
                         mEditor.putString(KEY_STAY_LOGGED_IN, "on");
                     }
