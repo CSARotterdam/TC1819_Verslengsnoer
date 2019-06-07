@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:background="@color/colorBackground">
@@ -15,9 +13,10 @@
         android:id="@+id/BorrowedItemContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="2dp"
-        android:padding="5dp">
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/ListItemImage"
@@ -30,7 +29,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxWidth="250dp"
-            android:layout_marginTop="5dp"
             android:text="Product Name template"
             android:textSize="20sp"
             android:layout_toRightOf="@id/ListItemImage"
@@ -53,7 +51,6 @@
             android:text="#"
             android:textSize="12sp"
             android:layout_marginTop="3.5dp"
-            android:paddingRight="10dp"
             android:layout_below="@id/ListItemText_ProductName"/>
         <TextView
             android:id="@+id/ListItemText_TurnInDate"
@@ -72,16 +69,14 @@
             android:layout_toEndOf="@id/ListItemText_TurnInDate"
             android:text="#"
             android:textSize="12sp"
-            android:paddingRight="10dp"
             android:layout_marginTop="3.5dp"
             android:layout_below="@id/ListItemText_borrow"/>
         <TextView
             android:id="@+id/leenAanvraagAantalField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aantal:"
+            android:text="Aantal: "
             android:textSize="15sp"
-            android:paddingRight="4dp"
             android:layout_toLeftOf="@id/ListItemText_ProductAmount"
             android:layout_toStartOf="@id/ListItemText_ProductAmount"
             android:layout_below="@id/ListItemText_TurnInDate"/>
@@ -90,32 +85,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#"
-            android:textSize="12sp"
-            android:paddingRight="10dp"
-            android:layout_marginTop="2dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/ListItemText_TurnInDate"/>
-        <TextView
-            android:id="@+id/ListItemText_ProductStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Aangevraagd"
-            android:textSize="12sp"
-            android:paddingRight="10dp"
-            android:layout_marginTop="2dp"
-            android:layout_toRightOf="@id/leenAanvraagStatusField"
-            android:layout_toEndOf="@id/leenAanvraagStatusField"
             android:layout_below="@id/ListItemText_TurnInDate"/>
         <TextView
             android:id="@+id/leenAanvraagStatusField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status:"
+            android:text="Status: "
             android:textSize="15sp"
-            android:paddingRight="4dp"
             android:layout_below="@id/ListItemText_TurnInDate"
             android:layout_toRightOf="@id/ListItemImage"
             android:layout_toEndOf="@id/ListItemImage"/>
+        <TextView
+            android:id="@+id/ListItemText_ProductStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aangevraagd"
+            android:layout_toRightOf="@id/leenAanvraagStatusField"
+            android:layout_toEndOf="@id/leenAanvraagStatusField"
+            android:layout_below="@id/ListItemText_TurnInDate"/>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

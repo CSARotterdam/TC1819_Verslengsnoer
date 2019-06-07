@@ -10,61 +10,51 @@
     </data>
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.Users_managementActivity"
-    android:background="@color/colorBackground">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".view.Users_managementActivity"
+        android:background="@color/colorBackground">
 
-        <LinearLayout
+        <Spinner
+            android:id="@+id/CategoryUsersBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Spinner
-                android:id="@+id/CategoryUsersBtn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                app:backgroundTint="@color/Red" />
-        </LinearLayout>
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            app:backgroundTint="@color/Red" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp">
-
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:weightSum="3">
             <TextView
                 android:id="@+id/userManagementSchoolEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/naam"
+                android:text="Naam"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:layout_weight="2.2"/>
+                android:layout_weight="2"/>
 
             <TextView
                 android:id="@+id/userManagementBorrowedAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aantal producten in bruikleen"
+                android:gravity="end"
+                android:text="Bruikleen"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"/>
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/usersListItem"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </layout>
