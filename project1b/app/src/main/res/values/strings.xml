@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Techlab</string>
     <string name="RequestBtn">Aanvragen</string>
@@ -13,19 +14,23 @@
     <string name="inloggen">Inloggen</string>
     <string name="registreren">Registreren</string>
     <string name="productToevoegen">product toevoegen</string>
-    <string name="voorraad">Voorraad</string>
-    <string name="naam">Naam:</string>
-    <string name="categorie">Categorie:</string>
-    <string name="id">ID:</string>
-    <string name="fabrikant">Fabrikant:</string>
-    <string name="gebrokenAantal">Gebroken aantal:</string>
     <string name="productVerwijderen">Product verwijderen</string>
     <string name="voornaam">Voornaam:</string>
     <string name="achternaam">Achternaam:</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
 
-    // product status type
+    <!--Product Informatie-->
+    <string name="naam">Naam:\t\t\t\t\t</string>
+    <string name="id">ID:\t\t\t\t\t\t\t\t\t</string>
+    <string name="fabrikant">Fabrikant:\t\t</string>
+    <string name="voorraad">Voorraad:\t\t</string>
+    <string name="gebrokenAantal">Gebroken:\t\t</string>
+    <string name="categorie">Categorie:\t\t</string>
+
+    <!--Boek Informatie-->
+
+     product status type
     <string name="productStatusPending">Pending</string>
     <string name="productStatusOnLoan">Geleend</string>
     <string name="productStatusReturned">Teruggebracht</string>

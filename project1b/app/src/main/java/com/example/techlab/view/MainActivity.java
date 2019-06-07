@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         // Notify the system that there is a notification
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(1, builder.build());
-
     }
 
     public void loginButton(View view) {

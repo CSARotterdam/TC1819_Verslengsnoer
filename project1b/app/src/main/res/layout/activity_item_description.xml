@@ -11,9 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp"
+        android:padding="20dp"
         android:background="@drawable/recyclerview_background">
 
         <!--Product Name-->
@@ -21,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/product_name"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:text="Title"
             android:textStyle="bold"
@@ -58,8 +55,7 @@
             <TextView
                 android:id="@id/expandable_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"/>
+                android:layout_height="wrap_content"/>
             <!--The expandable text icon-->
             <ImageButton
                 android:contentDescription="Icon"
