@@ -29,7 +29,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_book_updateActivity"
-            android:label="Product Update"
+            android:label="Boek Updaten"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_book_infoActivity"
@@ -53,7 +53,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_product_UpdateActivity"
-            android:label="Product Update"
+            android:label="Product Updaten"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Product_management_product_infoActivity"

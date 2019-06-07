@@ -2,10 +2,6 @@
 <resources>
     <string name="app_name">Techlab</string>
     <string name="RequestBtn">Aanvragen</string>
-    <string name="productFabrikant">ProductFabrikant:</string>
-    <string name="aantalProduct">Aantal product:</string>
-    <string name="productCategorie">Product categorie</string>
-    <string name="aantalGebroken">Aantal gebroken:</string>
     <string name="omschrijving">Omschrijving:</string>
     <string name="productUpdate">Product UpDate</string>
     <string name="schoolEmail">School Email:</string>
@@ -20,6 +16,12 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
 
+    <!--Product Updaten-->
+    <string name="productFabrikant">Fabrikant:</string>
+    <string name="aantalProduct">Aantal:</string>
+    <string name="productCategorie">Categorie:</string>
+    <string name="aantalGebroken">Gebroken:</string>
+
     <!--Product Informatie-->
     <string name="naam">Naam:\t\t\t\t\t</string>
     <string name="id">ID:\t\t\t\t\t\t\t\t\t</string>
@@ -30,7 +32,7 @@
 
     <!--Boek Informatie-->
 
-     product status type
+     //product status type
     <string name="productStatusPending">Pending</string>
     <string name="productStatusOnLoan">Geleend</string>
     <string name="productStatusReturned">Teruggebracht</string>

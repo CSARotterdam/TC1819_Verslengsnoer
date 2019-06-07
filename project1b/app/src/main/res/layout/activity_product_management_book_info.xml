@@ -31,7 +31,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Titel: "
+                android:text="Titel:\t\t\t\t\t\t\t"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/bookTitleTextView"
@@ -48,7 +48,7 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Schrijvers: "
+                android:text="Schrijvers:\t"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/bookWritersTextView"
@@ -65,7 +65,7 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ISBN: "
+                android:text="ISBN:\t\t\t\t\t\t"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/bookIsbnTextView"
@@ -82,7 +82,7 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Uitgeverij: "
+                android:text="Uitgeverij:\t\t"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/bookPublisherTextView"
@@ -99,7 +99,7 @@
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Voorraad: "
+                android:text="Voorraad:\t\t"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/bookAmountTextView"
