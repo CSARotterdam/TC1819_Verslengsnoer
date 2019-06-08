@@ -23,12 +23,12 @@
     <string name="aantalGebroken">Gebroken:</string>
 
     <!--Product Informatie-->
-    <string name="naam">Naam:\t\t\t\t\t</string>
-    <string name="id">ID:\t\t\t\t\t\t\t\t\t</string>
-    <string name="fabrikant">Fabrikant:\t\t</string>
-    <string name="voorraad">Voorraad:\t\t</string>
-    <string name="gebrokenAantal">Gebroken:\t\t</string>
-    <string name="categorie">Categorie:\t\t</string>
+    <string name="naam">Naam:</string>
+    <string name="id">ID:</string>
+    <string name="fabrikant">Fabrikant:</string>
+    <string name="voorraad">Voorraad:</string>
+    <string name="gebrokenAantal">Gebroken:</string>
+    <string name="categorie">Categorie:</string>
 
     <!--Boek Informatie-->
 

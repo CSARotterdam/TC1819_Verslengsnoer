@@ -26,108 +26,128 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
             <TextView
                 android:id="@+id/textView12"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/naam"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="0.27"/>
             <TextView
                 android:id="@+id/productNameTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_weight="0.73"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
             <TextView
                 android:id="@+id/textView15"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/id"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="0.27"
+                />
             <TextView
                 android:id="@+id/productIdTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_weight="0.73"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
             <TextView
                 android:id="@+id/textView16"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/fabrikant"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="0.27"/>
             <TextView
                 android:id="@+id/productManufacturerTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_weight="0.73"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
             <TextView
                 android:id="@+id/textView17"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/voorraad"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="0.27"/>
             <TextView
                 android:id="@+id/productStockTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_weight="0.73"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
             <TextView
                 android:id="@+id/textView18"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/gebrokenAantal"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="0.27"/>
             <TextView
                 android:id="@+id/prodyctAmountBrokenTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_weight="0.73"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
             <TextView
                 android:id="@+id/textView20"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/categorie"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="0.27"/>
             <TextView
                 android:id="@+id/productCategoryTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_weight="0.73"/>
         </LinearLayout>
 
         <TextView
