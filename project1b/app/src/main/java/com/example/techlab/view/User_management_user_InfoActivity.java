@@ -97,6 +97,13 @@ public class User_management_user_InfoActivity extends DrawerMenu {
         startActivity(startNewActivity);
         finish();
     }
+    public void productBorrowedByThisUser(View view){
+        Intent startNewActivity = new Intent(this, User_management_user_historyActivity.class);
+        startNewActivity.putExtra("ID_",user.getId());
+        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startNewActivity);
+        finish();
+    }
     public void BlockUser(View view){
         if (user.getProductOnLoan() == 0) {
             dataManagement.setBlockUser(1, getIntent().getIntExtra("ID_", -1));

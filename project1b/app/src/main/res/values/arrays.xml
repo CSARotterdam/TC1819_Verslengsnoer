@@ -11,6 +11,11 @@
         <item>Alle aangevraagde en geleende producten</item>
         <item>Alle teruggebrachte producten</item>
     </string-array>
+
+    <string-array name="BorrowCategoryUserManagement">
+        <item>Alle producten in bruikleen</item>
+        <item>activiteiten geschiedenis</item>
+    </string-array>
     <!--Drop down of category Button-->
     <string-array name="ProductCategory">
         <item>Alle Producten</item>

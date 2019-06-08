@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.util.ImageUtils;
 import com.example.techlab.model.Borrow;
+import com.example.techlab.util.ImageUtils;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,8 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     public static class BorrowViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView mImageView;
-        private TextView mProductName,mBorrow,mProductAmount,mProductStatus,mRequest;
+        private TextView mProductName,mBorrow,mProductAmount,mProductStatus,mRequest, mreturnDate,
+                ListItemText_borrow,ListItemText_TurnInDate,returnDateField;
 
         RelativeLayout relativeLayout;
 
@@ -43,6 +44,11 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
             mProductAmount = itemView.findViewById(R.id.ListItemText_ProductAmount);
             mProductStatus = itemView.findViewById(R.id.ListItemText_ProductStatus);
             relativeLayout = itemView.findViewById(R.id.BorrowedItemContainer);
+            mreturnDate = itemView.findViewById(R.id.returnDate);
+
+            ListItemText_borrow = itemView.findViewById(R.id.ListItemText_borrow);
+            ListItemText_TurnInDate = itemView.findViewById(R.id.ListItemText_TurnInDate);
+            returnDateField = itemView.findViewById(R.id.returnDateField);
         }
     }
 
@@ -65,18 +71,21 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
         final int position = position_index;
         borrowViewHolder.mImageView.setImageBitmap(ImageUtils.getImage(currentItem.getImageResource()));
         borrowViewHolder.mProductName.setText(currentItem.getProductName());
-        borrowViewHolder.mBorrow.setText(currentItem.getmBorrowDate());
-        borrowViewHolder.mRequest.setText(currentItem.getRequestDate());
         borrowViewHolder.mProductAmount.setText(Integer.toString(currentItem.getBorrowItemAmount()));
         borrowViewHolder.mProductStatus.setText(currentItem.getBorrowStatus());
-        if (currentItem.getBorrowStatus().matches("Pending")) {
+        if (currentItem.getBorrowStatus().matches(context.getString(R.string.productStatusPending))){
+            borrowViewHolder.mBorrow.setVisibility(View.GONE);
+            borrowViewHolder.mreturnDate.setVisibility(View.GONE);
+            borrowViewHolder.mRequest.setText(currentItem.getRequestDate());
+            borrowViewHolder.ListItemText_borrow.setVisibility(View.GONE);
+            borrowViewHolder.returnDateField.setVisibility(View.GONE);
             borrowViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder DelRequestItemAlertDialog = new AlertDialog.Builder(context);
-                    DelRequestItemAlertDialog.setTitle("Aanvraag intrekken?")
+                    DelRequestItemAlertDialog.setTitle("Aanvraag annuleren?")
                             .setCancelable(false)
-                            .setPositiveButton("Intrekken", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("Annuleren", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Toast.makeText(context, "Aanvraag geannuleerd.", Toast.LENGTH_LONG).show();
@@ -90,14 +99,26 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
                                 }
                             })
                             .setNegativeButton("Terug", null);
-                    
+
                     //Creating dialog box
                     DelRequestItemAlertDialog.create().show();
                 }
             });
-        }
-        if (currentItem.getBorrowStatus().matches("Te Laat")) {
+        }else if (currentItem.getBorrowStatus().matches(context.getString(R.string.productStatusOnLoan))){
+            borrowViewHolder.mBorrow.setText(currentItem.getmBorrowDate());
+            borrowViewHolder.mRequest.setText(currentItem.getRequestDate());
+            borrowViewHolder.mreturnDate.setVisibility(View.GONE);
+            borrowViewHolder.returnDateField.setVisibility(View.GONE);
+        }else if (currentItem.getBorrowStatus().matches(context.getString(R.string.productStatusTeLaat))){
+            borrowViewHolder.mBorrow.setText(currentItem.getmBorrowDate());
+            borrowViewHolder.mRequest.setText(currentItem.getRequestDate());
+            borrowViewHolder.mreturnDate.setVisibility(View.GONE);
+            borrowViewHolder.returnDateField.setVisibility(View.GONE);
             borrowViewHolder.mProductStatus.setTextColor(Color.parseColor("#d8041d"));
+        }else if (currentItem.getBorrowStatus().matches(context.getString(R.string.productStatusReturned))){
+            borrowViewHolder.mBorrow.setText(currentItem.getmBorrowDate());
+            borrowViewHolder.mRequest.setText(currentItem.getRequestDate());
+            borrowViewHolder.mreturnDate.setText(currentItem.getReturnDate());
         }
     }
 
@@ -105,4 +126,5 @@ public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.BorrowView
     public int getItemCount() {
         return mBorrowItemList.size();
     }
+
 }

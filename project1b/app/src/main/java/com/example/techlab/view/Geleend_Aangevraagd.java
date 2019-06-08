@@ -122,6 +122,7 @@ public class Geleend_Aangevraagd extends DrawerMenu {
                 }
                 borrow = dataManagement.getBorrowDataWithId(getIntent().getIntExtra("P_id_ProductBorrowList",-1));
                 if(borrow.getBorrowStatus().matches(getString(R.string.productStatusReturned))){
+                    status.setTextColor(getResources().getColor(R.color.black));
                     Toast.makeText(this, "Het product is met succes teruggenomen", Toast.LENGTH_LONG).show();
                     status.setText("Status: " + borrow.getBorrowStatus());
                 }else{
