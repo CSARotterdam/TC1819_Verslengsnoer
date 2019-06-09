@@ -70,7 +70,7 @@ public class Product_management_product_infoActivity extends DrawerMenu {
             startActivity(startNewActivity);
             finish();
         }else {
-            AlertDialogUtils.alertDialogProductOnLoanIsNotZero(this,"Er zijn nog steeds producten die uitgeleend zijn !");
+            AlertDialogUtils.alertDialog(this,"Mislukt !!","Er zijn nog steeds producten die uitgeleend zijn !");
         }
     }
     public void upDateProduct(View view){

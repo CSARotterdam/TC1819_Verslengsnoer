@@ -80,7 +80,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
             startActivity(startNewActivity);
             finish();
         }else{
-            AlertDialogUtils.alertDialogProductOnLoanIsNotZero(this,"Dit gebruiker heeft nog producten in bruikleen!");
+            AlertDialogUtils.alertDialog(this,"Mislukt !!","Dit gebruiker heeft nog producten in bruikleen!");
         }
 
 
@@ -117,7 +117,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
             statusBlock.setTypeface(statusBlock.getTypeface(), Typeface.BOLD);
             findViewById(R.id.BlockStatusField).setBackgroundColor(getResources().getColor(R.color.Red));
         }else{
-            AlertDialogUtils.alertDialogProductOnLoanIsNotZero(this,"Dit gebruiker heeft nog producten in bruikleen!");
+            AlertDialogUtils.alertDialog(this,"Mislukt !!","Dit gebruiker heeft nog producten in bruikleen!");
         }
 
     }

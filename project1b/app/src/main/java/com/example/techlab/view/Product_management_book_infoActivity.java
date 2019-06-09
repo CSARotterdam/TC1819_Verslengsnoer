@@ -66,7 +66,7 @@ public class Product_management_book_infoActivity extends DrawerMenu {
             startActivity(startNewActivity);
             finish();
         }else {
-            AlertDialogUtils.alertDialogProductOnLoanIsNotZero(this,"Er zijn nog steeds boeken die uitgeleend zijn!");
+            AlertDialogUtils.alertDialog(this,"Mislukt !!","Er zijn nog steeds boeken die uitgeleend zijn!");
         }
     }
     public void bookUpDateProduct(View view){

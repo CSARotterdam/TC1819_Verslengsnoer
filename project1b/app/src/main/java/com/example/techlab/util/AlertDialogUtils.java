@@ -6,10 +6,10 @@ import android.support.v7.app.AlertDialog;
 
 public class AlertDialogUtils {
     //POP UP in User Management user InfoActivity class
-    public static void alertDialogProductOnLoanIsNotZero(Context context,String Message) {
+    public static void alertDialog(Context context, String title, String Message) {
 
         AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(context)
-                .setTitle("Mislukt !!")
+                .setTitle(title)
                 .setMessage(Message)
                 .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
