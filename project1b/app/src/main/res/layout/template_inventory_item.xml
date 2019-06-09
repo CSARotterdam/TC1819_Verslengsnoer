@@ -1,85 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+<data>
+    <variable
+        name="product"
+        type="com.example.techlab.model.Products" />
+</data>
 
-    <data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/inventoryProductItemView"
+    android:background="@drawable/recyclerview_background"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="2.5dp">
 
-        <variable
-            name="product"
-            type="com.example.techlab.model.Products" />
-    </data>
+    <ImageView
+        android:contentDescription="Product "
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="0dp"
+        android:paddingEnd="0dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/image"
+        android:src="@mipmap/ic_launcher"
+        android:background="@drawable/recyclerview_background" />
 
-    <RelativeLayout
-        android:id="@+id/inventoryProductItemView"
+    <TextView
+        android:id="@+id/product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="2.5dp"
-        android:background="@drawable/recyclerview_background">
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/image"
+        android:layout_toEndOf="@id/image"
+        android:text="@{product.name}"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="LCD Display" />
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/recyclerview_background"
-            android:contentDescription="Product "
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
-            android:paddingEnd="0dp"
-            android:paddingRight="0dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/product_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/product_name"
+        android:layout_alignLeft="@+id/product_name"
+        android:layout_below="@+id/product_name"
 
-        <TextView
-            android:id="@+id/product_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_toEndOf="@id/image"
-            android:layout_toRightOf="@+id/image"
-            android:text="@{product.name}"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:text="LCD Display" />
+        android:layout_marginBottom="21dp"
+        android:layout_toRightOf="@+id/image"
+        android:layout_toEndOf="@id/image"
+        android:text="@{product.category}"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        tools:text="tv" />
+    <!--Add TextView to see if item is available or not-->
 
-        <TextView
-            android:id="@+id/product_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/product_name"
-            android:layout_alignStart="@+id/product_name"
-            android:layout_alignLeft="@+id/product_name"
-
-
-            android:layout_toEndOf="@id/image"
-            android:layout_toRightOf="@+id/image"
-            android:text="@{product.category}"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="italic"
-            tools:text="tv" />
-
-        <TextView
-            android:id="@+id/product_availability_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/product_category"
-            android:layout_alignStart="@+id/product_name"
-            android:layout_alignLeft="@+id/product_name"
-            android:layout_marginBottom="21dp"
-            android:layout_toEndOf="@id/image"
-            android:layout_toRightOf="@+id/image"
-            android:text="Dit product is momenteel niet beschikbaar"
-            android:textColor="@color/colorAccent"
-            android:visibility="gone"
-            android:textSize="10sp"
-            android:textStyle="italic" />
-        <!--Add TextView to see if item is available or not-->
-
-    </RelativeLayout>
+</RelativeLayout>
 </layout>
