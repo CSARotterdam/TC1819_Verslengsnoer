@@ -59,7 +59,7 @@ public class InfographicActivity extends DrawerMenu  {
         pieDataSet1.setSliceSpace(1f);
         pieDataSet1.setColors(ColorTemplate.createColors(getResources(),
                 new int[]{R.color.red_400,
-                R.color.deep_purple_400,
+                        R.color.deep_purple_400,
                         R.color.light_blue_400,
                         R.color.green_400,
                         R.color.teal_400,

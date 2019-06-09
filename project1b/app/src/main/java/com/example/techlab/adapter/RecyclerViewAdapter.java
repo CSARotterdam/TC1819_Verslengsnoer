@@ -13,6 +13,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.TemplateInventoryItemBinding;
@@ -56,8 +57,10 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
         final Products product = products.get(i);
         // Here we get the images of the product from the bitmap
         viewHolder.image.setImageBitmap(ImageUtils.getImage(product.getImage()));
-
         viewHolder.productItemBinding.setProduct(product);
+        if(product.getStock()-product.getProductOnLoan()<=0){
+            viewHolder.product_availability_status.setVisibility(View.VISIBLE);
+        }
 //        holder.productDescription.setText(mProductDescription.get(position)); // It crashes here
 //      If you click on a product you'll get the itemdescription and category
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -111,12 +114,14 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
         RelativeLayout parentLayout;
+        TextView product_availability_status;
         public TemplateInventoryItemBinding productItemBinding;
 
         public ViewHolder(TemplateInventoryItemBinding ProductItemBinding) {
             super(ProductItemBinding.getRoot());
             productItemBinding =ProductItemBinding;
             image = itemView.findViewById(R.id.image);
+            product_availability_status = itemView.findViewById(R.id.product_availability_status);
             parentLayout = itemView.findViewById(R.id.inventoryProductItemView);
         }
     }
