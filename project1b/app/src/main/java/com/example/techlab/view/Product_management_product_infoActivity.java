@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Electronics;
+import com.example.techlab.util.AlertDialogUtils;
 import com.example.techlab.util.ImageUtils;
 
 public class Product_management_product_infoActivity extends DrawerMenu {
@@ -20,6 +21,7 @@ public class Product_management_product_infoActivity extends DrawerMenu {
             ,productManufacturer, productDescription;
     ImageView productManagementImageView;
     DataManagement dataManagement;
+    Electronics product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class Product_management_product_infoActivity extends DrawerMenu {
     @Override
     protected void onResume(){
         super.onResume();
-        Electronics product = dataManagement.getProductWithId(getIntent().getIntExtra("ID_",-1));
+        product = dataManagement.getProductWithId(getIntent().getIntExtra("ID_",-1));
         productName.setText(product.getName());
         productId.setText(product.getProductId());
         productStock.setText(String.valueOf(product.getStock()));
@@ -61,11 +63,15 @@ public class Product_management_product_infoActivity extends DrawerMenu {
         super.onPause();
     }
     public void deleteProduct(View view){
-        dataManagement.DeleteProduct(getIntent().getIntExtra("ID_",-1));
-        Intent startNewActivity = new Intent(this, Product_managementActivity.class);
-        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(startNewActivity);
-        finish();
+        if (product.getProductOnLoan()==0) {
+            dataManagement.DeleteProduct(getIntent().getIntExtra("ID_", -1));
+            Intent startNewActivity = new Intent(this, Product_managementActivity.class);
+            startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startNewActivity);
+            finish();
+        }else {
+            AlertDialogUtils.alertDialogProductOnLoanIsNotZero(this,"Er zijn nog steeds producten die uitgeleend zijn !");
+        }
     }
     public void upDateProduct(View view){
         Intent startNewActivity = new Intent(this, Product_management_product_UpdateActivity.class);

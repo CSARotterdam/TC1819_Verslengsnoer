@@ -1,12 +1,10 @@
 package com.example.techlab.view;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +14,7 @@ import android.widget.TextView;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
+import com.example.techlab.util.AlertDialogUtils;
 
 //UsersManagementAdapter -> Per selected user page.
 public class User_management_user_InfoActivity extends DrawerMenu {
@@ -81,7 +80,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
             startActivity(startNewActivity);
             finish();
         }else{
-            alertDialog();
+            AlertDialogUtils.alertDialogProductOnLoanIsNotZero(this,"Dit gebruiker heeft nog producten in bruikleen!");
         }
 
 
@@ -118,7 +117,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
             statusBlock.setTypeface(statusBlock.getTypeface(), Typeface.BOLD);
             findViewById(R.id.BlockStatusField).setBackgroundColor(getResources().getColor(R.color.Red));
         }else{
-            alertDialog();
+            AlertDialogUtils.alertDialogProductOnLoanIsNotZero(this,"Dit gebruiker heeft nog producten in bruikleen!");
         }
 
     }
@@ -131,22 +130,5 @@ public class User_management_user_InfoActivity extends DrawerMenu {
 
     }
 
-    //POP UP in User Management user InfoActivity class
-    public void alertDialog() {
-        AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(User_management_user_InfoActivity.this)
-                .setTitle("Mislukt !!")
-                .setMessage("Dit gebruiker heeft nog producten in bruikleen!")
-                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
 
-//               You can't click outside the popup to cancel
-                .setCancelable(false);
-
-        //Creating dialog box
-        RequestItemAlertDialog.create().show();
-    }
 }
