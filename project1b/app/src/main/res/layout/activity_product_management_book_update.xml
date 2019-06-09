@@ -78,7 +78,7 @@ android:background="@color/colorBackground">
             android:layout_height="match_parent">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:gravity="start"
                 android:hint="Omschrijving" />
         </android.support.design.widget.TextInputLayout>

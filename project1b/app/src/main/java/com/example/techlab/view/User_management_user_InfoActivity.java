@@ -42,7 +42,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
         name.setText(user.getFirstName());
         surname.setText(user.getSurname());
         userEmail.setText(user.getSchoolEmail());
-        productOnLoanAmount.setText(Integer.toString(user.getLoanedAmount()));
+        productOnLoanAmount.setText(Integer.toString(user.getProductOnLoan()));
         userStatus.setText(user.getUserType());
         statusUpdateToBeheerder = findViewById(R.id.userStatusUpDateBeheerderButton);
         statusUpdateToSudent = findViewById(R.id.userStatusUpDateStudentButton);
@@ -63,7 +63,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
         //Block/UnBlock buttons display.
         if (user.getBlockStatus() == 0) {
             UnBlockBtn.setVisibility(View.GONE);
-            statusBlock.setText("Niet geblokkeerd.");
+            statusBlock.setText("Niet geblokkeerd");
             findViewById(R.id.BlockStatusField).setBackgroundColor(getResources().getColor(R.color.Green));
         }else if (user.getBlockStatus() == 1){
             BlockBtn.setVisibility(View.GONE);
@@ -74,12 +74,17 @@ public class User_management_user_InfoActivity extends DrawerMenu {
     }
 
     public void deleteUser(View view){
+        if (user.getProductOnLoan() == 0) {
+            dataManagement.DeleteUser(getIntent().getIntExtra("ID_",-1));
+            Intent startNewActivity = new Intent(this, Users_managementActivity.class);
+            startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startNewActivity);
+            finish();
+        }else{
+            alertDialog();
+        }
 
-        dataManagement.DeleteUser(getIntent().getIntExtra("ID_",-1));
-        Intent startNewActivity = new Intent(this, Users_managementActivity.class);
-        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(startNewActivity);
-        finish();
+
     }
     public void updateUserStatusToBeheerder(View view){
         dataManagement.updateUserStatus("beheerder",getIntent().getIntExtra("ID_",-1));
@@ -129,7 +134,7 @@ public class User_management_user_InfoActivity extends DrawerMenu {
     //POP UP in User Management user InfoActivity class
     public void alertDialog() {
         AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(User_management_user_InfoActivity.this)
-                .setTitle("Blokkeer actie is mislukt")
+                .setTitle("Mislukt !!")
                 .setMessage("Dit gebruiker heeft nog producten in bruikleen!")
                 .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
