@@ -34,7 +34,7 @@ public class Geleend_Aangevraagd extends DrawerMenu {
         super.onCreate(savedInstanceState);
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View activityView = layoutInflater.inflate(R.layout.pr_aanvraag_return, null,false);
+        View activityView = layoutInflater.inflate(R.layout.activity_borrow_status_info, null,false);
         frameLayout.addView(activityView);
         System.out.println("Aanvraag Returned.java started");
         dataManagement = new DataManagement();
