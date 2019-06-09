@@ -57,7 +57,17 @@ public class InfographicActivity extends DrawerMenu  {
         ArrayList<PieEntry> MostPopularProductValue = dataManagementInfographic.getMostPopularProductData();
         PieDataSet pieDataSet1 = new PieDataSet(MostPopularProductValue, "");
         pieDataSet1.setSliceSpace(1f);
-        pieDataSet1.setColors(ColorTemplate.MATERIAL_COLORS);
+        pieDataSet1.setColors(ColorTemplate.createColors(getResources(),
+                new int[]{R.color.red_400,
+                R.color.deep_purple_400,
+                        R.color.light_blue_400,
+                        R.color.green_400,
+                        R.color.teal_400,
+                        R.color.deep_orange_400,
+                        R.color.pink_400,
+                        R.color.cyan_400,
+                        R.color.purple_400,
+                        R.color.lime_400}));
         PieData data = new PieData((pieDataSet1));
         data.setValueTextSize(10f);
         data.setValueTextColor(Color.WHITE);
@@ -74,7 +84,17 @@ public class InfographicActivity extends DrawerMenu  {
         ArrayList<PieEntry> MostactiveUserValue = dataManagementInfographic.getMostActiveUserData();
         PieDataSet pieDataSet2 = new PieDataSet(MostactiveUserValue,"");
         pieDataSet2.setSliceSpace(1f);
-        pieDataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
+        pieDataSet2.setColors(ColorTemplate.createColors(getResources(),
+                new int[]{R.color.red_400,
+                        R.color.deep_purple_400,
+                        R.color.light_blue_400,
+                        R.color.green_400,
+                        R.color.teal_400,
+                        R.color.deep_orange_400,
+                        R.color.pink_400,
+                        R.color.cyan_400,
+                        R.color.purple_400,
+                        R.color.lime_400}));
         PieData data2 = new PieData((pieDataSet2));
         data2.setValueTextSize(10f);
         data2.setValueTextColor(Color.WHITE);
