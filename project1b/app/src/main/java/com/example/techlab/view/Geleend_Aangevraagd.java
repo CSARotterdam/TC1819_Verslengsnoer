@@ -34,7 +34,7 @@ public class Geleend_Aangevraagd extends DrawerMenu {
         super.onCreate(savedInstanceState);
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View activityView = layoutInflater.inflate(R.layout.pr_aanvraag_return, null,false);
+        View activityView = layoutInflater.inflate(R.layout.activity_borrow_status_info, null,false);
         frameLayout.addView(activityView);
         System.out.println("Aanvraag Returned.java started");
         dataManagement = new DataManagement();
@@ -64,30 +64,30 @@ public class Geleend_Aangevraagd extends DrawerMenu {
         if (borrow.getBorrowStatus().matches(getString(R.string.productStatusTeLaat))) {
             status.setTextColor(Color.parseColor("#d8041d"));
             productLendButton.setVisibility(View.GONE);
-            productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
-            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productLoanDate.setText("Geleend op: "+borrow.getmBorrowDate());
+            productRequestDate.setText("Aangevraagd op: "+borrow.getRequestDate());
             productReturnDate.setVisibility(View.GONE);
             productRequestCancelButton.setVisibility(View.GONE);
         }else if (borrow.getBorrowStatus().matches(getString(R.string.productStatusPending))){
             productTakeBackButton.setVisibility(View.GONE);
             ProductIsNotDamaged.setVisibility(View.GONE);
             productLoanDate.setVisibility(View.GONE);
-            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
+            productRequestDate.setText("Aangevraagd op: "+borrow.getRequestDate());
             productReturnDate.setVisibility(View.GONE);
         }else if(borrow.getBorrowStatus().matches(getString(R.string.productStatusOnLoan))){
             productRequestCancelButton.setVisibility(View.GONE);
             productLendButton.setVisibility(View.GONE);
-            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
-            productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
+            productRequestDate.setText("Aangevraagd op: "+borrow.getRequestDate());
+            productLoanDate.setText("Geleend op: "+borrow.getmBorrowDate());
             productReturnDate.setVisibility(View.GONE);
         }else{
             ProductIsNotDamaged.setVisibility(View.GONE);
             productTakeBackButton.setVisibility(View.GONE);
             productRequestCancelButton.setVisibility(View.GONE);
             productLendButton.setVisibility(View.GONE);
-            productRequestDate.setText("Aangevraagd op....."+borrow.getRequestDate());
-               productLoanDate.setText("Geleend op............."+borrow.getmBorrowDate());
-             productReturnDate.setText("Teruggebracht op.."+borrow.getReturnDate());
+            productRequestDate.setText("Aangevraagd op: "+borrow.getRequestDate());
+               productLoanDate.setText("Geleend op: "+borrow.getmBorrowDate());
+             productReturnDate.setText("Teruggebracht op: "+borrow.getReturnDate());
         }
 
 //        if(intent.getStringExtra("productnaam_ProductBorrowlist")!=null && intent.getStringExtra("gebruikernaam_ProductBorrowlist") != null && intent.getIntExtra("aantalaangevr_ProductBorrowlist", -1) != -1){

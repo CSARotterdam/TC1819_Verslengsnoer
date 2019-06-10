@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Books;
+import com.example.techlab.util.AlertDialogUtils;
 import com.example.techlab.util.ImageUtils;
 
 public class Product_management_book_infoActivity extends DrawerMenu {
@@ -20,6 +21,7 @@ public class Product_management_book_infoActivity extends DrawerMenu {
     TextView Title, writers, isbn, publisher,amount, description;
     ImageView bookManagementImageView;
     DataManagement dataManagement;
+    Books book;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class Product_management_book_infoActivity extends DrawerMenu {
     @Override
     protected void onResume(){
         super.onResume();
-        Books book = dataManagement.getBookWithId(getIntent().getIntExtra("ID_",-1));
+        book = dataManagement.getBookWithId(getIntent().getIntExtra("ID_",-1));
         Title.setText(book.getName());
         writers.setText(book.getWriters());
         isbn.setText(String.valueOf(book.getISBN()));
@@ -57,11 +59,15 @@ public class Product_management_book_infoActivity extends DrawerMenu {
         super.onPause();
     }
     public void bookDeleteProduct(View view){
-        dataManagement.DeleteProduct(getIntent().getIntExtra("ID_",-1));
-        Intent startNewActivity = new Intent(this, Product_managementActivity.class);
-        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(startNewActivity);
-        finish();
+        if (book.getProductOnLoan()==0) {
+            dataManagement.DeleteProduct(getIntent().getIntExtra("ID_",-1));
+            Intent startNewActivity = new Intent(this, Product_managementActivity.class);
+            startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startNewActivity);
+            finish();
+        }else {
+            AlertDialogUtils.alertDialog(this,"Mislukt !!","Er zijn nog steeds boeken die uitgeleend zijn!");
+        }
     }
     public void bookUpDateProduct(View view){
         Intent startNewActivity = new Intent(this, Product_management_book_updateActivity.class);

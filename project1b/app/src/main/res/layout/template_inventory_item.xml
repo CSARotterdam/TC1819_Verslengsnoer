@@ -13,9 +13,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/inventoryProductItemView"
     android:background="@drawable/recyclerview_background"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="10dp">
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="2.5dp">
 
     <ImageView
         android:contentDescription="Product "
@@ -53,7 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/product_name"
         android:layout_alignLeft="@+id/product_name"
-        android:layout_alignBottom="@+id/image"
+        android:layout_below="@+id/product_name"
+
         android:layout_marginBottom="21dp"
         android:layout_toRightOf="@+id/image"
         android:layout_toEndOf="@id/image"

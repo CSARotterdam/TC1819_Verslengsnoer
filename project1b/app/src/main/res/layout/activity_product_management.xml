@@ -6,8 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+
         android:orientation="vertical"
         tools:context=".view.Product_managementActivity">
 
@@ -47,28 +46,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:weightSum="2">
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/naam"
-                android:textStyle="bold" />
+                android:text="naam"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"/>
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/voorraad"
+                android:text="voorraad"
                 android:textStyle="bold"
+                android:layout_marginRight="10dp"
                 android:gravity="end"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/electronicsListItems"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
     </LinearLayout>
 </layout>

@@ -675,12 +675,12 @@ public class DataManagement {
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "..............";
+                        BorrowDate = "";
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     if(resultSet.getDate("RETURN_DATE")==null){
-                        returndate = "..............";
+                        returndate = "";
                     }else{
                         returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
                     }
@@ -730,12 +730,12 @@ public class DataManagement {
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "..............";
+                        BorrowDate = "";
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     if(resultSet.getDate("RETURN_DATE")==null){
-                        returndate = "..............";
+                        returndate = "";
                     }else{
                         returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
                     }
@@ -786,7 +786,7 @@ public class DataManagement {
                     }
 
                     if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "..............";
+                        BorrowDate = "";
                     }else{
                         BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }

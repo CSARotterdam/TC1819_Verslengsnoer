@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.User_management_user_historyActivity"></activity>
         <activity android:name=".view.DrawerMenu" />
-        <activity android:name=".view.NoReturnUsers" />
         <activity
             android:name=".view.Contact"
             android:label="Contact"

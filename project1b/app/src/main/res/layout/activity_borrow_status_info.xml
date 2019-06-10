@@ -15,6 +15,12 @@
         android:layout_margin="20dp"
         android:padding="20dp">
         <TextView
+            android:id="@+id/leenavraagProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Productnaam"
+            android:textSize="15sp" />
+        <TextView
             android:id="@+id/leenavraagUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,12 +32,7 @@
             android:layout_height="wrap_content"
             android:text="Aantal"
             android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/leenavraagProduct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Productnaam"
-            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/productRequestDate"
             android:layout_width="match_parent"
