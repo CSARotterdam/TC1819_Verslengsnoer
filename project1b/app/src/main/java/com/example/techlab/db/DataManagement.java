@@ -630,6 +630,8 @@ public class DataManagement {
         return loanUsersList;
     }
 
+
+
     public void StatusTeLaat(){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -645,7 +647,6 @@ public class DataManagement {
         }catch(Exception ex){
             Log.d(TAG,ex.toString());
         }
-
     }
 
     public ArrayList<Borrow> getBorrowDataWithUserId(int UserID,String status){
@@ -814,6 +815,9 @@ public class DataManagement {
         }
         return BorrowList.get(0);
     }
+
+
+
     public Users getUserWithEmail(String SchoolEmail){
         ArrayList<Users> UserData = new ArrayList<>();
         try{

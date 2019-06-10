@@ -28,6 +28,7 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
+import com.example.techlab.model.TelaatGebrItems;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class Product_InventoryActivity extends DrawerMenu{
     RecyclerView recyclerView;
     ArrayList<Products> products;
     DataManagement dataManagement;
+    TelaatGebrItems Telaat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +87,7 @@ public class Product_InventoryActivity extends DrawerMenu{
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 
@@ -119,7 +119,7 @@ public class Product_InventoryActivity extends DrawerMenu{
         //  Notify the system that there is a notification
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(1,builder.build());
-    }
+        }
 
     @Override
     protected void onResume() {
@@ -158,9 +158,7 @@ public class Product_InventoryActivity extends DrawerMenu{
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+            public boolean onQueryTextSubmit(String s) { return false; }
 
             @Override
             public boolean onQueryTextChange(String s) {

@@ -14,11 +14,7 @@ public class TelaatGebrItems {
 
     public String getTelaatGebr(){ return mTelaatGebr; }
 
-    public String getTelaatStuNum(){
-        return mTelaatStuNum;
-    }
+    public String getTelaatStuNum(){ return mTelaatStuNum; }
 
-    public String getTelaatPr(){
-        return mTelaatPr;
-    }
+    public String getTelaatPr(){ return mTelaatPr; }
 }
