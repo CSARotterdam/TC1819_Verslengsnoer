@@ -65,30 +65,7 @@ public class Product_InventoryActivity extends DrawerMenu{
         mEditor = mSharedPreferences.edit();
 
 
-        Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory,
-                android.R.layout.simple_dropdown_item_1line);
-        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        CategorySpinner.setAdapter(adapter2);
-        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (parent.getSelectedItem().toString().matches("Alle Producten")) {
-                    products = dataManagement.getAllProducts();
-                } else {
-                    products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
-                }
-
-                adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
-                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
@@ -125,6 +102,36 @@ public class Product_InventoryActivity extends DrawerMenu{
     protected void onResume() {
         super.onResume();
         addNotification();
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
+        if (blocked.ifblocked()) {
+            blocked.Redirect("Inventaris");
+        }
+        else{
+            Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
+            ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory,
+                    android.R.layout.simple_dropdown_item_1line);
+            adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+            CategorySpinner.setAdapter(adapter2);
+            CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    if (parent.getSelectedItem().toString().matches("Alle Producten")) {
+                        products = dataManagement.getAllProducts();
+                    } else {
+                        products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
+                    }
+
+                    adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
+                    recyclerView.setAdapter(adapter);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }
     }
 
     // public class SpinnerActivity extends Activity implements

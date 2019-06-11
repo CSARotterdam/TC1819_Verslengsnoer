@@ -328,7 +328,7 @@ public class DataManagement {
                 Log.d(TAG,"Check your internet connection!");
             }
             else{
-                String query = "SELECT FIRSTNAME,SURNAME,ID_ FROM USERS WHERE BLOCKED = "+1+" and WHERE NOT ID_ = "+ID_;
+                String query = "SELECT FIRSTNAME,SURNAME,ID_ FROM USERS WHERE BLOCKED = "+1+" and NOT ID_ = "+ID_;
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while(resultSet.next()){

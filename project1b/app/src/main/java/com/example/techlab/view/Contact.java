@@ -2,6 +2,7 @@ package com.example.techlab.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +21,16 @@ public class Contact extends DrawerMenu {
 
     Date used: 1 June 2019
     */
-
+    private SharedPreferences mSharedPreferences;
     ImageView imageView;
     TextView address, postcode, country, floor, email;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_contact, null,false);
@@ -57,9 +61,22 @@ public class Contact extends DrawerMenu {
 
     }
     @Override
+    public void onResume() {
+        super.onResume();
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
+        if (blocked.ifblocked()) {
+            blocked.Redirect("Contact");
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(this,  Product_InventoryActivity.class));
+        if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "").length() > 0) {
+            startActivity(new Intent(this, Product_InventoryActivity.class));
+        }else{
+            startActivity(new Intent(this, MainActivity.class));
+        }
     }
 
 }

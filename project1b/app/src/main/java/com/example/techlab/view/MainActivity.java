@@ -3,25 +3,24 @@ package com.example.techlab.view;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DrawerMenu {
     protected static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
     protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
     protected static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
@@ -39,16 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
     Context ctx;
 
-    public Context getCtx() {
-        return ctx;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ctx = this;
-        setContentView(R.layout.activity_main);
 
+        //Menu for Contact page:
+        FrameLayout frameLayout = findViewById(R.id.content_frame);
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityview = layoutInflater.inflate(R.layout.activity_main, null,false);
+        frameLayout.addView(activityview);
+
+        ctx = this;
         loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
         mSharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
@@ -68,24 +68,16 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (mSharedPreferences.getString(KEY_STAY_LOGGED_IN, "").matches("on")) {
             System.out.println("OnResume>Exist = true");
-            if (!(dataManagement.ifBlocked(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, "")))) {
+            blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),ctx);
+            if (!blocked.ifblocked()) {
                 System.out.println("OnResume>Exist = true>Blocked check...");
                 startActivity(new Intent(this, Product_InventoryActivity.class));
-            } else {
-                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Uitgelogd")
-                        .setMessage("Uw account wordt uitgelogd en is geblokkeerd, neem contact met TechLab.")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        }).setCancelable(false);
-                // Creating dialog box
-                RequestItemAlertDialog.create().show();
+            }
+            else{
+                mEditor.putString(KEY_STAY_LOGGED_IN,"").apply();
+                blocked.ShowBlockDialog("Uitgelogd");
             }
         }
-
     }
 
     @Override
@@ -139,36 +131,31 @@ public class MainActivity extends AppCompatActivity {
         userNameInputLayout.setError(null);
         if (dataManagement.ifExists(loginEmailInput.getText().toString().trim())) {
             if (dataManagement.ifExists(loginEmailInput.getText().toString().trim().toLowerCase(),
-                    loginPasswordInput.getText().toString().trim())) {
-                addNotification();
-                if (!(dataManagement.ifBlocked(loginEmailInput.getText().toString()))) {
-                    Users user = dataManagement.getUserWithEmail(loginEmailInput.getText().toString());
-                    Intent startNewActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
-                    mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
-                    mEditor.putInt(KEY_ACTIVE_USER_ID, user.getId());
-                    mEditor.putString(KEY_ACTIVE_USER_STATUS, user.getUserType());
-                    mEditor.putString(KEY_ACTIVE_USER_NAME, user.getFirstName());
-                    if (stayLoggedInCheckBox.isChecked()) {
-                        mEditor.putString(KEY_STAY_LOGGED_IN, "on");
+                loginPasswordInput.getText().toString().trim())) {
+                    addNotification();
+
+                    if (!(dataManagement.ifBlocked(loginEmailInput.getText().toString()))) {
+                        Users user = dataManagement.getUserWithEmail(loginEmailInput.getText().toString());
+                        Intent startNewActivity = new Intent(getBaseContext(), Product_InventoryActivity.class);
+                        mEditor.putString(KEY_ACTIVE_USER_EMAIL, loginEmailInput.getText().toString());
+                        mEditor.putInt(KEY_ACTIVE_USER_ID, user.getId());
+                        mEditor.putString(KEY_ACTIVE_USER_STATUS, user.getUserType());
+                        mEditor.putString(KEY_ACTIVE_USER_NAME, user.getFirstName());
+                        if (stayLoggedInCheckBox.isChecked()) {
+                            mEditor.putString(KEY_STAY_LOGGED_IN, "on");
+                        }
+                        startActivity(startNewActivity);
                     }
-                    startActivity(startNewActivity);
-                } else {
-                    AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("Inlog mislukt")
-                            .setMessage("Uw account is geblokkeerd, neem contact met TechLab.")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            }).setCancelable(false);
-                    // Creating dialog box
-                    RequestItemAlertDialog.create().show();
+                    else {
+                        blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),ctx);
+                        blocked.ShowBlockDialog("Inlog mislukt!");
+                    }
                 }
-            } else {
+            else {
                 passwordInputLayout.setError("het wachtwoord dat je hebt ingevoerd is onjuist");
             }
-        } else {
+        }
+        else {
             userNameInputLayout.setError("Het e-mailadres dat je hebt ingevoerd is onjuist");
         }
 

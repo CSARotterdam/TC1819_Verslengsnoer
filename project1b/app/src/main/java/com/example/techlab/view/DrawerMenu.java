@@ -28,7 +28,6 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     private TextView menuUserName, menuUserStatus;
     DataManagement dataManagement;
     View headerView;
-    Users user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +36,35 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         dataManagement = new DataManagement();
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
-        navigationView=findViewById(R.id.drawer_navigation_view);
+
+        navigationView = findViewById(R.id.drawer_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawerMenu);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         actionBarDrawerToggle.syncState();
+
         headerView = navigationView.getHeaderView(0);
         menuUserName = headerView.findViewById(R.id.menuUserName);
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
 
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
         menuButtonManager();
-    }@Override
+    }
+
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.LogoutMenu){
-            mEditor.putString(MainActivity.KEY_STAY_LOGGED_IN,"off");
+            mEditor.clear();
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_STATUS,"-");
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_NAME,"");
             mEditor.apply();
 
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
@@ -114,12 +124,23 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     }
     public void menuButtonManager(){
         Menu menu = navigationView.getMenu();
-        String status = mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_STATUS, "");
+        String status = mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_STATUS, "-");
+        menuUserStatus.setText("Status: "+status);
 
+        menuUserName.setText("Hi "+mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "")+" :)");
 
-
-        menuUserStatus.setText(status);
-        menuUserName.setText(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, ""));
+        if(status.matches("-")) {
+            menuUserName.setVisibility(View.GONE);
+            menuUserStatus.setVisibility(View.GONE);
+            menu.findItem(R.id.inventarisMenu).setVisible(false);
+            menu.findItem(R.id.borrowedProductMenu).setVisible(false);
+            menu.findItem(R.id.userAccountSetting).setVisible(false);
+            menu.findItem(R.id.LogoutMenu).setVisible(false);
+            menu.findItem(R.id.productmanagementMenu).setVisible(false);
+            menu.findItem(R.id.userManagementMenu).setVisible(false);
+            menu.findItem(R.id.ProductAdministratieMenu).setVisible(false);
+            menu.findItem(R.id.infographic).setVisible(false);
+        }
 
         if(status.matches("student")){
             menu.findItem(R.id.productmanagementMenu).setVisible(false);

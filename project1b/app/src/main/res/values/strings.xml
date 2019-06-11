@@ -48,9 +48,9 @@
     <string name="Inventory">Inventaris</string>
 
     // Contact
-    <string name="address">Wijnhaven 107</string>
+    <string name="address">Wijnhaven 105</string>
     <string name="postcode">3011 WN Rotterdam</string>
     <string name="country">Nederland</string>
-    <string name="floor">WD.4.022</string>
+    <string name="floor">WD.04.022</string>
     <string name="ContactEmail">techlab@csarotterdam.nl</string>
 </resources>
