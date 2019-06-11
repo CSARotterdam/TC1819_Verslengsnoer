@@ -45,8 +45,7 @@ public class Product_InventoryActivity extends DrawerMenu{
 
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View activityView = layoutInflater.inflate(R.layout.activity_inventory, null,false);
-        frameLayout.addView(activityView);
+        frameLayout.addView(layoutInflater.inflate(R.layout.activity_inventory, null,false));
 
         dataManagement = new DataManagement();
         products = new ArrayList<>();
@@ -81,7 +80,6 @@ public class Product_InventoryActivity extends DrawerMenu{
     }
 
     //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
-    //  This method creates a Notification that shows
     private void addNotification(){
         //  Here we build the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1")
