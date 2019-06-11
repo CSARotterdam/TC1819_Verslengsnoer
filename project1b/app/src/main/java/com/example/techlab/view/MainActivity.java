@@ -71,6 +71,7 @@ public class MainActivity extends DrawerMenu {
             }
         }else if (mSharedPreferences.getString(KEY_ACTIVE_USER_STATUS, "").matches("blocked")){
             AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account is geblokkeerd, neem contact met TechLab.");
+            mEditor.putString(KEY_ACTIVE_USER_STATUS, "loggedOut").apply();
         }
     }
     @Override
