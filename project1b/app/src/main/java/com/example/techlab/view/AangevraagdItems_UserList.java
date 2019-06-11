@@ -90,7 +90,6 @@ public class AangevraagdItems_UserList extends DrawerMenu {
                 }else if(parent.getSelectedItem().toString().matches("Alle Te Late producten")){
                     dataManagement.StatusTeLaat();
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusTeLaat));
-
                 }
 
                 mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);

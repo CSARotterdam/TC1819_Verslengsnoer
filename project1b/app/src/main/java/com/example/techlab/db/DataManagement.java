@@ -631,23 +631,36 @@ public class DataManagement {
     }
 
 
-
     public void StatusTeLaat(){
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '16:00'");
+                PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '10:00'");
                 pstmt.executeUpdate();
                 connect.close();
-//                Send mail from server if status == 'Te Laat'
-//                if (status = 'Te Laat'){ }
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
+    public boolean GebruikerTeLaat(int UserID){
+        boolean telaatprod = false;
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
+            else{
+                String query = "Select * from borrow where users_p_id = "+UserID+" and convert(varchar(8),status) = 'Te Laat';";
+                ResultSet resultSet = connect.createStatement().executeQuery(query);
+                telaatprod = resultSet.next();
+                connect.close();
+            }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        return telaatprod;
+    }
+
 
     public ArrayList<Borrow> getBorrowDataWithUserId(int UserID,String status){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
@@ -760,6 +773,8 @@ public class DataManagement {
         }
         return BorrowList;
     }
+
+
     public Borrow getBorrowDataWithId(int BorrowListID){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
         try{
@@ -815,7 +830,6 @@ public class DataManagement {
         }
         return BorrowList.get(0);
     }
-
 
 
     public Users getUserWithEmail(String SchoolEmail){
@@ -933,5 +947,4 @@ public class DataManagement {
 
         return exist;
     }
-
 }
