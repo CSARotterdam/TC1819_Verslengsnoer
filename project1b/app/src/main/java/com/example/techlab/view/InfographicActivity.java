@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagementInfographic;
+import com.example.techlab.util.BlockedUserUtils;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -116,5 +117,9 @@ public class InfographicActivity extends DrawerMenu  {
         startActivity(new Intent(this,  Product_InventoryActivity.class));
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
+    }
 }

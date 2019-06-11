@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
+import com.example.techlab.util.BlockedUserUtils;
 import com.example.techlab.util.DateUtils;
 
 public class Geleend_Aangevraagd extends DrawerMenu {
@@ -145,5 +146,11 @@ public class Geleend_Aangevraagd extends DrawerMenu {
         }else{
             Toast.makeText(this, "Dit product staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BlockedUserUtils.blockFunc(this,mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
     }
 }

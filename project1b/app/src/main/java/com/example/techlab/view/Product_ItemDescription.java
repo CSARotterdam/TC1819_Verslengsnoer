@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
+import com.example.techlab.util.BlockedUserUtils;
 import com.example.techlab.util.DateUtils;
 import com.example.techlab.util.ImageUtils;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
@@ -80,6 +81,8 @@ public class Product_ItemDescription extends DrawerMenu {
 
     @Override
     protected void onResume() {
+        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
+
         super.onResume();
 
             getIncomingIntent();

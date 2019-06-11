@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Books;
+import com.example.techlab.util.BlockedUserUtils;
 import com.example.techlab.util.ImageUtils;
 
 public class Product_management_book_updateActivity extends DrawerMenu {
@@ -56,6 +57,8 @@ public class Product_management_book_updateActivity extends DrawerMenu {
     @Override
     protected void onResume(){
         super.onResume();
+        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
+
     }
     @Override
     protected void onPause(){

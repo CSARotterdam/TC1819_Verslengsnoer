@@ -14,6 +14,7 @@ import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Books;
 import com.example.techlab.util.AlertDialogUtils;
+import com.example.techlab.util.BlockedUserUtils;
 import com.example.techlab.util.ImageUtils;
 
 public class Product_management_book_infoActivity extends DrawerMenu {
@@ -43,6 +44,8 @@ public class Product_management_book_infoActivity extends DrawerMenu {
     @Override
     protected void onResume(){
         super.onResume();
+        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
+
         book = dataManagement.getBookWithId(getIntent().getIntExtra("ID_",-1));
         Title.setText(book.getName());
         writers.setText(book.getWriters());
@@ -83,5 +86,6 @@ public class Product_management_book_infoActivity extends DrawerMenu {
         startActivity(startNewActivity);
         finish();
     }
+
 
 }
