@@ -62,7 +62,7 @@ public class AangevraagdItems_UserList extends DrawerMenu {
     @Override
     protected void onResume() {
         super.onResume();
-        BlockedUserUtils.blockFunc(this,mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
+        BlockedUserUtils.blockFunc(this,mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""));
         int spinnerPosition;
         String spinnerState = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,"");
         if(spinnerState.matches(getString(R.string.productStatusTeLaat))){

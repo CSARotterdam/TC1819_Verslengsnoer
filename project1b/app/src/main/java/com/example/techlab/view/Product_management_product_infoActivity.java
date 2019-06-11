@@ -47,7 +47,7 @@ public class Product_management_product_infoActivity extends DrawerMenu {
     @Override
     protected void onResume(){
         super.onResume();
-        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
+        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""));
 
         product = dataManagement.getProductWithId(getIntent().getIntExtra("ID_",-1));
         productName.setText(product.getName());

@@ -164,6 +164,6 @@ public class Product_management_add_productActivity extends DrawerMenu {
     @Override
     protected void onResume() {
         super.onResume();
-        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
+        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""));
     }
 }
