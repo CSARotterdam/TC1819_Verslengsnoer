@@ -97,7 +97,6 @@ public class Geleend_Aangevraagd extends DrawerMenu {
 //            gebrnaam.setText(intent.getStringExtra("gebruikernaam_ProductBorrowlist"));
 //            aantalpr.setText(intent.getIntExtra("aantalaangevr_ProductBorrowlist", -1)+"");
 //        }
-
     }
 
     public void lendProductButton(View view){

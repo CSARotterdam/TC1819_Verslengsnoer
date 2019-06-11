@@ -131,34 +131,28 @@ public class Product_ItemDescription extends DrawerMenu {
                 .setMessage("Als u dit product leent moet het voor 17:00 ingeleverd worden.\nGa akkoord met de voorwaarden als u dit product wilt lenen.")
                 .setNeutralButton("Annuleer", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
+                    public void onClick(DialogInterface dialog, int which) { dialog.cancel(); }
                 })
                 .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                                Toast that shows that the request is sent
+//                  Toast that shows that the request is sent
                         Toast.makeText(Product_ItemDescription.this, "U mag dit product nu ophalen.", Toast.LENGTH_LONG).show();
-                        //takes productID, UserID, the amound lend and the currentdate from the Database
+                    //takes productID, UserID, the amound lend and the currentdate from the Database
                         dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
-//                                When you click on "Akkoord" you'll go to the Student_Geleend_Aangevraagd.class
+//                  When you click on "Akkoord" you'll go to the Student_Geleend_Aangevraagd.class
                         startActivity(new Intent(Product_ItemDescription.this, Student_Geleend_Aangevraagd.class));
                     }
                 })
-//                        You can't click outside the popup to cancel
+//           You can't click outside the popup to cancel
                 .setCancelable(false);
 
 //                TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
 //                textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
 
-        Button voorwaardenBtn = contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden);
-
-        voorwaardenBtn.setOnClickListener(new OnClickListener() {
+        contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden).setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Product_ItemDescription.this, Product_Voorwaarden.class));
-            }
+            public void onClick(View v) { startActivity(new Intent(Product_ItemDescription.this, Product_Voorwaarden.class)); }
         });
 
         //Creating dialog box

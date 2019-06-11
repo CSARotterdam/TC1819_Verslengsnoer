@@ -80,17 +80,17 @@ public class AangevraagdItems_UserList extends DrawerMenu {
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getSelectedItem().toString().matches("Alle aangevraagde producten")){
+                String selectedItem= parent.getSelectedItem().toString();
+                if (selectedItem.matches("Alle aangevraagde producten")){
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusPending));
-                }else if(parent.getSelectedItem().toString().matches("Alle Uitgeleende producten")){
+                }else if(selectedItem.matches("Alle Uitgeleende producten")){
                     dataManagement.StatusTeLaat();
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusOnLoan));
-                }else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
+                }else if(selectedItem.matches("Alle teruggebrachte producten")){
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusReturned));
-                }else if(parent.getSelectedItem().toString().matches("Alle Te Late producten")){
+                }else if(selectedItem.matches("Alle Te Late producten")){
                     dataManagement.StatusTeLaat();
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusTeLaat));
-
                 }
 
                 mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);

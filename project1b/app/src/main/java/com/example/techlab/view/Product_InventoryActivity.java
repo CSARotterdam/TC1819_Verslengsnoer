@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
@@ -15,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -44,14 +42,10 @@ public class Product_InventoryActivity extends DrawerMenu{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
-//        ProgressBar mProgressBar = findViewById(R.id.progressBar);
-//        mProgressBar.setVisibility(View.GONE);
 
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View activityView = layoutInflater.inflate(R.layout.activity_inventory, null,false);
-        frameLayout.addView(activityView);
+        frameLayout.addView(layoutInflater.inflate(R.layout.activity_inventory, null,false));
 
         dataManagement = new DataManagement();
         products = new ArrayList<>();
@@ -60,48 +54,39 @@ public class Product_InventoryActivity extends DrawerMenu{
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
 
-
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
-
-
-
     }
 
     //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
-    //  This method creates a Notification that shows
     private void addNotification(){
-        //    int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
-        // if one of the product status == "te laat" send notification
-
-//        int userID = getIntent().getIntExtra("UserID", -1);
-//        if(getIntent().getTe){
-//        }
-
         //  Here we build the notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1")
                 .setSmallIcon(R.mipmap.logo_round)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.logo_round))
                 .setContentTitle("Product(en) Te Laat")
                 .setContentText("Tik om te late producten te zien")
                 .setOngoing(true)       //You can see the notification in lockscreen
-                .setVibrate(new long[] {0,200})
+                .setVibrate(new long[] {0,100})
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                .setColor(Color.BLUE)
+                .setChannelId("1")
                 .setAutoCancel(true);       //clear notification after click
-        //  When you click on the notification you go to Student_Geleend_Aangevraagd.class
+
+        //  When you click on the notification you go to Student_Geleend_Aangevraagd screen
         Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
         builder.setContentIntent(PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT));
 
         //  Notify the system that there is a notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         manager.notify(1,builder.build());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        addNotification();
+        if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1))){
+            addNotification();
+        }
         blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
         if (blocked.ifblocked()) {
             blocked.Redirect("Inventaris");
@@ -131,7 +116,6 @@ public class Product_InventoryActivity extends DrawerMenu{
 
                 }
             });
-        }
     }
 
     // public class SpinnerActivity extends Activity implements
@@ -149,22 +133,17 @@ public class Product_InventoryActivity extends DrawerMenu{
     // }
 
     @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
-    }
+    public void onBackPressed() { moveTaskToBack(true); }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu, menu);
+        getMenuInflater().inflate(R.menu.search_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
+            public boolean onQueryTextSubmit(String s) { return false; }
 
             @Override
             public boolean onQueryTextChange(String s) {

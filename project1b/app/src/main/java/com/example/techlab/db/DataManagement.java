@@ -19,13 +19,12 @@ import java.util.ArrayList;
 public class DataManagement {
     Connection connect;
     private static final String TAG = "sql error: ";
+
+
     public void insertUser(String firstName,String surname, String SchoolEmail,byte[] salt,String password) {
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG," Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG," Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into USERS (FIRSTNAME, SURNAME, SCHOOL_EMAIL, LOANED_AMOUNT, USER_TYPE,SALT) " +
                         "values ( ?,?,?,?,?,?)");
@@ -36,27 +35,20 @@ public class DataManagement {
                 pstmt.setString(5,"student");
                 pstmt.setBytes(6,salt);
                 pstmt.execute();
-                String query = "UPDATE USERS  SET HASH = HASHBYTES('MD5', '"+password+"'+CAST(SALT AS NVARCHAR(36))) WHERE SCHOOL_EMAIL= '"+SchoolEmail+"'";
-                Statement statement = connect.createStatement();
-                statement.executeUpdate(query);
+                connect.createStatement().executeUpdate("UPDATE USERS  SET HASH = HASHBYTES('MD5', '"+password+"'+CAST(SALT AS NVARCHAR(36))) WHERE SCHOOL_EMAIL= '"+SchoolEmail+"'");
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public ArrayList<Products> getAllProducts(){
         ArrayList<Products> electronicsList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM PRODUCTS ";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM PRODUCTS ");
                 while(resultSet.next()){
                     if (resultSet.getString("CATEGORY").matches("Book")){
                         electronicsList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("PRODUCT_NAME"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
@@ -70,24 +62,19 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return electronicsList;
     }
+
 
     public ArrayList<Products> getAllProducts(String category){
         ArrayList<Products> electronicsList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM PRODUCTS WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"';";
                 Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM PRODUCTS WHERE CONVERT(VARCHAR, CATEGORY) =  '"+category+"';");
                 while(resultSet.next()){
                     if (resultSet.getString("CATEGORY").matches("Book")){
                         electronicsList.add(new Books(resultSet.getInt("ID_"),resultSet.getString("PRODUCT_NAME"),resultSet.getString("WRITERS"),resultSet.getString("ISBN")
@@ -102,72 +89,36 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return electronicsList;
     }
+
 
     public ArrayList<Users> getAllUserDataExceptFor(int ID_){
         ArrayList<Users> usersList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM USERS WHERE NOT ID_ = "+ID_;
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM USERS WHERE NOT ID_ = "+ID_);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
                             ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"), resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return usersList;
     }
-    public ArrayList<Users> getAllUserData(){
-        ArrayList<Users> usersList = new ArrayList<>();
-        try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
-            else{
-                String query = "SELECT * FROM USERS";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()){
-                    usersList.add(new Users(resultSet.getString("FIRSTNAME"),resultSet.getString("SURNAME")
-                            ,resultSet.getString("SCHOOL_EMAIL"),resultSet.getInt("LOANED_AMOUNT"),resultSet.getString("USER_TYPE"),resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
-                }
-                connect.close();
-            }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
-        return usersList;
-    }
+
 
     public Electronics getProductWithId(int id_){
         ArrayList<Electronics> electronicsList = new ArrayList<>();
         try{
-
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM PRODUCTS WHERE ID_ = "+id_+";";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM PRODUCTS WHERE ID_ = "+id_+";");
                 while(resultSet.next()) {
                     electronicsList.add(new Electronics(resultSet.getString("PRODUCT_ID"), resultSet.getString("MANUFACTURER"), resultSet.getString("CATEGORY"),
                             resultSet.getString("PRODUCT_NAME"), resultSet.getInt("STOCK"), resultSet.getInt("AMOUNT_BROKEN"),
@@ -176,19 +127,19 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        if (electronicsList.size()==0){
+            return null;
+        }else{
+            return electronicsList.get(0);
         }
-        return electronicsList.get(0);
     }
+
 
     public void addProductData(String productID, String manufacturer, String category, String productName, int stock, int amountBroken, byte[] image, String description){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into PRODUCTS (PRODUCT_ID, MANUFACTURER, CATEGORY, PRODUCT_NAME, STOCK, AMOUNT_BROKEN, DESCRIPTION, IMAGE) " +
                         "values ( ?,?,?,?,?,?,?,?)");
@@ -203,17 +154,14 @@ public class DataManagement {
                 pstmt.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void updateProductData( String manufacturer, String category, String productName, int stock, int amountBroken, String description, byte[] image, int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE PRODUCTS SET MANUFACTURER=?,CATEGORY=?,PRODUCT_NAME=?,STOCK=?,AMOUNT_BROKEN=?,DESCRIPTION=?,IMAGE=? WHERE ID_=?");
                 pstmt.setString(1,manufacturer);
@@ -228,17 +176,14 @@ public class DataManagement {
                 pstmt.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void updateBookData( String title,String writers, String Isbn, String publisher, int amount, String description, byte[] bookImage, String category, int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE PRODUCTS SET PRODUCT_NAME=?,WRITERS=?,ISBN=?,PUBLISHER=?,STOCK=?,DESCRIPTION=?,IMAGE=?,CATEGORY =? WHERE ID_=?");
                 pstmt.setString(1,title);
@@ -254,101 +199,73 @@ public class DataManagement {
                 pstmt.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void updateUserStatus( String status, int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "UPDATE USERS SET USER_TYPE = '"+status+"' WHERE ID_ = "+ID_+";";
-
-                Statement statement = connect.createStatement();
-                statement.executeUpdate(query);
+                connect.createStatement().executeUpdate("UPDATE USERS SET USER_TYPE = '"+status+"' WHERE ID_ = "+ID_+";");
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void setBlockUser( int block, int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "UPDATE USERS SET BLOCKED = '"+block+"' WHERE ID_ = "+ID_+";";
-
-                Statement statement = connect.createStatement();
-                statement.executeUpdate(query);
+                connect.createStatement().executeUpdate("UPDATE USERS SET BLOCKED = '"+block+"' WHERE ID_ = "+ID_+";");
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
 
     public boolean ifBlocked(String email){
         boolean result = false;
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT BLOCKED FROM USERS WHERE SCHOOL_EMAIL = '"+email+"' and BLOCKED = "+1+";";
-
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT BLOCKED FROM USERS WHERE SCHOOL_EMAIL = '"+email+"' and BLOCKED = "+1+";");
                 while (resultSet.next()) {
                     result = true;
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return result;
     }
+
 
     public ArrayList<Users> getBlockedUsers(int ID_){
         ArrayList<Users> usersList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT FIRSTNAME,SURNAME,ID_ FROM USERS WHERE BLOCKED = "+1+" and NOT ID_ = "+ID_;
                 Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = statement.executeQuery("SELECT FIRSTNAME,SURNAME,ID_ FROM USERS WHERE BLOCKED = "+1+" and WHERE NOT ID_ = "+ID_);
                 while(resultSet.next()){
                     usersList.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getInt("ID_")));
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return usersList;
     }
 
+
     public void updateUserPassword( String Password, int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE USERS SET PASSWORD=? WHERE ID_=?");
                 pstmt.setString(1,Password);
@@ -356,17 +273,14 @@ public class DataManagement {
                 pstmt.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void updateUserNames(String firstName, String surname, int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE USERS SET FIRSTNAME=?,SURNAME=? WHERE ID_=?");
                 pstmt.setString(1,firstName);
@@ -375,17 +289,14 @@ public class DataManagement {
                 pstmt.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void productReturned( Timestamp returnDate, int borrowID_, int amount, int userID_, int productID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,RETURN_DATE=? WHERE ID_=?");
                 pstmt.setString(1,"Teruggebracht");
@@ -402,17 +313,14 @@ public class DataManagement {
                 pstmt3.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void brokenProductReturned( Timestamp returnDate, int borrowID_, int amount, int userID_, int productID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,RETURN_DATE=? WHERE ID_=?");
                 pstmt.setString(1,"Teruggebracht");
@@ -431,17 +339,14 @@ public class DataManagement {
                 pstmt3.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void lendProduct( Timestamp Borrow_DateTime,int amount, int borrowID_,int userID_,int productID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("UPDATE BORROW SET STATUS=?,BORROW_DATE=? WHERE ID_=?");
                 pstmt.setString(1,"Geleend");
@@ -459,57 +364,39 @@ public class DataManagement {
                 pstmt3.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
-    }
-    public void DeleteProduct(int ID_){
-        try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
-            else{
-                String query = "DELETE FROM PRODUCTS WHERE ID_ ="+ID_+";";
-                Statement statement = connect.createStatement();
-                statement.executeUpdate(query);
-                connect.close();
-            }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
 
+
+    public void DeleteProduct(int ID_){
+        try{
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
+            else{
+                connect.createStatement().executeUpdate("DELETE FROM PRODUCTS WHERE ID_ ="+ID_+";");
+                connect.close();
+            }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+    }
 
 
     public void DeleteUser(int ID_){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "DELETE FROM USERS WHERE ID_ ="+ID_+";";
-                Statement statement = connect.createStatement();
-                statement.executeQuery(query);
+                connect.createStatement().executeQuery("DELETE FROM USERS WHERE ID_ ="+ID_+";");
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
 
     public void InsertRequestBorrowItem(int ProductID, int UserID, int Amount, String Status, Timestamp BorrowRequestDateTime){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-
                 PreparedStatement pstmt = connect.prepareStatement("Insert into BORROW (PRODUCTS_P_ID, USERS_P_ID, AMOUNT, STATUS, REQUEST_BORROW_DATE) values (?,?,?,?,?)");
                 pstmt.setInt(1,ProductID);
                 pstmt.setInt(2,UserID);
@@ -523,17 +410,14 @@ public class DataManagement {
                 pstmt3.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public void InsertBookItem(String title,String writers, String Isbn, String publisher, int amount, String description, byte[] bookImage, String category){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt = connect.prepareStatement("Insert into PRODUCTS (PRODUCT_NAME, WRITERS, ISBN, PUBLISHER, STOCK, DESCRIPTION, IMAGE, CATEGORY) values (?,?,?,?,?,?,?,?)");
                 pstmt.setString(1,title);
@@ -548,44 +432,33 @@ public class DataManagement {
                 pstmt.executeUpdate();
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
 
     public void DeleteRequestBorrowItem(int borrowID, int amount, int productID){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 PreparedStatement pstmt3 = connect.prepareStatement("UPDATE PRODUCTS SET PRODUCTS_ON_LOAN = PRODUCTS_ON_LOAN - ? WHERE ID_=?");
                 pstmt3.setInt(1,amount);
                 pstmt3.setInt(2,productID);
                 pstmt3.executeUpdate();
-                String query = "DELETE FROM BORROW WHERE ID_ ="+borrowID+";";
-                Statement statement = connect.createStatement();
-                statement.executeUpdate(query);
+                connect.createStatement().executeUpdate("DELETE FROM BORROW WHERE ID_ ="+borrowID+";");
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
     public ArrayList<Borrow> getBorrowDataListWithStatus(String status){
         ArrayList<Borrow> loanUsersList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM BORROW WHERE CONVERT(VARCHAR, STATUS) = '"+status+"'";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM BORROW WHERE CONVERT(VARCHAR, STATUS) = '"+status+"'");
 
                 while(resultSet.next()){
                     Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
@@ -594,20 +467,14 @@ public class DataManagement {
                     String BorrowDate;
                     String returndate;
 
-                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
-                        RequestDate = "";
-                    }else{
-                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){ RequestDate = "";
+                    }else{ RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
                     }
-                    if (resultSet.getDate("BORROW_DATE")==null){
-                        BorrowDate = "";
-                    }else{
-                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    if (resultSet.getDate("BORROW_DATE")==null){ BorrowDate = "";
+                    }else{ BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
-                    if(resultSet.getDate("RETURN_DATE")==null){
-                        returndate = "";
-                    }else{
-                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    if(resultSet.getDate("RETURN_DATE")==null){ returndate = "";
+                    }else{ returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
                     }
                     loanUsersList.add(new Borrow(
                             product.getName(),
@@ -624,42 +491,45 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return loanUsersList;
     }
 
+
     public void StatusTeLaat(){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
+            connect = new ConnectionHelper().connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '16:00'");
-                pstmt.executeUpdate();
+                connect.prepareStatement("update borrow set status='Te Laat' where convert(varchar(8),status)='Geleend' and CONVERT(VARCHAR(8),GETDATE(),108)>'17:00'").executeUpdate();
                 connect.close();
-//                Send mail from server if status == 'Te Laat'
-//                if (status = 'Te Laat'){ }
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
-
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
+
+
+    public boolean GebruikerTeLaat(int UserID){
+        boolean telaatprod = false;
+        try{
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
+            else{
+                ResultSet resultSet = connect.createStatement().executeQuery("Select * from borrow where users_p_id="+UserID+" and convert(varchar(8),status)='Te Laat';");
+                telaatprod = resultSet.next();
+                connect.close();
+            }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        return telaatprod;
+    }
+
 
     public ArrayList<Borrow> getBorrowDataWithUserId(int UserID,String status){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status+"';";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status+"';");
                 while(resultSet.next()){
                     Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
                     Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
@@ -669,19 +539,15 @@ public class DataManagement {
 
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
-                    }else{
-                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    }else{ RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
                     }
-
                     if (resultSet.getDate("BORROW_DATE")==null){
                         BorrowDate = "";
-                    }else{
-                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    }else{ BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     if(resultSet.getDate("RETURN_DATE")==null){
                         returndate = "";
-                    }else{
-                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }else{ returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
                     }
                     BorrowList.add(new Borrow(
                             product.getName(),
@@ -698,23 +564,19 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return BorrowList;
     }
+
+
     public ArrayList<Borrow> getBorrowDataWithUserId(int UserID,String status, String status2, String status3){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status+"' or USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status2+"' or CONVERT(VARCHAR, STATUS) = '"+status3+"'";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery(query);
                 while(resultSet.next()){
                     Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
                     Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
@@ -724,19 +586,15 @@ public class DataManagement {
 
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
-                    }else{
-                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    }else{ RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
                     }
-
                     if (resultSet.getDate("BORROW_DATE")==null){
                         BorrowDate = "";
-                    }else{
-                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    }else{ BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     if(resultSet.getDate("RETURN_DATE")==null){
                         returndate = "";
-                    }else{
-                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }else{ returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
                     }
 
                     BorrowList.add(new Borrow(
@@ -754,23 +612,18 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return BorrowList;
     }
+
+
     public Borrow getBorrowDataWithId(int BorrowListID){
         ArrayList<Borrow> BorrowList = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM BORROW WHERE ID_ = "+BorrowListID+";";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM BORROW WHERE ID_ = "+BorrowListID+";");
                 while(resultSet.next()){
                     Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
                     Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
@@ -780,19 +633,15 @@ public class DataManagement {
 
                     if (resultSet.getDate("REQUEST_BORROW_DATE")==null){
                         RequestDate = "Niet beschikbaar";
-                    }else{
-                        RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    }else{ RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
                     }
-
                     if (resultSet.getDate("BORROW_DATE")==null){
                         BorrowDate = "";
-                    }else{
-                        BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    }else{ BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
                     }
                     if(resultSet.getDate("RETURN_DATE")==null){
                         returndate = "";
-                    }else{
-                        returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }else{ returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
                     }
                     BorrowList.add(new Borrow(
                             product.getName(),
@@ -809,68 +658,59 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        if (BorrowList.size()==0){
+            return null;
+        }else{
+            return BorrowList.get(0);
         }
-        return BorrowList.get(0);
     }
+
+
     public Users getUserWithEmail(String SchoolEmail){
         ArrayList<Users> UserData = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
-            else{
-                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+SchoolEmail+"';";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()) {
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }{
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+SchoolEmail+"';");
+                if(resultSet.next()) {
                     UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
-
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        if (UserData.size()==0){
+            return null;
+        }else{
+            return UserData.get(0);
         }
-        return UserData.get(0);
     }
+
+
     public Users getUserWithId(int Id){
         ArrayList<Users> UserData = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM USERS WHERE ID_ = "+Id+";";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM USERS WHERE ID_ = "+Id+";");
                 while(resultSet.next()) {
                     UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
-        }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return UserData.get(0);
     }
+
+
     public Books getBookWithId(int Id){
         ArrayList<Books> books = new ArrayList<>();
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM PRODUCTS WHERE ID_ = "+Id+";";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM PRODUCTS WHERE ID_ = "+Id+";");
                 while(resultSet.next()) {
                     books.add(new Books(resultSet.getInt("ID_"), resultSet.getString("PRODUCT_NAME"), resultSet.getString("WRITERS"), resultSet.getString("ISBN"),
                             resultSet.getString("PUBLISHER"), resultSet.getInt("STOCK"), resultSet.getString("DESCRIPTION"),
@@ -878,26 +718,23 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){
-            Log.d(TAG,ex.toString());
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        if (books.size()==0){
+            return null;
+        }else{
+            return books.get(0);
         }
-        return books.get(0);
     }
 
 
-    // check
-    public boolean ifExists(String emailInput, String password) {
-        Boolean exist= false;
+    public boolean ifExists(String emailInput, String password) {   // check
+        boolean exist= false;
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM USERS WHERE HASH=HASHBYTES('MD5', '"+password+"'+CAST(SALT AS NVARCHAR(36))) and SCHOOL_EMAIL = '"+emailInput+"'";
                 Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM USERS WHERE HASH=HASHBYTES('MD5', '"+password+"'+CAST(SALT AS NVARCHAR(36))) and SCHOOL_EMAIL = '"+emailInput+"'");
                 exist = resultSet.next();
                 connect.close();
             }
@@ -907,18 +744,15 @@ public class DataManagement {
         }
         return exist;
     }
+
+
     public boolean ifExists(String emailInput) {
-        Boolean exist= false;
+        boolean exist= false;
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"'";
-                Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+emailInput+"'");
                 exist = resultSet.next();
                 connect.close();
             }
@@ -926,8 +760,6 @@ public class DataManagement {
             exist = false;
             Log.d(TAG,ex.toString());
         }
-
         return exist;
     }
-
 }
