@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.model.Users;
 
 public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -63,8 +62,8 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         int id = menuItem.getItemId();
         if (id == R.id.LogoutMenu){
             mEditor.clear();
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_STATUS,"-");
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_NAME,"");
+            mEditor.putString(MainActivity.KEY_STAY_LOGGED_IN,"off");
+            mEditor.putString(MainActivity.KEY_ACTIVE_USER_STATUS,"loggedOut");
             mEditor.apply();
 
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
@@ -129,7 +128,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
 
         menuUserName.setText("Hi "+mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "")+" :)");
 
-        if(status.matches("-")) {
+        if(status.matches("loggedOut")|status.matches("blocked")) {
             menuUserName.setVisibility(View.GONE);
             menuUserStatus.setVisibility(View.GONE);
             menu.findItem(R.id.inventarisMenu).setVisible(false);

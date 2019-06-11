@@ -67,8 +67,10 @@ public class MainActivity extends DrawerMenu {
                 startActivity(new Intent(this, Product_InventoryActivity.class));
             }
             else{
-                AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account wordt uitgelogd en is geblokkeerd, neem contact met TechLab.");
+                AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account is geblokkeerd, neem contact met TechLab.");
             }
+        }else if (mSharedPreferences.getString(KEY_ACTIVE_USER_STATUS, "").matches("blocked")){
+            AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account is geblokkeerd, neem contact met TechLab.");
         }
     }
     @Override
@@ -104,7 +106,7 @@ public class MainActivity extends DrawerMenu {
                         startActivity(startNewActivity);
                     }
                     else {
-                        AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account wordt uitgelogd en is geblokkeerd, neem contact met TechLab.");
+                        AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account is geblokkeerd, neem contact met TechLab.");
                     }
                 }
             else {
