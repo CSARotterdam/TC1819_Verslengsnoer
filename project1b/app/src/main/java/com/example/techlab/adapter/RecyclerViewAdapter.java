@@ -13,6 +13,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.databinding.TemplateInventoryItemBinding;
@@ -56,6 +57,10 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
         final Products product = products.get(i);
         // Here we get the images of the product from the bitmap
         viewHolder.image.setImageBitmap(ImageUtils.getImage(product.getImage()));
+
+        if(product.getStock() - product.getProductOnLoan() <= 0){
+            viewHolder.beschikbaar.setVisibility(View.VISIBLE);
+        }
 
         viewHolder.productItemBinding.setProduct(product);
 //        holder.productDescription.setText(mProductDescription.get(position)); // It crashes here
@@ -113,8 +118,11 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
         RelativeLayout parentLayout;
         public TemplateInventoryItemBinding productItemBinding;
 
+        TextView beschikbaar;
+
         public ViewHolder(TemplateInventoryItemBinding ProductItemBinding) {
             super(ProductItemBinding.getRoot());
+            beschikbaar = itemView.findViewById(R.id.beschikbaarheid);
             productItemBinding =ProductItemBinding;
             image = itemView.findViewById(R.id.image);
             parentLayout = itemView.findViewById(R.id.inventoryProductItemView);
