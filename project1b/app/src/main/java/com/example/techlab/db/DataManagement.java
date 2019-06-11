@@ -50,9 +50,7 @@ public class DataManagement {
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             connect = connectionHelper.connection();
-            if (connect == null){
-                Log.d(TAG,"Check your internet connection!");
-            }
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 String query = "SELECT * FROM PRODUCTS ";
                 Statement statement = connect.createStatement();
