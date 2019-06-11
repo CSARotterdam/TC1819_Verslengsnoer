@@ -633,12 +633,10 @@ public class DataManagement {
 
     public void StatusTeLaat(){
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
+            connect = new ConnectionHelper().connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("update borrow set status = 'Te Laat' where convert(varchar(8),status) = 'Geleend' and CONVERT(VARCHAR(8),GETDATE(),108) > '10:00'");
-                pstmt.executeUpdate();
+                connect.prepareStatement("update borrow set status='Te Laat' where convert(varchar(8),status)='Geleend' and CONVERT(VARCHAR(8),GETDATE(),108)>'17:00'").executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }
@@ -648,12 +646,10 @@ public class DataManagement {
     public boolean GebruikerTeLaat(int UserID){
         boolean telaatprod = false;
         try{
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-            connect = connectionHelper.connection();
+            connect = new ConnectionHelper().connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "Select * from borrow where users_p_id = "+UserID+" and convert(varchar(8),status) = 'Te Laat';";
-                ResultSet resultSet = connect.createStatement().executeQuery(query);
+                ResultSet resultSet = connect.createStatement().executeQuery("Select * from borrow where users_p_id="+UserID+" and convert(varchar(8),status)='Te Laat';");
                 telaatprod = resultSet.next();
                 connect.close();
             }

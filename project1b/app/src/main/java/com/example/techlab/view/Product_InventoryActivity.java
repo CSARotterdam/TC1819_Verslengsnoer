@@ -42,9 +42,6 @@ public class Product_InventoryActivity extends DrawerMenu{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
-//        ProgressBar mProgressBar = findViewById(R.id.progressBar);
-//        mProgressBar.setVisibility(View.GONE);
 
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,15 +67,12 @@ public class Product_InventoryActivity extends DrawerMenu{
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 if (parent.getSelectedItem().toString().matches("Alle Producten")) {
                     products = dataManagement.getAllProducts();
                 } else {
                     products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
                 }
-
-                adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
-                recyclerView.setAdapter(adapter);
+                recyclerView.setAdapter(new RecyclerViewAdapter(Product_InventoryActivity.this, products));
             }
 
             @Override
@@ -89,9 +83,6 @@ public class Product_InventoryActivity extends DrawerMenu{
     //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
     //  This method creates a Notification that shows
     private void addNotification(){
-        //   int currentuserID = mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1);
-        //   int userID = getIntent().getIntExtra("UserID", -1);
-
         //  Here we build the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.logo_round)
@@ -102,7 +93,8 @@ public class Product_InventoryActivity extends DrawerMenu{
                 .setVibrate(new long[] {0,100})
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setAutoCancel(true);       //clear notification after click
-        //  When you click on the notification you go to Student_Geleend_Aangevraagd.class
+
+        //  When you click on the notification you go to Student_Geleend_Aangevraagd screen
         Intent notification = new Intent(this,Student_Geleend_Aangevraagd.class);
         builder.setContentIntent(PendingIntent.getActivity(this, 0,notification, PendingIntent.FLAG_UPDATE_CURRENT));
 
@@ -114,10 +106,8 @@ public class Product_InventoryActivity extends DrawerMenu{
     @Override
     protected void onResume() {
         super.onResume();
-//        dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
         if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1))){
             addNotification();
-
         }
     }
 
@@ -136,9 +126,7 @@ public class Product_InventoryActivity extends DrawerMenu{
     // }
 
     @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
-    }
+    public void onBackPressed() { moveTaskToBack(true); }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
