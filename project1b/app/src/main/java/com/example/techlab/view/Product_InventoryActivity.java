@@ -84,7 +84,7 @@ public class Product_InventoryActivity extends DrawerMenu{
     //  This method creates a Notification that shows
     private void addNotification(){
         //  Here we build the notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1")
                 .setSmallIcon(R.mipmap.logo_round)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.logo_round))
                 .setContentTitle("Product(en) Te Laat")
@@ -92,6 +92,7 @@ public class Product_InventoryActivity extends DrawerMenu{
                 .setOngoing(true)       //You can see the notification in lockscreen
                 .setVibrate(new long[] {0,100})
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setChannelId("1")
                 .setAutoCancel(true);       //clear notification after click
 
         //  When you click on the notification you go to Student_Geleend_Aangevraagd screen
