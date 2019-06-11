@@ -32,19 +32,10 @@ public class MainActivity extends AppCompatActivity {
     TextInputLayout userNameInputLayout, passwordInputLayout;
     CheckBox stayLoggedInCheckBox;
     DataManagement dataManagement;
-
-    Context ctx;
-
-    public Context getCtx() {
-        return ctx;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ctx = this;
         setContentView(R.layout.activity_main);
-
         loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
         mSharedPreferences = getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
@@ -58,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         int ImageResource = getResources().getIdentifier("@drawable/techlablogo_small", null, this.getPackageName());
         logo.setImageResource(ImageResource);
     }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -81,9 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 RequestItemAlertDialog.create().show();
             }
         }
-
     }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -91,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         loginEmailInput.setText("");
         mEditor.apply();
     }
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -100,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     public void signUpPageButton(View view) {
         startActivity(new Intent(this, SignUpActivity.class));
     }
-
     public void loginButton(View view) {
         userNameInputLayout.setError(null);
         if (dataManagement.ifExists(loginEmailInput.getText().toString().trim())) {
@@ -136,12 +122,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             userNameInputLayout.setError("Het e-mailadres dat je hebt ingevoerd is onjuist");
         }
-
     }
-
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, MainActivity.class));
-    }
+    public void onBackPressed() { moveTaskToBack(true); }
 }
