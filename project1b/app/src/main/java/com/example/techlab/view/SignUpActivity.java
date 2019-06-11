@@ -12,8 +12,6 @@ import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
 import com.example.techlab.util.HashUtils;
 
-import java.util.List;
-
 public class SignUpActivity extends AppCompatActivity {
     TextInputLayout userFirstNameInput, userSurnameInput, schoolEmailInput, passwordInput, confirmPasswordInput;
     DataManagement dataManagement;
@@ -44,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (email && passWord && firstName && surname && conformPassword) {
             byte[] salt = HashUtils.createSalt();
             dataManagement.insertUser(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(),
-                    schoolEmailInput.getEditText().getText().toString().trim(),salt,passwordInput.getEditText().getText().toString().trim());
+                    schoolEmailInput.getEditText().getText().toString().trim(), salt, passwordInput.getEditText().getText().toString().trim());
             // resetting the  form input text field
             userFirstNameInput.getEditText().setText("");
             userSurnameInput.getEditText().setText("");
@@ -58,12 +56,10 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean emailValidation() {
         String input = schoolEmailInput.getEditText().getText().toString();
         boolean EmailAlreadyRegisteredCheck = true;
-        List<Users> users = dataManagement.getAllUserData();
+        Users user = dataManagement.getUserWithEmail(input);
 
-        for (int i = 0; users.size() > i; i++) {
-            if (users.get(i).getSchoolEmail().equals(input)) {
-                EmailAlreadyRegisteredCheck = false;
-            }
+        if (user != null) {
+            EmailAlreadyRegisteredCheck = false;
         }
 
         if (input.isEmpty()) {
@@ -72,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else if ((input.length() != 13)) {
             schoolEmailInput.setError("We accepteren alleen schoolEmail van de hogeschool Rotterdam");
             return false;
-        } else if ( !(input.substring(input.length() - 6).matches("@hr.nl"))){
+        } else if (!(input.substring(input.length() - 6).matches("@hr.nl"))) {
             schoolEmailInput.setError("We accepteren alleen schoolEmail van de hogeschool Rotterdam");
             return false;
         } else if (!(EmailAlreadyRegisteredCheck)) {
@@ -147,7 +143,9 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public boolean check(String s) {
-        if (s == null) { return false; }
+        if (s == null) {
+            return false;
+        }
 
         int len = s.length();
         for (int i = 0; i < len; i++) {

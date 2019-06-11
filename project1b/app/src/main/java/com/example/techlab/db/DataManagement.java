@@ -153,8 +153,14 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
-        return electronicsList.get(0);
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        if (electronicsList.size()==0){
+            return null;
+        }else{
+            return electronicsList.get(0);
+        }
     }
 
 
@@ -703,8 +709,14 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
-        return BorrowList.get(0);
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        if (BorrowList.size()==0){
+            return null;
+        }else{
+            return BorrowList.get(0);
+        }
     }
 
 
@@ -716,13 +728,20 @@ public class DataManagement {
                 String query = "SELECT * FROM USERS WHERE SCHOOL_EMAIL = '"+SchoolEmail+"';";
                 Statement statement = connect.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
-                while(resultSet.next()) {
+                if(resultSet.next()) {
                     UserData.add(new Users(resultSet.getString("FIRSTNAME"), resultSet.getString("SURNAME"), resultSet.getString("SCHOOL_EMAIL"), resultSet.getInt("LOANED_AMOUNT"), resultSet.getString("USER_TYPE"), resultSet.getInt("ID_"),resultSet.getInt("BLOCKED"),resultSet.getInt("PRODUCTS_ON_LOAN")));
                 }
                 connect.close();
             }
-        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
-        return UserData.get(0);
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        if (UserData.size()==0){
+            return null;
+        }else{
+            return UserData.get(0);
+
+        }
     }
 
 
@@ -761,8 +780,14 @@ public class DataManagement {
                 }
                 connect.close();
             }
-        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
-        return books.get(0);
+        }catch(Exception ex){
+            Log.d(TAG,ex.toString());
+        }
+        if (books.size()==0){
+            return null;
+        }else{
+            return books.get(0);
+        }
     }
 
 
