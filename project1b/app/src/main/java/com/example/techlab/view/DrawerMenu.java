@@ -128,7 +128,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
 
         menuUserName.setText("Hi "+mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "")+" :)");
 
-        if(status.matches("loggedOut")|status.matches("blocked")) {
+        if(status.matches("loggedOut")|status.matches("blocked")|status.matches("-")) {
             menuUserName.setVisibility(View.GONE);
             menuUserStatus.setVisibility(View.GONE);
             menu.findItem(R.id.inventarisMenu).setVisible(false);
