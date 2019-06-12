@@ -34,7 +34,6 @@ public class Product_ItemDescription extends DrawerMenu {
     private Integer productID;
     DataManagement dataManagement;
     private SharedPreferences mSharedPreferences;
-    String objectType;
     Products product;
 
     //    https://www.youtube.com/watch?v=ZXoGG2XTjzU
@@ -144,7 +143,6 @@ public class Product_ItemDescription extends DrawerMenu {
 
 //                TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
 //                textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
-
         contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) { startActivity(new Intent(Product_ItemDescription.this, Product_Voorwaarden.class)); }
