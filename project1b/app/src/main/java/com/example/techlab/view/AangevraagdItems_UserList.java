@@ -22,7 +22,6 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.AangevraagdItems_UserList_Adapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
-import com.example.techlab.util.BlockedUserUtils;
 
 import java.util.ArrayList;
 
@@ -62,7 +61,6 @@ public class AangevraagdItems_UserList extends DrawerMenu {
     @Override
     protected void onResume() {
         super.onResume();
-        BlockedUserUtils.blockFunc(this,mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
         int spinnerPosition;
         String spinnerState = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,"");
         if(spinnerState.matches(getString(R.string.productStatusTeLaat))){

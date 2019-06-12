@@ -16,7 +16,6 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.BorrowAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
-import com.example.techlab.util.BlockedUserUtils;
 
 import java.util.ArrayList;
 
@@ -70,12 +69,5 @@ public class User_management_user_historyActivity extends DrawerMenu {
 
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
-
     }
 }

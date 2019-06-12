@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
-import com.example.techlab.util.BlockedUserUtils;
 
 
 //Settings page
@@ -167,10 +166,5 @@ public class User_information_changeActivity extends DrawerMenu {
         return true;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
 
-    }
 }
