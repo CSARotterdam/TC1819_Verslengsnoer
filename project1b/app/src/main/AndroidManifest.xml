@@ -23,7 +23,7 @@
             android:label="Statistieken"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.User_information_changeActivity"
+            android:name=".view.User_Account_SettingsActivity"
             android:label="Account Instellingen"
             android:screenOrientation="portrait" />
         <activity

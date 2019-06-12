@@ -2,6 +2,7 @@ package com.example.techlab.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,14 +19,15 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.ProductManagementAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
+import com.example.techlab.util.CheckBlockUtils;
 
 import java.util.ArrayList;
 
 public class Product_managementActivity extends DrawerMenu{
     RecyclerView recyclerView;
     DataManagement dataManagement;
-
     ProductManagementAdapter adapter;
+    private SharedPreferences mSharedPreferences;
 
 
     @Override
@@ -35,6 +37,8 @@ public class Product_managementActivity extends DrawerMenu{
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_product_management, null,false);
         frameLayout.addView(activityView);
+
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
 
         dataManagement = new DataManagement();
         ArrayList<Products> Productlist = dataManagement.getAllProducts();
@@ -66,6 +70,12 @@ public class Product_managementActivity extends DrawerMenu{
         return true;
     }
 
+    @Override
+    protected void onResume(){
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product Management");
+        super.onResume();
+
+    }
 
     public void addProductPageButton(View view){
         startActivity(new Intent(this, Product_management_add_productActivity.class));
@@ -75,8 +85,9 @@ public class Product_managementActivity extends DrawerMenu{
     }
     @Override
     public void onBackPressed() {
-        finish();
+        //https://stackoverflow.com/questions/4182761/finish-old-activity-and-start-a-new-one-or-vice-versa
         startActivity(new Intent(this,  Product_InventoryActivity.class));
+        finish();
     }
 
 

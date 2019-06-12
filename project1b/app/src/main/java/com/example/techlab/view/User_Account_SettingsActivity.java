@@ -13,10 +13,11 @@ import android.widget.Toast;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
+import com.example.techlab.util.CheckBlockUtils;
 
 
 //Settings page
-public class User_information_changeActivity extends DrawerMenu {
+public class User_Account_SettingsActivity extends DrawerMenu {
     TextInputLayout userFirstNameInput, userSurnameInput, passwordInput, confirmPasswordInput;
     DataManagement dataManagement;
     private SharedPreferences.Editor mEditor;
@@ -45,10 +46,7 @@ public class User_information_changeActivity extends DrawerMenu {
     protected void onResume(){
         super.onResume();
         if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, "").length() > 0) {
-            blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""), this);
-            if (blocked.ifblocked()) {
-                blocked.Redirect("Account Instellingen");
-            }
+            CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Account settings");
         }
     }
 
@@ -72,7 +70,7 @@ public class User_information_changeActivity extends DrawerMenu {
             passwordInput.getEditText().setText("");
             confirmPasswordInput.getEditText().setText("");
             Toast.makeText(this, "Het wachtwoord  is met succes gewijzigd", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, User_information_changeActivity.class);
+            Intent intent = new Intent(this, User_Account_SettingsActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
@@ -90,14 +88,14 @@ public class User_information_changeActivity extends DrawerMenu {
             passwordInput.getEditText().setText("");
             confirmPasswordInput.getEditText().setText("");
             Toast.makeText(this, "Uw naam is met succes gewijzigd", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, User_information_changeActivity.class);
+            Intent intent = new Intent(this, User_Account_SettingsActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
     }
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         startActivity(new Intent(this, Product_InventoryActivity.class));
         finish();
     }

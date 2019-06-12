@@ -131,7 +131,7 @@ public class Users_managementActivity extends DrawerMenu {
     }
     @Override
     public void onBackPressed() {
-        finish();
         startActivity(new Intent(this,  Product_InventoryActivity.class));
+        finish();
     }
 }

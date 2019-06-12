@@ -80,7 +80,7 @@ public class Student_Geleend_Aangevraagd extends DrawerMenu {
 
     @Override
     public void onBackPressed() {
-        finish();
         startActivity(new Intent(this,  Product_InventoryActivity.class));
+        finish();
     }
 }

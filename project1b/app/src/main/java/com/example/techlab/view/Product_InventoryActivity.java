@@ -26,6 +26,7 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
+import com.example.techlab.util.CheckBlockUtils;
 
 import java.util.ArrayList;
 
@@ -83,38 +84,34 @@ public class Product_InventoryActivity extends DrawerMenu{
 
     @Override
     protected void onResume() {
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Inventaris");
         super.onResume();
         if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1))) {
             addNotification();
         }
-        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""), this);
-        if (blocked.ifblocked()) {
-            blocked.Redirect("Inventaris");
-        } else {
-            Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
-            ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
-            adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            CategorySpinner.setAdapter(adapter2);
-            CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        CategorySpinner.setAdapter(adapter2);
+        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                    if (parent.getSelectedItem().toString().matches("Alle Producten")) {
-                        products = dataManagement.getAllProducts();
-                    } else {
-                        products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
-                    }
-
-                    adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
-                    recyclerView.setAdapter(adapter);
+                if (parent.getSelectedItem().toString().matches("Alle Producten")) {
+                    products = dataManagement.getAllProducts();
+                } else {
+                    products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
                 }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
+                adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
+                recyclerView.setAdapter(adapter);
+            }
 
-                }
-            });
-        }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 //     public class SpinnerActivity extends Activity implements

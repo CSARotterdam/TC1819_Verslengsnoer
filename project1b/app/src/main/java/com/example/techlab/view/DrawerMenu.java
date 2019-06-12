@@ -42,7 +42,6 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        actionBarDrawerToggle.syncState();
 
         headerView = navigationView.getHeaderView(0);
         menuUserName = headerView.findViewById(R.id.menuUserName);
@@ -53,6 +52,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     @Override
     protected void onResume() {
         super.onResume();
+        actionBarDrawerToggle.syncState();
         menuButtonManager();
         dataManagement.StatusTeLaat();
     }
@@ -103,7 +103,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
             finish();
         }
         if (id == R.id.userAccountSetting){
-            Intent intent = new Intent(getBaseContext(), User_information_changeActivity.class);
+            Intent intent = new Intent(getBaseContext(), User_Account_SettingsActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
@@ -116,6 +116,18 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         }
         if (id == R.id.contact) {
             Intent intent = new Intent(getBaseContext(), Contact.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+        if (id == R.id.voorwaardenMenu){
+            Intent intent = new Intent(getBaseContext(), Product_Voorwaarden.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }
+        if (id == R.id.HomeMenu){
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
@@ -148,9 +160,14 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
             menu.findItem(R.id.userManagementMenu).setVisible(false);
             menu.findItem(R.id.ProductAdministratieMenu).setVisible(false);
             menu.findItem(R.id.infographic).setVisible(false);
+            menu.findItem(R.id.HomeMenu).setVisible(false);
         }
-        if(status.matches("beheerder")){
+        if (status.matches("beheerder")){
             menu.findItem(R.id.userManagementMenu).setVisible(false);
+            menu.findItem(R.id.HomeMenu).setVisible(false);
+        }
+        if (status.matches("admin")){
+            menu.findItem(R.id.HomeMenu).setVisible(false);
         }
     }
     @Override
@@ -165,5 +182,9 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //Testing to make back button acts as closing MenuDrawer instead of page return.
+//    @Override
+//    public void onBackPressed(){
+//        actionBarDrawerToggle.syncState();
+//    }
 }

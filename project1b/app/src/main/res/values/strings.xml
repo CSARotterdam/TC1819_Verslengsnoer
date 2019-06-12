@@ -53,4 +53,6 @@
     <string name="country">Nederland</string>
     <string name="floor">WD.04.022</string>
     <string name="ContactEmail">techlab@csarotterdam.nl</string>
+    <string name="TOS">Voorwaarden</string>
+    <string name="Home">Home</string>
 </resources>

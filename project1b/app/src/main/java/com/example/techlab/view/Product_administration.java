@@ -107,11 +107,6 @@ public class Product_administration extends DrawerMenu {
     }
 
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, Product_InventoryActivity.class));
-    }
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
@@ -131,5 +126,11 @@ public class Product_administration extends DrawerMenu {
             }
         });
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, Product_InventoryActivity.class));
+        finish();
     }
 }

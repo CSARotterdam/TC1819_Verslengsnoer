@@ -26,7 +26,7 @@ public class InfographicActivity extends DrawerMenu  {
     PieChart pieChart;
     PieChart pieChart2;
     DataManagementInfographic dataManagementInfographic;
-    SharedPreferences mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class InfographicActivity extends DrawerMenu  {
         frameLayout.addView(activityView);
 
         dataManagementInfographic = new DataManagementInfographic();
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
 
         ValueFormatter formatter = new ValueFormatter() {
             @Override
@@ -105,13 +106,13 @@ public class InfographicActivity extends DrawerMenu  {
     @Override
     protected void onResume(){
         super.onResume();
-        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product_Administrations");
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"InfoGraphic");
     }
 
     @Override
     public void onBackPressed() {
-        finish();
         startActivity(new Intent(this,  Product_InventoryActivity.class));
+        finish();
     }
 
 

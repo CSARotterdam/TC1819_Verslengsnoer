@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.User_information_changeActivity"
+    tools:context=".view.User_Account_SettingsActivity"
     android:background="@color/colorBackground">
 
     <LinearLayout

@@ -64,19 +64,19 @@ public class Contact extends DrawerMenu {
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println(MainActivity.KEY_ACTIVE_USER_EMAIL);
         if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, "").length() > 0) {
-            CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product_Administrations");
+            CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Contact");
         }
     }
 
     @Override
     public void onBackPressed() {
-        finish();
         if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "").length() > 0) {
             startActivity(new Intent(this, Product_InventoryActivity.class));
+            finish();
         }else{
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
     }
 

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
+import com.example.techlab.util.CheckBlockUtils;
 import com.example.techlab.util.DateUtils;
 import com.example.techlab.util.ImageUtils;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
@@ -79,13 +80,10 @@ public class Product_ItemDescription extends DrawerMenu {
 
     @Override
     protected void onResume() {
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product Item Description");
         super.onResume();
-        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
-        if (blocked.ifblocked()) {
-            blocked.Redirect("ItemDescription");
-        }else {
-            getIncomingIntent();
-        }
+
+        getIncomingIntent();
     }
 
     @Override
