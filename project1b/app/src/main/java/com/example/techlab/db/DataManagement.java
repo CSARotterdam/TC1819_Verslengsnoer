@@ -389,6 +389,7 @@ public class DataManagement {
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 connect.createStatement().executeUpdate("DELETE FROM PRODUCTS WHERE ID_ ="+ID_+";");
+                connect.createStatement().executeQuery("DELETE FROM BORROW WHERE PRODUCTS_P_ID ="+ID_+";");
                 connect.close();
             }
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }
