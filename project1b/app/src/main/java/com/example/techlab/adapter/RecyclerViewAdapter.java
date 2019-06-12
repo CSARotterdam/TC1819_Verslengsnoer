@@ -96,7 +96,6 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
                     if(product.getName().toLowerCase().contains(filterPattern)){
                         filteredList.add(product);
                     }
-
                 }
             }
             FilterResults results = new FilterResults();

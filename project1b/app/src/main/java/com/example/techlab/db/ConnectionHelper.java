@@ -12,10 +12,15 @@ public class ConnectionHelper {
     String IP,DB,UserName,Password;
     @SuppressLint("NewApi")
     public Connection connection(){
-        IP = "145.24.222.204:8080";
+//        IP = "145.24.222.204:8080";
+//        DB = "TechLab";
+//        UserName = "sa";
+//        Password = "S77d4h";
+
+        IP = "techlab.cg4ww0xkgee2.eu-west-2.rds.amazonaws.com:1433";
         DB = "TechLab";
-        UserName = "sa";
-        Password = "S77d4h";
+        UserName = "admin";
+        Password = "123456789asdfghjkl";
 
 //        IP = "techlab.cg4ww0xkgee2.eu-west-2.rds.amazonaws.com:1433";
 //        DB = "TechLab";

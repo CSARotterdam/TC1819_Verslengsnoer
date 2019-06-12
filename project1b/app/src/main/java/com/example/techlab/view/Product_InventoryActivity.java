@@ -117,19 +117,18 @@ public class Product_InventoryActivity extends DrawerMenu{
         }
     }
 
-    // public class SpinnerActivity extends Activity implements
-    // AdapterView.OnItemSelectedListener {
-    // public void onItemSelected(AdapterView<?> parent, View view, int pos, long
-    // id) {
-    // // An item was selected. You can retrieve the selected item using
-    // // parent.getItemAtPosition(pos)
-    // Toast.makeText(Product_InventoryActivity.this,
-    // parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-    // }
-    // public void onNothingSelected(AdapterView<?> parent) {
-    // // Another interface callback
-    // }
-    // }
+//     public class SpinnerActivity extends Activity implements
+//     AdapterView.OnItemSelectedListener {
+//     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+//     // An item was selected. You can retrieve the selected item using
+//     // parent.getItemAtPosition(pos)
+//     Toast.makeText(Product_InventoryActivity.this,
+//     parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+//     }
+//     public void onNothingSelected(AdapterView<?> parent) {
+//     // Another interface callback
+//     }
+//     }
 
     @Override
     public void onBackPressed() { moveTaskToBack(true); }

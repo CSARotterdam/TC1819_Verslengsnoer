@@ -516,7 +516,7 @@ public class DataManagement {
             connect = new ConnectionHelper().connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                connect.prepareStatement("update borrow set status='Te Laat' where convert(varchar(8),status)='Geleend' and CONVERT(VARCHAR(8),GETDATE(),108)>'17:00'").executeUpdate();
+                connect.prepareStatement("update borrow set status='Te Laat' where convert(varchar(8),status)='Geleend' and CONVERT(VARCHAR(8),GETDATE(),108)>'18:00'").executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }
