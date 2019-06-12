@@ -22,10 +22,11 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.AangevraagdItems_UserList_Adapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
+import com.example.techlab.util.CheckBlockUtils;
 
 import java.util.ArrayList;
 
-public class AangevraagdItems_UserList extends DrawerMenu {
+public class Product_administration extends DrawerMenu {
     private RecyclerView mRecyclerView;
     private AangevraagdItems_UserList_Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutmanager;
@@ -47,8 +48,8 @@ public class AangevraagdItems_UserList extends DrawerMenu {
         loanUsersList = new ArrayList<>();
         mRecyclerView = findViewById(R.id.AangevraagUserlist_Recyclerview);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutmanager = new LinearLayoutManager(AangevraagdItems_UserList.this);
-        mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);
+        mLayoutmanager = new LinearLayoutManager(Product_administration.this);
+        mAdapter = new AangevraagdItems_UserList_Adapter(Product_administration.this,loanUsersList);
         mRecyclerView.setLayoutManager(mLayoutmanager);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -61,6 +62,8 @@ public class AangevraagdItems_UserList extends DrawerMenu {
     @Override
     protected void onResume() {
         super.onResume();
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product_Administrations");
+
         int spinnerPosition;
         String spinnerState = mSharedPreferences.getString(MainActivity.KEY_PRODUCT_ADMINISTER_SPINNER_STATE,"");
         if(spinnerState.matches(getString(R.string.productStatusTeLaat))){
@@ -93,7 +96,7 @@ public class AangevraagdItems_UserList extends DrawerMenu {
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusTeLaat));
                 }
 
-                mAdapter = new AangevraagdItems_UserList_Adapter(AangevraagdItems_UserList.this,loanUsersList);
+                mAdapter = new AangevraagdItems_UserList_Adapter(Product_administration.this,loanUsersList);
                 mRecyclerView.setAdapter(mAdapter);
             }
 

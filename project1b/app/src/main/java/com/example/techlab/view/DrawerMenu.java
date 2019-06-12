@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.model.Users;
 
 public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -97,7 +96,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
             finish();
         }
         if (id == R.id.ProductAdministratieMenu){
-            Intent intent = new Intent(getBaseContext(), AangevraagdItems_UserList.class);
+            Intent intent = new Intent(getBaseContext(), Product_administration.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

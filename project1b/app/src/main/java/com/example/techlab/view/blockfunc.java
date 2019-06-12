@@ -22,7 +22,7 @@ public class blockfunc {
         this.context = context;
     }
 
-    protected boolean ifblocked(){
+    public boolean ifblocked(){
         dataManagement = new DataManagement();
         if (dataManagement.ifBlocked(email)) {
             return true;
@@ -35,7 +35,7 @@ public class blockfunc {
             return false;
         }
     }
-    protected void ShowBlockDialog(String title){
+    public void ShowBlockDialog(String title){
         AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage("Uw account is geblokkeerd, neem contact met TechLab.")
@@ -50,7 +50,7 @@ public class blockfunc {
         RequestItemAlertDialog.create().show();
     }
 
-    protected void Redirect(String CurrentPage){
+    public void Redirect(String CurrentPage){
         if(!CurrentPage.equals("Mainactivity")){
             Intent intent = new Intent(context, MainActivity.class);
             context.startActivity(intent);

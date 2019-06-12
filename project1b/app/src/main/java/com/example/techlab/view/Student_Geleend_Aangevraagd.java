@@ -33,8 +33,8 @@ public class Student_Geleend_Aangevraagd extends DrawerMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout frameLayout = findViewById(R.id.content_frame);
-        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View activityView = layoutInflater.inflate(R.layout.activity_geleend_aangevraagd, null,false);
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View activityView = layoutInflater.inflate(R.layout.activity_geleend_aangevraagd, null, false);
         frameLayout.addView(activityView);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         dataManagement = new DataManagement();
@@ -45,30 +45,40 @@ public class Student_Geleend_Aangevraagd extends DrawerMenu {
         mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""), this);
+        if (blocked.ifblocked()) {
+            System.out.println("Blocked USER");
+            blocked.Redirect("Geleend/aangevraagd");
+        } else {
+            System.out.println("Executing code");
+            Spinner CategorySpinner = findViewById(R.id.BorrowCategoryButton);
+            ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategoryStudent, android.R.layout.simple_dropdown_item_1line);
+            adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+            CategorySpinner.setAdapter(adapter2);
 
-        Spinner CategorySpinner = findViewById(R.id.BorrowCategoryButton);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategoryStudent, android.R.layout.simple_dropdown_item_1line);
-        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        CategorySpinner.setAdapter(adapter2);
-
-        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getSelectedItem().toString().matches("Alle aangevraagde en geleende producten")){
-                    dataManagement.StatusTeLaat();
-                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1),getString(R.string.productStatusPending),getString(R.string.productStatusOnLoan),getString(R.string.productStatusTeLaat));
-                } else if(parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")){
-                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1),getString(R.string.productStatusReturned));
+            CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (parent.getSelectedItem().toString().matches("Alle aangevraagde en geleende producten")) {
+                        dataManagement.StatusTeLaat();
+                        borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1), getString(R.string.productStatusPending), getString(R.string.productStatusOnLoan), getString(R.string.productStatusTeLaat));
+                    } else if (parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")) {
+                        borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1), getString(R.string.productStatusReturned));
+                    }
+                    mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
+                    mRecyclerView.setAdapter(mAdapter);
                 }
-                mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
-                mRecyclerView.setAdapter(mAdapter);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     @Override

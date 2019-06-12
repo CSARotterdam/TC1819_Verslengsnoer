@@ -71,11 +71,11 @@
             android:label="Registratie"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.Geleend_Aangevraagd"
+            android:name=".view.Product_administration_Options"
             android:label="Aangevraagde Productpagina"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.AangevraagdItems_UserList"
+            android:name=".view.Product_administration"
             android:label="Product Administratie"
             android:screenOrientation="portrait" />
         <activity
