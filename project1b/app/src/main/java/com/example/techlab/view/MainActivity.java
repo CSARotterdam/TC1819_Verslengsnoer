@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -20,11 +19,11 @@ import com.example.techlab.model.Users;
 public class MainActivity extends DrawerMenu {
     protected static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
     protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
-    protected static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
+    public static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
     protected static final String KEY_STAY_LOGGED_IN = "keyStayLoggedInStatus";
     public static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
     protected static final String KEY_PRODUCT_ADMINISTER_SPINNER_STATE = "keyProductAdministerState";
-    protected static final String KEY_ACTIVE_USER_NAME = "keyActiveUserName";
+    public static final String KEY_ACTIVE_USER_NAME = "keyActiveUserName";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     EditText loginEmailInput;
@@ -59,21 +58,27 @@ public class MainActivity extends DrawerMenu {
         int ImageResource = getResources().getIdentifier("@drawable/techlablogo_small", null, this.getPackageName());
         logo.setImageResource(ImageResource);
     }
+
     @Override
     protected void onResume() {
-        super.onResume();
-        if (mSharedPreferences.getString(KEY_STAY_LOGGED_IN, "").matches("on")) {
-            System.out.println("OnResume>Exist = true");
-            blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),ctx);
-            if (!blocked.ifblocked()) {
-                System.out.println("OnResume>Exist = true>Blocked check...");
-                startActivity(new Intent(this, Product_InventoryActivity.class));
+        // Show shared preference in log
+        //System.out.println(mSharedPreferences.getAll());
+
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""), ctx);
+
+        if (!blocked.ifblocked()) {
+            if (mSharedPreferences.getString(KEY_STAY_LOGGED_IN, "").matches("on")) {
+                    startActivity(new Intent(this, Product_InventoryActivity.class));
             }
-            else{
-                mEditor.putString(KEY_STAY_LOGGED_IN,"").apply();
-                blocked.ShowBlockDialog("Uitgelogd");
+            else {
+                ClearPreference();
             }
         }
+        else if(blocked.ifblocked()){
+            ClearPreference();
+            blocked.ShowBlockDialog("Uitgelogd");
+        }
+        super.onResume();
     }
     @Override
     protected void onPause() {
@@ -120,6 +125,13 @@ public class MainActivity extends DrawerMenu {
             userNameInputLayout.setError("Het e-mailadres dat je hebt ingevoerd is onjuist");
         }
     }
+
+    public void ClearPreference(){
+        mSharedPreferences.edit().clear().apply();
+        mSharedPreferences.edit().putString(MainActivity.KEY_ACTIVE_USER_STATUS, "-").apply();
+        mSharedPreferences.edit().putString(MainActivity.KEY_ACTIVE_USER_NAME, "").apply();
+    }
+
     @Override
     public void onBackPressed() { moveTaskToBack(true); }
 }

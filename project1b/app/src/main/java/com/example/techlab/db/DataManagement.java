@@ -214,6 +214,21 @@ public class DataManagement {
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }
     }
 
+    public String getUserTypeByEmail(String email){
+        String result = "";
+        try{
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
+            else{
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT USER_TYPE FROM USERS WHERE SCHOOL_EMAIL = '"+email+"';");
+                while (resultSet.next()) {
+                    result = resultSet.getString("USER_TYPE");
+                }
+                connect.close();
+            }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        return result;
+    }
 
     public void setBlockUser( int block, int ID_){
         try{

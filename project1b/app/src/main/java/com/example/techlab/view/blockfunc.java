@@ -8,11 +8,10 @@ import android.content.SharedPreferences;
 
 import com.example.techlab.db.DataManagement;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class blockfunc {
     DataManagement dataManagement;
-//    SharedPreferences mSharedPreferences;
-//    SharedPreferences.Editor mEditor;
-
     private String email;
     Context context;
 
@@ -21,7 +20,6 @@ public class blockfunc {
         System.out.println("BlockSys function executed");
         this.email = email;
         this.context = context;
-
     }
 
     protected boolean ifblocked(){
@@ -30,15 +28,17 @@ public class blockfunc {
             return true;
         }
         else{
-            //ISSUES HERE WITH NULL REF
-            context.getSharedPreferences(MainActivity.KEY_ACTIVE_USER_STATUS, Context.MODE_PRIVATE).edit().putString(MainActivity.KEY_ACTIVE_USER_STATUS, dataManagement.getUserWithEmail(email).getUserType()).apply();
+            //Update user status for every page opened
+            if(context.getSharedPreferences(MainActivity.PREFERENCES_FILE, MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"").length() > 0) {
+                context.getSharedPreferences(MainActivity.PREFERENCES_FILE, MODE_PRIVATE).edit().putString(MainActivity.KEY_ACTIVE_USER_STATUS, dataManagement.getUserTypeByEmail(email)).apply(); // Update status on every time a page opens.
+            }
             return false;
         }
     }
     protected void ShowBlockDialog(String title){
         AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(context)
                 .setTitle(title)
-                .setMessage("Uw account wordt uitgelogd en is geblokkeerd, neem contact met TechLab.")
+                .setMessage("Uw account is geblokkeerd, neem contact met TechLab.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

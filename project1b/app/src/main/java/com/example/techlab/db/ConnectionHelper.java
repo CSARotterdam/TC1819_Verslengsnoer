@@ -17,6 +17,11 @@ public class ConnectionHelper {
         UserName = "sa";
         Password = "S77d4h";
 
+//        IP = "techlab.cg4ww0xkgee2.eu-west-2.rds.amazonaws.com:1433";
+//        DB = "TechLab";
+//        UserName = "admin";
+//        Password = "123456789asdfghjkl";
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         java.sql.Connection connection = null;

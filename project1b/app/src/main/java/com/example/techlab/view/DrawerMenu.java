@@ -125,9 +125,10 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     public void menuButtonManager(){
         Menu menu = navigationView.getMenu();
         String status = mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_STATUS, "-");
-        menuUserStatus.setText("Status: "+status);
-
-        menuUserName.setText("Hi "+mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "")+" :)");
+        String statusTxt = "Status: "+status;
+        menuUserStatus.setText(statusTxt);
+        String nameTxt = "Hi "+mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "")+" :)";
+        menuUserName.setText(nameTxt);
 
         if(status.matches("-")) {
             menuUserName.setVisibility(View.GONE);

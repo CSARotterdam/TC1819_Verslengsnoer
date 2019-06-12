@@ -29,17 +29,28 @@ public class User_information_changeActivity extends DrawerMenu {
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_user_information_change, null,false);
         frameLayout.addView(activityView);
-    userFirstNameInput = findViewById(R.id.AccountSettingFirstNameInputLayout);
-    userSurnameInput = findViewById(R.id.AccountSettingSurnameInputLayout);
-    passwordInput = findViewById(R.id.AccountSettingPasswordInputLayout);
-    confirmPasswordInput = findViewById(R.id.AccountSettingConfirmPasswordInputLayout);
-    mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
-    mEditor = mSharedPreferences.edit();
-    dataManagement = new DataManagement();
-    Users user = dataManagement.getUserWithId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
-    userFirstNameInput.getEditText().setText(user.getFirstName());
-    userSurnameInput.getEditText().setText(user.getSurname());
-}
+        userFirstNameInput = findViewById(R.id.AccountSettingFirstNameInputLayout);
+        userSurnameInput = findViewById(R.id.AccountSettingSurnameInputLayout);
+        passwordInput = findViewById(R.id.AccountSettingPasswordInputLayout);
+        confirmPasswordInput = findViewById(R.id.AccountSettingConfirmPasswordInputLayout);
+        mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
+        dataManagement = new DataManagement();
+        Users user = dataManagement.getUserWithId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
+        userFirstNameInput.getEditText().setText(user.getFirstName());
+        userSurnameInput.getEditText().setText(user.getSurname());
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, "").length() > 0) {
+            blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""), this);
+            if (blocked.ifblocked()) {
+                blocked.Redirect("Account Instellingen");
+            }
+        }
+    }
 
 
     public void ChangeMyUserPassword(View view) {
@@ -68,16 +79,17 @@ public class User_information_changeActivity extends DrawerMenu {
 
     }
     public void ChangeMyUserNames(View view) {
-        boolean  firstName, surname;
-        firstName = firstNameValidation();
-        surname = surnameValidation();
-        if ( firstName && surname ) {
-            dataManagement.updateUserNames(userFirstNameInput.getEditText().getText().toString().trim(), userSurnameInput.getEditText().getText().toString().trim(), mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1));
-            userFirstNameInput.getEditText().setText("");
-            userSurnameInput.getEditText().setText("");
+        boolean  firstNameFilled, surnameFilled;
+        firstNameFilled = firstNameValidation();
+        surnameFilled = surnameValidation();
+        if ( firstNameFilled && surnameFilled ) {
+            String NewFirstName = userFirstNameInput.getEditText().getText().toString().trim();
+            String NewSurName = userSurnameInput.getEditText().getText().toString().trim();
+            dataManagement.updateUserNames(NewFirstName, NewSurName, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1));
+            mSharedPreferences.edit().putString(MainActivity.KEY_ACTIVE_USER_NAME, NewFirstName+" "+NewSurName).apply();
             passwordInput.getEditText().setText("");
             confirmPasswordInput.getEditText().setText("");
-            Toast.makeText(this, "De gebruikersnaam is met succes gewijzigd", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Uw naam is met succes gewijzigd", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, User_information_changeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
