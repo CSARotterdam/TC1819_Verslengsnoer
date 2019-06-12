@@ -63,7 +63,10 @@ public class Contact extends DrawerMenu {
     @Override
     public void onResume() {
         super.onResume();
-
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
+        if (blocked.ifblocked()) {
+            blocked.Redirect("Contact");
+        }
     }
 
     @Override

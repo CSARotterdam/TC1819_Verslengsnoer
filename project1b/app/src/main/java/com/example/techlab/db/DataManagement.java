@@ -234,7 +234,9 @@ public class DataManagement {
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
                 ResultSet resultSet = connect.createStatement().executeQuery("SELECT BLOCKED FROM USERS WHERE SCHOOL_EMAIL = '"+email+"' and BLOCKED = "+1+";");
-                result = resultSet.next();
+                while (resultSet.next()) {
+                    result = true;
+                }
                 connect.close();
             }
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }

@@ -14,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -33,6 +32,7 @@ import java.util.ArrayList;
 public class Product_InventoryActivity extends DrawerMenu{
 
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     RecyclerViewAdapter adapter;
     RecyclerView recyclerView;
@@ -55,6 +55,7 @@ public class Product_InventoryActivity extends DrawerMenu{
         recyclerView.setLayoutManager(new LinearLayoutManager(Product_InventoryActivity.this));
 
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
     }
 
     //  https://www.youtube.com/watch?reload=9&v=ATERxKKORbY
@@ -83,12 +84,14 @@ public class Product_InventoryActivity extends DrawerMenu{
     @Override
     protected void onResume() {
         super.onResume();
-        if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1))) {
+        if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1))){
             addNotification();
-
         }
-        BlockedUserUtils.blockFunc(this,mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
-
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
+        if (blocked.ifblocked()) {
+            blocked.Redirect("Inventaris");
+        }
+        else{
             Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
             ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory,
                     android.R.layout.simple_dropdown_item_1line);
@@ -113,48 +116,41 @@ public class Product_InventoryActivity extends DrawerMenu{
 
                 }
             });
-
     }
 
-        // public class SpinnerActivity extends Activity implements
-        // AdapterView.OnItemSelectedListener {
-        // public void onItemSelected(AdapterView<?> parent, View view, int pos, long
-        // id) {
-        // // An item was selected. You can retrieve the selected item using
-        // // parent.getItemAtPosition(pos)
-        // Toast.makeText(Product_InventoryActivity.this,
-        // parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-        // }
-        // public void onNothingSelected(AdapterView<?> parent) {
-        // // Another interface callback
-        // }
-        // }
+    // public class SpinnerActivity extends Activity implements
+    // AdapterView.OnItemSelectedListener {
+    // public void onItemSelected(AdapterView<?> parent, View view, int pos, long
+    // id) {
+    // // An item was selected. You can retrieve the selected item using
+    // // parent.getItemAtPosition(pos)
+    // Toast.makeText(Product_InventoryActivity.this,
+    // parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+    // }
+    // public void onNothingSelected(AdapterView<?> parent) {
+    // // Another interface callback
+    // }
+    // }
 
-        @Override
-        public void onBackPressed () {
-            moveTaskToBack(true);
-        }
+    @Override
+    public void onBackPressed() { moveTaskToBack(true); }
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.search_menu, menu);
-            MenuItem searchItem = menu.findItem(R.id.action_search);
-            SearchView  searchView = (SearchView) searchItem.getActionView();
-            searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) { return false; }
 
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    adapter.getFilter().filter(s);
-                    return false;
-                }
-            });
-            return true;
-        }
-
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        return true;
+    }
 }

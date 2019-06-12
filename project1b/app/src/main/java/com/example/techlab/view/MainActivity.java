@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,7 +16,6 @@ import android.widget.ImageView;
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Users;
-import com.example.techlab.util.AlertDialogUtils;
 
 public class MainActivity extends DrawerMenu {
     protected static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
@@ -63,11 +63,15 @@ public class MainActivity extends DrawerMenu {
     protected void onResume() {
         super.onResume();
         if (mSharedPreferences.getString(KEY_STAY_LOGGED_IN, "").matches("on")) {
-            if (!dataManagement.ifBlocked(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL,""))) {
+            System.out.println("OnResume>Exist = true");
+            blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),ctx);
+            if (!blocked.ifblocked()) {
+                System.out.println("OnResume>Exist = true>Blocked check...");
                 startActivity(new Intent(this, Product_InventoryActivity.class));
             }
             else{
-                AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account wordt uitgelogd en is geblokkeerd, neem contact met TechLab.");
+                mEditor.putString(KEY_STAY_LOGGED_IN,"").apply();
+                blocked.ShowBlockDialog("Uitgelogd");
             }
         }
     }
@@ -104,7 +108,8 @@ public class MainActivity extends DrawerMenu {
                         startActivity(startNewActivity);
                     }
                     else {
-                        AlertDialogUtils.alertDialog(this,"Uitgelogd","Uw account wordt uitgelogd en is geblokkeerd, neem contact met TechLab.");
+                        blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""),ctx);
+                        blocked.ShowBlockDialog("Inlog mislukt!");
                     }
                 }
             else {
