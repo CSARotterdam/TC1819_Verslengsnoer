@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 
 import com.example.techlab.db.DataManagement;
 
@@ -17,7 +16,6 @@ public class blockfunc {
 
 
     public blockfunc(String email, Context context) {
-        System.out.println("BlockSys function executed");
         this.email = email;
         this.context = context;
     }

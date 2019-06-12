@@ -17,6 +17,7 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.BorrowAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Borrow;
+import com.example.techlab.util.CheckBlockUtils;
 
 import java.util.ArrayList;
 
@@ -49,36 +50,30 @@ public class Student_Geleend_Aangevraagd extends DrawerMenu {
     @Override
     protected void onResume() {
         super.onResume();
-        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""), this);
-        if (blocked.ifblocked()) {
-            System.out.println("Blocked USER");
-            blocked.Redirect("Geleend/aangevraagd");
-        } else {
-            System.out.println("Executing code");
-            Spinner CategorySpinner = findViewById(R.id.BorrowCategoryButton);
-            ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategoryStudent, android.R.layout.simple_dropdown_item_1line);
-            adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            CategorySpinner.setAdapter(adapter2);
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Geleend/Aangevraagd");
+        Spinner CategorySpinner = findViewById(R.id.BorrowCategoryButton);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategoryStudent, android.R.layout.simple_dropdown_item_1line);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        CategorySpinner.setAdapter(adapter2);
 
-            CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (parent.getSelectedItem().toString().matches("Alle aangevraagde en geleende producten")) {
-                        dataManagement.StatusTeLaat();
-                        borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1), getString(R.string.productStatusPending), getString(R.string.productStatusOnLoan), getString(R.string.productStatusTeLaat));
-                    } else if (parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")) {
-                        borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1), getString(R.string.productStatusReturned));
-                    }
-                    mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
-                    mRecyclerView.setAdapter(mAdapter);
+        CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (parent.getSelectedItem().toString().matches("Alle aangevraagde en geleende producten")) {
+                    dataManagement.StatusTeLaat();
+                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1), getString(R.string.productStatusPending), getString(R.string.productStatusOnLoan), getString(R.string.productStatusTeLaat));
+                } else if (parent.getSelectedItem().toString().matches("Alle teruggebrachte producten")) {
+                    borrowItemList = dataManagement.getBorrowDataWithUserId(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1), getString(R.string.productStatusReturned));
                 }
+                mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
+                mRecyclerView.setAdapter(mAdapter);
+            }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-                }
-            });
-        }
+            }
+        });
     }
 
     @Override
