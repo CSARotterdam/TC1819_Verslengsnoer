@@ -8,7 +8,7 @@ import com.example.techlab.view.MainActivity;
 
 public class BlockedUserUtils {
 
-    public static void blockFunc(Context context, String email){
+    public static void blockFunc(Context context, String email,String message){
         DataManagement dataManagement = new DataManagement();
         if (dataManagement.ifBlocked(email)) {
             context.getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).edit().putString(MainActivity.KEY_STAY_LOGGED_IN,"off").apply();
