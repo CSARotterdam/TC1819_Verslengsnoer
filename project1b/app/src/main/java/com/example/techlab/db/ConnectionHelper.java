@@ -12,13 +12,13 @@ public class ConnectionHelper {
     String IP,DB,UserName,Password;
     @SuppressLint("NewApi")
     public Connection connection(){
-        IP = "145.24.222.204:8080";
-//        IP = "techlab.cg4ww0xkgee2.eu-west-2.rds.amazonaws.com:1433";
+//        IP = "145.24.222.204:8080";
+        IP = "techlab.cg4ww0xkgee2.eu-west-2.rds.amazonaws.com:1433";
         DB = "TechLab";
-        UserName = "sa";
-//        UserName = "admin";
-        Password = "S77d4h";
-//        Password = "123456789asdfghjkl";
+//        UserName = "sa";
+        UserName = "admin";
+//        Password = "S77d4h";
+        Password = "123456789asdfghjkl";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
