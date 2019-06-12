@@ -10,10 +10,8 @@ import com.example.techlab.db.DataManagement;
 
 public class blockfunc {
     DataManagement dataManagement;
-    SharedPreferences mSharedPreferences;
-    SharedPreferences.Editor mEditor;
-    mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
-    mEditor = mSharedPreferences.edit();
+//    SharedPreferences mSharedPreferences;
+//    SharedPreferences.Editor mEditor;
 
     private String email;
     Context context;
@@ -33,7 +31,7 @@ public class blockfunc {
         }
         else{
             //ISSUES HERE WITH NULL REF
-            mEditor.putString(MainActivity.KEY_ACTIVE_USER_STATUS, dataManagement.getUserWithEmail(email).getUserType()).apply();
+            context.getSharedPreferences(MainActivity.KEY_ACTIVE_USER_STATUS, Context.MODE_PRIVATE).edit().putString(MainActivity.KEY_ACTIVE_USER_STATUS, dataManagement.getUserWithEmail(email).getUserType()).apply();
             return false;
         }
     }
