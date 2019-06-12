@@ -32,9 +32,8 @@ public class Product_administration_Options extends DrawerMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Users management van product_administration.java started");
         super.onCreate(savedInstanceState);
-        System.out.println("OnCreate Users management van product_administration.java started");
+
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_borrow_status_info, null, false);
@@ -102,7 +101,6 @@ public class Product_administration_Options extends DrawerMenu {
 
     @Override
     protected void onResume() {
-        System.out.println("OnResume Users management van product_administration.java started");
         super.onResume();
         CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product_Administrations_Options");
     }

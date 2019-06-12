@@ -41,7 +41,8 @@ public class Product_Voorwaarden extends AppCompatActivity{
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-        super.onBackPressed();
-
+        else {
+            super.onBackPressed();
+        }
     }
 }

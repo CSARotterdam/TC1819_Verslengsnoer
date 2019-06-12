@@ -46,13 +46,11 @@ public class Users_managementActivity extends DrawerMenu {
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_users_management, null,false);
         frameLayout.addView(activityView);
-//        setContentView(R.layout.activity_users_management);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
         dataManagement = new DataManagement();
         userList = new ArrayList<>();
 
-//        System.out.println("Users_managementActivity: On Create started");
         adapter = new UsersManagementAdapter(userList,this);
 
         mRecyclerView = findViewById(R.id.usersListItem);
@@ -66,8 +64,6 @@ public class Users_managementActivity extends DrawerMenu {
     @Override
     protected void onResume(){
         super.onResume();
-
-        System.out.println(getApplicationContext().toString()+" onResume started...");
 
         Spinner CategorySpinner = findViewById(R.id.CategoryUsersBtn);
         final String SpinnerState = mSharedPreferences.getString(FILTER_OPTION, "");

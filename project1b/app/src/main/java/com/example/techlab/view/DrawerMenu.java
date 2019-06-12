@@ -28,6 +28,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     DataManagement dataManagement;
     View headerView;
 
+    //Source: https://stackoverflow.com/questions/26216088/drawer-layout-not-closing-on-back-pressed-depending-on-support-v4-lib
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,9 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         navigationView = findViewById(R.id.drawer_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout = findViewById(R.id.drawerMenu);
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.Open,R.string.Close);
+
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -182,9 +185,4 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         }
         return super.onOptionsItemSelected(item);
     }
-    //Testing to make back button acts as closing MenuDrawer instead of page return.
-//    @Override
-//    public void onBackPressed(){
-//        actionBarDrawerToggle.syncState();
-//    }
 }
