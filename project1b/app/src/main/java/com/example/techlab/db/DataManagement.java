@@ -527,7 +527,7 @@ public class DataManagement {
                 else{
                     dateTime = "GETDATE()";
                 }
-                connect.prepareStatement("UPDATE BORROW SET STATUS='Te Laat' WHERE CONVERT(varchar(8),STATUS)='Geleend' and CONVERT(VARCHAR(8),"+dateTime+";,108)>'17:00'").executeUpdate();
+                connect.prepareStatement("UPDATE BORROW SET STATUS='Te Laat' WHERE CONVERT(varchar(8),STATUS)='Geleend' and CONVERT(VARCHAR(8),"+dateTime+",108)>'17:00'").executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }
