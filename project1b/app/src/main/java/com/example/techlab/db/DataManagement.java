@@ -510,13 +510,24 @@ public class DataManagement {
         return loanUsersList;
     }
 
-
     public void StatusTeLaat(){
         try{
             connect = new ConnectionHelper().connection();
+
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                connect.prepareStatement("UPDATE BORROW SET STATUS='Te Laat' WHERE CONVERT(varchar(8),STATUS)='Geleend' and CONVERT(VARCHAR(8),GETDATE(),108)>'18:00'").executeUpdate();
+                String dbLocation ="SCHOOL";
+                String dateTime;
+                if (dbLocation.matches("AWS")) {
+                    dateTime = "DATEADD(HOUR,2,CURRENT_TIMESTAMP)";
+                }
+                else if(dbLocation.matches("SCHOOL")){
+                    dateTime = "CURRENT_TIMESTAMP";
+                }
+                else{
+                    dateTime = "GETDATE()";
+                }
+                connect.prepareStatement("UPDATE BORROW SET STATUS='Te Laat' WHERE CONVERT(varchar(8),STATUS)='Geleend' and CONVERT(VARCHAR(8),"+dateTime+";,108)>'17:00'").executeUpdate();
                 connect.close();
             }
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }

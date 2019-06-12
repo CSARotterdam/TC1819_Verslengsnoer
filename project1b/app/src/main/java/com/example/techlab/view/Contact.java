@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.techlab.R;
+import com.example.techlab.util.CheckBlockUtils;
 
 public class Contact extends DrawerMenu {
 
@@ -65,10 +66,7 @@ public class Contact extends DrawerMenu {
         super.onResume();
         System.out.println(MainActivity.KEY_ACTIVE_USER_EMAIL);
         if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, "").length() > 0) {
-            blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""), this);
-            if (blocked.ifblocked()) {
-                blocked.Redirect("Contact");
-            }
+            CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product_Administrations");
         }
     }
 

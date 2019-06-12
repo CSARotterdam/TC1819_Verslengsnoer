@@ -19,7 +19,7 @@ public class ConnectionHelper {
 //        UserName = "admin";
         Password = "S77d4h";
 //        Password = "123456789asdfghjkl";
-        
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         java.sql.Connection connection = null;

@@ -54,6 +54,7 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     protected void onResume() {
         super.onResume();
         menuButtonManager();
+        dataManagement.StatusTeLaat();
     }
 
 

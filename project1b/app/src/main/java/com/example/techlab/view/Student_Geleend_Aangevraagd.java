@@ -46,11 +46,7 @@ public class Student_Geleend_Aangevraagd extends DrawerMenu {
         mAdapter = new BorrowAdapter(borrowItemList, Student_Geleend_Aangevraagd.this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Geleend/Aangevraagd");
+
         Spinner CategorySpinner = findViewById(R.id.BorrowCategoryButton);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.BorrowCategoryStudent, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -74,6 +70,12 @@ public class Student_Geleend_Aangevraagd extends DrawerMenu {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Geleend/Aangevraagd");
     }
 
     @Override

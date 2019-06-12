@@ -2,6 +2,7 @@ package com.example.techlab.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.FrameLayout;
 
 import com.example.techlab.R;
 import com.example.techlab.db.DataManagementInfographic;
+import com.example.techlab.util.CheckBlockUtils;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -24,16 +26,16 @@ public class InfographicActivity extends DrawerMenu  {
     PieChart pieChart;
     PieChart pieChart2;
     DataManagementInfographic dataManagementInfographic;
+    SharedPreferences mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_infographic, null,false);
         frameLayout.addView(activityView);
-
-
 
         dataManagementInfographic = new DataManagementInfographic();
 
@@ -43,9 +45,6 @@ public class InfographicActivity extends DrawerMenu  {
                 return ((int) value) + " ";
             }
         };
-
-
-
 
         pieChart = findViewById(R.id.mostPopularProductChart);
         pieChart.getDescription().setEnabled(false);
@@ -101,13 +100,12 @@ public class InfographicActivity extends DrawerMenu  {
         data2.setValueFormatter(formatter);
         pieChart2.setData(data2);
 
+    }
 
-
-
-
-
-
-
+    @Override
+    protected void onResume(){
+        super.onResume();
+        CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Product_Administrations");
     }
 
     @Override
