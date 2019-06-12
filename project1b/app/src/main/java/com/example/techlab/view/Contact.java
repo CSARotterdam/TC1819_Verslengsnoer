@@ -69,7 +69,7 @@ public class Contact extends DrawerMenu {
     @Override
     public void onBackPressed() {
         finish();
-        if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_STATUS, "").length() > 0 |mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_STATUS, "").matches("loggedOut")) {
+        if (mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_NAME, "").length() > 0) {
             startActivity(new Intent(this, Product_InventoryActivity.class));
         }else{
             startActivity(new Intent(this, MainActivity.class));
