@@ -80,7 +80,12 @@ public class Product_ItemDescription extends DrawerMenu {
     @Override
     protected void onResume() {
         super.onResume();
-        getIncomingIntent();
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
+        if (blocked.ifblocked()) {
+            blocked.Redirect("ItemDescription");
+        }else {
+            getIncomingIntent();
+        }
     }
 
     @Override

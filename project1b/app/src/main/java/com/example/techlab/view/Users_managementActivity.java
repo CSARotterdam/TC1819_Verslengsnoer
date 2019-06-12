@@ -27,15 +27,17 @@ import com.example.techlab.model.Users;
 import java.util.ArrayList;
 
 public class Users_managementActivity extends DrawerMenu {
+    private static final String FILTER_OPTION = "FILTER_OPTION";
     private RecyclerView mRecyclerView;
     SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
     RecyclerView.LayoutManager mLayoutManager;
 
     DataManagement dataManagement;
     UsersManagementAdapter adapter;
     ArrayList<Users> userList;
 
-    ActivityUsersManagementBinding binding;
+//    ActivityUsersManagementBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class Users_managementActivity extends DrawerMenu {
         frameLayout.addView(activityView);
 //        setContentView(R.layout.activity_users_management);
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
         dataManagement = new DataManagement();
         userList = new ArrayList<>();
 
@@ -56,28 +59,46 @@ public class Users_managementActivity extends DrawerMenu {
         mLayoutManager = new LinearLayoutManager(Users_managementActivity.this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapter);
+        mEditor.putString(FILTER_OPTION,"ALL");
+        mEditor.apply();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
+
         System.out.println(getApplicationContext().toString()+" onResume started...");
+
         Spinner CategorySpinner = findViewById(R.id.CategoryUsersBtn);
+        final String SpinnerState = mSharedPreferences.getString(FILTER_OPTION, "");
+        int spinnerPosition;
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.UsersCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         CategorySpinner.setAdapter(adapter2);
+
+        if (SpinnerState.matches("BLOCKED")){
+            spinnerPosition = 1;
+        }
+        else{
+            spinnerPosition = 0;
+        }
+
+        CategorySpinner.setSelection(spinnerPosition);
         CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if (parent.getSelectedItem().toString().matches("Alle geblokkeerde gebruikers")){
+                if (parent.getSelectedItem().toString().matches("Alle geblokkeerde gebruikers")) {
                     userList = dataManagement.getBlockedUsers(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
+                    mEditor.putString(FILTER_OPTION,"BLOCKED");
                 }else{
                     // By default: show All users.
                     userList = dataManagement.getAllUserDataExceptFor(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1));
+                    mEditor.putString(FILTER_OPTION,"ALL");
                 }
+
                 adapter = new UsersManagementAdapter(userList, Users_managementActivity.this);
                 mRecyclerView.setAdapter(adapter);
+                mEditor.apply();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

@@ -32,6 +32,7 @@ public class Geleend_Aangevraagd extends DrawerMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View activityView = layoutInflater.inflate(R.layout.activity_borrow_status_info, null,false);
@@ -145,13 +146,4 @@ public class Geleend_Aangevraagd extends DrawerMenu {
             Toast.makeText(this, "Dit product staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
         }
     }
-    public void AanvraagAccepteren(View view){ }
-
-//    @Override
-//    public void onBackPressed() {
-//        Intent startNewActivity = new Intent(this, AangevraagdItems_UserList.class);
-//        startNewActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(startNewActivity);
-//        finish();
-//    }
 }
