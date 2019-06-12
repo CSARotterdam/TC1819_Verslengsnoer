@@ -151,6 +151,6 @@ public class Geleend_Aangevraagd extends DrawerMenu {
     @Override
     protected void onResume() {
         super.onResume();
-        BlockedUserUtils.blockFunc(this,mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""));
+        BlockedUserUtils.blockFunc(this,mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
     }
 }

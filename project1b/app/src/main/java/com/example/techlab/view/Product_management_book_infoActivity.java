@@ -44,7 +44,7 @@ public class Product_management_book_infoActivity extends DrawerMenu {
     @Override
     protected void onResume(){
         super.onResume();
-        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""));
+        BlockedUserUtils.blockFunc(this,getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE).getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),"Uw account is geblokkeerd, neem contact met TechLab.");
 
         book = dataManagement.getBookWithId(getIntent().getIntExtra("ID_",-1));
         Title.setText(book.getName());
