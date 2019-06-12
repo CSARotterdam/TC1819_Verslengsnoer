@@ -1,10 +1,10 @@
-package com.example.techlab.util;
+package com.example.techlab.view;
 
 import android.content.Context;
 import android.content.Intent;
 
 import com.example.techlab.db.DataManagement;
-import com.example.techlab.view.MainActivity;
+import com.example.techlab.util.AlertDialogUtils;
 
 public class BlockedUserUtils {
 

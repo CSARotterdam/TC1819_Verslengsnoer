@@ -18,13 +18,13 @@ import com.example.techlab.model.Users;
 import com.example.techlab.util.AlertDialogUtils;
 
 public class MainActivity extends DrawerMenu {
-    public static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
-    public static final String PREFERENCES_FILE = "com.example.techlab.preferences";
-    public static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
-    public static final String KEY_STAY_LOGGED_IN = "keyStayLoggedInStatus";
-    public static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
-    public static final String KEY_PRODUCT_ADMINISTER_SPINNER_STATE = "keyProductAdministerState";
-    public static final String KEY_ACTIVE_USER_NAME = "keyActiveUserName";
+    protected static final String KEY_ACTIVE_USER_ID = "CurrentUserID";
+    protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
+    protected static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
+    protected static final String KEY_STAY_LOGGED_IN = "keyStayLoggedInStatus";
+    protected static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
+    protected static final String KEY_PRODUCT_ADMINISTER_SPINNER_STATE = "keyProductAdministerState";
+    protected static final String KEY_ACTIVE_USER_NAME = "keyActiveUserName";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     EditText loginEmailInput;

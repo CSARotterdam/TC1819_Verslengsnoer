@@ -27,7 +27,6 @@ import com.example.techlab.R;
 import com.example.techlab.adapter.RecyclerViewAdapter;
 import com.example.techlab.db.DataManagement;
 import com.example.techlab.model.Products;
-import com.example.techlab.util.BlockedUserUtils;
 
 import java.util.ArrayList;
 
