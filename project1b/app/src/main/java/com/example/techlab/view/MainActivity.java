@@ -22,7 +22,7 @@ public class MainActivity extends DrawerMenu {
     protected static final String PREFERENCES_FILE = "com.example.techlab.preferences";
     protected static final String KEY_ACTIVE_USER_EMAIL = "keyActiveUser";
     protected static final String KEY_STAY_LOGGED_IN = "keyStayLoggedInStatus";
-    protected static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
+    public static final String KEY_ACTIVE_USER_STATUS = "keyActiveUserStatus";
     protected static final String KEY_PRODUCT_ADMINISTER_SPINNER_STATE = "keyProductAdministerState";
     protected static final String KEY_ACTIVE_USER_NAME = "keyActiveUserName";
     private SharedPreferences mSharedPreferences;

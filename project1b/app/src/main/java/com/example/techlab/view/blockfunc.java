@@ -8,12 +8,12 @@ import android.content.SharedPreferences;
 
 import com.example.techlab.db.DataManagement;
 
-//import static com.example.techlab.view.MainActivity.KEY_ACTIVE_USER_STATUS;
-
 public class blockfunc {
     DataManagement dataManagement;
     SharedPreferences mSharedPreferences;
     SharedPreferences.Editor mEditor;
+    mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
+    mEditor = mSharedPreferences.edit();
 
     private String email;
     Context context;

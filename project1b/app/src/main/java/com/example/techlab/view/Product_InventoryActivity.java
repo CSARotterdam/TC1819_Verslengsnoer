@@ -84,17 +84,15 @@ public class Product_InventoryActivity extends DrawerMenu{
     @Override
     protected void onResume() {
         super.onResume();
-        if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID,-1))){
+        if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1))) {
             addNotification();
         }
-        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""),this);
+        blockfunc blocked = new blockfunc(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL, ""), this);
         if (blocked.ifblocked()) {
             blocked.Redirect("Inventaris");
-        }
-        else{
+        } else {
             Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
-            ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory,
-                    android.R.layout.simple_dropdown_item_1line);
+            ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
             adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
             CategorySpinner.setAdapter(adapter2);
             CategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -116,6 +114,7 @@ public class Product_InventoryActivity extends DrawerMenu{
 
                 }
             });
+        }
     }
 
     // public class SpinnerActivity extends Activity implements
