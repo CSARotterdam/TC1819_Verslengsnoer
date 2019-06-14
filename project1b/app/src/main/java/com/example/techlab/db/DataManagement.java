@@ -518,7 +518,7 @@ public class DataManagement {
 
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String dbLocation ="SCHOOL";
+                String dbLocation ="AWS";
                 String dateTime;
                 if (dbLocation.matches("AWS")) {
                     dateTime = "DATEADD(HOUR,2,CURRENT_TIMESTAMP)";
