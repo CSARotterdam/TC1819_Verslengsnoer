@@ -33,16 +33,17 @@ public class Product_Voorwaarden extends AppCompatActivity{
         }
         super.onResume();
 
+
     }
 
     @Override
     public void onBackPressed() {
-        if(!(mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"").length()>0)){
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+        if((mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,"").length()>0)){
+            super.onBackPressed();
         }
         else {
-            super.onBackPressed();
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
     }
 }
