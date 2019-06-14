@@ -57,26 +57,28 @@ public class MainActivity extends DrawerMenu {
         ImageView logo = findViewById(R.id.TechLabLogo);
         int ImageResource = getResources().getIdentifier("@drawable/techlablogo_small", null, this.getPackageName());
         logo.setImageResource(ImageResource);
+
+        if (!(mSharedPreferences.getString(KEY_STAY_LOGGED_IN,"").matches("on"))){
+            ClearPreference();
+        }
     }
 
     @Override
     protected void onResume() {
         // Show shared preference in log
-        //System.out.println(mSharedPreferences.getAll());
+//        System.out.println("Main Activity: "+mSharedPreferences.getAll());
 
-        blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""), ctx);
-
-        if (!blocked.ifblocked()) {
-            if (mSharedPreferences.getString(KEY_STAY_LOGGED_IN, "").matches("on")) {
-                    startActivity(new Intent(this, Product_InventoryActivity.class));
-            }
-            else {
+        if (!(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL,"").isEmpty())) {
+            blockfunc blocked = new blockfunc(mSharedPreferences.getString(KEY_ACTIVE_USER_EMAIL, ""), ctx);
+            if (blocked.ifblocked()) {
                 ClearPreference();
+                blocked.ShowBlockDialog("Uitgelogd");
+            } else if (mSharedPreferences.getString(KEY_STAY_LOGGED_IN, "").matches("on")) {
+                startActivity(new Intent(this, Product_InventoryActivity.class));
             }
         }
-        else if(blocked.ifblocked()){
+        else {
             ClearPreference();
-            blocked.ShowBlockDialog("Uitgelogd");
         }
         super.onResume();
     }

@@ -127,7 +127,6 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
             Intent intent = new Intent(getBaseContext(), Product_Voorwaarden.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            finish();
         }
         if (id == R.id.HomeMenu){
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
