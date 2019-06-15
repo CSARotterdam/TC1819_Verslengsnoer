@@ -27,10 +27,10 @@ public class InfographicActivity extends DrawerMenu  {
     PieChart pieChart2;
     DataManagementInfographic dataManagementInfographic;
     private SharedPreferences mSharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Source: https://www.youtube.com/watch?v=MiVx3AQD_PI
 
         FrameLayout frameLayout = findViewById(R.id.content_frame);
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);

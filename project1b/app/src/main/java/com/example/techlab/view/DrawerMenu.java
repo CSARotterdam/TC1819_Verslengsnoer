@@ -29,6 +29,9 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
     View headerView;
 
     //Source: https://stackoverflow.com/questions/26216088/drawer-layout-not-closing-on-back-pressed-depending-on-support-v4-lib
+    //Source: https://www.youtube.com/watch?v=fGcMLu1GJEc
+    //Source: https://developer.android.com/guide/navigation/navigation-ui
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

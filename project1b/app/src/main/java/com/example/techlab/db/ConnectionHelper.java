@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class ConnectionHelper {
     String IP,DB,UserName,Password;
+    //Source:https://www.youtube.com/watch?v=RLDIjrDRrU8
     @SuppressLint("NewApi")
     public Connection connection(){
 //        IP = "145.24.222.204:8080";

@@ -27,6 +27,7 @@ public class ProductManagementAdapter extends RecyclerView.Adapter<ProductManage
     private List<Products> products;
     private List<Products> productsListFull;
     private Context context;
+    //Source:https://www.youtube.com/watch?v=Vyqz_-sJGFk
     public ProductManagementAdapter(List<Products> products, Context context) {
         this.products = products;
         this.context = context;

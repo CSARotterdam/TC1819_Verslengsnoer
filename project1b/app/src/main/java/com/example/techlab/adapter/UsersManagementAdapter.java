@@ -26,6 +26,7 @@ public class UsersManagementAdapter extends RecyclerView.Adapter<UsersManagement
     private List<Users> usersList;
     private List<Users> usersListFull;
     private Context context;
+    //Source:https://www.youtube.com/watch?v=Vyqz_-sJGFk
 
     public UsersManagementAdapter(List<Users> users, Context context) {
         this.usersList = users;

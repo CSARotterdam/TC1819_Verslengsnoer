@@ -31,8 +31,8 @@ public class MainActivity extends DrawerMenu {
     TextInputLayout userNameInputLayout, passwordInputLayout;
     CheckBox stayLoggedInCheckBox;
     DataManagement dataManagement;
-
     Context ctx;
+    //Source:https://www.youtube.com/watch?v=fJEFZ6EOM9o
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
