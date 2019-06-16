@@ -601,7 +601,7 @@ public class DataManagement {
             connect = new ConnectionHelper().connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status+"' or USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status2+"' or CONVERT(VARCHAR, STATUS) = '"+status3+"'";
+                String query = "SELECT * FROM BORROW WHERE USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status+"' or USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status2+"' or USERS_P_ID = "+UserID+" AND CONVERT(VARCHAR, STATUS) = '"+status3+"'";
                 ResultSet resultSet = connect.createStatement().executeQuery(query);
                 while(resultSet.next()){
                     Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
