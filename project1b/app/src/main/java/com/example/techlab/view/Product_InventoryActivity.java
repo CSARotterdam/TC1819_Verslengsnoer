@@ -89,8 +89,6 @@ public class Product_InventoryActivity extends DrawerMenu{
         if (dataManagement.GebruikerTeLaat(mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, -1))) {
             addNotification();
         }
-
-        // https://developer.android.com/guide/topics/ui/controls/spinner
         Spinner CategorySpinner = findViewById(R.id.CategoryBttn);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.ProductCategory, android.R.layout.simple_dropdown_item_1line);
         adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -104,13 +102,30 @@ public class Product_InventoryActivity extends DrawerMenu{
                 } else {
                     products = dataManagement.getAllProducts(parent.getSelectedItem().toString());
                 }
+
                 adapter = new RecyclerViewAdapter(Product_InventoryActivity.this, products);
                 recyclerView.setAdapter(adapter);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
     }
+
+//     public class SpinnerActivity extends Activity implements
+//     AdapterView.OnItemSelectedListener {
+//     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+//     // An item was selected. You can retrieve the selected item using
+//     // parent.getItemAtPosition(pos)
+//     Toast.makeText(Product_InventoryActivity.this,
+//     parent.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+//     }
+//     public void onNothingSelected(AdapterView<?> parent) {
+//     // Another interface callback
+//     }
+//     }
 
     @Override
     public void onBackPressed() { moveTaskToBack(true); }

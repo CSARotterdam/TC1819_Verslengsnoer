@@ -117,7 +117,7 @@ public class Product_administration_Options extends DrawerMenu {
                 Toast.makeText(this, "Product uitlenen actie is mislukt", Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(this, "Dit product staat niet op wachtrij, dus u kunt dit product niet uitlenen", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Dit product staat niet op pending, dus u kunt dit product niet uitlenen", Toast.LENGTH_LONG).show();
         }
     }
     public void returnProductButton(View view){
@@ -149,7 +149,7 @@ public class Product_administration_Options extends DrawerMenu {
             startActivity(intent);
             finish();
         }else{
-            Toast.makeText(this, "Dit product staat niet op wachtrij, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Dit product staat niet op pending, dus u kunt dit product niet annuleeren", Toast.LENGTH_LONG).show();
         }
     }
 }
