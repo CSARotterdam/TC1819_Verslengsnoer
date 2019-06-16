@@ -33,7 +33,7 @@
     <!--Boek Informatie-->
 
     //product status type
-    <string name="productStatusPending">Pending</string>
+    <string name="productStatusPending">Wachtrij</string>
     <string name="productStatusOnLoan">Geleend</string>
     <string name="productStatusReturned">Teruggebracht</string>
     <string name="productStatusTeLaat">Te Laat</string>

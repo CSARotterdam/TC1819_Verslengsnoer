@@ -52,8 +52,6 @@ public class DrawerMenu extends AppCompatActivity implements NavigationView.OnNa
         headerView = navigationView.getHeaderView(0);
         menuUserName = headerView.findViewById(R.id.menuUserName);
         menuUserStatus = headerView.findViewById(R.id.menuUserStatus);
-
-
     }
     @Override
     protected void onResume() {
