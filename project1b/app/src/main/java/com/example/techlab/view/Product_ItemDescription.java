@@ -31,7 +31,7 @@ public class Product_ItemDescription extends DrawerMenu {
     private static final String TAG = "Product_ItemDescription";
     private Button Button_Request2Borrow;
     //    private Button VoorwaardenBtn; //Belongs to Guan Version 1
-//    private ArrayList<Integer> mSelectedItems = new ArrayList<>(); //Belongs to Guan Version 1
+    //    private ArrayList<Integer> mSelectedItems = new ArrayList<>(); //Belongs to Guan Version 1
     private Integer productID;
     DataManagement dataManagement;
     private SharedPreferences mSharedPreferences;
@@ -71,6 +71,7 @@ public class Product_ItemDescription extends DrawerMenu {
         TextView name = findViewById(R.id.product_name);
         name.setText(productName);
 
+        // https://github.com/Manabu-GT/ExpandableTextView
         ExpandableTextView description = findViewById(R.id.expand_text_view);
         description.setText(productDescription);
 
@@ -87,9 +88,7 @@ public class Product_ItemDescription extends DrawerMenu {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-    }
+    protected void onPause() { super.onPause(); }
 
     @Override
     public void onBackPressed() {
@@ -121,7 +120,7 @@ public class Product_ItemDescription extends DrawerMenu {
         LayoutInflater li = LayoutInflater.from(Product_ItemDescription.this);
         View contentVoorwaarden = li.inflate(R.layout.custom_borrow_alertdialog, null);
 
-//                POP UP in Product_ItemDescription class
+        // POP UP in Product_ItemDescription class
         AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this)
                 .setView(contentVoorwaarden)
                 .setTitle("Leenaanvraag")
@@ -133,19 +132,19 @@ public class Product_ItemDescription extends DrawerMenu {
                 .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                  Toast that shows that the request is sent
+                    // Toast that shows that the request is sent
                         Toast.makeText(Product_ItemDescription.this, "U mag dit product nu ophalen.", Toast.LENGTH_LONG).show();
-                    //takes productID, UserID, the amound lend and the currentdate from the Database
+                    // takes productID, UserID, the amound lend and the currentdate from the Database
                         dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, getString(R.string.productStatusPending), DateUtils.getCurrentDate());
-//                  When you click on "Akkoord" you'll go to the Student_Geleend_Aangevraagd.class
+                    // When you click on "Akkoord" you'll go to the Student_Geleend_Aangevraagd.class
                         startActivity(new Intent(Product_ItemDescription.this, Student_Geleend_Aangevraagd.class));
                     }
                 })
-//           You can't click outside the popup to cancel
+                // You can't click outside the popup to cancel
                 .setCancelable(false);
 
-//                TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
-//                textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
+        // TextView textmsg = contentVoorwaarden.findViewById(R.id.AlertDialogText);
+        // textmsg.setText("Als u dit product leent moet het binnen 1 dag ingeleverd worden.\nGa akkoord met de voorwaarden als je dit product wilt lenen.");
         contentVoorwaarden.findViewById(R.id.AlertDialogButtonVoorwaarden).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) { startActivity(new Intent(Product_ItemDescription.this, Product_Voorwaarden.class)); }
@@ -159,17 +158,15 @@ public class Product_ItemDescription extends DrawerMenu {
 //        Button_Request2Borrow.setOnClickListener(new OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                AlertDialog.Builder RequestItemAlertDialog = new AlertDialog.Builder(Product_ItemDescription.this);
-//                RequestItemAlertDialog.setTitle("Aanvraag voor lenen")
-//                .setMessage("Ga akkoord met de voorwaarden als je dit product wilt lenen.")
-//                .setCancelable(false)
-//                .setNeutralButton("Annuleer",null)
-//                .setNegativeButton("Voorwaarden", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Intent Voorwaarden = new Intent(Product_ItemDescription.this, Product_Voorwaarden.class);
-//                        startActivity(Voorwaarden);
-//                    }
+//                new AlertDialog.Builder(Product_ItemDescription.this).setTitle("Aanvraag voor lenen")
+//                    .setMessage("Ga akkoord met de voorwaarden als je dit product wilt lenen.")
+//                    .setCancelable(false)
+//                    .setNeutralButton("Annuleer",null)
+//                    .setNegativeButton("Voorwaarden", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            startActivity(new Intent(Product_ItemDescription.this, Product_Voorwaarden.class));
+//                        }
 //                })
 //                .setPositiveButton("Akkoord", new DialogInterface.OnClickListener() {
 //                    @Override
@@ -177,8 +174,7 @@ public class Product_ItemDescription extends DrawerMenu {
 //                        Toast.makeText(Product_ItemDescription.this,"Aanvraag verstuurd.",Toast.LENGTH_LONG).show();
 //                        //DB code here
 //                        dataManagement.InsertRequestBorrowItem(productID, mSharedPreferences.getInt(MainActivity.KEY_ACTIVE_USER_ID, 0), 1, "Pending",objectType);
-//                        Intent BorrowActivity = new Intent(getApplicationContext(), Student_Geleend_Aangevraagd.class);
-//                        startActivity(BorrowActivity);
+//                        startActivity(new Intent(getApplicationContext(), Student_Geleend_Aangevraagd.class));
 //                    }
 //                });
 //

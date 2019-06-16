@@ -119,13 +119,9 @@ public class MainActivity extends DrawerMenu {
                         blocked.ShowBlockDialog("Inlog mislukt!");
                     }
                 }
-            else {
-                passwordInputLayout.setError("het wachtwoord dat je hebt ingevoerd is onjuist");
-            }
+            else { passwordInputLayout.setError("het wachtwoord dat je hebt ingevoerd is onjuist"); }
         }
-        else {
-            userNameInputLayout.setError("Het e-mailadres dat je hebt ingevoerd is onjuist");
-        }
+        else { userNameInputLayout.setError("Het e-mailadres dat je hebt ingevoerd is onjuist"); }
     }
 
     public void ClearPreference(){

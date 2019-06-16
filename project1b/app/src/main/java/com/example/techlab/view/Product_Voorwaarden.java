@@ -21,8 +21,9 @@ public class Product_Voorwaarden extends AppCompatActivity{
 
         mSharedPreferences = getSharedPreferences(MainActivity.PREFERENCES_FILE, Context.MODE_PRIVATE);
 
-//        This makes an html textview
-        TextView voorwaarden = (TextView) findViewById(R.id.Voorwaarden);
+        // https://www.myandroidsolutions.com/2017/09/29/android-html-textview/#.XQX834gzaUk
+        // This makes an html textview
+        TextView voorwaarden = findViewById(R.id.Voorwaarden);
         voorwaarden.setText(Html.fromHtml(getString(R.string.gebruikersvoorwaarden)));
     }
 
@@ -32,8 +33,6 @@ public class Product_Voorwaarden extends AppCompatActivity{
             CheckBlockUtils.ExecuteCheckBlock(this, mSharedPreferences.getString(MainActivity.KEY_ACTIVE_USER_EMAIL,""),"Voorwaarden");
         }
         super.onResume();
-
-
     }
 
     @Override

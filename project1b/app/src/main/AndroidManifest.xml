@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.User_management_user_historyActivity"></activity>
+        <activity android:name=".view.User_management_user_historyActivity"/>
         <activity android:name=".view.DrawerMenu" />
         <activity
             android:name=".view.Contact"
