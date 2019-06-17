@@ -511,6 +511,49 @@ public class DataManagement {
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }
         return loanUsersList;
     }
+    public ArrayList<Borrow> getBorrowDataListWithStatus(String status, String status2){
+        ArrayList<Borrow> loanUsersList = new ArrayList<>();
+        try{
+            connect = new ConnectionHelper().connection();
+            if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
+            else{
+                ResultSet resultSet = connect.createStatement().executeQuery("SELECT * FROM BORROW WHERE CONVERT(VARCHAR, STATUS) = '"+status+"' OR CONVERT(VARCHAR, STATUS) = '"+status2+"'");
+
+                while(resultSet.next()){
+                    Products product = getProductWithId(resultSet.getInt("PRODUCTS_P_ID"));
+                    Users user = getUserWithId(resultSet.getInt("USERS_P_ID"));
+                    String RequestDate;
+                    String BorrowDate;
+                    String returndate;
+
+                    if (resultSet.getDate("REQUEST_BORROW_DATE")==null){ RequestDate = "";
+                    }else{ RequestDate = DateUtils.getCurrentDate(resultSet.getTimestamp("REQUEST_BORROW_DATE"));
+                    }
+                    if (resultSet.getDate("BORROW_DATE")==null){ BorrowDate = "";
+                    }else{ BorrowDate = DateUtils.getCurrentDate(resultSet.getTimestamp("BORROW_DATE"));
+                    }
+                    if(resultSet.getDate("RETURN_DATE")==null){ returndate = "";
+                    }else{ returndate = DateUtils.getCurrentDate(resultSet.getTimestamp("RETURN_DATE"));
+                    }
+                    loanUsersList.add(new Borrow(
+                            product.getName(),
+                            RequestDate,
+                            BorrowDate,
+                            resultSet.getInt("AMOUNT"),
+                            resultSet.getString("STATUS"),
+                            resultSet.getInt("PRODUCTS_P_ID"),
+                            product.getImage(),
+                            user.getFirstName() + " " + user.getSurname(),
+                            resultSet.getInt("USERS_P_ID"),
+                            resultSet.getInt("ID_"),
+                            returndate));
+                }
+                connect.close();
+            }
+        }catch(Exception ex){ Log.d(TAG,ex.toString()); }
+        return loanUsersList;
+    }
+
 
     public void StatusTeLaat(){
         try{

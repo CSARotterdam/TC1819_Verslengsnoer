@@ -88,7 +88,7 @@ public class Product_administration extends DrawerMenu {
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusPending));
                 }else if(selectedItem.matches("Alle Uitgeleende producten")){
                     dataManagement.StatusTeLaat();
-                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusOnLoan));
+                    loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusOnLoan),getString(R.string.productStatusTeLaat));
                 }else if(selectedItem.matches("Alle teruggebrachte producten")){
                     loanUsersList  = dataManagement.getBorrowDataListWithStatus(getString(R.string.productStatusReturned));
                 }else if(selectedItem.matches("Alle Te Late producten")){
