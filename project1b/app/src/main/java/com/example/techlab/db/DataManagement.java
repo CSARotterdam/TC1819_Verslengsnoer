@@ -282,10 +282,7 @@ public class DataManagement {
             connect = new ConnectionHelper().connection();
             if (connect == null){ Log.d(TAG,"Check your internet connection!"); }
             else{
-                PreparedStatement pstmt = connect.prepareStatement("UPDATE USERS SET PASSWORD=? WHERE ID_=?");
-                pstmt.setString(1,Password);
-                pstmt.setInt(2,ID_);
-                pstmt.executeUpdate();
+                connect.createStatement().executeUpdate("UPDATE USERS  SET HASH = HASHBYTES('MD5', '"+Password+"'+CAST(SALT AS NVARCHAR(36))) WHERE ID_= '"+ID_+"'");
                 connect.close();
             }
         }catch(Exception ex){ Log.d(TAG,ex.toString()); }
